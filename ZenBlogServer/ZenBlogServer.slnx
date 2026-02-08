@@ -1,0 +1,17 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="ZenBlog.API/ZenBlog.API.csproj" />
+    <Project Path="ZenBlogServer.AppHost/ZenBlogServer.AppHost.csproj" />
+    <Project Path="ZenBlogServer.ServiceDefaults/ZenBlogServer.ServiceDefaults.csproj" />
+  </Folder>
+  <Folder Name="/src/Core/">
+    <Project Path="ZenBlog.Application/ZenBlog.Application.csproj" />
+    <Project Path="ZenBlog.Domain/ZenBlog.Domain.csproj" />
+  </Folder>
+  <Folder Name="/src/External/">
+    <Project Path="ZenBlog.Infrastructure/ZenBlog.Infrastructure.csproj" />
+    <Project Path="ZenBlog.Persistance/ZenBlog.Persistance.csproj" />
+    <Project Path="ZenBlog.Presentation/ZenBlog.Presentation.csproj" />
+  </Folder>
+  <Folder Name="/test/" />
+</Solution>
