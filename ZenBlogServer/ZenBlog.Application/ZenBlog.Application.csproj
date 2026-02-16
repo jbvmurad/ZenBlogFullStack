@@ -6,4 +6,22 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="12.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ZenBlog.Domain\ZenBlog.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\ZenBlogFeatures\BlogFeatures\Queries\" />
+    <Folder Include="Features\ZenBlogFeatures\CategoryFeatures\Queries\" />
+    <Folder Include="Features\ZenBlogFeatures\CommentFeatures\Queries\" />
+    <Folder Include="Features\ZenBlogFeatures\ContactInfoFeatures\Queries\" />
+    <Folder Include="Features\ZenBlogFeatures\MessageFeatures\Queries\" />
+    <Folder Include="Features\ZenBlogFeatures\SocialFeatures\Queries\" />
+    <Folder Include="Features\ZenBlogFeatures\SubCommentFeatures\Queries\" />
+  </ItemGroup>
+
 </Project>
