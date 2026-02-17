@@ -38,10 +38,7 @@ public sealed class CommentService : ICommentService
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
-    public IQueryable<Comment> GetAllComment()
-    {
-        throw new NotImplementedException();
-    }
+    public IQueryable<Comment> GetAllComments() => _commentRepository.GetAll().AsQueryable();
 
     public async Task UpdateAsync(UpdateCommentCommand request, CancellationToken cancellationToken)
     {
