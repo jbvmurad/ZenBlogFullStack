@@ -1,12 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{786EF84C-FBB9-BB47-CC32-3BE6556079F2}|ZenBlog.API\\ZenBlog.API.csproj|c:\\users\\murad\\desktop\\zenblogfullstack\\zenblogserver\\zenblog.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{786EF84C-FBB9-BB47-CC32-3BE6556079F2}|ZenBlog.API\\ZenBlog.API.csproj|solutionrelative:zenblog.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -14,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -47,19 +42,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.API\\Program.cs",
-              "RelativeDocumentMoniker": "ZenBlog.API\\Program.cs",
-              "ToolTip": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.API\\Program.cs",
-              "RelativeToolTip": "ZenBlog.API\\Program.cs",
-              "ViewState": "AgIAAEYAAAAAAAAAAAAAAFUAAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-16T18:36:15.903Z",
-              "EditorCaption": ""
             }
           ]
         }
