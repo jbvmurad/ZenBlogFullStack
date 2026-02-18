@@ -2,4 +2,4 @@ namespace ZenBlog.Application.Features.ZenBlogFeatures.CategoryFeatures.Commands
 
 public sealed record UpdateCategoryCommand(
     string Id,
-    string CategoryName);
+    string Name);

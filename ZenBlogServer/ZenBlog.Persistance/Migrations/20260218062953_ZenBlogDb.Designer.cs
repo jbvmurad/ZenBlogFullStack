@@ -12,7 +12,7 @@ using ZenBlog.Persistance.Context;
 namespace ZenBlog.Persistance.Migrations
 {
     [DbContext(typeof(ZenBlogContext))]
-    [Migration("20260217070344_ZenBlogDb")]
+    [Migration("20260218062953_ZenBlogDb")]
     partial class ZenBlogDb
     {
         /// <inheritdoc />
