@@ -10,12 +10,31 @@
         "dependencies": {
           "Microsoft.AspNetCore.OData": "9.4.1",
           "Newtonsoft.Json": "13.0.4",
-          "WolverineFx": "5.15.0",
+          "WolverineFx": "5.16.2",
           "ZenBlog.Application": "1.0.0",
           "ZenBlog.Infrastructure": "1.0.0"
         },
         "runtime": {
           "ZenBlog.Presentation.dll": {}
+        }
+      },
+      "AWSSDK.Core/4.0.3.12": {
+        "runtime": {
+          "lib/net8.0/AWSSDK.Core.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.3.12"
+          }
+        }
+      },
+      "AWSSDK.S3/4.0.18.6": {
+        "dependencies": {
+          "AWSSDK.Core": "4.0.3.12"
+        },
+        "runtime": {
+          "lib/net8.0/AWSSDK.S3.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.18.6"
+          }
         }
       },
       "FastExpressionCompiler/5.3.0": {
@@ -96,7 +115,7 @@
           }
         }
       },
-      "JasperFx/1.17.2": {
+      "JasperFx/1.19.0": {
         "dependencies": {
           "FastExpressionCompiler": "5.3.0",
           "Microsoft.Bcl.TimeProvider": "10.0.0",
@@ -105,33 +124,52 @@
         },
         "runtime": {
           "lib/net10.0/JasperFx.dll": {
-            "assemblyVersion": "1.17.2.0",
-            "fileVersion": "1.17.2.0"
+            "assemblyVersion": "1.19.0.0",
+            "fileVersion": "1.19.0.0"
           }
         }
       },
-      "JasperFx.Events/1.19.1": {
+      "JasperFx.Events/1.21.0": {
         "dependencies": {
-          "JasperFx": "1.17.2"
+          "JasperFx": "1.19.0"
         },
         "runtime": {
           "lib/net10.0/JasperFx.Events.dll": {
-            "assemblyVersion": "1.19.1.0",
-            "fileVersion": "1.19.1.0"
+            "assemblyVersion": "1.21.0.0",
+            "fileVersion": "1.21.0.0"
           }
         }
       },
-      "JasperFx.RuntimeCompiler/4.3.2": {
+      "JasperFx.RuntimeCompiler/4.4.0": {
         "dependencies": {
-          "JasperFx": "1.17.2",
+          "JasperFx": "1.19.0",
           "Microsoft.CodeAnalysis": "5.0.0",
           "Microsoft.CodeAnalysis.CSharp": "5.0.0",
           "Microsoft.CodeAnalysis.Scripting": "5.0.0"
         },
         "runtime": {
           "lib/net10.0/JasperFx.RuntimeCompiler.dll": {
-            "assemblyVersion": "4.3.2.0",
-            "fileVersion": "4.3.2.0"
+            "assemblyVersion": "4.4.0.0",
+            "fileVersion": "4.4.0.0"
+          }
+        }
+      },
+      "MassTransit/9.0.1": {
+        "dependencies": {
+          "MassTransit.Abstractions": "9.0.1"
+        },
+        "runtime": {
+          "lib/net10.0/MassTransit.dll": {
+            "assemblyVersion": "9.0.1.0",
+            "fileVersion": "9.0.1.0"
+          }
+        }
+      },
+      "MassTransit.Abstractions/9.0.1": {
+        "runtime": {
+          "lib/net10.0/MassTransit.Abstractions.dll": {
+            "assemblyVersion": "9.0.1.0",
+            "fileVersion": "9.0.1.0"
           }
         }
       },
@@ -903,24 +941,25 @@
           }
         }
       },
-      "WolverineFx/5.15.0": {
+      "WolverineFx/5.16.2": {
         "dependencies": {
-          "JasperFx": "1.17.2",
-          "JasperFx.Events": "1.19.1",
-          "JasperFx.RuntimeCompiler": "4.3.2",
+          "JasperFx": "1.19.0",
+          "JasperFx.Events": "1.21.0",
+          "JasperFx.RuntimeCompiler": "4.4.0",
           "NewId": "4.0.1",
           "Newtonsoft.Json": "13.0.4"
         },
         "runtime": {
           "lib/net10.0/Wolverine.dll": {
-            "assemblyVersion": "5.15.0.0",
-            "fileVersion": "5.15.0.0"
+            "assemblyVersion": "5.16.2.0",
+            "fileVersion": "5.16.2.0"
           }
         }
       },
       "ZenBlog.Application/1.0.0": {
         "dependencies": {
           "FluentValidation": "12.1.1",
+          "MassTransit": "9.0.1",
           "ZenBlog.Domain": "1.0.0"
         },
         "runtime": {
@@ -944,6 +983,7 @@
       },
       "ZenBlog.Infrastructure/1.0.0": {
         "dependencies": {
+          "AWSSDK.S3": "4.0.18.6",
           "FluentEmail.Smtp": "3.0.2",
           "Google.Apis.Auth": "1.73.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "10.0.3",
@@ -963,6 +1003,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "AWSSDK.Core/4.0.3.12": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/FyE96xV2qJLgJN++ZW8M7udRf2NBLoku9AkEHLQqpH9uv0r0QQK2sw2pF3OvzKnuKsyp+Mx5wYwgFXPLnBb9g==",
+      "path": "awssdk.core/4.0.3.12",
+      "hashPath": "awssdk.core.4.0.3.12.nupkg.sha512"
+    },
+    "AWSSDK.S3/4.0.18.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-RJUZT6HN4/xpYnUrjES2wiH1XooR7+cha5+enUb+TXjYMIDhLDG9wmoH0An3wViFUjXKL/ih3hpZg9yC3RDQAw==",
+      "path": "awssdk.s3/4.0.18.6",
+      "hashPath": "awssdk.s3.4.0.18.6.nupkg.sha512"
     },
     "FastExpressionCompiler/5.3.0": {
       "type": "package",
@@ -1020,26 +1074,40 @@
       "path": "humanizer.core/2.14.1",
       "hashPath": "humanizer.core.2.14.1.nupkg.sha512"
     },
-    "JasperFx/1.17.2": {
+    "JasperFx/1.19.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-VyMkKEHlJW9MU82ZhfsklwTM6eUT+bNUg0F3q03o6O3My0aDaXC63rVVqJtAwhBV2vuof1CBFCqGqYup485a4A==",
-      "path": "jasperfx/1.17.2",
-      "hashPath": "jasperfx.1.17.2.nupkg.sha512"
+      "sha512": "sha512-pJwLXwqIgX44BVENAT76dnE0YW9AJEd9G0EMkHnDowYPUTems9TWz0Q8rC94EKIcx+8mPQS6GW62P9GaOcx6fQ==",
+      "path": "jasperfx/1.19.0",
+      "hashPath": "jasperfx.1.19.0.nupkg.sha512"
     },
-    "JasperFx.Events/1.19.1": {
+    "JasperFx.Events/1.21.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-lgHp9SRXBWpbqBd2to4vnwMRiWAASjHVqi3XXW2pcWIVEhGcGTSsgCN+hraEbHrr+3SMxl0DyQmbd4I6bTZV7A==",
-      "path": "jasperfx.events/1.19.1",
-      "hashPath": "jasperfx.events.1.19.1.nupkg.sha512"
+      "sha512": "sha512-JbBs+dOCLsWMihx87fRPCWhm6CrO+Ei7Az2XEqeoeyQqC5cPgBXUEmwidYoHyXgW0XGMjRD34BOCH9X/NCVmaQ==",
+      "path": "jasperfx.events/1.21.0",
+      "hashPath": "jasperfx.events.1.21.0.nupkg.sha512"
     },
-    "JasperFx.RuntimeCompiler/4.3.2": {
+    "JasperFx.RuntimeCompiler/4.4.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-zA8iKRvnM1doCM7QqKXfit+FO9LF9hZ+BPoxe4L/+wf6RlARUMpV6HYjr1LWqogT2T5RzC5iO9r9HITl94MonA==",
-      "path": "jasperfx.runtimecompiler/4.3.2",
-      "hashPath": "jasperfx.runtimecompiler.4.3.2.nupkg.sha512"
+      "sha512": "sha512-n5dOtQlytGsCfpRyOGDw/qHaqPDd2GcR7pgO53bQto1T82/VZjQdzkfuLQt8vUMY6D+m1TgqUjqedNFDT1+rEQ==",
+      "path": "jasperfx.runtimecompiler/4.4.0",
+      "hashPath": "jasperfx.runtimecompiler.4.4.0.nupkg.sha512"
+    },
+    "MassTransit/9.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wYMV/TX9AQqG9ybG7i97Et2rjPgIYXmYr3RV5k7ogr/BvPnAF8ohcmeESoTYSgQFWDi2lurKx57uPg1MJ9R0jw==",
+      "path": "masstransit/9.0.1",
+      "hashPath": "masstransit.9.0.1.nupkg.sha512"
+    },
+    "MassTransit.Abstractions/9.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Rh3Bj/8VOdaUat2Zepbe1cfqQ+20Pqd9zoUme8w50qXISZ9p6yuxBXNNBazS16TN6Kfd4FLxuMUtjY928Rxqdw==",
+      "path": "masstransit.abstractions/9.0.1",
+      "hashPath": "masstransit.abstractions.9.0.1.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Authentication.JwtBearer/10.0.3": {
       "type": "package",
@@ -1335,12 +1403,12 @@
       "path": "ts.entityframeworkcore.genericrepository/10.0.0",
       "hashPath": "ts.entityframeworkcore.genericrepository.10.0.0.nupkg.sha512"
     },
-    "WolverineFx/5.15.0": {
+    "WolverineFx/5.16.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-H08OJSxWpFaTReZtNsFVBiNfxToOjOSnu3GaPyFhoUrS2WWwiTiHqF/r6gAToDQu7Htr9se/fRKsbNRBNDXtBg==",
-      "path": "wolverinefx/5.15.0",
-      "hashPath": "wolverinefx.5.15.0.nupkg.sha512"
+      "sha512": "sha512-RKhGLZnJpyvw8nysUiPmQmQjeYc/MShXRzoczeKejC9zbAKaQZMku/xHxi/pOcgGEHW2hDo6gDO8YvAPvHcljg==",
+      "path": "wolverinefx/5.16.2",
+      "hashPath": "wolverinefx.5.16.2.nupkg.sha512"
     },
     "ZenBlog.Application/1.0.0": {
       "type": "project",

@@ -44,6 +44,8 @@ public sealed class CategoryService : ICategoryService
     {
         var category = await _categoryRepository.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
         if (category == null) throw new ArgumentException($"Category with Id {request.Id} isn't found");
+
+        _mapper.Map(request,category);
         _categoryRepository.Update(category);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }

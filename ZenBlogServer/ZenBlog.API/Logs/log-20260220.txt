@@ -1,0 +1,507 @@
+2026-02-20 11:34:06.098 +04:00 [INF] Exporting Open Telemetry metrics from Wolverine with name Wolverine:ZenBlog.API, version 5.15.0.0
+2026-02-20 11:34:06.231 +04:00 [INF] Starting Wolverine messaging for application assembly ZenBlog.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+2026-02-20 11:34:06.232 +04:00 [INF] The Wolverine code generation mode is Dynamic. This is suitable for development, but you may want to opt into other options for production usage to reduce start up time and resource utilization.
+2026-02-20 11:34:06.232 +04:00 [INF] See https://wolverine.netlify.app/guide/codegen.html for more information
+2026-02-20 11:34:06.254 +04:00 [INF] Searching assembly ZenBlog.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null for Wolverine message handlers
+2026-02-20 11:34:06.254 +04:00 [INF] Searching assembly ZenBlog.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null for Wolverine message handlers
+2026-02-20 11:34:06.346 +04:00 [INF] Wolverine assigned node id for envelope persistence is -1020514709
+2026-02-20 11:34:06.468 +04:00 [INF] Started message listening at "stub://replies/"
+2026-02-20 11:34:13.397 +04:00 [INF] HTTP GET /scalar responded 302 in 33.6732 ms
+2026-02-20 11:34:13.539 +04:00 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-02-20 11:34:13.762 +04:00 [INF] HTTP GET /scalar/ responded 200 in 334.3261 ms
+2026-02-20 11:34:13.812 +04:00 [INF] HTTP GET /scalar/scalar.aspnetcore.js responded 200 in 31.1163 ms
+2026-02-20 11:34:13.901 +04:00 [INF] HTTP GET /scalar/scalar.js responded 200 in 119.8692 ms
+2026-02-20 11:34:15.223 +04:00 [WRN] The foreign key property 'Blog.UserId1' was created in shadow state because a conflicting property with the simple name 'UserId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2026-02-20 11:34:16.375 +04:00 [INF] HTTP GET /openapi/v1.json responded 200 in 1968.5409 ms
+2026-02-20 11:34:20.895 +04:00 [INF] Utilizing service location for Message Handler for ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.LoginWithGoogle.LoginWithGoogleCommand for Service ZenBlog.Application.Services.UserAttributeService.IAuthService: 
+Dependency: Descriptor: ServiceType: Microsoft.AspNetCore.Identity.UserManager`1[ZenBlog.Domain.Entities.UserEntities.User] Lifetime: Scoped ImplementationType: Microsoft.AspNetCore.Identity.UserManager`1[ZenBlog.Domain.Entities.UserEntities.User]
+
+Dependency: Descriptor: ServiceType: Microsoft.AspNetCore.Identity.IUserStore`1[ZenBlog.Domain.Entities.UserEntities.User] Lifetime: Scoped ImplementationType: Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore`10[ZenBlog.Domain.Entities.UserEntities.User,ZenBlog.Domain.Entities.UserEntities.Role,ZenBlog.Persistance.Context.ZenBlogContext,System.String,Microsoft.AspNetCore.Identity.IdentityUserClaim`1[System.String],Microsoft.AspNetCore.Identity.IdentityUserRole`1[System.String],Microsoft.AspNetCore.Identity.IdentityUserLogin`1[System.String],Microsoft.AspNetCore.Identity.IdentityUserToken`1[System.String],Microsoft.AspNetCore.Identity.IdentityRoleClaim`1[System.String],Microsoft.AspNetCore.Identity.IdentityUserPasskey`1[System.String]]
+
+Dependency: Descriptor: ServiceType: ZenBlog.Persistance.Context.ZenBlogContext Lifetime: Scoped ImplementationType: ZenBlog.Persistance.Context.ZenBlogContext
+
+Dependency: Descriptor: ServiceType: Microsoft.EntityFrameworkCore.DbContextOptions Lifetime: Scoped ImplementationFactory: Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions+<>c__19`1.<AddCoreServices>b__19_0
+The service registration for Microsoft.EntityFrameworkCore.DbContextOptions is an 'opaque' lambda factory with the Scoped lifetime and requires service location
+
+
+
+Dependency: Descriptor: ServiceType: System.IServiceProvider Lifetime: Scoped ImplementationType: Microsoft.Extensions.DependencyInjection.ServiceDescriptor
+Your code is directly using IServiceProvider
+
+
+Dependency: Descriptor: ServiceType: AutoMapper.IMapper Lifetime: Transient ImplementationFactory: Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions+<>c.<AddAutoMapperClasses>b__10_5
+The service registration for AutoMapper.IMapper is an 'opaque' lambda factory with the Transient lifetime and requires service location
+
+Dependency: Descriptor: ServiceType: ZenBlog.Domain.Repositories.UserRepositories.IAuthRepository Lifetime: Scoped ImplementationType: ZenBlog.Persistance.Repositories.UserRepositories.AuthRepository
+
+Dependency: Descriptor: ServiceType: ZenBlog.Persistance.Context.ZenBlogContext Lifetime: Scoped ImplementationType: ZenBlog.Persistance.Context.ZenBlogContext
+
+Dependency: Descriptor: ServiceType: Microsoft.EntityFrameworkCore.DbContextOptions Lifetime: Scoped ImplementationFactory: Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions+<>c__19`1.<AddCoreServices>b__19_0
+The service registration for Microsoft.EntityFrameworkCore.DbContextOptions is an 'opaque' lambda factory with the Scoped lifetime and requires service location
+
+
+
+Dependency: Descriptor: ServiceType: ZenBlog.Application.Jwt.IJwtProvider Lifetime: Scoped ImplementationType: ZenBlog.Infrastructure.Authentication.JwtProvider
+
+Dependency: Descriptor: ServiceType: Microsoft.AspNetCore.Identity.UserManager`1[ZenBlog.Domain.Entities.UserEntities.User] Lifetime: Scoped ImplementationType: Microsoft.AspNetCore.Identity.UserManager`1[ZenBlog.Domain.Entities.UserEntities.User]
+
+Dependency: Descriptor: ServiceType: Microsoft.AspNetCore.Identity.IUserStore`1[ZenBlog.Domain.Entities.UserEntities.User] Lifetime: Scoped ImplementationType: Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore`10[ZenBlog.Domain.Entities.UserEntities.User,ZenBlog.Domain.Entities.UserEntities.Role,ZenBlog.Persistance.Context.ZenBlogContext,System.String,Microsoft.AspNetCore.Identity.IdentityUserClaim`1[System.String],Microsoft.AspNetCore.Identity.IdentityUserRole`1[System.String],Microsoft.AspNetCore.Identity.IdentityUserLogin`1[System.String],Microsoft.AspNetCore.Identity.IdentityUserToken`1[System.String],Microsoft.AspNetCore.Identity.IdentityRoleClaim`1[System.String],Microsoft.AspNetCore.Identity.IdentityUserPasskey`1[System.String]]
+
+Dependency: Descriptor: ServiceType: ZenBlog.Persistance.Context.ZenBlogContext Lifetime: Scoped ImplementationType: ZenBlog.Persistance.Context.ZenBlogContext
+
+Dependency: Descriptor: ServiceType: Microsoft.EntityFrameworkCore.DbContextOptions Lifetime: Scoped ImplementationFactory: Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions+<>c__19`1.<AddCoreServices>b__19_0
+The service registration for Microsoft.EntityFrameworkCore.DbContextOptions is an 'opaque' lambda factory with the Scoped lifetime and requires service location
+
+
+
+Dependency: Descriptor: ServiceType: System.IServiceProvider Lifetime: Scoped ImplementationType: Microsoft.Extensions.DependencyInjection.ServiceDescriptor
+Your code is directly using IServiceProvider
+
+
+. See https://wolverinefx.net/guide/codegen.html
+2026-02-20 11:34:23.665 +04:00 [INF] HTTP POST /api/Auth/login-google responded 200 in 10727.7981 ms
+2026-02-20 11:35:20.550 +04:00 [INF] HTTP GET /api/Category responded 200 in 2875.2349 ms
+2026-02-20 11:35:23.105 +04:00 [INF] HTTP GET /api/Category responded 200 in 24.2063 ms
+2026-02-20 11:35:23.662 +04:00 [INF] HTTP GET /api/Blog responded 200 in 587.8264 ms
+2026-02-20 11:35:42.476 +04:00 [INF] Utilizing service location for Message Handler for ZenBlog.Application.Features.ZenBlogFeatures.BlogFeatures.Commands.UpdateBlogWithMedia.UpdateBlogWithMediaCommand for Service ZenBlog.Application.Services.ZenBlogService.IBlogService: 
+Dependency: Descriptor: ServiceType: AutoMapper.IMapper Lifetime: Transient ImplementationFactory: Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions+<>c.<AddAutoMapperClasses>b__10_5
+The service registration for AutoMapper.IMapper is an 'opaque' lambda factory with the Transient lifetime and requires service location
+
+Dependency: Descriptor: ServiceType: ZenBlog.Domain.Repositories.ZenBlogRepositories.IBlogRepository Lifetime: Scoped ImplementationType: ZenBlog.Persistance.Repositories.ZenBlogRepositories.BlogRepository
+
+Dependency: Descriptor: ServiceType: ZenBlog.Persistance.Context.ZenBlogContext Lifetime: Scoped ImplementationType: ZenBlog.Persistance.Context.ZenBlogContext
+
+Dependency: Descriptor: ServiceType: Microsoft.EntityFrameworkCore.DbContextOptions Lifetime: Scoped ImplementationFactory: Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions+<>c__19`1.<AddCoreServices>b__19_0
+The service registration for Microsoft.EntityFrameworkCore.DbContextOptions is an 'opaque' lambda factory with the Scoped lifetime and requires service location
+
+
+
+Dependency: Descriptor: ServiceType: GenericRepository.IUnitOfWork Lifetime: Scoped ImplementationFactory: ZenBlog.API.Configurations.ServiceInstallers.InfrastructureServiceInstallers+<>c.<Install>b__0_0
+The service registration for GenericRepository.IUnitOfWork is an 'opaque' lambda factory with the Scoped lifetime and requires service location
+. See https://wolverinefx.net/guide/codegen.html
+2026-02-20 11:35:42.510 +04:00 [ERR] Invocation of UpdateBlogWithMediaCommand { Id = , CoverImage = Microsoft.AspNetCore.Http.FormFile, BlogImage = , Title = , Description = , CategoryId = , UserId =  } failed!
+FluentValidation.ValidationException: Validation failure on: UpdateBlogWithMediaCommand { Id = , CoverImage = Microsoft.AspNetCore.Http.FormFile, BlogImage = , Title = , Description = , CategoryId = , UserId =  }
+   at Wolverine.FluentValidation.Internals.FailureAction`1.Throw(T message, IReadOnlyList`1 failures) in /home/runner/work/wolverine/wolverine/src/Extensions/Wolverine.FluentValidation/Internals/FailureAction.cs:line 15
+   at Wolverine.FluentValidation.Internals.FluentValidationExecutor.ExecuteOne[T](IValidator`1 validator, IFailureAction`1 failureAction, T message) in /home/runner/work/wolverine/wolverine/src/Extensions/Wolverine.FluentValidation/Internals/FluentValidationExecutor.cs:line 15
+   at Internal.Generated.WolverineHandlers.UpdateBlogWithMediaCommandHandler138948940.HandleAsync(MessageContext context, CancellationToken cancellation)
+   at Wolverine.Runtime.Handlers.Executor.InvokeAsync(MessageContext context, CancellationToken cancellation) in /home/runner/work/wolverine/wolverine/src/Wolverine/Runtime/Handlers/Executor.cs:line 224
+2026-02-20 21:41:04.407 +04:00 [INF] Exporting Open Telemetry metrics from Wolverine with name Wolverine:ZenBlog.API, version 5.15.0.0
+2026-02-20 21:41:04.500 +04:00 [INF] Starting Wolverine messaging for application assembly ZenBlog.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+2026-02-20 21:41:04.501 +04:00 [INF] The Wolverine code generation mode is Dynamic. This is suitable for development, but you may want to opt into other options for production usage to reduce start up time and resource utilization.
+2026-02-20 21:41:04.501 +04:00 [INF] See https://wolverine.netlify.app/guide/codegen.html for more information
+2026-02-20 21:41:04.523 +04:00 [INF] Searching assembly ZenBlog.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null for Wolverine message handlers
+2026-02-20 21:41:04.523 +04:00 [INF] Searching assembly ZenBlog.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null for Wolverine message handlers
+2026-02-20 21:41:04.612 +04:00 [INF] Wolverine assigned node id for envelope persistence is -1608386813
+2026-02-20 21:41:04.699 +04:00 [INF] Started message listening at "stub://replies/"
+2026-02-20 21:41:10.299 +04:00 [INF] HTTP GET /scalar responded 302 in 304.9299 ms
+2026-02-20 21:41:10.571 +04:00 [INF] HTTP GET /scalar/ responded 200 in 245.6047 ms
+2026-02-20 21:41:10.617 +04:00 [INF] HTTP GET /scalar/scalar.aspnetcore.js responded 200 in 34.2563 ms
+2026-02-20 21:41:10.678 +04:00 [INF] HTTP GET /scalar/scalar.js responded 200 in 97.0908 ms
+2026-02-20 21:41:12.686 +04:00 [INF] HTTP GET /openapi/v1.json responded 200 in 1573.7107 ms
+2026-02-20 21:41:46.762 +04:00 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-02-20 21:41:47.552 +04:00 [WRN] The foreign key property 'Blog.UserId1' was created in shadow state because a conflicting property with the simple name 'UserId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2026-02-20 21:41:50.943 +04:00 [INF] Utilizing service location for Message Handler for ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.LoginWithGoogle.LoginWithGoogleCommand for Service ZenBlog.Application.Services.UserAttributeService.IAuthService: 
+Dependency: Descriptor: ServiceType: Microsoft.AspNetCore.Identity.UserManager`1[ZenBlog.Domain.Entities.UserEntities.User] Lifetime: Scoped ImplementationType: Microsoft.AspNetCore.Identity.UserManager`1[ZenBlog.Domain.Entities.UserEntities.User]
+
+Dependency: Descriptor: ServiceType: Microsoft.AspNetCore.Identity.IUserStore`1[ZenBlog.Domain.Entities.UserEntities.User] Lifetime: Scoped ImplementationType: Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore`10[ZenBlog.Domain.Entities.UserEntities.User,ZenBlog.Domain.Entities.UserEntities.Role,ZenBlog.Persistance.Context.ZenBlogContext,System.String,Microsoft.AspNetCore.Identity.IdentityUserClaim`1[System.String],Microsoft.AspNetCore.Identity.IdentityUserRole`1[System.String],Microsoft.AspNetCore.Identity.IdentityUserLogin`1[System.String],Microsoft.AspNetCore.Identity.IdentityUserToken`1[System.String],Microsoft.AspNetCore.Identity.IdentityRoleClaim`1[System.String],Microsoft.AspNetCore.Identity.IdentityUserPasskey`1[System.String]]
+
+Dependency: Descriptor: ServiceType: ZenBlog.Persistance.Context.ZenBlogContext Lifetime: Scoped ImplementationType: ZenBlog.Persistance.Context.ZenBlogContext
+
+Dependency: Descriptor: ServiceType: Microsoft.EntityFrameworkCore.DbContextOptions Lifetime: Scoped ImplementationFactory: Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions+<>c__19`1.<AddCoreServices>b__19_0
+The service registration for Microsoft.EntityFrameworkCore.DbContextOptions is an 'opaque' lambda factory with the Scoped lifetime and requires service location
+
+
+
+Dependency: Descriptor: ServiceType: System.IServiceProvider Lifetime: Scoped ImplementationType: Microsoft.Extensions.DependencyInjection.ServiceDescriptor
+Your code is directly using IServiceProvider
+
+
+Dependency: Descriptor: ServiceType: AutoMapper.IMapper Lifetime: Transient ImplementationFactory: Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions+<>c.<AddAutoMapperClasses>b__10_5
+The service registration for AutoMapper.IMapper is an 'opaque' lambda factory with the Transient lifetime and requires service location
+
+Dependency: Descriptor: ServiceType: ZenBlog.Domain.Repositories.UserRepositories.IAuthRepository Lifetime: Scoped ImplementationType: ZenBlog.Persistance.Repositories.UserRepositories.AuthRepository
+
+Dependency: Descriptor: ServiceType: ZenBlog.Persistance.Context.ZenBlogContext Lifetime: Scoped ImplementationType: ZenBlog.Persistance.Context.ZenBlogContext
+
+Dependency: Descriptor: ServiceType: Microsoft.EntityFrameworkCore.DbContextOptions Lifetime: Scoped ImplementationFactory: Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions+<>c__19`1.<AddCoreServices>b__19_0
+The service registration for Microsoft.EntityFrameworkCore.DbContextOptions is an 'opaque' lambda factory with the Scoped lifetime and requires service location
+
+
+
+Dependency: Descriptor: ServiceType: ZenBlog.Application.Jwt.IJwtProvider Lifetime: Scoped ImplementationType: ZenBlog.Infrastructure.Authentication.JwtProvider
+
+Dependency: Descriptor: ServiceType: Microsoft.AspNetCore.Identity.UserManager`1[ZenBlog.Domain.Entities.UserEntities.User] Lifetime: Scoped ImplementationType: Microsoft.AspNetCore.Identity.UserManager`1[ZenBlog.Domain.Entities.UserEntities.User]
+
+Dependency: Descriptor: ServiceType: Microsoft.AspNetCore.Identity.IUserStore`1[ZenBlog.Domain.Entities.UserEntities.User] Lifetime: Scoped ImplementationType: Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore`10[ZenBlog.Domain.Entities.UserEntities.User,ZenBlog.Domain.Entities.UserEntities.Role,ZenBlog.Persistance.Context.ZenBlogContext,System.String,Microsoft.AspNetCore.Identity.IdentityUserClaim`1[System.String],Microsoft.AspNetCore.Identity.IdentityUserRole`1[System.String],Microsoft.AspNetCore.Identity.IdentityUserLogin`1[System.String],Microsoft.AspNetCore.Identity.IdentityUserToken`1[System.String],Microsoft.AspNetCore.Identity.IdentityRoleClaim`1[System.String],Microsoft.AspNetCore.Identity.IdentityUserPasskey`1[System.String]]
+
+Dependency: Descriptor: ServiceType: ZenBlog.Persistance.Context.ZenBlogContext Lifetime: Scoped ImplementationType: ZenBlog.Persistance.Context.ZenBlogContext
+
+Dependency: Descriptor: ServiceType: Microsoft.EntityFrameworkCore.DbContextOptions Lifetime: Scoped ImplementationFactory: Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions+<>c__19`1.<AddCoreServices>b__19_0
+The service registration for Microsoft.EntityFrameworkCore.DbContextOptions is an 'opaque' lambda factory with the Scoped lifetime and requires service location
+
+
+
+Dependency: Descriptor: ServiceType: System.IServiceProvider Lifetime: Scoped ImplementationType: Microsoft.Extensions.DependencyInjection.ServiceDescriptor
+Your code is directly using IServiceProvider
+
+
+. See https://wolverinefx.net/guide/codegen.html
+2026-02-20 21:41:52.342 +04:00 [INF] HTTP POST /api/Auth/login-google responded 200 in 5859.1948 ms
+2026-02-20 21:41:55.646 +04:00 [INF] HTTP GET /api/Category responded 200 in 1361.8107 ms
+2026-02-20 21:42:01.956 +04:00 [INF] Utilizing service location for Message Handler for ZenBlog.Application.Features.ZenBlogFeatures.CategoryFeatures.Commands.UpdateCategory.UpdateCategoryCommand for Service ZenBlog.Application.Services.ZenBlogService.ICategoryService: 
+Dependency: Descriptor: ServiceType: ZenBlog.Domain.Repositories.ZenBlogRepositories.ICategoryRepository Lifetime: Scoped ImplementationType: ZenBlog.Persistance.Repositories.ZenBlogRepositories.CategoryRepository
+
+Dependency: Descriptor: ServiceType: ZenBlog.Persistance.Context.ZenBlogContext Lifetime: Scoped ImplementationType: ZenBlog.Persistance.Context.ZenBlogContext
+
+Dependency: Descriptor: ServiceType: Microsoft.EntityFrameworkCore.DbContextOptions Lifetime: Scoped ImplementationFactory: Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions+<>c__19`1.<AddCoreServices>b__19_0
+The service registration for Microsoft.EntityFrameworkCore.DbContextOptions is an 'opaque' lambda factory with the Scoped lifetime and requires service location
+
+
+
+Dependency: Descriptor: ServiceType: AutoMapper.IMapper Lifetime: Transient ImplementationFactory: Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions+<>c.<AddAutoMapperClasses>b__10_5
+The service registration for AutoMapper.IMapper is an 'opaque' lambda factory with the Transient lifetime and requires service location
+
+Dependency: Descriptor: ServiceType: GenericRepository.IUnitOfWork Lifetime: Scoped ImplementationFactory: ZenBlog.API.Configurations.ServiceInstallers.InfrastructureServiceInstallers+<>c.<Install>b__0_0
+The service registration for GenericRepository.IUnitOfWork is an 'opaque' lambda factory with the Scoped lifetime and requires service location
+. See https://wolverinefx.net/guide/codegen.html
+2026-02-20 21:42:02.038 +04:00 [INF] HTTP PUT /api/Category responded 200 in 391.5619 ms
+2026-02-20 21:42:02.056 +04:00 [INF] HTTP GET /api/Category responded 200 in 4.3484 ms
+2026-02-20 21:42:04.883 +04:00 [INF] HTTP PUT /api/Category responded 200 in 17.0881 ms
+2026-02-20 21:42:04.901 +04:00 [INF] HTTP GET /api/Category responded 200 in 2.4926 ms
+2026-02-20 21:42:05.949 +04:00 [INF] HTTP PUT /api/Category responded 200 in 16.2150 ms
+2026-02-20 21:42:05.965 +04:00 [INF] HTTP GET /api/Category responded 200 in 2.4883 ms
+2026-02-20 21:42:06.124 +04:00 [INF] HTTP PUT /api/Category responded 200 in 6.3547 ms
+2026-02-20 21:42:06.141 +04:00 [INF] HTTP GET /api/Category responded 200 in 2.6485 ms
+2026-02-20 21:42:06.481 +04:00 [INF] HTTP PUT /api/Category responded 200 in 6.1853 ms
+2026-02-20 21:42:06.498 +04:00 [INF] HTTP GET /api/Category responded 200 in 2.3414 ms
+2026-02-20 21:42:06.616 +04:00 [INF] HTTP PUT /api/Category responded 200 in 5.0778 ms
+2026-02-20 21:42:06.632 +04:00 [INF] HTTP GET /api/Category responded 200 in 2.1727 ms
+2026-02-20 21:42:07.690 +04:00 [INF] HTTP PUT /api/Category responded 200 in 13.9129 ms
+2026-02-20 21:42:07.706 +04:00 [INF] HTTP GET /api/Category responded 200 in 2.5371 ms
+2026-02-20 21:42:07.914 +04:00 [INF] HTTP PUT /api/Category responded 200 in 13.0471 ms
+2026-02-20 21:42:07.940 +04:00 [INF] HTTP GET /api/Category responded 200 in 3.1782 ms
+2026-02-20 21:42:08.255 +04:00 [INF] HTTP PUT /api/Category responded 200 in 7.7716 ms
+2026-02-20 21:42:08.275 +04:00 [INF] HTTP GET /api/Category responded 200 in 3.6771 ms
+2026-02-20 21:42:08.428 +04:00 [INF] HTTP PUT /api/Category responded 200 in 7.6750 ms
+2026-02-20 21:42:08.444 +04:00 [INF] HTTP GET /api/Category responded 200 in 2.0996 ms
+2026-02-20 21:42:08.562 +04:00 [INF] HTTP PUT /api/Category responded 200 in 5.4696 ms
+2026-02-20 21:42:08.580 +04:00 [INF] HTTP GET /api/Category responded 200 in 2.5831 ms
+2026-02-20 21:42:08.797 +04:00 [INF] HTTP PUT /api/Category responded 200 in 13.8725 ms
+2026-02-20 21:42:08.816 +04:00 [INF] HTTP GET /api/Category responded 200 in 2.8523 ms
+2026-02-20 21:42:12.373 +04:00 [INF] HTTP GET /api/Category responded 200 in 4.0132 ms
+2026-02-20 21:42:15.767 +04:00 [INF] Utilizing service location for Message Handler for ZenBlog.Application.Features.ZenBlogFeatures.CategoryFeatures.Commands.DeleteCategory.DeleteCategoryCommand for Service ZenBlog.Application.Services.ZenBlogService.ICategoryService: 
+Dependency: Descriptor: ServiceType: ZenBlog.Domain.Repositories.ZenBlogRepositories.ICategoryRepository Lifetime: Scoped ImplementationType: ZenBlog.Persistance.Repositories.ZenBlogRepositories.CategoryRepository
+
+Dependency: Descriptor: ServiceType: ZenBlog.Persistance.Context.ZenBlogContext Lifetime: Scoped ImplementationType: ZenBlog.Persistance.Context.ZenBlogContext
+
+Dependency: Descriptor: ServiceType: Microsoft.EntityFrameworkCore.DbContextOptions Lifetime: Scoped ImplementationFactory: Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions+<>c__19`1.<AddCoreServices>b__19_0
+The service registration for Microsoft.EntityFrameworkCore.DbContextOptions is an 'opaque' lambda factory with the Scoped lifetime and requires service location
+
+
+
+Dependency: Descriptor: ServiceType: AutoMapper.IMapper Lifetime: Transient ImplementationFactory: Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions+<>c.<AddAutoMapperClasses>b__10_5
+The service registration for AutoMapper.IMapper is an 'opaque' lambda factory with the Transient lifetime and requires service location
+
+Dependency: Descriptor: ServiceType: GenericRepository.IUnitOfWork Lifetime: Scoped ImplementationFactory: ZenBlog.API.Configurations.ServiceInstallers.InfrastructureServiceInstallers+<>c.<Install>b__0_0
+The service registration for GenericRepository.IUnitOfWork is an 'opaque' lambda factory with the Scoped lifetime and requires service location
+. See https://wolverinefx.net/guide/codegen.html
+2026-02-20 21:42:15.834 +04:00 [ERR] Failed executing DbCommand (17ms) [Parameters=[@p0='?'], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "Categories"
+WHERE "Id" = @p0;
+2026-02-20 21:42:15.855 +04:00 [ERR] An exception occurred in the database while saving changes for context type 'ZenBlog.Persistance.Context.ZenBlogContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23001: update or delete on table "Categories" violates RESTRICT setting of foreign key constraint "FK_Blogs_Categories_CategoryId" on table "Blogs"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23001
+    MessageText: update or delete on table "Categories" violates RESTRICT setting of foreign key constraint "FK_Blogs_Categories_CategoryId" on table "Blogs"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: Blogs
+    ConstraintName: FK_Blogs_Categories_CategoryId
+    File: ri_triggers.c
+    Line: 2797
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23001: update or delete on table "Categories" violates RESTRICT setting of foreign key constraint "FK_Blogs_Categories_CategoryId" on table "Blogs"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23001
+    MessageText: update or delete on table "Categories" violates RESTRICT setting of foreign key constraint "FK_Blogs_Categories_CategoryId" on table "Blogs"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: Blogs
+    ConstraintName: FK_Blogs_Categories_CategoryId
+    File: ri_triggers.c
+    Line: 2797
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2026-02-20 21:43:28.480 +04:00 [ERR] Invocation of DeleteCategoryCommand { Id = 9958fffd-f544-453a-8734-1c5475539f4a } failed!
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23001: update or delete on table "Categories" violates RESTRICT setting of foreign key constraint "FK_Blogs_Categories_CategoryId" on table "Blogs"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23001
+    MessageText: update or delete on table "Categories" violates RESTRICT setting of foreign key constraint "FK_Blogs_Categories_CategoryId" on table "Blogs"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: Blogs
+    ConstraintName: FK_Blogs_Categories_CategoryId
+    File: ri_triggers.c
+    Line: 2797
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at ZenBlog.Persistance.Services.ZenBlogServices.CategoryService.DeleteAsync(DeleteCategoryCommand request, CancellationToken cancellationToken) in C:\Users\Murad\Desktop\ZenBlogServer\ZenBlog.Persistance\Services\ZenBlogServices\CategoryService.cs:line 38
+   at ZenBlog.Application.Features.ZenBlogFeatures.CategoryFeatures.Commands.DeleteCategory.DeleteCategoryCommandHandler.Handle(DeleteCategoryCommand request, CancellationToken cancellationToken) in C:\Users\Murad\Desktop\ZenBlogServer\ZenBlog.Application\Features\ZenBlogFeatures\CategoryFeatures\Commands\DeleteCategory\DeleteCategoryCommandHandler.cs:line 17
+   at Internal.Generated.WolverineHandlers.DeleteCategoryCommandHandler1635603258.HandleAsync(MessageContext context, CancellationToken cancellation)
+   at Wolverine.Runtime.Handlers.Executor.InvokeAsync(MessageContext context, CancellationToken cancellation) in /home/runner/work/wolverine/wolverine/src/Wolverine/Runtime/Handlers/Executor.cs:line 224
+2026-02-20 21:43:30.955 +04:00 [ERR] HTTP DELETE /api/Category responded 500 in 75513.8437 ms
+2026-02-20 21:43:38.634 +04:00 [INF] HTTP GET /api/Category responded 200 in 3.6563 ms
+2026-02-20 21:43:38.867 +04:00 [INF] HTTP GET /api/Blog responded 200 in 235.2787 ms
+2026-02-20 21:43:56.746 +04:00 [INF] Utilizing service location for Message Handler for ZenBlog.Application.Features.ZenBlogFeatures.BlogFeatures.Commands.DeleteBlog.DeleteBlogCommand for Service ZenBlog.Application.Services.ZenBlogService.IBlogService: 
+Dependency: Descriptor: ServiceType: AutoMapper.IMapper Lifetime: Transient ImplementationFactory: Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions+<>c.<AddAutoMapperClasses>b__10_5
+The service registration for AutoMapper.IMapper is an 'opaque' lambda factory with the Transient lifetime and requires service location
+
+Dependency: Descriptor: ServiceType: ZenBlog.Domain.Repositories.ZenBlogRepositories.IBlogRepository Lifetime: Scoped ImplementationType: ZenBlog.Persistance.Repositories.ZenBlogRepositories.BlogRepository
+
+Dependency: Descriptor: ServiceType: ZenBlog.Persistance.Context.ZenBlogContext Lifetime: Scoped ImplementationType: ZenBlog.Persistance.Context.ZenBlogContext
+
+Dependency: Descriptor: ServiceType: Microsoft.EntityFrameworkCore.DbContextOptions Lifetime: Scoped ImplementationFactory: Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions+<>c__19`1.<AddCoreServices>b__19_0
+The service registration for Microsoft.EntityFrameworkCore.DbContextOptions is an 'opaque' lambda factory with the Scoped lifetime and requires service location
+
+
+
+Dependency: Descriptor: ServiceType: GenericRepository.IUnitOfWork Lifetime: Scoped ImplementationFactory: ZenBlog.API.Configurations.ServiceInstallers.InfrastructureServiceInstallers+<>c.<Install>b__0_0
+The service registration for GenericRepository.IUnitOfWork is an 'opaque' lambda factory with the Scoped lifetime and requires service location
+. See https://wolverinefx.net/guide/codegen.html
+2026-02-20 21:44:21.228 +04:00 [ERR] Invocation of DeleteBlogCommand { Id = undefined } failed!
+System.ArgumentException: Blog with Id undefined isn't found 
+   at ZenBlog.Persistance.Services.ZenBlogServices.BlogService.DeleteAsync(DeleteBlogCommand request, CancellationToken cancellationToken) in C:\Users\Murad\Desktop\ZenBlogServer\ZenBlog.Persistance\Services\ZenBlogServices\BlogService.cs:line 57
+   at ZenBlog.Application.Features.ZenBlogFeatures.BlogFeatures.Commands.DeleteBlog.DeleteBlogCommandHandler.Handle(DeleteBlogCommand request, CancellationToken cancellationToken) in C:\Users\Murad\Desktop\ZenBlogServer\ZenBlog.Application\Features\ZenBlogFeatures\BlogFeatures\Commands\DeleteBlog\DeleteBlogCommandHandler.cs:line 17
+   at Internal.Generated.WolverineHandlers.DeleteBlogCommandHandler713136326.HandleAsync(MessageContext context, CancellationToken cancellation)
+   at Wolverine.Runtime.Handlers.Executor.InvokeAsync(MessageContext context, CancellationToken cancellation) in /home/runner/work/wolverine/wolverine/src/Wolverine/Runtime/Handlers/Executor.cs:line 224
+2026-02-20 21:44:22.563 +04:00 [ERR] HTTP DELETE /api/Blog responded 500 in 26055.4651 ms
+2026-02-20 23:49:17.183 +04:00 [INF] Exporting Open Telemetry metrics from Wolverine with name Wolverine:ZenBlog.API, version 5.15.0.0
+2026-02-20 23:49:17.282 +04:00 [INF] Starting Wolverine messaging for application assembly ZenBlog.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+2026-02-20 23:49:17.283 +04:00 [INF] The Wolverine code generation mode is Dynamic. This is suitable for development, but you may want to opt into other options for production usage to reduce start up time and resource utilization.
+2026-02-20 23:49:17.283 +04:00 [INF] See https://wolverine.netlify.app/guide/codegen.html for more information
+2026-02-20 23:49:17.310 +04:00 [INF] Searching assembly ZenBlog.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null for Wolverine message handlers
+2026-02-20 23:49:17.310 +04:00 [INF] Searching assembly ZenBlog.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null for Wolverine message handlers
+2026-02-20 23:49:17.415 +04:00 [INF] Wolverine assigned node id for envelope persistence is 1842443647
+2026-02-20 23:49:17.528 +04:00 [INF] Started message listening at "stub://replies/"
+2026-02-20 23:49:21.360 +04:00 [INF] HTTP GET /scalar responded 302 in 196.0430 ms
+2026-02-20 23:49:21.537 +04:00 [INF] HTTP GET /scalar/ responded 200 in 152.9720 ms
+2026-02-20 23:49:21.579 +04:00 [INF] HTTP GET /scalar/scalar.aspnetcore.js responded 200 in 30.6063 ms
+2026-02-20 23:49:21.629 +04:00 [INF] HTTP GET /scalar/scalar.js responded 200 in 80.9345 ms
+2026-02-20 23:49:23.637 +04:00 [INF] HTTP GET /openapi/v1.json responded 200 in 1684.8997 ms
+2026-02-20 23:50:55.495 +04:00 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-02-20 23:50:56.210 +04:00 [WRN] The foreign key property 'Blog.UserId1' was created in shadow state because a conflicting property with the simple name 'UserId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2026-02-20 23:50:59.305 +04:00 [INF] Utilizing service location for Message Handler for ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.Login.LoginCommand for Service ZenBlog.Application.Services.UserAttributeService.IAuthService: 
+Dependency: Descriptor: ServiceType: Microsoft.AspNetCore.Identity.UserManager`1[ZenBlog.Domain.Entities.UserEntities.User] Lifetime: Scoped ImplementationType: Microsoft.AspNetCore.Identity.UserManager`1[ZenBlog.Domain.Entities.UserEntities.User]
+
+Dependency: Descriptor: ServiceType: Microsoft.AspNetCore.Identity.IUserStore`1[ZenBlog.Domain.Entities.UserEntities.User] Lifetime: Scoped ImplementationType: Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore`10[ZenBlog.Domain.Entities.UserEntities.User,ZenBlog.Domain.Entities.UserEntities.Role,ZenBlog.Persistance.Context.ZenBlogContext,System.String,Microsoft.AspNetCore.Identity.IdentityUserClaim`1[System.String],Microsoft.AspNetCore.Identity.IdentityUserRole`1[System.String],Microsoft.AspNetCore.Identity.IdentityUserLogin`1[System.String],Microsoft.AspNetCore.Identity.IdentityUserToken`1[System.String],Microsoft.AspNetCore.Identity.IdentityRoleClaim`1[System.String],Microsoft.AspNetCore.Identity.IdentityUserPasskey`1[System.String]]
+
+Dependency: Descriptor: ServiceType: ZenBlog.Persistance.Context.ZenBlogContext Lifetime: Scoped ImplementationType: ZenBlog.Persistance.Context.ZenBlogContext
+
+Dependency: Descriptor: ServiceType: Microsoft.EntityFrameworkCore.DbContextOptions Lifetime: Scoped ImplementationFactory: Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions+<>c__19`1.<AddCoreServices>b__19_0
+The service registration for Microsoft.EntityFrameworkCore.DbContextOptions is an 'opaque' lambda factory with the Scoped lifetime and requires service location
+
+
+
+Dependency: Descriptor: ServiceType: System.IServiceProvider Lifetime: Scoped ImplementationType: Microsoft.Extensions.DependencyInjection.ServiceDescriptor
+Your code is directly using IServiceProvider
+
+
+Dependency: Descriptor: ServiceType: AutoMapper.IMapper Lifetime: Transient ImplementationFactory: Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions+<>c.<AddAutoMapperClasses>b__10_5
+The service registration for AutoMapper.IMapper is an 'opaque' lambda factory with the Transient lifetime and requires service location
+
+Dependency: Descriptor: ServiceType: ZenBlog.Domain.Repositories.UserRepositories.IAuthRepository Lifetime: Scoped ImplementationType: ZenBlog.Persistance.Repositories.UserRepositories.AuthRepository
+
+Dependency: Descriptor: ServiceType: ZenBlog.Persistance.Context.ZenBlogContext Lifetime: Scoped ImplementationType: ZenBlog.Persistance.Context.ZenBlogContext
+
+Dependency: Descriptor: ServiceType: Microsoft.EntityFrameworkCore.DbContextOptions Lifetime: Scoped ImplementationFactory: Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions+<>c__19`1.<AddCoreServices>b__19_0
+The service registration for Microsoft.EntityFrameworkCore.DbContextOptions is an 'opaque' lambda factory with the Scoped lifetime and requires service location
+
+
+
+Dependency: Descriptor: ServiceType: ZenBlog.Application.Jwt.IJwtProvider Lifetime: Scoped ImplementationType: ZenBlog.Infrastructure.Authentication.JwtProvider
+
+Dependency: Descriptor: ServiceType: Microsoft.AspNetCore.Identity.UserManager`1[ZenBlog.Domain.Entities.UserEntities.User] Lifetime: Scoped ImplementationType: Microsoft.AspNetCore.Identity.UserManager`1[ZenBlog.Domain.Entities.UserEntities.User]
+
+Dependency: Descriptor: ServiceType: Microsoft.AspNetCore.Identity.IUserStore`1[ZenBlog.Domain.Entities.UserEntities.User] Lifetime: Scoped ImplementationType: Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore`10[ZenBlog.Domain.Entities.UserEntities.User,ZenBlog.Domain.Entities.UserEntities.Role,ZenBlog.Persistance.Context.ZenBlogContext,System.String,Microsoft.AspNetCore.Identity.IdentityUserClaim`1[System.String],Microsoft.AspNetCore.Identity.IdentityUserRole`1[System.String],Microsoft.AspNetCore.Identity.IdentityUserLogin`1[System.String],Microsoft.AspNetCore.Identity.IdentityUserToken`1[System.String],Microsoft.AspNetCore.Identity.IdentityRoleClaim`1[System.String],Microsoft.AspNetCore.Identity.IdentityUserPasskey`1[System.String]]
+
+Dependency: Descriptor: ServiceType: ZenBlog.Persistance.Context.ZenBlogContext Lifetime: Scoped ImplementationType: ZenBlog.Persistance.Context.ZenBlogContext
+
+Dependency: Descriptor: ServiceType: Microsoft.EntityFrameworkCore.DbContextOptions Lifetime: Scoped ImplementationFactory: Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions+<>c__19`1.<AddCoreServices>b__19_0
+The service registration for Microsoft.EntityFrameworkCore.DbContextOptions is an 'opaque' lambda factory with the Scoped lifetime and requires service location
+
+
+
+Dependency: Descriptor: ServiceType: System.IServiceProvider Lifetime: Scoped ImplementationType: Microsoft.Extensions.DependencyInjection.ServiceDescriptor
+Your code is directly using IServiceProvider
+
+
+. See https://wolverinefx.net/guide/codegen.html
+2026-02-20 23:51:04.307 +04:00 [ERR] Invocation of LoginCommand { Email = claudejones000@gmail.com, Password = Claude2000@ } failed!
+System.ArgumentException: Incorrect password entered.
+   at ZenBlog.Persistance.Services.UserServices.AuthService.LoginAsync(LoginCommand request, CancellationToken cancellationToken) in C:\Users\Murad\Desktop\ZenBlogServer\ZenBlog.Persistance\Services\UserServices\AuthService.cs:line 158
+   at ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.Login.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken) in C:\Users\Murad\Desktop\ZenBlogServer\ZenBlog.Application\Features\UserFeatures\AuthFeatures\Commands\Login\LoginCommandHandler.cs:line 16
+   at Internal.Generated.WolverineHandlers.LoginCommandHandler2130538390.HandleAsync(MessageContext context, CancellationToken cancellation)
+   at Wolverine.Runtime.Handlers.Executor.InvokeAsync(MessageContext context, CancellationToken cancellation) in /home/runner/work/wolverine/wolverine/src/Wolverine/Runtime/Handlers/Executor.cs:line 224
+2026-02-20 23:51:06.340 +04:00 [ERR] HTTP POST /api/Auth/login responded 500 in 11021.4605 ms
+2026-02-20 23:51:14.721 +04:00 [ERR] Invocation of LoginCommand { Email = claudejones000@gmail.com, Password = Claude2000 } failed!
+System.ArgumentException: Incorrect password entered.
+   at ZenBlog.Persistance.Services.UserServices.AuthService.LoginAsync(LoginCommand request, CancellationToken cancellationToken) in C:\Users\Murad\Desktop\ZenBlogServer\ZenBlog.Persistance\Services\UserServices\AuthService.cs:line 158
+   at ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.Login.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken) in C:\Users\Murad\Desktop\ZenBlogServer\ZenBlog.Application\Features\UserFeatures\AuthFeatures\Commands\Login\LoginCommandHandler.cs:line 16
+   at Internal.Generated.WolverineHandlers.LoginCommandHandler2130538390.HandleAsync(MessageContext context, CancellationToken cancellation)
+   at Wolverine.Runtime.Handlers.Executor.InvokeAsync(MessageContext context, CancellationToken cancellation) in /home/runner/work/wolverine/wolverine/src/Wolverine/Runtime/Handlers/Executor.cs:line 224
+2026-02-20 23:51:15.411 +04:00 [ERR] HTTP POST /api/Auth/login responded 500 in 3111.4094 ms
+2026-02-20 23:51:37.779 +04:00 [INF] HTTP POST /api/Auth/login responded 400 in 41.7156 ms
+2026-02-20 23:52:31.393 +04:00 [INF] Utilizing service location for Message Handler for ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.RegisterUser.RegisterUserCommand for Service ZenBlog.Application.Services.UserAttributeService.IAuthService: 
+Dependency: Descriptor: ServiceType: Microsoft.AspNetCore.Identity.UserManager`1[ZenBlog.Domain.Entities.UserEntities.User] Lifetime: Scoped ImplementationType: Microsoft.AspNetCore.Identity.UserManager`1[ZenBlog.Domain.Entities.UserEntities.User]
+
+Dependency: Descriptor: ServiceType: Microsoft.AspNetCore.Identity.IUserStore`1[ZenBlog.Domain.Entities.UserEntities.User] Lifetime: Scoped ImplementationType: Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore`10[ZenBlog.Domain.Entities.UserEntities.User,ZenBlog.Domain.Entities.UserEntities.Role,ZenBlog.Persistance.Context.ZenBlogContext,System.String,Microsoft.AspNetCore.Identity.IdentityUserClaim`1[System.String],Microsoft.AspNetCore.Identity.IdentityUserRole`1[System.String],Microsoft.AspNetCore.Identity.IdentityUserLogin`1[System.String],Microsoft.AspNetCore.Identity.IdentityUserToken`1[System.String],Microsoft.AspNetCore.Identity.IdentityRoleClaim`1[System.String],Microsoft.AspNetCore.Identity.IdentityUserPasskey`1[System.String]]
+
+Dependency: Descriptor: ServiceType: ZenBlog.Persistance.Context.ZenBlogContext Lifetime: Scoped ImplementationType: ZenBlog.Persistance.Context.ZenBlogContext
+
+Dependency: Descriptor: ServiceType: Microsoft.EntityFrameworkCore.DbContextOptions Lifetime: Scoped ImplementationFactory: Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions+<>c__19`1.<AddCoreServices>b__19_0
+The service registration for Microsoft.EntityFrameworkCore.DbContextOptions is an 'opaque' lambda factory with the Scoped lifetime and requires service location
+
+
+
+Dependency: Descriptor: ServiceType: System.IServiceProvider Lifetime: Scoped ImplementationType: Microsoft.Extensions.DependencyInjection.ServiceDescriptor
+Your code is directly using IServiceProvider
+
+
+Dependency: Descriptor: ServiceType: AutoMapper.IMapper Lifetime: Transient ImplementationFactory: Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions+<>c.<AddAutoMapperClasses>b__10_5
+The service registration for AutoMapper.IMapper is an 'opaque' lambda factory with the Transient lifetime and requires service location
+
+Dependency: Descriptor: ServiceType: ZenBlog.Domain.Repositories.UserRepositories.IAuthRepository Lifetime: Scoped ImplementationType: ZenBlog.Persistance.Repositories.UserRepositories.AuthRepository
+
+Dependency: Descriptor: ServiceType: ZenBlog.Persistance.Context.ZenBlogContext Lifetime: Scoped ImplementationType: ZenBlog.Persistance.Context.ZenBlogContext
+
+Dependency: Descriptor: ServiceType: Microsoft.EntityFrameworkCore.DbContextOptions Lifetime: Scoped ImplementationFactory: Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions+<>c__19`1.<AddCoreServices>b__19_0
+The service registration for Microsoft.EntityFrameworkCore.DbContextOptions is an 'opaque' lambda factory with the Scoped lifetime and requires service location
+
+
+
+Dependency: Descriptor: ServiceType: ZenBlog.Application.Jwt.IJwtProvider Lifetime: Scoped ImplementationType: ZenBlog.Infrastructure.Authentication.JwtProvider
+
+Dependency: Descriptor: ServiceType: Microsoft.AspNetCore.Identity.UserManager`1[ZenBlog.Domain.Entities.UserEntities.User] Lifetime: Scoped ImplementationType: Microsoft.AspNetCore.Identity.UserManager`1[ZenBlog.Domain.Entities.UserEntities.User]
+
+Dependency: Descriptor: ServiceType: Microsoft.AspNetCore.Identity.IUserStore`1[ZenBlog.Domain.Entities.UserEntities.User] Lifetime: Scoped ImplementationType: Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore`10[ZenBlog.Domain.Entities.UserEntities.User,ZenBlog.Domain.Entities.UserEntities.Role,ZenBlog.Persistance.Context.ZenBlogContext,System.String,Microsoft.AspNetCore.Identity.IdentityUserClaim`1[System.String],Microsoft.AspNetCore.Identity.IdentityUserRole`1[System.String],Microsoft.AspNetCore.Identity.IdentityUserLogin`1[System.String],Microsoft.AspNetCore.Identity.IdentityUserToken`1[System.String],Microsoft.AspNetCore.Identity.IdentityRoleClaim`1[System.String],Microsoft.AspNetCore.Identity.IdentityUserPasskey`1[System.String]]
+
+Dependency: Descriptor: ServiceType: ZenBlog.Persistance.Context.ZenBlogContext Lifetime: Scoped ImplementationType: ZenBlog.Persistance.Context.ZenBlogContext
+
+Dependency: Descriptor: ServiceType: Microsoft.EntityFrameworkCore.DbContextOptions Lifetime: Scoped ImplementationFactory: Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions+<>c__19`1.<AddCoreServices>b__19_0
+The service registration for Microsoft.EntityFrameworkCore.DbContextOptions is an 'opaque' lambda factory with the Scoped lifetime and requires service location
+
+
+
+Dependency: Descriptor: ServiceType: System.IServiceProvider Lifetime: Scoped ImplementationType: Microsoft.Extensions.DependencyInjection.ServiceDescriptor
+Your code is directly using IServiceProvider
+
+
+. See https://wolverinefx.net/guide/codegen.html
+2026-02-20 23:52:33.662 +04:00 [ERR] Invocation of RegisterUserCommand { FullName = jabiyevmurad02@gmail.com, Email = jabiyevmurad02@gmail.com, Password = Mmmmm150@ } failed!
+System.Exception: Username 'jabiyevmurad02@gmail.com' is already taken.
+   at ZenBlog.Persistance.Services.UserServices.AuthService.RegisterAsync(RegisterUserCommand request) in C:\Users\Murad\Desktop\ZenBlogServer\ZenBlog.Persistance\Services\UserServices\AuthService.cs:line 56
+   at ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.RegisterUser.RegisterUserCommandHandler.Handle(RegisterUserCommand request, CancellationToken cancellationToken) in C:\Users\Murad\Desktop\ZenBlogServer\ZenBlog.Application\Features\UserFeatures\AuthFeatures\Commands\RegisterUser\RegisterUserCommandHandler.cs:line 17
+   at Internal.Generated.WolverineHandlers.RegisterUserCommandHandler1386577958.HandleAsync(MessageContext context, CancellationToken cancellation)
+   at Wolverine.Runtime.Handlers.Executor.InvokeAsync(MessageContext context, CancellationToken cancellation) in /home/runner/work/wolverine/wolverine/src/Wolverine/Runtime/Handlers/Executor.cs:line 224
+2026-02-20 23:52:34.735 +04:00 [ERR] HTTP POST /api/Auth/register responded 500 in 3695.9889 ms
+2026-02-20 23:53:15.737 +04:00 [ERR] Invocation of LoginCommand { Email = jabiyevmurad02@gmail.com, Password = Murad2002@ } failed!
+System.ArgumentException: Incorrect password entered.
+   at ZenBlog.Persistance.Services.UserServices.AuthService.LoginAsync(LoginCommand request, CancellationToken cancellationToken) in C:\Users\Murad\Desktop\ZenBlogServer\ZenBlog.Persistance\Services\UserServices\AuthService.cs:line 158
+   at ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.Login.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken) in C:\Users\Murad\Desktop\ZenBlogServer\ZenBlog.Application\Features\UserFeatures\AuthFeatures\Commands\Login\LoginCommandHandler.cs:line 16
+   at Internal.Generated.WolverineHandlers.LoginCommandHandler2130538390.HandleAsync(MessageContext context, CancellationToken cancellation)
+   at Wolverine.Runtime.Handlers.Executor.InvokeAsync(MessageContext context, CancellationToken cancellation) in /home/runner/work/wolverine/wolverine/src/Wolverine/Runtime/Handlers/Executor.cs:line 224
+2026-02-20 23:53:16.685 +04:00 [ERR] HTTP POST /api/Auth/login responded 500 in 2677.1313 ms
+2026-02-20 23:54:02.616 +04:00 [INF] HTTP GET /api/Category responded 401 in 91.3022 ms
+2026-02-20 23:54:02.616 +04:00 [INF] HTTP GET /api/Blog responded 401 in 91.3022 ms
+2026-02-20 23:54:10.323 +04:00 [ERR] Invocation of LoginCommand { Email = jabiyevmurad02@gmail.com, Password = Murad2002@ } failed!
+System.ArgumentException: Incorrect password entered.
+   at ZenBlog.Persistance.Services.UserServices.AuthService.LoginAsync(LoginCommand request, CancellationToken cancellationToken) in C:\Users\Murad\Desktop\ZenBlogServer\ZenBlog.Persistance\Services\UserServices\AuthService.cs:line 158
+   at ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.Login.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken) in C:\Users\Murad\Desktop\ZenBlogServer\ZenBlog.Application\Features\UserFeatures\AuthFeatures\Commands\Login\LoginCommandHandler.cs:line 16
+   at Internal.Generated.WolverineHandlers.LoginCommandHandler2130538390.HandleAsync(MessageContext context, CancellationToken cancellation)
+   at Wolverine.Runtime.Handlers.Executor.InvokeAsync(MessageContext context, CancellationToken cancellation) in /home/runner/work/wolverine/wolverine/src/Wolverine/Runtime/Handlers/Executor.cs:line 224
+2026-02-20 23:54:11.063 +04:00 [ERR] HTTP POST /api/Auth/login responded 500 in 2430.5278 ms
+2026-02-20 23:54:22.488 +04:00 [ERR] Invocation of LoginCommand { Email = jabiyevmurad02@gmail.com, Password = murad2002@ } failed!
+System.ArgumentException: Incorrect password entered.
+   at ZenBlog.Persistance.Services.UserServices.AuthService.LoginAsync(LoginCommand request, CancellationToken cancellationToken) in C:\Users\Murad\Desktop\ZenBlogServer\ZenBlog.Persistance\Services\UserServices\AuthService.cs:line 158
+   at ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.Login.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken) in C:\Users\Murad\Desktop\ZenBlogServer\ZenBlog.Application\Features\UserFeatures\AuthFeatures\Commands\Login\LoginCommandHandler.cs:line 16
+   at Internal.Generated.WolverineHandlers.LoginCommandHandler2130538390.HandleAsync(MessageContext context, CancellationToken cancellation)
+   at Wolverine.Runtime.Handlers.Executor.InvokeAsync(MessageContext context, CancellationToken cancellation) in /home/runner/work/wolverine/wolverine/src/Wolverine/Runtime/Handlers/Executor.cs:line 224
+2026-02-20 23:54:23.130 +04:00 [ERR] HTTP POST /api/Auth/login responded 500 in 2146.6357 ms
+2026-02-20 23:54:30.788 +04:00 [ERR] Invocation of LoginCommand { Email = jabiyevmurad02@gmail.com, Password = Murad2000@ } failed!
+System.ArgumentException: Incorrect password entered.
+   at ZenBlog.Persistance.Services.UserServices.AuthService.LoginAsync(LoginCommand request, CancellationToken cancellationToken) in C:\Users\Murad\Desktop\ZenBlogServer\ZenBlog.Persistance\Services\UserServices\AuthService.cs:line 158
+   at ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.Login.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken) in C:\Users\Murad\Desktop\ZenBlogServer\ZenBlog.Application\Features\UserFeatures\AuthFeatures\Commands\Login\LoginCommandHandler.cs:line 16
+   at Internal.Generated.WolverineHandlers.LoginCommandHandler2130538390.HandleAsync(MessageContext context, CancellationToken cancellation)
+   at Wolverine.Runtime.Handlers.Executor.InvokeAsync(MessageContext context, CancellationToken cancellation) in /home/runner/work/wolverine/wolverine/src/Wolverine/Runtime/Handlers/Executor.cs:line 224
+2026-02-20 23:54:31.597 +04:00 [ERR] HTTP POST /api/Auth/login responded 500 in 2278.4579 ms

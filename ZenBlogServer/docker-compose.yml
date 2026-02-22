@@ -1,0 +1,114 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: zenblog-postgres
+    environment:
+      POSTGRES_DB: zenblog
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "127.0.0.1:${ZENBLOG_POSTGRES_PORT:-15432}:5432"
+    volumes:
+      - zenblog_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d zenblog"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  redis:
+    image: redis:7
+    container_name: zenblog-redis
+    ports:
+      - "127.0.0.1:${ZENBLOG_REDIS_PORT:-16379}:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: zenblog-rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: zenblog
+      RABBITMQ_DEFAULT_PASS: zenblog
+      RABBITMQ_DEFAULT_VHOST: /
+    ports:
+      - "127.0.0.1:${ZENBLOG_RABBITMQ_AMQP_PORT:-15673}:5672"
+      - "127.0.0.1:${ZENBLOG_RABBITMQ_UI_PORT:-15682}:15672"
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  localstack:
+    image: localstack/localstack:3
+    container_name: zenblog-localstack
+    ports:
+      - "127.0.0.1:${ZENBLOG_LOCALSTACK_PORT:-14566}:4566"
+    environment:
+      SERVICES: s3
+      AWS_REGION: us-east-1
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://localhost:4566/_localstack/health')\" "]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  api:
+    build:
+      context: .
+      dockerfile: ZenBlog.API/Dockerfile
+    container_name: zenblog-api
+    environment:
+      ASPNETCORE_ENVIRONMENT: Docker
+      ASPNETCORE_HTTP_PORTS: "8080"
+
+      # Enable docs + auto-migrate for local dev
+      OpenApi__Enabled: "true"
+      Database__MigrateOnStartup: "true"
+
+      # Persist DataProtection keys in a docker volume (avoids key-loss warnings)
+      DataProtection__KeysPath: "/app/keys"
+
+      # AWS creds for LocalStack
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+      AWS_REGION: us-east-1
+
+      # Make S3 public URLs point to the published LocalStack port on the host
+      AwsS3__PublicBaseUrl: "http://localhost:${ZENBLOG_LOCALSTACK_PORT:-14566}/zenblog-local"
+
+      # Email (SMTP) - Gmail
+      # Required env vars (pass them when running docker compose):
+      #   GMAIL_USER=you@gmail.com
+      #   GMAIL_APP_PASSWORD=xxxx xxxx xxxx xxxx
+      EmailParameters__Host: "smtp.gmail.com"
+      EmailParameters__Port: "587"
+      EmailParameters__EnableSsl: "true"
+      EmailParameters__From: "${GMAIL_USER}"
+      EmailParameters__Username: "${GMAIL_USER}"
+      EmailParameters__AppPassword: "${GMAIL_APP_PASSWORD}"
+
+      # Optional: if you want Angular to run on host
+      ClientAppUrls__BaseUrl: http://localhost:4200
+
+    ports:
+      - "127.0.0.1:${ZENBLOG_API_PORT:-18080}:8080"
+    volumes:
+      - zenblog_dataprotection:/app/keys
+    depends_on:
+      - postgres
+      - redis
+      - rabbitmq
+      - localstack
+
+volumes:
+  zenblog_pgdata:
+  zenblog_dataprotection:

@@ -38,15 +38,13 @@ public sealed class SubCommentService : ISubCommentService
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
-    public IQueryable<SubComment> GetAllSubComments()
-    {
-        throw new NotImplementedException();
-    }
+    public IQueryable<SubComment> GetAllSubComments() => _subCommentRepository.GetAll().AsQueryable();
 
     public async Task UpdateAsync(UpdateSubCommentCommand request, CancellationToken cancellationToken)
     {
         var subComment = await _subCommentRepository.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
         if (subComment is null) throw new ArgumentException($"SubComment with Id {request.Id} isn't found");
+        _mapper.Map(request,subComment);
         _subCommentRepository.Update(subComment);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }

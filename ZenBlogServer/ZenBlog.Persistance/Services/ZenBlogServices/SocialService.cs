@@ -49,10 +49,7 @@ public sealed class SocialService : ISocialService
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
-    public IQueryable<Social> GetAllSocial()
-    {
-        return _socialRepository.GetAll().AsQueryable();
-    }
+    public IQueryable<Social> GetAllSocial() => _socialRepository.GetAll().AsQueryable();
 
     public async Task UpdateAsync(UpdateSocialCommand request, CancellationToken cancellationToken)
     {

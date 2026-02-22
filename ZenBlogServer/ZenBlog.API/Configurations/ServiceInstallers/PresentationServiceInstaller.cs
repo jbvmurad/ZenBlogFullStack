@@ -9,7 +9,15 @@ public class PresentationServiceInstaller : IServiceInstaller
     {
         services
             .AddControllers()
-            .AddApplicationPart(typeof(ZenBlog.Presentation.AssemblyReference).Assembly);
+            .AddApplicationPart(typeof(ZenBlog.Presentation.AssemblyReference).Assembly)
+            .AddOData(opt => opt
+                .Select()
+                .Filter()
+                .OrderBy()
+                .Expand()
+                .Count()
+                .SetMaxTop(int.MaxValue)
+            );
 
         services.AddEndpointsApiExplorer();
 
@@ -17,14 +25,5 @@ public class PresentationServiceInstaller : IServiceInstaller
         {
             options.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
         });
-
-        services.AddControllers().AddOData(opt => opt
-        .Select()
-        .Filter()
-        .OrderBy()
-        .Expand()
-        .Count()
-        .SetMaxTop(int.MaxValue)
-        );
     }
 }

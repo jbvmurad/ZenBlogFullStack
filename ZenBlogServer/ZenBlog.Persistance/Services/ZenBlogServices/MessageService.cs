@@ -48,10 +48,7 @@ public sealed class MessageService : IMessageService
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
-    public IQueryable<Message> GetAllMessages()
-    {
-        return _messageRepository.GetAll().AsQueryable();
-    }
+    public IQueryable<Message> GetAllMessages() => _messageRepository.GetAll().AsQueryable();
 
     public async Task UpdateReadStateAsync(UpdateMessageCommand request, CancellationToken cancellationToken)
     {
