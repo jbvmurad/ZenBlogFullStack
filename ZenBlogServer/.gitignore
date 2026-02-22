@@ -1,0 +1,12 @@
+# secrets
+.env
+.env.*
+*.secret*.json
+*serviceAccount*.json
+*credentials*.json
+
+# IDE + build
+.vs/
+**/bin/
+**/obj/
+ZenBlogServer/ZenBlog.API/Logs/

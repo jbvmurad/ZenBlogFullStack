@@ -1,8 +1,18 @@
 {
   "version": 2,
-  "dgSpecHash": "qlM9VGa1gOk=",
+  "dgSpecHash": "wAm3G/dVUNY=",
   "success": true,
   "projectFilePath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\ZenBlog.Application.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Murad\\.nuget\\packages\\fluentvalidation\\12.1.1\\fluentvalidation.12.1.1.nupkg.sha512",
+    "C:\\Users\\Murad\\.nuget\\packages\\masstransit\\9.0.1\\masstransit.9.0.1.nupkg.sha512",
+    "C:\\Users\\Murad\\.nuget\\packages\\masstransit.abstractions\\9.0.1\\masstransit.abstractions.9.0.1.nupkg.sha512",
+    "C:\\Users\\Murad\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\10.0.3\\microsoft.aspnetcore.identity.entityframeworkcore.10.0.3.nupkg.sha512",
+    "C:\\Users\\Murad\\.nuget\\packages\\microsoft.entityframeworkcore\\10.0.3\\microsoft.entityframeworkcore.10.0.3.nupkg.sha512",
+    "C:\\Users\\Murad\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\10.0.3\\microsoft.entityframeworkcore.abstractions.10.0.3.nupkg.sha512",
+    "C:\\Users\\Murad\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\10.0.3\\microsoft.entityframeworkcore.analyzers.10.0.3.nupkg.sha512",
+    "C:\\Users\\Murad\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\10.0.3\\microsoft.entityframeworkcore.relational.10.0.3.nupkg.sha512",
+    "C:\\Users\\Murad\\.nuget\\packages\\ts.entityframeworkcore.genericrepository\\10.0.0\\ts.entityframeworkcore.genericrepository.10.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

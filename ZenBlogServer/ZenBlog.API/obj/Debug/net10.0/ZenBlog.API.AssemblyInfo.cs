@@ -11,10 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("9d714c5f-c082-414e-8021-a1545b078ea3")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("ZenBlog.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+13ac75d4da348fa6921e7b003b4c1c039baaf1ae")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6f059a875f122e91e24d10041a9786d43c187cd6")]
 [assembly: System.Reflection.AssemblyProductAttribute("ZenBlog.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ZenBlog.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
