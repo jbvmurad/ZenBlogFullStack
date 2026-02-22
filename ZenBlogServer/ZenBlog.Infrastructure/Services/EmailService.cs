@@ -16,12 +16,22 @@ public class EmailService : IEmailService
         _settings = settings;
         _clientAppUrls = clientAppUrls;
 
-        var sender = new SmtpSender(() => new SmtpClient(_settings.Host)
+        var sender = new SmtpSender(() =>
         {
-            EnableSsl = _settings.EnableSsl,
-            DeliveryMethod = SmtpDeliveryMethod.Network,
-            Port = _settings.Port,
-            Credentials = new NetworkCredential(_settings.Username, _settings.AppPassword)
+            var client = new SmtpClient(_settings.Host)
+            {
+                EnableSsl = _settings.EnableSsl,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                Port = _settings.Port,
+                UseDefaultCredentials = false
+            };
+
+            if (!string.IsNullOrWhiteSpace(_settings.Username) && !string.IsNullOrWhiteSpace(_settings.AppPassword))
+            {
+                client.Credentials = new NetworkCredential(_settings.Username, _settings.AppPassword);
+            }
+
+            return client;
         });
 
         Email.DefaultSender = sender;
@@ -30,8 +40,10 @@ public class EmailService : IEmailService
 
     public async Task<bool> SendEmailAsync(string to, string subject, string body)
     {
+        var from = string.IsNullOrWhiteSpace(_settings.From) ? _settings.Username : _settings.From;
+
         var response = await Email
-            .From(_settings.From)
+            .From(from)
             .To(to)
             .Subject(subject)
             .Body(body, isHtml: true)

@@ -52,10 +52,7 @@ public sealed class ContactInfoService : IContactInfoService
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
-    public IQueryable<ContactInfo> GetContactInfo()
-    {
-        return _contactInfoRepository.GetAll().AsQueryable();
-    }
+    public IQueryable<ContactInfo> GetContactInfo() => _contactInfoRepository.GetAll().AsQueryable();
 
     public async Task UpdateAsync(UpdateContactInfoCommand request, CancellationToken cancellationToken)
     {

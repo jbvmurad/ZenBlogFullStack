@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ZenBlog.Presentation")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+61a7e1edd809bf7e89072236e80a6b4402c3ac04")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6f059a875f122e91e24d10041a9786d43c187cd6")]
 [assembly: System.Reflection.AssemblyProductAttribute("ZenBlog.Presentation")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ZenBlog.Presentation")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

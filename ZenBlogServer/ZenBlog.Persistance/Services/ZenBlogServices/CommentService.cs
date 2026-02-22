@@ -44,6 +44,7 @@ public sealed class CommentService : ICommentService
     {
         var comment = await _commentRepository.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
         if (comment is null) throw new ArgumentException($"Comment with Id {request.Id} isn't found");
+        _mapper.Map(request,comment);
         _commentRepository.Update(comment);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }

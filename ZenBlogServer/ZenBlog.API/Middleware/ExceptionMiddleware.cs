@@ -29,20 +29,38 @@ public sealed class ExceptionMiddleware : IMiddleware
     private Task HandleExceptionAsync(HttpContext context, Exception ex)
     {
         context.Response.ContentType = "application/json";
-        context.Response.StatusCode = 500;
-        if (ex.GetType() == typeof(ValidationException))
+        // Map common exceptions to meaningful HTTP status codes
+        var statusCode = ex switch
+        {
+            ValidationException => StatusCodes.Status400BadRequest,
+            ArgumentException => StatusCodes.Status400BadRequest,
+            UnauthorizedAccessException => StatusCodes.Status401Unauthorized,
+            KeyNotFoundException => StatusCodes.Status404NotFound,
+            _ => StatusCodes.Status500InternalServerError
+        };
+
+        // Common identity-style duplicate errors
+        if (statusCode == StatusCodes.Status500InternalServerError &&
+            ex.Message?.Contains("already taken", StringComparison.OrdinalIgnoreCase) == true)
+        {
+            statusCode = StatusCodes.Status409Conflict;
+        }
+
+        context.Response.StatusCode = statusCode;
+
+        if (ex is ValidationException vex)
         {
             return context.Response.WriteAsync(new ValidationErrorDetails
             {
-                Errors = ((ValidationException)ex).Errors.Select(s =>
-                s.PropertyName),
-                StatusCode = 403
+                Errors = vex.Errors.Select(s => s.PropertyName),
+                StatusCode = statusCode
             }.ToString());
         }
+
         return context.Response.WriteAsync(new ErrorResult
         {
             Message = ex.Message,
-            StatusCode = context.Response.StatusCode
+            StatusCode = statusCode
         }.ToString());
     }
     private async Task LogExceptionToDatabaseAsync(Exception ex, HttpRequest request)

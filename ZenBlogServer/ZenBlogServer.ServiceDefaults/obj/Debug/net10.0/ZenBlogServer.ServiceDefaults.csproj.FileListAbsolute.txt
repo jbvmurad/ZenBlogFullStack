@@ -1,3 +1,15 @@
+C:\Users\Murad\Desktop\ZenBlogServer_AllFixed_Testable\ZenBlogServer.ServiceDefaults\bin\Debug\net10.0\ZenBlogServer.ServiceDefaults.deps.json
+C:\Users\Murad\Desktop\ZenBlogServer_AllFixed_Testable\ZenBlogServer.ServiceDefaults\bin\Debug\net10.0\ZenBlogServer.ServiceDefaults.dll
+C:\Users\Murad\Desktop\ZenBlogServer_AllFixed_Testable\ZenBlogServer.ServiceDefaults\bin\Debug\net10.0\ZenBlogServer.ServiceDefaults.pdb
+C:\Users\Murad\Desktop\ZenBlogServer_AllFixed_Testable\ZenBlogServer.ServiceDefaults\obj\Debug\net10.0\ZenBlogServer.ServiceDefaults.csproj.AssemblyReference.cache
+C:\Users\Murad\Desktop\ZenBlogServer_AllFixed_Testable\ZenBlogServer.ServiceDefaults\obj\Debug\net10.0\ZenBlogServer.ServiceDefaults.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Murad\Desktop\ZenBlogServer_AllFixed_Testable\ZenBlogServer.ServiceDefaults\obj\Debug\net10.0\ZenBlogServer.ServiceDefaults.AssemblyInfoInputs.cache
+C:\Users\Murad\Desktop\ZenBlogServer_AllFixed_Testable\ZenBlogServer.ServiceDefaults\obj\Debug\net10.0\ZenBlogServer.ServiceDefaults.AssemblyInfo.cs
+C:\Users\Murad\Desktop\ZenBlogServer_AllFixed_Testable\ZenBlogServer.ServiceDefaults\obj\Debug\net10.0\ZenBlogServer.ServiceDefaults.csproj.CoreCompileInputs.cache
+C:\Users\Murad\Desktop\ZenBlogServer_AllFixed_Testable\ZenBlogServer.ServiceDefaults\obj\Debug\net10.0\ZenBlogServer.ServiceDefaults.dll
+C:\Users\Murad\Desktop\ZenBlogServer_AllFixed_Testable\ZenBlogServer.ServiceDefaults\obj\Debug\net10.0\refint\ZenBlogServer.ServiceDefaults.dll
+C:\Users\Murad\Desktop\ZenBlogServer_AllFixed_Testable\ZenBlogServer.ServiceDefaults\obj\Debug\net10.0\ZenBlogServer.ServiceDefaults.pdb
+C:\Users\Murad\Desktop\ZenBlogServer_AllFixed_Testable\ZenBlogServer.ServiceDefaults\obj\Debug\net10.0\ref\ZenBlogServer.ServiceDefaults.dll
 C:\Users\Murad\Desktop\ZenBlogFullStack\ZenBlogServer\ZenBlogServer.ServiceDefaults\bin\Debug\net10.0\ZenBlogServer.ServiceDefaults.deps.json
 C:\Users\Murad\Desktop\ZenBlogFullStack\ZenBlogServer\ZenBlogServer.ServiceDefaults\bin\Debug\net10.0\ZenBlogServer.ServiceDefaults.dll
 C:\Users\Murad\Desktop\ZenBlogFullStack\ZenBlogServer\ZenBlogServer.ServiceDefaults\bin\Debug\net10.0\ZenBlogServer.ServiceDefaults.pdb
