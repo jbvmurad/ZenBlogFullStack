@@ -4,6 +4,7 @@ using Wolverine;
 using ZenBlog.Application.Features.ZenBlogFeatures.SocialFeatures.Commands.CreateSocial;
 using ZenBlog.Application.Features.ZenBlogFeatures.SocialFeatures.Commands.DeleteSocial;
 using ZenBlog.Application.Features.ZenBlogFeatures.SocialFeatures.Commands.UpdateSocial;
+using ZenBlog.Application.Requests.SocialRequests;
 using ZenBlog.Application.Services.ZenBlogService;
 using ZenBlog.Domain.DTOs.SystemDTOs;
 using ZenBlog.Domain.Entities.ZenBlogEntities;
@@ -32,6 +33,19 @@ public sealed class SocialController :APIController
         return Ok(response);
     }
 
+    [HttpPost("with-media")]
+    [Consumes("multipart/form-data")]
+    public async Task<IActionResult> CreateWithMedia(
+        [FromForm] CreateSocialMediaOnlyRequest media,
+        [FromQuery] string Title,
+        [FromQuery] string Url,
+        CancellationToken cancellationToken)
+    {
+        var command = media.ToCreateSocialWithMediaCommand(Title, Url);
+        MessageResponse response = await _bus.InvokeAsync<MessageResponse>(command, cancellationToken);
+        return Ok(response);
+    }
+
     [HttpDelete]
     public async Task<IActionResult> Delete(string id, CancellationToken cancellationToken)
     {
@@ -43,7 +57,21 @@ public sealed class SocialController :APIController
     [HttpPut]
     public async Task<IActionResult> Update(UpdateSocialCommand request, CancellationToken cancellationToken)
     {
-        MessageResponse response = await _bus.InvokeAsync<MessageResponse>(request);
+        MessageResponse response = await _bus.InvokeAsync<MessageResponse>(request, cancellationToken);
+        return Ok(response);
+    }
+
+    [HttpPut("with-media")]
+    [Consumes("multipart/form-data")]
+    public async Task<IActionResult> UpdateWithMedia(
+        [FromForm] UpdateSocialMediaOptionalRequest media,
+        [FromQuery] string id,
+        [FromQuery] string? Title,
+        [FromQuery] string? Url,
+        CancellationToken cancellationToken)
+    {
+        var command = media.ToUpdateSocialWithMediaCommand(id, Title, Url);
+        MessageResponse response = await _bus.InvokeAsync<MessageResponse>(command, cancellationToken);
         return Ok(response);
     }
 }

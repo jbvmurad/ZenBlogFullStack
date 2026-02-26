@@ -15,6 +15,7 @@ public class PersistanceDIServiceInstaller : IServiceInstaller
     public void Install(IServiceCollection services, IConfiguration configuration, IHostBuilder host)
     {
         services.AddHttpContextAccessor();
+
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IRoleService, RoleService>();
         services.AddScoped<IUserRoleService, UserRoleService>();

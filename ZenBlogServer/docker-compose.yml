@@ -67,6 +67,7 @@ services:
       dockerfile: ZenBlog.API/Dockerfile
     container_name: zenblog-api
     environment:
+      GoogleAuth__ClientId: ${GOOGLE_AUTH_CLIENT_ID}
       ASPNETCORE_ENVIRONMENT: Docker
       ASPNETCORE_HTTP_PORTS: "8080"
 
