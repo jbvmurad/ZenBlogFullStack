@@ -1,4 +1,3 @@
-using LetsSpeakLaw.API.Middleware;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
@@ -6,6 +5,7 @@ using Scalar.AspNetCore;
 using Serilog;
 using ZenBlog.API.Configurations;
 using ZenBlog.API.Configurations.Abstraction;
+using ZenBlog.API.Middleware;
 using ZenBlog.API.SeriLog;
 using ZenBlog.Persistance.Context;
 

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.OData;
+using Microsoft.AspNetCore.OData;
 using ZenBlog.API.Configurations.Abstraction;
 
 namespace ZenBlog.API.Configurations.ServiceInstallers;

@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Options;
 using ZenBlog.Infrastructure.Authentication;
 
 namespace ZenBlog.API.OptionsSetup;

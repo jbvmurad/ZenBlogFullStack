@@ -1,4 +1,4 @@
-﻿namespace ZenBlog.Domain.DTOs.SystemDTOs;
+namespace ZenBlog.Domain.DTOs.SystemDTOs;
 
 public sealed record MessageResponse(
     string Message);

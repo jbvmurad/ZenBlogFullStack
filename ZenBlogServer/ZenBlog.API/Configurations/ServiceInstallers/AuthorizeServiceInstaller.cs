@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using ZenBlog.API.Configurations.Abstraction;
 using ZenBlog.Domain.Entities.UserEntities;

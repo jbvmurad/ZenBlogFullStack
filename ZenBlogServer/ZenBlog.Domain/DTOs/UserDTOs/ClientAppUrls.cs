@@ -1,4 +1,4 @@
-﻿namespace ZenBlog.Domain.DTOs.UserDTOs;
+namespace ZenBlog.Domain.DTOs.UserDTOs;
 
 public sealed record ClientAppUrls(
     string BaseUrl,

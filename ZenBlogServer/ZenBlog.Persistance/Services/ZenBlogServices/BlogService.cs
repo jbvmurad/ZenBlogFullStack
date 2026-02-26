@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using GenericRepository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;

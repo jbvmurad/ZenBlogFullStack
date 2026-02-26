@@ -1,4 +1,4 @@
-﻿using NpgsqlTypes;
+using NpgsqlTypes;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.PostgreSQL;
@@ -12,7 +12,7 @@ public static class SerilogSetup
     {
         var connectionString =
             builder.Configuration.GetConnectionString("ZenBlogConnection")
-            ?? throw new InvalidOperationException("Connection string 'LetsSpeakLawConnection' don't found.");
+            ?? throw new InvalidOperationException("Connection string 'ZenBlogConnection' don't found.");
 
         var columnWriters = new Dictionary<string, ColumnWriterBase>
         {

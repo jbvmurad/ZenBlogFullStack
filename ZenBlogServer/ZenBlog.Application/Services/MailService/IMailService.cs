@@ -1,4 +1,4 @@
-﻿namespace ZenBlog.Application.Services.MailService;
+namespace ZenBlog.Application.Services.MailService;
 
 public interface IEmailService
 {

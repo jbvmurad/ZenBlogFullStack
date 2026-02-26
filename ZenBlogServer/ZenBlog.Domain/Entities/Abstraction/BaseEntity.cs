@@ -1,4 +1,4 @@
-﻿namespace ZenBlog.Domain.Entities.Abstraction;
+namespace ZenBlog.Domain.Entities.Abstraction;
 
 public abstract class BaseEntity
 {

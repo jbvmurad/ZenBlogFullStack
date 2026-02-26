@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using ZenBlog.Application.Features.ZenBlogFeatures.SocialFeatures.Commands.CreateSocial;
 using ZenBlog.Application.Features.ZenBlogFeatures.SocialFeatures.Commands.UpdateSocial;
 using ZenBlog.Domain.Entities.ZenBlogEntities;

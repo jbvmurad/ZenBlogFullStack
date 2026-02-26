@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ZenBlog.Domain.Entities.Abstraction;
 
 namespace ZenBlog.Persistance.Configurations.Abstraction;

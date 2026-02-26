@@ -1,5 +1,5 @@
-﻿namespace ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.Login;
+namespace ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.Login;
 
 public sealed record LoginCommand(
     string Email,
-    string Password); 
+    string Password);

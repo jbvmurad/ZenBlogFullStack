@@ -1,4 +1,4 @@
-﻿namespace ZenBlog.API.Configurations.Abstraction;
+namespace ZenBlog.API.Configurations.Abstraction;
 
 public interface IServiceInstaller
 {

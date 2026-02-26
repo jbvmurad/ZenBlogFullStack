@@ -1,4 +1,4 @@
-﻿using GenericRepository;
+using GenericRepository;
 using ZenBlog.API.Configurations.Abstraction;
 using ZenBlog.API.Middleware;
 using ZenBlog.API.OptionsSetup;

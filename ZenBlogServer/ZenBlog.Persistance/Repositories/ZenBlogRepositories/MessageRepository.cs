@@ -1,4 +1,4 @@
-﻿using GenericRepository;
+using GenericRepository;
 using ZenBlog.Domain.Entities.ZenBlogEntities;
 using ZenBlog.Domain.Repositories.ZenBlogRepositories;
 using ZenBlog.Persistance.Context;

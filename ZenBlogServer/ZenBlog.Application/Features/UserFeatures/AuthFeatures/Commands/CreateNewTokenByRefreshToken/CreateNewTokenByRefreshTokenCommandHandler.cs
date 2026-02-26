@@ -1,9 +1,9 @@
-﻿using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.Login;
+using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.Login;
 using ZenBlog.Application.Services.UserAttributeService;
 
 namespace ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.CreateNewTokenByRefreshToken;
 
-public sealed class CreateNewTokenByRefreshTokenCommandHandler 
+public sealed class CreateNewTokenByRefreshTokenCommandHandler
 {
     private readonly IAuthService _authService;
     public CreateNewTokenByRefreshTokenCommandHandler(IAuthService authService)

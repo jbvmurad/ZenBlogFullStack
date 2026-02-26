@@ -1,4 +1,4 @@
-﻿namespace ZenBlog.Application.Features.UserAttributeFeatures.UserRoleFeatures.Commands.DeleteUserRole;
+namespace ZenBlog.Application.Features.UserAttributeFeatures.UserRoleFeatures.Commands.DeleteUserRole;
 
 public sealed record DeleteUserRoleFullCommand(
     string UserId,

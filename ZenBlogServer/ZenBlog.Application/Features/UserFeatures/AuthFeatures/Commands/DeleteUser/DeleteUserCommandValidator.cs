@@ -1,4 +1,4 @@
-﻿using FluentValidation;
+using FluentValidation;
 using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.DeleteUser;
 
 namespace ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.DeleteUser;

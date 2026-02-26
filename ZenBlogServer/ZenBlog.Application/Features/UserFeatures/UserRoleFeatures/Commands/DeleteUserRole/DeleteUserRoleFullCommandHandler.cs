@@ -1,9 +1,9 @@
-﻿using ZenBlog.Application.Services.UserAttributeService;
+using ZenBlog.Application.Services.UserAttributeService;
 using ZenBlog.Domain.DTOs.SystemDTOs;
 
 namespace ZenBlog.Application.Features.UserAttributeFeatures.UserRoleFeatures.Commands.DeleteUserRole;
 
-public sealed class DeleteUserRoleFullCommandHandler 
+public sealed class DeleteUserRoleFullCommandHandler
 {
     private readonly IUserRoleService _userRoleService;
 
@@ -18,4 +18,3 @@ public sealed class DeleteUserRoleFullCommandHandler
         return new MessageResponse("Selected roles have been removed from the user.");
     }
 }
-

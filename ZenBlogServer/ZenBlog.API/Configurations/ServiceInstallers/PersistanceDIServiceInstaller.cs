@@ -1,4 +1,4 @@
-﻿using ZenBlog.API.Configurations.Abstraction;
+using ZenBlog.API.Configurations.Abstraction;
 using ZenBlog.Application.Services.UserAttributeService;
 using ZenBlog.Application.Services.ZenBlogService;
 using ZenBlog.Domain.Repositories.UserRepositories;
@@ -36,5 +36,5 @@ public class PersistanceDIServiceInstaller : IServiceInstaller
         services.AddScoped<IMessageRepository, MessageRepository>();
         services.AddScoped<ISocialRepository, SocialRepository>();
         services.AddScoped<ISubCommentRepository, SubCommentRepository>();
-    }   
+    }
 }

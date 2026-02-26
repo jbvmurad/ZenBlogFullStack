@@ -1,4 +1,4 @@
-﻿using Google.Apis.Auth;
+using Google.Apis.Auth;
 using Microsoft.Extensions.Configuration;
 using ZenBlog.Application.Services.ExternalAuth;
 using ZenBlog.Domain.DTOs.UserDTOs;

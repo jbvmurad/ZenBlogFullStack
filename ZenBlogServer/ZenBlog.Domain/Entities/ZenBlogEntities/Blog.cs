@@ -1,4 +1,4 @@
-﻿using ZenBlog.Domain.Entities.Abstraction;
+using ZenBlog.Domain.Entities.Abstraction;
 using ZenBlog.Domain.Entities.UserEntities;
 
 namespace ZenBlog.Domain.Entities.ZenBlogEntities;
