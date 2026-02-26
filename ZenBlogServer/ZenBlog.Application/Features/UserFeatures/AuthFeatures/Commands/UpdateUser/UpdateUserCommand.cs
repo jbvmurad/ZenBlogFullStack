@@ -1,4 +1,4 @@
-﻿namespace ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.UpdateUser;
+namespace ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.UpdateUser;
 
 public sealed record UpdateUserCommand(
     string Id,

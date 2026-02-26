@@ -1,8 +1,8 @@
-﻿namespace ZenBlog.Infrastructure.Authentication;
+namespace ZenBlog.Infrastructure.Authentication;
 
 public sealed class JwtOptions
 {
-    public string Issuer { get; init; } 
-    public string Audience { get; init; } 
-    public string SecretKey { get; init; } 
+    public string Issuer { get; init; }
+    public string Audience { get; init; }
+    public string SecretKey { get; init; }
 }

@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using ZenBlog.API.Configurations.Abstraction;
 using ZenBlog.Persistance.Context;
 

@@ -1,8 +1,8 @@
-﻿using ZenBlog.Application.Services.UserAttributeService;
+using ZenBlog.Application.Services.UserAttributeService;
 
 namespace ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.Login;
 
-public sealed class LoginCommandHandler 
+public sealed class LoginCommandHandler
 {
     private readonly IAuthService _authService;
 

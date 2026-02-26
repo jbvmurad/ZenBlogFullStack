@@ -1,4 +1,4 @@
-﻿using FluentValidation;
+using FluentValidation;
 using ZenBlog.Domain.Entities.SystemEntities;
 using ZenBlog.Persistance.Context;
 
@@ -29,7 +29,7 @@ public sealed class ExceptionMiddleware : IMiddleware
     private Task HandleExceptionAsync(HttpContext context, Exception ex)
     {
         context.Response.ContentType = "application/json";
-        // Map common exceptions to meaningful HTTP status codes
+
         var statusCode = ex switch
         {
             ValidationException => StatusCodes.Status400BadRequest,
@@ -39,7 +39,7 @@ public sealed class ExceptionMiddleware : IMiddleware
             _ => StatusCodes.Status500InternalServerError
         };
 
-        // Common identity-style duplicate errors
+
         if (statusCode == StatusCodes.Status500InternalServerError &&
             ex.Message?.Contains("already taken", StringComparison.OrdinalIgnoreCase) == true)
         {

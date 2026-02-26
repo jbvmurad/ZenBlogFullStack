@@ -1,4 +1,4 @@
-﻿using FluentValidation;
+using FluentValidation;
 
 namespace ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.RegisterUser;
 

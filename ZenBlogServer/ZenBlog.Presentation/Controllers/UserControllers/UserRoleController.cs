@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Wolverine;
 using ZenBlog.Application.Features.UserAttributeFeatures.UserRoleFeatures.Commands.DeleteUserRole;
@@ -9,7 +9,7 @@ using ZenBlog.Domain.DTOs.UserDTOs;
 using ZenBlog.Domain.Entities.UserEntities;
 using ZenBlog.Presentation.Controllers.Abstraction;
 
-namespace LetsSpeakLaw.Presentation.Controllers.UserControllers;
+namespace ZenBlog.Presentation.Controllers.UserControllers;
 
 [ApiController]
 [Route("api/[controller]")]

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using ZenBlog.Domain.Entities.ZenBlogEntities;
 
 namespace ZenBlog.Domain.Entities.UserEntities;

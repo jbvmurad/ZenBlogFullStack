@@ -1,9 +1,9 @@
-﻿using ZenBlog.Application.Services.UserAttributeService;
+using ZenBlog.Application.Services.UserAttributeService;
 using ZenBlog.Domain.DTOs.SystemDTOs;
 
 namespace ZenBlog.Application.Features.UserAttributeFeatures.RoleFeatures.Commands.CreateRole;
 
-public sealed class CreateRoleCommandHandler 
+public sealed class CreateRoleCommandHandler
 {
     private readonly IRoleService _roleService;
 

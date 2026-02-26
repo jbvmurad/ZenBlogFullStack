@@ -1,4 +1,4 @@
-﻿namespace ZenBlog.Application.Features.UserAttributeFeatures.RoleFeatures.Commands.CreateRole;
+namespace ZenBlog.Application.Features.UserAttributeFeatures.RoleFeatures.Commands.CreateRole;
 
 public sealed record CreateRoleCommand(
     string Name) ;

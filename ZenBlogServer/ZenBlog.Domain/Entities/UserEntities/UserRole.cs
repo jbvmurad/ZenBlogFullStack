@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations.Schema;
 using ZenBlog.Domain.Entities.Abstraction;
 
 namespace ZenBlog.Domain.Entities.UserEntities;

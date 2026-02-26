@@ -1,4 +1,4 @@
-﻿using GenericRepository;
+using GenericRepository;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ZenBlog.Domain.Entities.Abstraction;

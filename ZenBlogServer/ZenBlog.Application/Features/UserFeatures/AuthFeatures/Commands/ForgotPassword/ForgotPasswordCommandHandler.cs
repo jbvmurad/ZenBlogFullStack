@@ -3,7 +3,7 @@ using ZenBlog.Domain.DTOs.SystemDTOs;
 
 namespace ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.ForgotPassword;
 
-public sealed class ForgotPasswordCommandHandler 
+public sealed class ForgotPasswordCommandHandler
 {
     private readonly IAuthService _authService;
 

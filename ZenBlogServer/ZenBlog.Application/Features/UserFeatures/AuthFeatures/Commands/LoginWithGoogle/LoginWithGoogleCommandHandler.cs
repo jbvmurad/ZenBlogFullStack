@@ -3,7 +3,7 @@ using ZenBlog.Application.Services.UserAttributeService;
 
 namespace ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.LoginWithGoogle;
 
-public sealed class LoginWithGoogleCommandHandler 
+public sealed class LoginWithGoogleCommandHandler
 {
     private readonly IAuthService _authService;
 

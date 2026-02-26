@@ -3,7 +3,7 @@ using ZenBlog.Domain.DTOs.SystemDTOs;
 
 namespace ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.ConfirmEmail;
 
-public sealed class ConfirmEmailCommandHandler 
+public sealed class ConfirmEmailCommandHandler
 {
     private readonly IAuthService _authService;
 

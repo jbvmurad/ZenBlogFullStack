@@ -3,7 +3,7 @@ using ZenBlog.Domain.DTOs.SystemDTOs;
 
 namespace ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.ResetPassword;
 
-public sealed class ResetPasswordCommandHandler 
+public sealed class ResetPasswordCommandHandler
 {
     private readonly IAuthService _authService;
 

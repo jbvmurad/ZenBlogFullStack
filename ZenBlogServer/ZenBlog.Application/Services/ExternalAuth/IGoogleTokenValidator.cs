@@ -1,4 +1,4 @@
-﻿using ZenBlog.Domain.DTOs.UserDTOs;
+using ZenBlog.Domain.DTOs.UserDTOs;
 
 namespace ZenBlog.Application.Services.ExternalAuth;
 

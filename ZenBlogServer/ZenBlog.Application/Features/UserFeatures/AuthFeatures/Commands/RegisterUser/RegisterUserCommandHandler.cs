@@ -1,9 +1,9 @@
-﻿using ZenBlog.Application.Services.UserAttributeService;
+using ZenBlog.Application.Services.UserAttributeService;
 using ZenBlog.Domain.DTOs.SystemDTOs;
 
 namespace ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.RegisterUser;
 
-public sealed class RegisterUserCommandHandler 
+public sealed class RegisterUserCommandHandler
 {
     private readonly IAuthService _authService;
 
@@ -18,4 +18,3 @@ public sealed class RegisterUserCommandHandler
         return new MessageResponse("User registered successfully");
     }
 }
-

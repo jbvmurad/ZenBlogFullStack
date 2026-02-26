@@ -1,6 +1,6 @@
-﻿using ZenBlog.API.Middleware;
+using ZenBlog.API.Middleware;
 
-namespace LetsSpeakLaw.API.Middleware;
+namespace ZenBlog.API.Middleware;
 
 public static class MiddlewareExtension
 {

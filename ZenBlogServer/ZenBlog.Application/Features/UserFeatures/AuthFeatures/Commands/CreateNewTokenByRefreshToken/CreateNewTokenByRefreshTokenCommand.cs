@@ -1,5 +1,5 @@
-﻿namespace ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.CreateNewTokenByRefreshToken;
+namespace ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.CreateNewTokenByRefreshToken;
 
 public sealed record CreateNewTokenByRefreshTokenCommand(
     string UserId,
-    string RefreshToken); 
+    string RefreshToken);

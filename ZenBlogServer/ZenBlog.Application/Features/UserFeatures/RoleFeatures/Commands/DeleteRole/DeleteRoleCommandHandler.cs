@@ -1,10 +1,10 @@
-﻿using ZenBlog.Application.Features.UserAttributeFeatures.RoleFeatures.Commands.DeleteRole;
+using ZenBlog.Application.Features.UserAttributeFeatures.RoleFeatures.Commands.DeleteRole;
 using ZenBlog.Application.Services.UserAttributeService;
 using ZenBlog.Domain.DTOs.SystemDTOs;
 
-namespace LetsSpeakLaw.Application.Features.UserAttributeFeatures.RoleFeatures.Commands.DeleteRole;
+namespace ZenBlog.Application.Features.UserAttributeFeatures.RoleFeatures.Commands.DeleteRole;
 
-public class DeleteRoleCommandHandler 
+public class DeleteRoleCommandHandler
 {
     private readonly IRoleService _roleService;
 
@@ -19,4 +19,3 @@ public class DeleteRoleCommandHandler
         return new MessageResponse("Role deleted successfully");
     }
 }
-

@@ -1,4 +1,4 @@
-﻿using FluentEmail.Core;
+using FluentEmail.Core;
 using FluentEmail.Smtp;
 using System.Net;
 using System.Net.Mail;
@@ -107,7 +107,7 @@ public class EmailService : IEmailService
         var encodedUserId = Uri.EscapeDataString(userId ?? string.Empty);
         var encodedToken = Uri.EscapeDataString(token ?? string.Empty);
 
-        // Example: https://client.com/verify-email?userId=...&token=...
+
         return $"{baseUrl}/{cleanPath}?userId={encodedUserId}&token={encodedToken}";
     }
 }

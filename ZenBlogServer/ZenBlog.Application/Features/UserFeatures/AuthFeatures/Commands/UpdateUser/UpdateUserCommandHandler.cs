@@ -1,9 +1,9 @@
-﻿using ZenBlog.Application.Services.UserAttributeService;
+using ZenBlog.Application.Services.UserAttributeService;
 using ZenBlog.Domain.DTOs.SystemDTOs;
 
 namespace ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.UpdateUser;
 
-public sealed class UpdateUserCommandHandler 
+public sealed class UpdateUserCommandHandler
 {
     private readonly IAuthService _authService;
 
