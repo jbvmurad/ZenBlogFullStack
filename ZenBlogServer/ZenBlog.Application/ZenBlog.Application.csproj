@@ -7,6 +7,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\ZenBlogFeatures\CategoryFeatures\Queries\**" />
+    <Compile Remove="Features\ZenBlogFeatures\CommentFeatures\Queries\**" />
+    <Compile Remove="Features\ZenBlogFeatures\ContactInfoFeatures\Queries\**" />
+    <Compile Remove="Features\ZenBlogFeatures\MessageFeatures\Queries\**" />
+    <Compile Remove="Features\ZenBlogFeatures\SocialFeatures\Queries\**" />
+    <Compile Remove="Features\ZenBlogFeatures\SubCommentFeatures\Queries\**" />
+    <EmbeddedResource Remove="Features\ZenBlogFeatures\CategoryFeatures\Queries\**" />
+    <EmbeddedResource Remove="Features\ZenBlogFeatures\CommentFeatures\Queries\**" />
+    <EmbeddedResource Remove="Features\ZenBlogFeatures\ContactInfoFeatures\Queries\**" />
+    <EmbeddedResource Remove="Features\ZenBlogFeatures\MessageFeatures\Queries\**" />
+    <EmbeddedResource Remove="Features\ZenBlogFeatures\SocialFeatures\Queries\**" />
+    <EmbeddedResource Remove="Features\ZenBlogFeatures\SubCommentFeatures\Queries\**" />
+    <None Remove="Features\ZenBlogFeatures\CategoryFeatures\Queries\**" />
+    <None Remove="Features\ZenBlogFeatures\CommentFeatures\Queries\**" />
+    <None Remove="Features\ZenBlogFeatures\ContactInfoFeatures\Queries\**" />
+    <None Remove="Features\ZenBlogFeatures\MessageFeatures\Queries\**" />
+    <None Remove="Features\ZenBlogFeatures\SocialFeatures\Queries\**" />
+    <None Remove="Features\ZenBlogFeatures\SubCommentFeatures\Queries\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentValidation" Version="12.1.1" />
     <PackageReference Include="WolverineFx" Version="5.16.2" />
   </ItemGroup>
@@ -21,12 +42,6 @@
 
   <ItemGroup>
     <Folder Include="Features\ZenBlogFeatures\BlogFeatures\Queries\" />
-    <Folder Include="Features\ZenBlogFeatures\CategoryFeatures\Queries\" />
-    <Folder Include="Features\ZenBlogFeatures\CommentFeatures\Queries\" />
-    <Folder Include="Features\ZenBlogFeatures\ContactInfoFeatures\Queries\" />
-    <Folder Include="Features\ZenBlogFeatures\MessageFeatures\Queries\" />
-    <Folder Include="Features\ZenBlogFeatures\SocialFeatures\Queries\" />
-    <Folder Include="Features\ZenBlogFeatures\SubCommentFeatures\Queries\" />
   </ItemGroup>
 
 </Project>

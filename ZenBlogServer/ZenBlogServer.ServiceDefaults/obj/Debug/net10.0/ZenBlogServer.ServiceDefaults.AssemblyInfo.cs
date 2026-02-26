@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ZenBlogServer.ServiceDefaults")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a8fc3a614c427da605a7e52407d76a925eb83337")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+41e439fb7bbc1a1b02ecc24444c7afd285b60bf4")]
 [assembly: System.Reflection.AssemblyProductAttribute("ZenBlogServer.ServiceDefaults")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ZenBlogServer.ServiceDefaults")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
