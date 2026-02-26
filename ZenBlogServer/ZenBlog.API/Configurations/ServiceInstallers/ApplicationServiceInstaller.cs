@@ -1,4 +1,4 @@
-﻿using FluentValidation;
+using FluentValidation;
 using Wolverine;
 using Wolverine.FluentValidation;
 using ZenBlog.API.Configurations.Abstraction;
@@ -11,9 +11,12 @@ public sealed class ApplicationServiceInstaller : IServiceInstaller
     {
         services.AddWolverine(cfg =>
         {
+            cfg.Discovery.IncludeAssembly(typeof(ApplicationServiceInstaller).Assembly);
             cfg.Discovery.IncludeAssembly(typeof(ZenBlog.Application.AssemblyReference).Assembly);
 
             cfg.UseFluentValidation(RegistrationBehavior.ExplicitRegistration);
+
+            cfg.ConfigureRabbitMqMessaging(configuration);
         });
 
         services.AddValidatorsFromAssembly(typeof(ZenBlog.Application.AssemblyReference).Assembly);

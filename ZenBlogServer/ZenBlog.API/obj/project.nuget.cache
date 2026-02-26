@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "3q8+SWSSyvs=",
+  "dgSpecHash": "EC0yiFt1bVM=",
   "success": true,
   "projectFilePath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.API\\ZenBlog.API.csproj",
   "expectedPackageFiles": [
@@ -20,9 +20,6 @@
     "C:\\Users\\Murad\\.nuget\\packages\\jasperfx\\1.19.0\\jasperfx.1.19.0.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\jasperfx.events\\1.21.0\\jasperfx.events.1.21.0.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\jasperfx.runtimecompiler\\4.4.0\\jasperfx.runtimecompiler.4.4.0.nupkg.sha512",
-    "C:\\Users\\Murad\\.nuget\\packages\\masstransit\\9.0.1\\masstransit.9.0.1.nupkg.sha512",
-    "C:\\Users\\Murad\\.nuget\\packages\\masstransit.abstractions\\9.0.1\\masstransit.abstractions.9.0.1.nupkg.sha512",
-    "C:\\Users\\Murad\\.nuget\\packages\\masstransit.rabbitmq\\9.0.1\\masstransit.rabbitmq.9.0.1.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\10.0.3\\microsoft.aspnetcore.authentication.jwtbearer.10.0.3.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\10.0.3\\microsoft.aspnetcore.identity.entityframeworkcore.10.0.3.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\microsoft.aspnetcore.odata\\9.4.1\\microsoft.aspnetcore.odata.9.4.1.nupkg.sha512",
@@ -90,7 +87,7 @@
     "C:\\Users\\Murad\\.nuget\\packages\\polly.core\\8.6.5\\polly.core.8.6.5.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\polly.extensions\\8.4.2\\polly.extensions.8.4.2.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\polly.ratelimiting\\8.4.2\\polly.ratelimiting.8.4.2.nupkg.sha512",
-    "C:\\Users\\Murad\\.nuget\\packages\\rabbitmq.client\\7.2.0\\rabbitmq.client.7.2.0.nupkg.sha512",
+    "C:\\Users\\Murad\\.nuget\\packages\\rabbitmq.client\\7.1.2\\rabbitmq.client.7.1.2.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\scalar.aspnetcore\\2.12.46\\scalar.aspnetcore.2.12.46.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\serilog\\4.3.0\\serilog.4.3.0.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\serilog.aspnetcore\\10.0.0\\serilog.aspnetcore.10.0.0.nupkg.sha512",
@@ -117,7 +114,8 @@
     "C:\\Users\\Murad\\.nuget\\packages\\system.management\\7.0.2\\system.management.7.0.2.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\ts.entityframeworkcore.genericrepository\\10.0.0\\ts.entityframeworkcore.genericrepository.10.0.0.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\wolverinefx\\5.16.2\\wolverinefx.5.16.2.nupkg.sha512",
-    "C:\\Users\\Murad\\.nuget\\packages\\wolverinefx.fluentvalidation\\5.16.2\\wolverinefx.fluentvalidation.5.16.2.nupkg.sha512"
+    "C:\\Users\\Murad\\.nuget\\packages\\wolverinefx.fluentvalidation\\5.16.2\\wolverinefx.fluentvalidation.5.16.2.nupkg.sha512",
+    "C:\\Users\\Murad\\.nuget\\packages\\wolverinefx.rabbitmq\\5.16.2\\wolverinefx.rabbitmq.5.16.2.nupkg.sha512"
   ],
   "logs": []
 }

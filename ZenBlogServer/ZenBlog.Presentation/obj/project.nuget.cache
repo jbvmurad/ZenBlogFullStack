@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "sGSsOvdJUcE=",
+  "dgSpecHash": "7P6snxBFog4=",
   "success": true,
   "projectFilePath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Presentation\\ZenBlog.Presentation.csproj",
   "expectedPackageFiles": [
@@ -18,8 +18,6 @@
     "C:\\Users\\Murad\\.nuget\\packages\\jasperfx\\1.19.0\\jasperfx.1.19.0.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\jasperfx.events\\1.21.0\\jasperfx.events.1.21.0.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\jasperfx.runtimecompiler\\4.4.0\\jasperfx.runtimecompiler.4.4.0.nupkg.sha512",
-    "C:\\Users\\Murad\\.nuget\\packages\\masstransit\\9.0.1\\masstransit.9.0.1.nupkg.sha512",
-    "C:\\Users\\Murad\\.nuget\\packages\\masstransit.abstractions\\9.0.1\\masstransit.abstractions.9.0.1.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\10.0.3\\microsoft.aspnetcore.authentication.jwtbearer.10.0.3.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\10.0.3\\microsoft.aspnetcore.identity.entityframeworkcore.10.0.3.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\microsoft.aspnetcore.odata\\9.4.1\\microsoft.aspnetcore.odata.9.4.1.nupkg.sha512",
