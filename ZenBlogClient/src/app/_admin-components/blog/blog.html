@@ -1,0 +1,158 @@
+<h3>Blogs</h3>
+
+<table class="table table-bordered table-hover">
+<thead>
+  <tr>
+    <th>#</th>
+    <th>Cover Image</th>
+    <th>Blog Title</th>
+    <th>Category</th>
+    <th>Created At</th>
+    <th>Updated At</th>
+    <th>Options</th>
+  </tr>
+</thead>
+
+<tbody>
+  <tr *ngFor="let item of blogs; let i = index;">
+
+<th>{{i+1}}</th>
+<td> <img [src]="item.coverImage" style="width: 100px;height: auto;" alt="Blog Cover Image">  </td>
+<td>{{item.title}}</td>
+<td>{{item.category?.categoryName}}</td>
+<td>{{item.createdAt | date  }}</td>
+<td>{{item.updatedAt | date}}</td>
+<td>
+<button class="btn btn-outline-danger" (click)="delete(item.id)"> <i class="fa fa-trash"></i>  </button>
+<button class="btn btn-outline-info ms-2" data-bs-toggle="modal" data-bs-target="#editModal" (click)="onSelected(item)" ><i class="fa fa-edit"></i>  </button>
+</td>
+  </tr>
+
+</tbody>
+
+</table>
+
+<button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#createModal"> <i class="fa fa-plus"></i> New Blog</button>
+
+
+<!-- Create Modal Start -->
+<div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="createModalLabel">Create New Blog</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+ <form #createForm="ngForm" (ngSubmit)="create(); createForm.resetForm()">
+      <div class="form-group">
+        <label>Blog Title</label>
+        <input type="text" class="form-control" name="title" [(ngModel)]="newBlog.title" required="">
+      </div>
+
+      <div class="form-group">
+        <label>Blog Cover Image</label>
+        <input type="file" class="form-control" (change)="onNewCoverSelected($event)" accept="image/*" required>
+        <small class="text-muted">Choose an image file (jpg/png/webp). It will be uploaded automatically.</small>
+      </div>
+
+      <div class="form-group">
+        <label>Blog Image</label>
+        <input type="file" class="form-control" (change)="onNewBlogSelected($event)" accept="image/*" required>
+        <small class="text-muted">Choose an image file (jpg/png/webp). It will be uploaded automatically.</small>
+      </div>
+
+      <div class="form-group">
+        <label>Description</label>
+        <textarea type="text" class="form-control" name="description" [(ngModel)]="newBlog.description" required="" rows="4"></textarea>
+      </div>
+
+
+       <div class="form-group">
+        <label>Category</label>
+<select name="CategoryId" class="form-control" [(ngModel)]="newBlog.categoryId" required="">
+  <option selected disabled>Select Category</option>
+<option *ngFor="let category of categories" value="{{category.id}}">{{category.categoryName}}</option>
+
+</select>
+      </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> <i class="fa fa-times"></i> Close</button>
+        <button type="submit" class="btn btn-primary" > <i class="fa fa-save"></i> Save changes</button>
+      </div>
+</form>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+<!-- Create Modal End -->
+
+<!-- Update Modal Start -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="editModalLabel">Update Blog</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+ <form #editForm="ngForm" (ngSubmit)="update()">
+      <div class="form-group">
+        <label>Blog Title</label>
+        <input type="text" class="form-control" name="title" [(ngModel)]="editBlog.title">
+      </div>
+
+      <div class="form-group">
+        <label>Current Cover Image</label>
+        <div class="mb-2">
+          <img [src]="editBlog.coverImage" style="width: 140px; height: auto;" alt="Current Cover">
+        </div>
+        <label>Change Cover Image (optional)</label>
+        <input type="file" class="form-control" (change)="onEditCoverSelected($event)" accept="image/*">
+        <small class="text-muted">Leave empty to keep current cover image.</small>
+      </div>
+
+      <div class="form-group">
+        <label>Current Blog Image</label>
+        <div class="mb-2">
+          <img [src]="editBlog.blogImage" style="width: 140px; height: auto;" alt="Current Blog Image">
+        </div>
+        <label>Change Blog Image (optional)</label>
+        <input type="file" class="form-control" (change)="onEditBlogSelected($event)" accept="image/*">
+        <small class="text-muted">Leave empty to keep current blog image.</small>
+      </div>
+
+      <div class="form-group">
+        <label>Description</label>
+        <textarea type="text" class="form-control" name="description" [(ngModel)]="editBlog.description" rows="4"></textarea>
+      </div>
+
+
+       <div class="form-group">
+        <label>Category</label>
+<select name="CategoryId" class="form-control" [(ngModel)]="editBlog.categoryId">
+  <option selected disabled>Select Category</option>
+<option *ngFor="let category of categories" value="{{category.id}}">{{category.categoryName}}</option>
+
+</select>
+      </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> <i class="fa fa-times"></i> Close</button>
+        <button type="submit" class="btn btn-primary" > <i class="fa fa-edit"></i> Update changes</button>
+      </div>
+</form>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+<!-- Update Modal End -->

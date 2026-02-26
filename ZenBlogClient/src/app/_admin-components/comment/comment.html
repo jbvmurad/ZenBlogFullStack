@@ -1,0 +1,44 @@
+<h3>Comments</h3>
+
+<table class="table table-bordered table-hover">
+  <thead>
+
+
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Comment</th>
+      <th>Date</th>
+      <th>Blog</th>
+      <th>Options</th>
+    </tr>
+  </thead>
+<tbody>
+  <tr *ngFor="let item of comments; let i = index;">
+    <th>{{i+1}}</th>
+    <td>{{item.firstName}} {{item.lastName}}</td>
+    <td>{{item.email}}</td>
+    <td>{{item.body}}</td>
+    <td>{{item.createdAt | date:'medium'}}</td>
+    <td>{{item.blog?.title || item.blogId}}</td>
+    <td>
+      <button class="btn btn-outline-danger" (click)="delete(item.id)"> <i class="fa fa-trash"></i>  </button>
+
+    </td>
+  </tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
