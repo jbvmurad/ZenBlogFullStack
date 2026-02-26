@@ -1,0 +1,116 @@
+<h3>Messages</h3>
+
+
+<!-- Show Message Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="editModalLabel">Message Details</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>Name :</th>
+                  <td>{{editMessage.name}}</td>
+                </tr>
+                <tr>
+                  <th>Email :</th>
+                  <td>{{editMessage.email}}</td>
+                </tr>
+                <tr>
+                  <th>Subject :</th>
+                  <td>{{editMessage.subject}}</td>
+                </tr>
+                <tr>
+                  <th>Message :</th>
+                  <td>{{editMessage.messageBody}}</td>
+                </tr>
+              </thead>
+          </table>
+
+          <button class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+<ul class="nav nav-tabs mt-4" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Unread Messages</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Read Messages</button>
+  </li>
+
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+    <h4>Unread Messages</h4>
+    <table class="table table-bordered table-hover">
+  <thead>
+
+
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Subject</th>
+      <th>Options</th>
+    </tr>
+  </thead>
+<tbody>
+  <tr *ngFor="let item of unreadMessages; let i = index;">
+    <th>{{i+1}}</th>
+    <td>{{item.name}}</td>
+    <td>{{item.email}}</td>
+    <td>{{item.subject}}</td>
+    <td>
+      <button class="btn btn-outline-danger"  (click)="delete(item.id)"> <i class="fa fa-trash"></i>  </button>
+      <button class="btn btn-outline-info ms-2"  data-bs-toggle="modal" data-bs-target="#editModal" (click)="onSelected(item)" ><i class="fa fa-comments"></i>  </button>
+    </td>
+  </tr>
+</tbody>
+</table>
+  </div>
+
+
+  <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+    <h4 class="justify-content-center">Read Messages</h4>
+    <table class="table table-bordered table-hover">
+  <thead>
+
+
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Subject</th>
+      <th>Options</th>
+    </tr>
+  </thead>
+<tbody>
+  <tr *ngFor="let item of readMessages; let i = index;">
+    <th>{{i+1}}</th>
+    <td>{{item.name}}</td>
+    <td>{{item.email}}</td>
+    <td>{{item.subject}}</td>
+    <td>
+      <button class="btn btn-outline-danger"  (click)="delete(item.id)"> <i class="fa fa-trash"></i>  </button>
+      <button class="btn btn-outline-info ms-2"  data-bs-toggle="modal" data-bs-target="#editModal" (click)="onSelected(item)" ><i class="fa fa-comments"></i>  </button>
+    </td>
+  </tr>
+</tbody>
+</table>
+  </div>
+
+</div>

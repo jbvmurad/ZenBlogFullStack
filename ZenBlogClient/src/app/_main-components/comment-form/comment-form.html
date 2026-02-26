@@ -1,0 +1,48 @@
+<section id="comment-form" class="comment-form section">
+  <div class="container">
+
+    <!-- We intentionally avoid Angular Forms directives here.
+         Values are read directly from the inputs to guarantee they are posted. -->
+    <form novalidate>
+
+      <h4>Post Comment</h4>
+      <p>Your email address will not be published. Required fields are marked * </p>
+
+      <div class="row">
+        <div class="col-md-6 form-group">
+          <input #firstName type="text" class="form-control" placeholder="Your First Name*">
+          <div class="text-danger" *ngIf="errors['firstName']">{{ errors['firstName'] }}</div>
+        </div>
+
+        <div class="col-md-6 form-group">
+          <input #lastName type="text" class="form-control" placeholder="Your Last Name*">
+          <div class="text-danger" *ngIf="errors['lastName']">{{ errors['lastName'] }}</div>
+        </div>
+
+        <div class="col-md-6 form-group">
+          <input #email type="email" class="form-control" placeholder="Your Email*">
+          <div class="text-danger" *ngIf="errors['email']">{{ errors['email'] }}</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col form-group">
+          <textarea #body class="form-control" placeholder="Your Comment*"></textarea>
+          <div class="text-danger" *ngIf="errors['body']">{{ errors['body'] }}</div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="createComment(firstName.value, lastName.value, email.value, body.value)"
+        >
+          Post Comment
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+</section>

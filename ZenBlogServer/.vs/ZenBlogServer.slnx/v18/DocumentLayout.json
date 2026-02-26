@@ -1,48 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{76C17992-66AD-8773-74E4-9F8127AA5016}|ZenBlog.Application\\ZenBlog.Application.csproj|c:\\users\\murad\\desktop\\zenblogfullstack\\zenblogserver\\zenblog.application\\jwt\\ijwtprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76C17992-66AD-8773-74E4-9F8127AA5016}|ZenBlog.Application\\ZenBlog.Application.csproj|solutionrelative:zenblog.application\\jwt\\ijwtprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{76C17992-66AD-8773-74E4-9F8127AA5016}|ZenBlog.Application\\ZenBlog.Application.csproj|c:\\users\\murad\\desktop\\zenblogfullstack\\zenblogserver\\zenblog.application\\services\\caching\\icacheservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76C17992-66AD-8773-74E4-9F8127AA5016}|ZenBlog.Application\\ZenBlog.Application.csproj|solutionrelative:zenblog.application\\services\\caching\\icacheservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6FECC78B-9BFE-352F-B7F7-00DC88E37D78}|ZenBlog.Persistance\\ZenBlog.Persistance.csproj|c:\\users\\murad\\desktop\\zenblogfullstack\\zenblogserver\\zenblog.persistance\\services\\userservices\\userroleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6FECC78B-9BFE-352F-B7F7-00DC88E37D78}|ZenBlog.Persistance\\ZenBlog.Persistance.csproj|solutionrelative:zenblog.persistance\\services\\userservices\\userroleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6FECC78B-9BFE-352F-B7F7-00DC88E37D78}|ZenBlog.Persistance\\ZenBlog.Persistance.csproj|c:\\users\\murad\\desktop\\zenblogfullstack\\zenblogserver\\zenblog.persistance\\services\\userservices\\roleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6FECC78B-9BFE-352F-B7F7-00DC88E37D78}|ZenBlog.Persistance\\ZenBlog.Persistance.csproj|solutionrelative:zenblog.persistance\\services\\userservices\\roleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6FECC78B-9BFE-352F-B7F7-00DC88E37D78}|ZenBlog.Persistance\\ZenBlog.Persistance.csproj|c:\\users\\murad\\desktop\\zenblogfullstack\\zenblogserver\\zenblog.persistance\\services\\userservices\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6FECC78B-9BFE-352F-B7F7-00DC88E37D78}|ZenBlog.Persistance\\ZenBlog.Persistance.csproj|solutionrelative:zenblog.persistance\\services\\userservices\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{76C17992-66AD-8773-74E4-9F8127AA5016}|ZenBlog.Application\\ZenBlog.Application.csproj|c:\\users\\murad\\desktop\\zenblogfullstack\\zenblogserver\\zenblog.application\\services\\zenblogservice\\isocialservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76C17992-66AD-8773-74E4-9F8127AA5016}|ZenBlog.Application\\ZenBlog.Application.csproj|solutionrelative:zenblog.application\\services\\zenblogservice\\isocialservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{76C17992-66AD-8773-74E4-9F8127AA5016}|ZenBlog.Application\\ZenBlog.Application.csproj|c:\\users\\murad\\desktop\\zenblogfullstack\\zenblogserver\\zenblog.application\\services\\userservice\\iuserroleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76C17992-66AD-8773-74E4-9F8127AA5016}|ZenBlog.Application\\ZenBlog.Application.csproj|solutionrelative:zenblog.application\\services\\userservice\\iuserroleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{76C17992-66AD-8773-74E4-9F8127AA5016}|ZenBlog.Application\\ZenBlog.Application.csproj|c:\\users\\murad\\desktop\\zenblogfullstack\\zenblogserver\\zenblog.application\\services\\userservice\\iroleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76C17992-66AD-8773-74E4-9F8127AA5016}|ZenBlog.Application\\ZenBlog.Application.csproj|solutionrelative:zenblog.application\\services\\userservice\\iroleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{76C17992-66AD-8773-74E4-9F8127AA5016}|ZenBlog.Application\\ZenBlog.Application.csproj|c:\\users\\murad\\desktop\\zenblogfullstack\\zenblogserver\\zenblog.application\\services\\userservice\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76C17992-66AD-8773-74E4-9F8127AA5016}|ZenBlog.Application\\ZenBlog.Application.csproj|solutionrelative:zenblog.application\\services\\userservice\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{786EF84C-FBB9-BB47-CC32-3BE6556079F2}|ZenBlog.API\\ZenBlog.API.csproj|c:\\users\\murad\\desktop\\zenblogfullstack\\zenblogserver\\zenblog.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{786EF84C-FBB9-BB47-CC32-3BE6556079F2}|ZenBlog.API\\ZenBlog.API.csproj|solutionrelative:zenblog.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -50,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -83,136 +42,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "IJwtProvider.cs",
-              "DocumentMoniker": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\Jwt\\IJwtProvider.cs",
-              "RelativeDocumentMoniker": "ZenBlog.Application\\Jwt\\IJwtProvider.cs",
-              "ToolTip": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\Jwt\\IJwtProvider.cs",
-              "RelativeToolTip": "ZenBlog.Application\\Jwt\\IJwtProvider.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T16:24:41.163Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ICacheService.cs",
-              "DocumentMoniker": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\Services\\Caching\\ICacheService.cs",
-              "RelativeDocumentMoniker": "ZenBlog.Application\\Services\\Caching\\ICacheService.cs",
-              "ToolTip": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\Services\\Caching\\ICacheService.cs",
-              "RelativeToolTip": "ZenBlog.Application\\Services\\Caching\\ICacheService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T16:24:36.414Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UserRoleService.cs",
-              "DocumentMoniker": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Persistance\\Services\\UserServices\\UserRoleService.cs",
-              "RelativeDocumentMoniker": "ZenBlog.Persistance\\Services\\UserServices\\UserRoleService.cs",
-              "ToolTip": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Persistance\\Services\\UserServices\\UserRoleService.cs",
-              "RelativeToolTip": "ZenBlog.Persistance\\Services\\UserServices\\UserRoleService.cs",
-              "ViewState": "AgIAACoAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T16:24:24.26Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "RoleService.cs",
-              "DocumentMoniker": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Persistance\\Services\\UserServices\\RoleService.cs",
-              "RelativeDocumentMoniker": "ZenBlog.Persistance\\Services\\UserServices\\RoleService.cs",
-              "ToolTip": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Persistance\\Services\\UserServices\\RoleService.cs",
-              "RelativeToolTip": "ZenBlog.Persistance\\Services\\UserServices\\RoleService.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T16:24:20.71Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AuthService.cs",
-              "DocumentMoniker": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Persistance\\Services\\UserServices\\AuthService.cs",
-              "RelativeDocumentMoniker": "ZenBlog.Persistance\\Services\\UserServices\\AuthService.cs",
-              "ToolTip": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Persistance\\Services\\UserServices\\AuthService.cs",
-              "RelativeToolTip": "ZenBlog.Persistance\\Services\\UserServices\\AuthService.cs",
-              "ViewState": "AgIAAKUAAAAAAAAAAAAkwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T16:24:04.332Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ISocialService.cs",
-              "DocumentMoniker": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\Services\\ZenBlogService\\ISocialService.cs",
-              "RelativeDocumentMoniker": "ZenBlog.Application\\Services\\ZenBlogService\\ISocialService.cs",
-              "ToolTip": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\Services\\ZenBlogService\\ISocialService.cs",
-              "RelativeToolTip": "ZenBlog.Application\\Services\\ZenBlogService\\ISocialService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T16:23:45.603Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "IUserRoleService.cs",
-              "DocumentMoniker": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\Services\\UserService\\IUserRoleService.cs",
-              "RelativeDocumentMoniker": "ZenBlog.Application\\Services\\UserService\\IUserRoleService.cs",
-              "ToolTip": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\Services\\UserService\\IUserRoleService.cs",
-              "RelativeToolTip": "ZenBlog.Application\\Services\\UserService\\IUserRoleService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T16:23:41.842Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "IRoleService.cs",
-              "DocumentMoniker": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\Services\\UserService\\IRoleService.cs",
-              "RelativeDocumentMoniker": "ZenBlog.Application\\Services\\UserService\\IRoleService.cs",
-              "ToolTip": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\Services\\UserService\\IRoleService.cs",
-              "RelativeToolTip": "ZenBlog.Application\\Services\\UserService\\IRoleService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T16:23:40.896Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "IAuthService.cs",
-              "DocumentMoniker": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\Services\\UserService\\IAuthService.cs",
-              "RelativeDocumentMoniker": "ZenBlog.Application\\Services\\UserService\\IAuthService.cs",
-              "ToolTip": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\Services\\UserService\\IAuthService.cs",
-              "RelativeToolTip": "ZenBlog.Application\\Services\\UserService\\IAuthService.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T16:23:33.606Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.API\\Program.cs",
-              "RelativeDocumentMoniker": "ZenBlog.API\\Program.cs",
-              "ToolTip": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.API\\Program.cs",
-              "RelativeToolTip": "ZenBlog.API\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T16:23:05.942Z",
-              "EditorCaption": ""
             }
           ]
         }

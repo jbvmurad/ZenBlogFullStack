@@ -1,0 +1,177 @@
+<h3>Social Networks</h3>
+
+<table class="table table-bordered table-hover">
+  <thead>
+
+
+    <tr>
+      <th>#</th>
+      <th>Social Network</th>
+      <th>Options</th>
+    </tr>
+  </thead>
+<tbody>
+  <tr *ngFor="let item of socials; let i = index;">
+    <th>{{i+1}}</th>
+    <td>
+      <a href="{{item.url}}" target="_blank" class="btn btn-outline-warning d-inline-flex align-items-center gap-2">
+        <ng-container *ngIf="isIconClass(item.icon); else iconImg">
+          <i class="{{item.icon}}"></i>
+        </ng-container>
+        <ng-template #iconImg>
+          <img *ngIf="item.icon" [src]="item.icon" alt="{{item.title}}" style="width:20px;height:20px;object-fit:contain;" />
+        </ng-template>
+        <span>{{item.title}}</span>
+      </a>
+    </td>
+
+    <td>
+      <button class="btn btn-outline-danger" (click)="delete(item.id)"> <i class="fa fa-trash"></i>  </button>
+      <button class="btn btn-outline-info ms-2" data-bs-toggle="modal" data-bs-target="#editModal" (click)="onSelected(item)" ><i class="fa fa-edit"></i>  </button>
+    </td>
+  </tr>
+</tbody>
+</table>
+
+<button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#createModal"> <i class="fa fa-plus"></i> New Social Network</button>
+
+
+
+
+
+<!-- Create Modal -->
+<div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="createModalLabel">Create New Social Network</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+ <form #createForm="ngForm" (ngSubmit)="create(); createForm.resetForm()">
+      <div class="form-group">
+        <label>Title</label>
+        <input type="text" class="form-control" name="title" [(ngModel)]="newSocial.title" required="">
+        <div *ngIf="errors.length > 0">
+          <div *ngFor="let errorObj of errors">
+            <div *ngFor="let entry of (errorObj | keyvalue)">
+              <div *ngIf="entry.key==='Title'">
+              <span class="text-danger">{{entry.value}}</span>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+       <div class="form-group">
+        <label>Url</label>
+        <input type="url" class="form-control" name="url" [(ngModel)]="newSocial.url" required="">
+        <div *ngIf="errors.length > 0">
+          <div *ngFor="let errorObj of errors">
+            <div *ngFor="let entry of (errorObj | keyvalue)">
+              <div *ngIf="entry.key==='Url'">
+              <span class="text-danger">{{entry.value}}</span>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+       <div class="form-group">
+        <label>Icon</label>
+        <input type="file" class="form-control" (change)="onNewIconSelected($event)" accept="image/*" required>
+        <small class="text-muted">Choose an image file (png/jpg/webp/svg). It will be uploaded automatically.</small>
+        <div *ngIf="errors.length > 0">
+          <div *ngFor="let errorObj of errors">
+            <div *ngFor="let entry of (errorObj | keyvalue)">
+              <div *ngIf="entry.key==='Icon'">
+              <span class="text-danger">{{entry.value}}</span>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> <i class="fa fa-times"></i> Close</button>
+        <button type="submit" class="btn btn-primary"> <i class="fa fa-save"></i> Save changes</button>
+      </div>
+</form>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="editModalLabel">Update Social Network</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+ <form #editForm="ngForm" (ngSubmit)="update()">
+
+    <div class="form-group">
+        <label>Title</label>
+        <input type="text" class="form-control" name="title" [(ngModel)]="editSocial.title" required="">
+        <div *ngIf="errors.length > 0">
+          <div *ngFor="let errorObj of errors">
+            <div *ngFor="let entry of (errorObj | keyvalue)">
+              <div *ngIf="entry.key==='Title'">
+              <span class="text-danger">{{entry.value}}</span>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+       <div class="form-group">
+        <label>Url</label>
+        <input type="url" class="form-control" name="url" [(ngModel)]="editSocial.url" required="">
+        <div *ngIf="errors.length > 0">
+          <div *ngFor="let errorObj of errors">
+            <div *ngFor="let entry of (errorObj | keyvalue)">
+              <div *ngIf="entry.key==='Url'">
+              <span class="text-danger">{{entry.value}}</span>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+       <div class="form-group">
+        <label>Current Icon</label>
+        <div class="mb-2">
+          <img *ngIf="editSocial?.icon" [src]="editSocial.icon" alt="{{editSocial?.title}}" style="width:32px;height:32px;object-fit:contain;" />
+        </div>
+        <label>New Icon (optional)</label>
+        <input type="file" class="form-control" (change)="onEditIconSelected($event)" accept="image/*">
+        <small class="text-muted">If you don't choose a file, the old icon stays.</small>
+        <div *ngIf="errors.length > 0">
+          <div *ngFor="let errorObj of errors">
+            <div *ngFor="let entry of (errorObj | keyvalue)">
+              <div *ngIf="entry.key==='Icon'">
+              <span class="text-danger">{{entry.value}}</span>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa fa-times"></i>  Close</button>
+        <button type="submit" class="btn btn-primary" [disabled]="editForm.invalid"> <i class="fa fa-edit"></i> Update changes</button>
+      </div>
+</form>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
