@@ -56,7 +56,7 @@ services:
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
     healthcheck:
-      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://localhost:4566/_localstack/health')\" "]
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://localhost:4566/_localstack/health')\""]
       interval: 5s
       timeout: 5s
       retries: 30
@@ -67,29 +67,24 @@ services:
       dockerfile: ZenBlog.API/Dockerfile
     container_name: zenblog-api
     environment:
-      GoogleAuth__ClientId: ${GOOGLE_AUTH_CLIENT_ID}
       ASPNETCORE_ENVIRONMENT: Docker
       ASPNETCORE_HTTP_PORTS: "8080"
 
-      # Enable docs + auto-migrate for local dev
-      OpenApi__Enabled: "true"
-      Database__MigrateOnStartup: "true"
+      # Database
+      ConnectionStrings__ZenBlogConnection: "Host=postgres;Port=5432;Database=zenblog;Username=postgres;Password=postgres"
 
-      # Persist DataProtection keys in a docker volume (avoids key-loss warnings)
-      DataProtection__KeysPath: "/app/keys"
+      # RabbitMQ - ConnectionString olarak verilince WolverineMessagingServiceInstaller direkt kullanır
+      ConnectionStrings__rabbitmq: "amqp://zenblog:zenblog@rabbitmq:5672/%2F"
 
-      # AWS creds for LocalStack
-      AWS_ACCESS_KEY_ID: test
-      AWS_SECRET_ACCESS_KEY: test
-      AWS_REGION: us-east-1
+      # JWT
+      Jwt__Issuer: "${JWT_ISSUER}"
+      Jwt__Audience: "${JWT_AUDIENCE}"
+      Jwt__SecretKey: "${JWT_SECRET_KEY}"
 
-      # Make S3 public URLs point to the published LocalStack port on the host
-      AwsS3__PublicBaseUrl: "http://localhost:${ZENBLOG_LOCALSTACK_PORT:-14566}/zenblog-local"
+      # Google Auth
+      GoogleAuth__ClientId: "${GOOGLE_AUTH_CLIENT_ID}"
 
-      # Email (SMTP) - Gmail
-      # Required env vars (pass them when running docker compose):
-      #   GMAIL_USER=you@gmail.com
-      #   GMAIL_APP_PASSWORD=xxxx xxxx xxxx xxxx
+      # Email
       EmailParameters__Host: "smtp.gmail.com"
       EmailParameters__Port: "587"
       EmailParameters__EnableSsl: "true"
@@ -97,18 +92,53 @@ services:
       EmailParameters__Username: "${GMAIL_USER}"
       EmailParameters__AppPassword: "${GMAIL_APP_PASSWORD}"
 
-      # Optional: if you want Angular to run on host
-      ClientAppUrls__BaseUrl: http://localhost:4200
+      # Redis
+      Redis__Enabled: "true"
+      Redis__ConnectionString: "redis:6379"
+
+      # RabbitMQ options (Enabled flag için)
+      RabbitMq__Enabled: "true"
+
+      # Storage
+      Storage__Provider: "S3"
+
+      # AWS / LocalStack
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+      AWS_REGION: us-east-1
+      AwsS3__Enabled: "true"
+      AwsS3__Region: "us-east-1"
+      AwsS3__BucketName: "zenblog-local"
+      AwsS3__KeyPrefix: "uploads/"
+      AwsS3__MakePublic: "true"
+      AwsS3__ServiceUrl: "http://localstack:4566"
+      AwsS3__ForcePathStyle: "true"
+      AwsS3__PublicBaseUrl: "http://localhost:${ZENBLOG_LOCALSTACK_PORT:-14566}/zenblog-local"
+
+      # Client App URLs
+      ClientAppUrls__BaseUrl: "http://localhost:4200"
+      ClientAppUrls__VerifyEmailPath: "verify-email"
+      ClientAppUrls__ResetPasswordPath: "reset-password"
+
+      # Misc
+      HttpsRedirection__Enabled: "false"
+      OpenApi__Enabled: "true"
+      Database__MigrateOnStartup: "true"
+      DataProtection__KeysPath: "/app/keys"
 
     ports:
       - "127.0.0.1:${ZENBLOG_API_PORT:-18080}:8080"
     volumes:
       - zenblog_dataprotection:/app/keys
     depends_on:
-      - postgres
-      - redis
-      - rabbitmq
-      - localstack
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+      localstack:
+        condition: service_healthy
 
 volumes:
   zenblog_pgdata:
