@@ -51,7 +51,7 @@
           }
         }
       },
-      "JasperFx/1.19.0": {
+      "JasperFx/1.20.0": {
         "type": "package",
         "dependencies": {
           "FastExpressionCompiler": "5.3.0",
@@ -71,10 +71,10 @@
           }
         }
       },
-      "JasperFx.Events/1.21.0": {
+      "JasperFx.Events/1.22.0": {
         "type": "package",
         "dependencies": {
-          "JasperFx": "1.19.0"
+          "JasperFx": "1.20.0"
         },
         "compile": {
           "lib/net10.0/JasperFx.Events.dll": {
@@ -880,11 +880,11 @@
           "lib/net10.0/GenericRepository.dll": {}
         }
       },
-      "WolverineFx/5.16.2": {
+      "WolverineFx/5.16.4": {
         "type": "package",
         "dependencies": {
-          "JasperFx": "1.19.0",
-          "JasperFx.Events": "1.21.0",
+          "JasperFx": "1.20.0",
+          "JasperFx.Events": "1.22.0",
           "JasperFx.RuntimeCompiler": "4.4.0",
           "NewId": "4.0.1",
           "Newtonsoft.Json": "13.0.3"
@@ -993,14 +993,14 @@
         "imtools.nuspec"
       ]
     },
-    "JasperFx/1.19.0": {
-      "sha512": "pJwLXwqIgX44BVENAT76dnE0YW9AJEd9G0EMkHnDowYPUTems9TWz0Q8rC94EKIcx+8mPQS6GW62P9GaOcx6fQ==",
+    "JasperFx/1.20.0": {
+      "sha512": "ymb6lJnPITfnnw2IO2Ddtu4weXDcA5L80rXYKhF7H8IIsFCiTPQ1DAeGtNvsF22N3JBKNyKjAtg+fuTxgRMj3g==",
       "type": "package",
-      "path": "jasperfx/1.19.0",
+      "path": "jasperfx/1.20.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "jasperfx.1.19.0.nupkg.sha512",
+        "jasperfx.1.20.0.nupkg.sha512",
         "jasperfx.nuspec",
         "lib/net10.0/JasperFx.dll",
         "lib/net10.0/JasperFx.xml",
@@ -1010,14 +1010,14 @@
         "lib/net9.0/JasperFx.xml"
       ]
     },
-    "JasperFx.Events/1.21.0": {
-      "sha512": "JbBs+dOCLsWMihx87fRPCWhm6CrO+Ei7Az2XEqeoeyQqC5cPgBXUEmwidYoHyXgW0XGMjRD34BOCH9X/NCVmaQ==",
+    "JasperFx.Events/1.22.0": {
+      "sha512": "QD01W8GFqHcMLYpqF4G5adkEHFexCntWSIWejvccVxmw8TTMmGf+EH8EoQI8EitdCc0XZ/ocGog2TQTRkqxG4A==",
       "type": "package",
-      "path": "jasperfx.events/1.21.0",
+      "path": "jasperfx.events/1.22.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "jasperfx.events.1.21.0.nupkg.sha512",
+        "jasperfx.events.1.22.0.nupkg.sha512",
         "jasperfx.events.nuspec",
         "lib/net10.0/JasperFx.Events.dll",
         "lib/net10.0/JasperFx.Events.xml",
@@ -2657,10 +2657,10 @@
         "ts.entityframeworkcore.genericrepository.nuspec"
       ]
     },
-    "WolverineFx/5.16.2": {
-      "sha512": "RKhGLZnJpyvw8nysUiPmQmQjeYc/MShXRzoczeKejC9zbAKaQZMku/xHxi/pOcgGEHW2hDo6gDO8YvAPvHcljg==",
+    "WolverineFx/5.16.4": {
+      "sha512": "IDEDhimluawCxCn5Oo4I/+QEkRWdB0rlKRLMCkUE5Hule3weQTLA8uIAhkij4Gjb7Pxp4ZaIT2HXEN9n2slgBw==",
       "type": "package",
-      "path": "wolverinefx/5.16.2",
+      "path": "wolverinefx/5.16.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2670,7 +2670,7 @@
         "lib/net8.0/Wolverine.xml",
         "lib/net9.0/Wolverine.dll",
         "lib/net9.0/Wolverine.xml",
-        "wolverinefx.5.16.2.nupkg.sha512",
+        "wolverinefx.5.16.4.nupkg.sha512",
         "wolverinefx.nuspec"
       ]
     },
@@ -2683,7 +2683,7 @@
   "projectFileDependencyGroups": {
     "net10.0": [
       "FluentValidation >= 12.1.1",
-      "WolverineFx >= 5.16.2",
+      "WolverineFx >= 5.16.4",
       "ZenBlog.Domain >= 1.0.0"
     ]
   },
@@ -2748,7 +2748,7 @@
           },
           "WolverineFx": {
             "target": "Package",
-            "version": "[5.16.2, )"
+            "version": "[5.16.4, )"
           }
         },
         "imports": [

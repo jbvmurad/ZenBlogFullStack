@@ -16,7 +16,9 @@ using ZenBlog.Application.Services.ExternalAuth;
 using ZenBlog.Application.Services.MailService;
 using ZenBlog.Application.Services.UserAttributeService;
 using ZenBlog.Domain.Entities.UserEntities;
+using ZenBlog.Domain.Events;
 using ZenBlog.Domain.Repositories.UserRepositories;
+using Wolverine;
 
 namespace ZenBlog.Persistance.Services.UserServices;
 
@@ -28,6 +30,7 @@ public sealed class AuthService : IAuthService
     private readonly IMapper _mapper;
     private readonly IEmailService _emailService;
     private readonly IGoogleTokenValidator _googleTokenValidator;
+    private readonly IMessageBus _bus;
 
     public AuthService(
         UserManager<User> userManager,
@@ -35,7 +38,8 @@ public sealed class AuthService : IAuthService
         IEmailService emailService,
         IAuthRepository authRepository,
         IJwtProvider jwtProvider,
-        IGoogleTokenValidator googleTokenValidator)
+        IGoogleTokenValidator googleTokenValidator,
+        IMessageBus bus)
     {
         _userManager = userManager;
         _mapper = mapper;
@@ -43,6 +47,7 @@ public sealed class AuthService : IAuthService
         _jwtProvider = jwtProvider;
         _emailService = emailService;
         _googleTokenValidator = googleTokenValidator;
+        _bus = bus;
     }
 
     public async Task RegisterAsync(RegisterUserCommand request)
@@ -56,7 +61,12 @@ public sealed class AuthService : IAuthService
             throw new Exception(result.Errors.First().Description);
         }
         var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-        await _emailService.SendVerificationEmailAsync(user.Email, user.Id.ToString(), token);
+
+        await _bus.PublishAsync(new EmailConfirmationRequestedIntegrationEvent(
+            UserId: user.Id.ToString(),
+            Email: user.Email,
+            Token: token,
+            RequestedAtUtc: DateTime.UtcNow));
     }
 
     public async Task ConfirmEmailAsync(ConfirmEmailCommand request, CancellationToken cancellationToken)
@@ -77,7 +87,12 @@ public sealed class AuthService : IAuthService
         if (user.EmailConfirmed) return;
 
         var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-        await _emailService.SendVerificationEmailAsync(user.Email!, user.Id.ToString(), token);
+
+        await _bus.PublishAsync(new EmailConfirmationRequestedIntegrationEvent(
+            UserId: user.Id.ToString(),
+            Email: user.Email!,
+            Token: token,
+            RequestedAtUtc: DateTime.UtcNow));
     }
 
     public async Task ForgotPasswordAsync(ForgotPasswordCommand request, CancellationToken cancellationToken)
@@ -89,7 +104,12 @@ public sealed class AuthService : IAuthService
         if (!user.EmailConfirmed) throw new ArgumentException("Please verify your email before resetting password.");
 
         var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-        await _emailService.SendPasswordResetEmailAsync(user.Email!, user.Id.ToString(), token);
+
+        await _bus.PublishAsync(new PasswordResetRequestedIntegrationEvent(
+            UserId: user.Id.ToString(),
+            Email: user.Email!,
+            Token: token,
+            RequestedAtUtc: DateTime.UtcNow));
     }
 
     public async Task ResetPasswordAsync(ResetPasswordCommand request, CancellationToken cancellationToken)
@@ -136,7 +156,11 @@ public sealed class AuthService : IAuthService
         var result = await _userManager.DeleteAsync(user);
         if (!result.Succeeded)
             throw new Exception(result.Errors.First().Description);
-        await _emailService.SendDeletionNotificationEmailAsync(user.Email);
+
+        await _bus.PublishAsync(new AccountDeletedIntegrationEvent(
+            UserId: user.Id.ToString(),
+            Email: user.Email,
+            DeletedAtUtc: DateTime.UtcNow));
     }
 
     public async Task<LoginCommandResponse> LoginAsync(LoginCommand request, CancellationToken cancellationToken)

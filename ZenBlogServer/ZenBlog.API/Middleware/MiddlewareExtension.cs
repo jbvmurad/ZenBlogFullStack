@@ -1,5 +1,3 @@
-using ZenBlog.API.Middleware;
-
 namespace ZenBlog.API.Middleware;
 
 public static class MiddlewareExtension

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "DIXYyE4zn0w=",
+  "dgSpecHash": "7nvPaf3fHY0=",
   "success": true,
   "projectFilePath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Persistance\\ZenBlog.Persistance.csproj",
   "expectedPackageFiles": [
@@ -9,8 +9,8 @@
     "C:\\Users\\Murad\\.nuget\\packages\\fluentvalidation\\12.1.1\\fluentvalidation.12.1.1.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\imtools\\4.0.0\\imtools.4.0.0.nupkg.sha512",
-    "C:\\Users\\Murad\\.nuget\\packages\\jasperfx\\1.19.0\\jasperfx.1.19.0.nupkg.sha512",
-    "C:\\Users\\Murad\\.nuget\\packages\\jasperfx.events\\1.21.0\\jasperfx.events.1.21.0.nupkg.sha512",
+    "C:\\Users\\Murad\\.nuget\\packages\\jasperfx\\1.20.0\\jasperfx.1.20.0.nupkg.sha512",
+    "C:\\Users\\Murad\\.nuget\\packages\\jasperfx.events\\1.22.0\\jasperfx.events.1.22.0.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\jasperfx.runtimecompiler\\4.4.0\\jasperfx.runtimecompiler.4.4.0.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\10.0.3\\microsoft.aspnetcore.identity.entityframeworkcore.10.0.3.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\9.0.0\\microsoft.bcl.asyncinterfaces.9.0.0.nupkg.sha512",
@@ -54,7 +54,7 @@
     "C:\\Users\\Murad\\.nuget\\packages\\system.composition.runtime\\9.0.0\\system.composition.runtime.9.0.0.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\system.composition.typedparts\\9.0.0\\system.composition.typedparts.9.0.0.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\ts.entityframeworkcore.genericrepository\\10.0.0\\ts.entityframeworkcore.genericrepository.10.0.0.nupkg.sha512",
-    "C:\\Users\\Murad\\.nuget\\packages\\wolverinefx\\5.16.2\\wolverinefx.5.16.2.nupkg.sha512"
+    "C:\\Users\\Murad\\.nuget\\packages\\wolverinefx\\5.16.4\\wolverinefx.5.16.4.nupkg.sha512"
   ],
   "logs": []
 }
