@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net10.0": {
-      "AWSSDK.Core/4.0.3.12": {
+      "AWSSDK.Core/4.0.3.15": {
         "type": "package",
         "compile": {
           "lib/net8.0/AWSSDK.Core.dll": {
@@ -15,10 +15,10 @@
           }
         }
       },
-      "AWSSDK.S3/4.0.18.6": {
+      "AWSSDK.S3/4.0.18.7": {
         "type": "package",
         "dependencies": {
-          "AWSSDK.Core": "[4.0.3.12, 5.0.0)"
+          "AWSSDK.Core": "[4.0.3.15, 5.0.0)"
         },
         "compile": {
           "lib/net8.0/AWSSDK.S3.dll": {
@@ -154,7 +154,7 @@
           }
         }
       },
-      "JasperFx/1.19.0": {
+      "JasperFx/1.20.0": {
         "type": "package",
         "dependencies": {
           "FastExpressionCompiler": "5.3.0",
@@ -177,10 +177,10 @@
           }
         }
       },
-      "JasperFx.Events/1.21.0": {
+      "JasperFx.Events/1.22.0": {
         "type": "package",
         "dependencies": {
-          "JasperFx": "1.19.0"
+          "JasperFx": "1.20.0"
         },
         "compile": {
           "lib/net10.0/JasperFx.Events.dll": {
@@ -1888,11 +1888,11 @@
           "lib/net10.0/GenericRepository.dll": {}
         }
       },
-      "WolverineFx/5.16.2": {
+      "WolverineFx/5.16.4": {
         "type": "package",
         "dependencies": {
-          "JasperFx": "1.19.0",
-          "JasperFx.Events": "1.21.0",
+          "JasperFx": "1.20.0",
+          "JasperFx.Events": "1.22.0",
           "JasperFx.RuntimeCompiler": "4.4.0",
           "Microsoft.Extensions.Caching.Memory": "10.0.0",
           "Microsoft.Extensions.Configuration": "10.0.0",
@@ -1921,7 +1921,7 @@
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
           "FluentValidation": "12.1.1",
-          "WolverineFx": "5.16.2",
+          "WolverineFx": "5.16.4",
           "ZenBlog.Domain": "1.0.0"
         },
         "compile": {
@@ -1951,15 +1951,15 @@
     }
   },
   "libraries": {
-    "AWSSDK.Core/4.0.3.12": {
-      "sha512": "/FyE96xV2qJLgJN++ZW8M7udRf2NBLoku9AkEHLQqpH9uv0r0QQK2sw2pF3OvzKnuKsyp+Mx5wYwgFXPLnBb9g==",
+    "AWSSDK.Core/4.0.3.15": {
+      "sha512": "1haLKyBjhwV34uafRco2du36ACf2k0pjKqhYj//y4TROSk3OW/faov0/+zGZidUyUuNP06hvUb8U/LgNPKsSeg==",
       "type": "package",
-      "path": "awssdk.core/4.0.3.12",
+      "path": "awssdk.core/4.0.3.15",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "awssdk.core.4.0.3.12.nupkg.sha512",
+        "awssdk.core.4.0.3.15.nupkg.sha512",
         "awssdk.core.nuspec",
         "images/AWSLogo.png",
         "lib/net472/AWSSDK.Core.dll",
@@ -1977,17 +1977,17 @@
         "tools/account-management.ps1"
       ]
     },
-    "AWSSDK.S3/4.0.18.6": {
-      "sha512": "RJUZT6HN4/xpYnUrjES2wiH1XooR7+cha5+enUb+TXjYMIDhLDG9wmoH0An3wViFUjXKL/ih3hpZg9yC3RDQAw==",
+    "AWSSDK.S3/4.0.18.7": {
+      "sha512": "piNwr4vGTewqCWHA5J/pP3HrKZ7/jZXiY3FrBAzofh1oEM++AlwY7YgVRcnkLvYKGWSlZgb7MnDG99hyP60How==",
       "type": "package",
-      "path": "awssdk.s3/4.0.18.6",
+      "path": "awssdk.s3/4.0.18.7",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "analyzers/dotnet/cs/AWSSDK.S3.CodeAnalysis.dll",
         "analyzers/dotnet/cs/SharedAnalysisCode.dll",
-        "awssdk.s3.4.0.18.6.nupkg.sha512",
+        "awssdk.s3.4.0.18.7.nupkg.sha512",
         "awssdk.s3.nuspec",
         "images/AWSLogo.png",
         "lib/net472/AWSSDK.S3.dll",
@@ -2174,14 +2174,14 @@
         "imtools.nuspec"
       ]
     },
-    "JasperFx/1.19.0": {
-      "sha512": "pJwLXwqIgX44BVENAT76dnE0YW9AJEd9G0EMkHnDowYPUTems9TWz0Q8rC94EKIcx+8mPQS6GW62P9GaOcx6fQ==",
+    "JasperFx/1.20.0": {
+      "sha512": "ymb6lJnPITfnnw2IO2Ddtu4weXDcA5L80rXYKhF7H8IIsFCiTPQ1DAeGtNvsF22N3JBKNyKjAtg+fuTxgRMj3g==",
       "type": "package",
-      "path": "jasperfx/1.19.0",
+      "path": "jasperfx/1.20.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "jasperfx.1.19.0.nupkg.sha512",
+        "jasperfx.1.20.0.nupkg.sha512",
         "jasperfx.nuspec",
         "lib/net10.0/JasperFx.dll",
         "lib/net10.0/JasperFx.xml",
@@ -2191,14 +2191,14 @@
         "lib/net9.0/JasperFx.xml"
       ]
     },
-    "JasperFx.Events/1.21.0": {
-      "sha512": "JbBs+dOCLsWMihx87fRPCWhm6CrO+Ei7Az2XEqeoeyQqC5cPgBXUEmwidYoHyXgW0XGMjRD34BOCH9X/NCVmaQ==",
+    "JasperFx.Events/1.22.0": {
+      "sha512": "QD01W8GFqHcMLYpqF4G5adkEHFexCntWSIWejvccVxmw8TTMmGf+EH8EoQI8EitdCc0XZ/ocGog2TQTRkqxG4A==",
       "type": "package",
-      "path": "jasperfx.events/1.21.0",
+      "path": "jasperfx.events/1.22.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "jasperfx.events.1.21.0.nupkg.sha512",
+        "jasperfx.events.1.22.0.nupkg.sha512",
         "jasperfx.events.nuspec",
         "lib/net10.0/JasperFx.Events.dll",
         "lib/net10.0/JasperFx.Events.xml",
@@ -5126,10 +5126,10 @@
         "ts.entityframeworkcore.genericrepository.nuspec"
       ]
     },
-    "WolverineFx/5.16.2": {
-      "sha512": "RKhGLZnJpyvw8nysUiPmQmQjeYc/MShXRzoczeKejC9zbAKaQZMku/xHxi/pOcgGEHW2hDo6gDO8YvAPvHcljg==",
+    "WolverineFx/5.16.4": {
+      "sha512": "IDEDhimluawCxCn5Oo4I/+QEkRWdB0rlKRLMCkUE5Hule3weQTLA8uIAhkij4Gjb7Pxp4ZaIT2HXEN9n2slgBw==",
       "type": "package",
-      "path": "wolverinefx/5.16.2",
+      "path": "wolverinefx/5.16.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5139,7 +5139,7 @@
         "lib/net8.0/Wolverine.xml",
         "lib/net9.0/Wolverine.dll",
         "lib/net9.0/Wolverine.xml",
-        "wolverinefx.5.16.2.nupkg.sha512",
+        "wolverinefx.5.16.4.nupkg.sha512",
         "wolverinefx.nuspec"
       ]
     },
@@ -5156,7 +5156,7 @@
   },
   "projectFileDependencyGroups": {
     "net10.0": [
-      "AWSSDK.S3 >= 4.0.18.6",
+      "AWSSDK.S3 >= 4.0.18.7",
       "FluentEmail.Smtp >= 3.0.2",
       "Google.Apis.Auth >= 1.73.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 10.0.3",
@@ -5220,7 +5220,7 @@
         "dependencies": {
           "AWSSDK.S3": {
             "target": "Package",
-            "version": "[4.0.18.6, )"
+            "version": "[4.0.18.7, )"
           },
           "FluentEmail.Smtp": {
             "target": "Package",

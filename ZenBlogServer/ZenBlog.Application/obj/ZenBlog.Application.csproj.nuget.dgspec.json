@@ -61,7 +61,7 @@
             },
             "WolverineFx": {
               "target": "Package",
-              "version": "[5.16.2, )"
+              "version": "[5.16.4, )"
             }
           },
           "imports": [

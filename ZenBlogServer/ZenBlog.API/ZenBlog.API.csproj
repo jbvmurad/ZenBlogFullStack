@@ -14,10 +14,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-	  <PackageReference Include="WolverineFx.FluentValidation" Version="5.16.2" />
-	  <PackageReference Include="WolverineFx.RabbitMQ" Version="5.16.2" />
+	  <PackageReference Include="WolverineFx.FluentValidation" Version="5.16.4" />
+	  <PackageReference Include="WolverineFx.RabbitMQ" Version="5.16.4" />
 	  <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
-	  <PackageReference Include="Scalar.AspNetCore" Version="2.12.46" />
+	  <PackageReference Include="Scalar.AspNetCore" Version="2.12.50" />
     <PackageReference Include="Serilog.AspNetCore" Version="10.0.0" />
     <PackageReference Include="Serilog.Enrichers.Environment" Version="3.0.1" />
     <PackageReference Include="Serilog.Sinks.Postgresql.Alternative" Version="4.2.0" />

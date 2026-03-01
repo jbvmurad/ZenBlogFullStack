@@ -18,7 +18,7 @@
           }
         }
       },
-      "AWSSDK.Core/4.0.3.12": {
+      "AWSSDK.Core/4.0.3.15": {
         "type": "package",
         "compile": {
           "lib/net8.0/AWSSDK.Core.dll": {
@@ -31,10 +31,10 @@
           }
         }
       },
-      "AWSSDK.S3/4.0.18.6": {
+      "AWSSDK.S3/4.0.18.7": {
         "type": "package",
         "dependencies": {
-          "AWSSDK.Core": "[4.0.3.12, 5.0.0)"
+          "AWSSDK.Core": "[4.0.3.15, 5.0.0)"
         },
         "compile": {
           "lib/net8.0/AWSSDK.S3.dll": {
@@ -183,7 +183,7 @@
           }
         }
       },
-      "JasperFx/1.19.0": {
+      "JasperFx/1.20.0": {
         "type": "package",
         "dependencies": {
           "FastExpressionCompiler": "5.3.0",
@@ -203,10 +203,10 @@
           }
         }
       },
-      "JasperFx.Events/1.21.0": {
+      "JasperFx.Events/1.22.0": {
         "type": "package",
         "dependencies": {
-          "JasperFx": "1.19.0"
+          "JasperFx": "1.20.0"
         },
         "compile": {
           "lib/net10.0/JasperFx.Events.dll": {
@@ -1690,7 +1690,7 @@
           }
         }
       },
-      "Scalar.AspNetCore/2.12.46": {
+      "Scalar.AspNetCore/2.12.50": {
         "type": "package",
         "compile": {
           "lib/net10.0/Scalar.AspNetCore.dll": {
@@ -2116,11 +2116,11 @@
           "lib/net10.0/GenericRepository.dll": {}
         }
       },
-      "WolverineFx/5.16.2": {
+      "WolverineFx/5.16.4": {
         "type": "package",
         "dependencies": {
-          "JasperFx": "1.19.0",
-          "JasperFx.Events": "1.21.0",
+          "JasperFx": "1.20.0",
+          "JasperFx.Events": "1.22.0",
           "JasperFx.RuntimeCompiler": "4.4.0",
           "NewId": "4.0.1",
           "Newtonsoft.Json": "13.0.3"
@@ -2136,11 +2136,11 @@
           }
         }
       },
-      "WolverineFx.FluentValidation/5.16.2": {
+      "WolverineFx.FluentValidation/5.16.4": {
         "type": "package",
         "dependencies": {
           "FluentValidation": "12.0.0",
-          "WolverineFx": "5.16.2"
+          "WolverineFx": "5.16.4"
         },
         "compile": {
           "lib/net10.0/Wolverine.FluentValidation.dll": {
@@ -2153,11 +2153,11 @@
           }
         }
       },
-      "WolverineFx.RabbitMQ/5.16.2": {
+      "WolverineFx.RabbitMQ/5.16.4": {
         "type": "package",
         "dependencies": {
           "RabbitMQ.Client": "7.1.2",
-          "WolverineFx": "5.16.2"
+          "WolverineFx": "5.16.4"
         },
         "compile": {
           "lib/net10.0/Wolverine.RabbitMQ.dll": {
@@ -2175,7 +2175,7 @@
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
           "FluentValidation": "12.1.1",
-          "WolverineFx": "5.16.2",
+          "WolverineFx": "5.16.4",
           "ZenBlog.Domain": "1.0.0"
         },
         "compile": {
@@ -2206,7 +2206,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "AWSSDK.S3": "4.0.18.6",
+          "AWSSDK.S3": "4.0.18.7",
           "FluentEmail.Smtp": "3.0.2",
           "Google.Apis.Auth": "1.73.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "10.0.3",
@@ -2243,7 +2243,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.OData": "9.4.1",
           "Newtonsoft.Json": "13.0.4",
-          "WolverineFx": "5.16.2",
+          "WolverineFx": "5.16.4",
           "ZenBlog.Application": "1.0.0",
           "ZenBlog.Infrastructure": "1.0.0"
         },
@@ -2306,15 +2306,15 @@
         "lib/netstandard2.0/AutoMapper.xml"
       ]
     },
-    "AWSSDK.Core/4.0.3.12": {
-      "sha512": "/FyE96xV2qJLgJN++ZW8M7udRf2NBLoku9AkEHLQqpH9uv0r0QQK2sw2pF3OvzKnuKsyp+Mx5wYwgFXPLnBb9g==",
+    "AWSSDK.Core/4.0.3.15": {
+      "sha512": "1haLKyBjhwV34uafRco2du36ACf2k0pjKqhYj//y4TROSk3OW/faov0/+zGZidUyUuNP06hvUb8U/LgNPKsSeg==",
       "type": "package",
-      "path": "awssdk.core/4.0.3.12",
+      "path": "awssdk.core/4.0.3.15",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "awssdk.core.4.0.3.12.nupkg.sha512",
+        "awssdk.core.4.0.3.15.nupkg.sha512",
         "awssdk.core.nuspec",
         "images/AWSLogo.png",
         "lib/net472/AWSSDK.Core.dll",
@@ -2332,17 +2332,17 @@
         "tools/account-management.ps1"
       ]
     },
-    "AWSSDK.S3/4.0.18.6": {
-      "sha512": "RJUZT6HN4/xpYnUrjES2wiH1XooR7+cha5+enUb+TXjYMIDhLDG9wmoH0An3wViFUjXKL/ih3hpZg9yC3RDQAw==",
+    "AWSSDK.S3/4.0.18.7": {
+      "sha512": "piNwr4vGTewqCWHA5J/pP3HrKZ7/jZXiY3FrBAzofh1oEM++AlwY7YgVRcnkLvYKGWSlZgb7MnDG99hyP60How==",
       "type": "package",
-      "path": "awssdk.s3/4.0.18.6",
+      "path": "awssdk.s3/4.0.18.7",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "analyzers/dotnet/cs/AWSSDK.S3.CodeAnalysis.dll",
         "analyzers/dotnet/cs/SharedAnalysisCode.dll",
-        "awssdk.s3.4.0.18.6.nupkg.sha512",
+        "awssdk.s3.4.0.18.7.nupkg.sha512",
         "awssdk.s3.nuspec",
         "images/AWSLogo.png",
         "lib/net472/AWSSDK.S3.dll",
@@ -2544,14 +2544,14 @@
         "imtools.nuspec"
       ]
     },
-    "JasperFx/1.19.0": {
-      "sha512": "pJwLXwqIgX44BVENAT76dnE0YW9AJEd9G0EMkHnDowYPUTems9TWz0Q8rC94EKIcx+8mPQS6GW62P9GaOcx6fQ==",
+    "JasperFx/1.20.0": {
+      "sha512": "ymb6lJnPITfnnw2IO2Ddtu4weXDcA5L80rXYKhF7H8IIsFCiTPQ1DAeGtNvsF22N3JBKNyKjAtg+fuTxgRMj3g==",
       "type": "package",
-      "path": "jasperfx/1.19.0",
+      "path": "jasperfx/1.20.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "jasperfx.1.19.0.nupkg.sha512",
+        "jasperfx.1.20.0.nupkg.sha512",
         "jasperfx.nuspec",
         "lib/net10.0/JasperFx.dll",
         "lib/net10.0/JasperFx.xml",
@@ -2561,14 +2561,14 @@
         "lib/net9.0/JasperFx.xml"
       ]
     },
-    "JasperFx.Events/1.21.0": {
-      "sha512": "JbBs+dOCLsWMihx87fRPCWhm6CrO+Ei7Az2XEqeoeyQqC5cPgBXUEmwidYoHyXgW0XGMjRD34BOCH9X/NCVmaQ==",
+    "JasperFx.Events/1.22.0": {
+      "sha512": "QD01W8GFqHcMLYpqF4G5adkEHFexCntWSIWejvccVxmw8TTMmGf+EH8EoQI8EitdCc0XZ/ocGog2TQTRkqxG4A==",
       "type": "package",
-      "path": "jasperfx.events/1.21.0",
+      "path": "jasperfx.events/1.22.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "jasperfx.events.1.21.0.nupkg.sha512",
+        "jasperfx.events.1.22.0.nupkg.sha512",
         "jasperfx.events.nuspec",
         "lib/net10.0/JasperFx.Events.dll",
         "lib/net10.0/JasperFx.Events.xml",
@@ -5160,10 +5160,10 @@
         "rabbitmq.client.nuspec"
       ]
     },
-    "Scalar.AspNetCore/2.12.46": {
-      "sha512": "8euCVn9hH/FnElhN6zXsbVkZZCbC39sTKLKjd+jcdjHHdF9IZoAKMVDqWLZNTwlGJjrk0VMoVgUcoYtD2hwjpw==",
+    "Scalar.AspNetCore/2.12.50": {
+      "sha512": "VjP0hDqICp70OuDtasziehQfs3t2TuhlXfWoOgc5H06iiYLAajclEjfrNDqqD2CTxBPMoU243BXmEphCRF/QTQ==",
       "type": "package",
-      "path": "scalar.aspnetcore/2.12.46",
+      "path": "scalar.aspnetcore/2.12.50",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5175,7 +5175,7 @@
         "lib/net8.0/Scalar.AspNetCore.xml",
         "lib/net9.0/Scalar.AspNetCore.dll",
         "lib/net9.0/Scalar.AspNetCore.xml",
-        "scalar.aspnetcore.2.12.46.nupkg.sha512",
+        "scalar.aspnetcore.2.12.50.nupkg.sha512",
         "scalar.aspnetcore.nuspec"
       ]
     },
@@ -5824,10 +5824,10 @@
         "ts.entityframeworkcore.genericrepository.nuspec"
       ]
     },
-    "WolverineFx/5.16.2": {
-      "sha512": "RKhGLZnJpyvw8nysUiPmQmQjeYc/MShXRzoczeKejC9zbAKaQZMku/xHxi/pOcgGEHW2hDo6gDO8YvAPvHcljg==",
+    "WolverineFx/5.16.4": {
+      "sha512": "IDEDhimluawCxCn5Oo4I/+QEkRWdB0rlKRLMCkUE5Hule3weQTLA8uIAhkij4Gjb7Pxp4ZaIT2HXEN9n2slgBw==",
       "type": "package",
-      "path": "wolverinefx/5.16.2",
+      "path": "wolverinefx/5.16.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5837,14 +5837,14 @@
         "lib/net8.0/Wolverine.xml",
         "lib/net9.0/Wolverine.dll",
         "lib/net9.0/Wolverine.xml",
-        "wolverinefx.5.16.2.nupkg.sha512",
+        "wolverinefx.5.16.4.nupkg.sha512",
         "wolverinefx.nuspec"
       ]
     },
-    "WolverineFx.FluentValidation/5.16.2": {
-      "sha512": "wLVUIdLL8Cp8XyTf22Jc3M+BhZq5y13jqJ63hYrvk0VEPk5kxnwt8OVcgrYoxd2O7FNFiqxE606X4/CXm+ExXw==",
+    "WolverineFx.FluentValidation/5.16.4": {
+      "sha512": "AaJydbHbMyhHhiNEjJbFd1UN+QWudIEqw5Ov7cyiCB7uAdfn+FOEvbb7eb4kvxv2mK6T6if/EMuMtQUg5okO5w==",
       "type": "package",
-      "path": "wolverinefx.fluentvalidation/5.16.2",
+      "path": "wolverinefx.fluentvalidation/5.16.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5854,14 +5854,14 @@
         "lib/net8.0/Wolverine.FluentValidation.xml",
         "lib/net9.0/Wolverine.FluentValidation.dll",
         "lib/net9.0/Wolverine.FluentValidation.xml",
-        "wolverinefx.fluentvalidation.5.16.2.nupkg.sha512",
+        "wolverinefx.fluentvalidation.5.16.4.nupkg.sha512",
         "wolverinefx.fluentvalidation.nuspec"
       ]
     },
-    "WolverineFx.RabbitMQ/5.16.2": {
-      "sha512": "o3HpSoqmEkg6LRqx6KfbXUqsSTr5w2E9A/64s6thzY7DnhWUfEeW6k8JxZ5L4KnNlTqVb3uqJPifJIAYTU4o0w==",
+    "WolverineFx.RabbitMQ/5.16.4": {
+      "sha512": "srdrMeA6VOlvt9Af21Y/mowqTHoKiGI8vYBHlMki4CVJ7DfMH4LBiuKWplpMtvydfiCMXf6nKntmsF+ryklM4Q==",
       "type": "package",
-      "path": "wolverinefx.rabbitmq/5.16.2",
+      "path": "wolverinefx.rabbitmq/5.16.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5871,7 +5871,7 @@
         "lib/net8.0/Wolverine.RabbitMQ.xml",
         "lib/net9.0/Wolverine.RabbitMQ.dll",
         "lib/net9.0/Wolverine.RabbitMQ.xml",
-        "wolverinefx.rabbitmq.5.16.2.nupkg.sha512",
+        "wolverinefx.rabbitmq.5.16.4.nupkg.sha512",
         "wolverinefx.rabbitmq.nuspec"
       ]
     },
@@ -5912,12 +5912,12 @@
       "Microsoft.AspNetCore.OpenApi >= 10.0.3",
       "Microsoft.EntityFrameworkCore.Tools >= 10.0.3",
       "Microsoft.Extensions.Caching.StackExchangeRedis >= 10.0.3",
-      "Scalar.AspNetCore >= 2.12.46",
+      "Scalar.AspNetCore >= 2.12.50",
       "Serilog.AspNetCore >= 10.0.0",
       "Serilog.Enrichers.Environment >= 3.0.1",
       "Serilog.Sinks.Postgresql.Alternative >= 4.2.0",
-      "WolverineFx.FluentValidation >= 5.16.2",
-      "WolverineFx.RabbitMQ >= 5.16.2",
+      "WolverineFx.FluentValidation >= 5.16.4",
+      "WolverineFx.RabbitMQ >= 5.16.4",
       "ZenBlog.Application >= 1.0.0",
       "ZenBlog.Infrastructure >= 1.0.0",
       "ZenBlog.Persistance >= 1.0.0",
@@ -6012,7 +6012,7 @@
           },
           "Scalar.AspNetCore": {
             "target": "Package",
-            "version": "[2.12.46, )"
+            "version": "[2.12.50, )"
           },
           "Serilog.AspNetCore": {
             "target": "Package",
@@ -6028,11 +6028,11 @@
           },
           "WolverineFx.FluentValidation": {
             "target": "Package",
-            "version": "[5.16.2, )"
+            "version": "[5.16.4, )"
           },
           "WolverineFx.RabbitMQ": {
             "target": "Package",
-            "version": "[5.16.2, )"
+            "version": "[5.16.4, )"
           }
         },
         "imports": [

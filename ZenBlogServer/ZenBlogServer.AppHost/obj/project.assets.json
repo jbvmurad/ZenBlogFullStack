@@ -13,7 +13,7 @@
           "buildMultiTargeting/Aspire.Dashboard.Sdk.win-x64.targets": {}
         }
       },
-      "Aspire.Hosting/13.1.1": {
+      "Aspire.Hosting/13.1.2": {
         "type": "package",
         "dependencies": {
           "AspNetCore.HealthChecks.Uris": "9.0.0",
@@ -150,12 +150,12 @@
           "buildMultiTargeting/Aspire.Hosting.Orchestration.win-x64.targets": {}
         }
       },
-      "Aspire.Hosting.PostgreSQL/13.1.1": {
+      "Aspire.Hosting.PostgreSQL/13.1.2": {
         "type": "package",
         "dependencies": {
           "AspNetCore.HealthChecks.NpgSql": "9.0.0",
           "AspNetCore.HealthChecks.Uris": "9.0.0",
-          "Aspire.Hosting": "13.1.1",
+          "Aspire.Hosting": "13.1.2",
           "Google.Protobuf": "3.33.0",
           "Grpc.AspNetCore": "2.71.0",
           "Grpc.Net.ClientFactory": "2.71.0",
@@ -191,12 +191,12 @@
           }
         }
       },
-      "Aspire.Hosting.RabbitMQ/13.1.1": {
+      "Aspire.Hosting.RabbitMQ/13.1.2": {
         "type": "package",
         "dependencies": {
           "AspNetCore.HealthChecks.Rabbitmq": "9.0.0",
           "AspNetCore.HealthChecks.Uris": "9.0.0",
-          "Aspire.Hosting": "13.1.1",
+          "Aspire.Hosting": "13.1.2",
           "Google.Protobuf": "3.33.0",
           "Grpc.AspNetCore": "2.71.0",
           "Grpc.Net.ClientFactory": "2.71.0",
@@ -233,12 +233,12 @@
           }
         }
       },
-      "Aspire.Hosting.Redis/13.1.1": {
+      "Aspire.Hosting.Redis/13.1.2": {
         "type": "package",
         "dependencies": {
           "AspNetCore.HealthChecks.Redis": "9.0.0",
           "AspNetCore.HealthChecks.Uris": "9.0.0",
-          "Aspire.Hosting": "13.1.1",
+          "Aspire.Hosting": "13.1.2",
           "Google.Protobuf": "3.33.0",
           "Grpc.AspNetCore": "2.71.0",
           "Grpc.Net.ClientFactory": "2.71.0",
@@ -1759,17 +1759,17 @@
         "tools/zh-Hant/Aspire.Dashboard.resources.dll"
       ]
     },
-    "Aspire.Hosting/13.1.1": {
-      "sha512": "sd/R5Bwgr6Npmso/pdx5nUaQcJsFCPghh0R/jRO4Em4PjUQUL3UvJbufauTSnDO+NGA0+108GCxJhmH7iEDv4A==",
+    "Aspire.Hosting/13.1.2": {
+      "sha512": "q7TOaDHqR8eFsEUaGuA9Xm3aDOZioxYXu0Dx1AfmfXbR0aPjvCiRDv/ebaq7eR18L6bm+az6NqZdNczi5BPu9Q==",
       "type": "package",
-      "path": "aspire.hosting/13.1.1",
+      "path": "aspire.hosting/13.1.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "README.md",
         "THIRD-PARTY-NOTICES.TXT",
-        "aspire.hosting.13.1.1.nupkg.sha512",
+        "aspire.hosting.13.1.2.nupkg.sha512",
         "aspire.hosting.nuspec",
         "lib/net8.0/Aspire.Hosting.dll",
         "lib/net8.0/Aspire.Hosting.xml",
@@ -1848,49 +1848,49 @@
         "tools/ext/dcpctrl.exe"
       ]
     },
-    "Aspire.Hosting.PostgreSQL/13.1.1": {
-      "sha512": "ByZf0/Je2odrHDObOTZGn+IXX/umaHujSIY0KOmvd0sAYX6yO5W7EHGkTYjZMRFWY+zuRh4PRcUGVOVX7I5fuw==",
+    "Aspire.Hosting.PostgreSQL/13.1.2": {
+      "sha512": "Ixd060h2SzX4xEPmdmH5E6lRIbFQv5QDYy6JzF/oA7kDwOxmqIon5GCSoHetnpInO9VBlZ0P576uqY/yJWgtdA==",
       "type": "package",
-      "path": "aspire.hosting.postgresql/13.1.1",
+      "path": "aspire.hosting.postgresql/13.1.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "README.md",
         "THIRD-PARTY-NOTICES.TXT",
-        "aspire.hosting.postgresql.13.1.1.nupkg.sha512",
+        "aspire.hosting.postgresql.13.1.2.nupkg.sha512",
         "aspire.hosting.postgresql.nuspec",
         "lib/net8.0/Aspire.Hosting.PostgreSQL.dll",
         "lib/net8.0/Aspire.Hosting.PostgreSQL.xml"
       ]
     },
-    "Aspire.Hosting.RabbitMQ/13.1.1": {
-      "sha512": "tPRIDNnFLxQ/fPbEiq/Jw2iSlWrDhcuN16GDqg37M952pDAr79d0RHGUkXW2qYxFhPwjPl9UuoU6PTbN+ubIRw==",
+    "Aspire.Hosting.RabbitMQ/13.1.2": {
+      "sha512": "kkEOp9OfgBvB3vxSMdP8X0oR7xt8Uw1Yx1Zcib3paZyrvZr2FOnLvpQXqEgG4I+fMgv9pEh6GvwpHSYIpBlKeQ==",
       "type": "package",
-      "path": "aspire.hosting.rabbitmq/13.1.1",
+      "path": "aspire.hosting.rabbitmq/13.1.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "README.md",
         "THIRD-PARTY-NOTICES.TXT",
-        "aspire.hosting.rabbitmq.13.1.1.nupkg.sha512",
+        "aspire.hosting.rabbitmq.13.1.2.nupkg.sha512",
         "aspire.hosting.rabbitmq.nuspec",
         "lib/net8.0/Aspire.Hosting.RabbitMQ.dll",
         "lib/net8.0/Aspire.Hosting.RabbitMQ.xml"
       ]
     },
-    "Aspire.Hosting.Redis/13.1.1": {
-      "sha512": "UVD975o7J1eQDPqNHjS4lZhx1Wjz/AS1mDPGXs1ZNGmNc+Psff4SWas9F1ZNNmbytosDx7HdcVhAqrhdwn98oA==",
+    "Aspire.Hosting.Redis/13.1.2": {
+      "sha512": "Q3E5w8R4fNqXCZ5UPLysegmDQBFm0DYGgar1e1ALLF6DY1g+kj3wtBrwUb+klbuBlT7yQ/5lPZ1N0+QdslTBbA==",
       "type": "package",
-      "path": "aspire.hosting.redis/13.1.1",
+      "path": "aspire.hosting.redis/13.1.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "README.md",
         "THIRD-PARTY-NOTICES.TXT",
-        "aspire.hosting.redis.13.1.1.nupkg.sha512",
+        "aspire.hosting.redis.13.1.2.nupkg.sha512",
         "aspire.hosting.redis.nuspec",
         "lib/net8.0/Aspire.Hosting.Redis.dll",
         "lib/net8.0/Aspire.Hosting.Redis.xml"
@@ -3802,9 +3802,9 @@
       "Aspire.Dashboard.Sdk.win-x64 >= 13.1.1",
       "Aspire.Hosting.AppHost >= 13.1.1",
       "Aspire.Hosting.Orchestration.win-x64 >= 13.1.1",
-      "Aspire.Hosting.PostgreSQL >= 13.1.1",
-      "Aspire.Hosting.RabbitMQ >= 13.1.1",
-      "Aspire.Hosting.Redis >= 13.1.1"
+      "Aspire.Hosting.PostgreSQL >= 13.1.2",
+      "Aspire.Hosting.RabbitMQ >= 13.1.2",
+      "Aspire.Hosting.Redis >= 13.1.2"
     ]
   },
   "packageFolders": {
@@ -3875,15 +3875,15 @@
           },
           "Aspire.Hosting.PostgreSQL": {
             "target": "Package",
-            "version": "[13.1.1, )"
+            "version": "[13.1.2, )"
           },
           "Aspire.Hosting.RabbitMQ": {
             "target": "Package",
-            "version": "[13.1.1, )"
+            "version": "[13.1.2, )"
           },
           "Aspire.Hosting.Redis": {
             "target": "Package",
-            "version": "[13.1.1, )"
+            "version": "[13.1.2, )"
           }
         },
         "imports": [

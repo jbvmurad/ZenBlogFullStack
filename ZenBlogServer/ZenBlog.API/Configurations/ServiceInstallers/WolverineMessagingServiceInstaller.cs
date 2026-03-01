@@ -26,7 +26,14 @@ public static class WolverineMessagingServiceInstaller
 
         opts.ListenToRabbitQueue("zenblog.blog-created");
 
+        // Auth/email flows üçün ayrıca queue: request-lər SMTP gözləməsin, iş arxa planda işləsin.
+        opts.ListenToRabbitQueue("zenblog.email");
+
         opts.PublishMessage<BlogCreatedIntegrationEvent>().ToRabbitQueue("zenblog.blog-created");
+
+        opts.PublishMessage<EmailConfirmationRequestedIntegrationEvent>().ToRabbitQueue("zenblog.email");
+        opts.PublishMessage<PasswordResetRequestedIntegrationEvent>().ToRabbitQueue("zenblog.email");
+        opts.PublishMessage<AccountDeletedIntegrationEvent>().ToRabbitQueue("zenblog.email");
     }
 
     private static string BuildAmqpUri(RabbitMqOptions rabbit)

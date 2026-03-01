@@ -87,7 +87,7 @@
             },
             "Scalar.AspNetCore": {
               "target": "Package",
-              "version": "[2.12.46, )"
+              "version": "[2.12.50, )"
             },
             "Serilog.AspNetCore": {
               "target": "Package",
@@ -103,11 +103,11 @@
             },
             "WolverineFx.FluentValidation": {
               "target": "Package",
-              "version": "[5.16.2, )"
+              "version": "[5.16.4, )"
             },
             "WolverineFx.RabbitMQ": {
               "target": "Package",
-              "version": "[5.16.2, )"
+              "version": "[5.16.4, )"
             }
           },
           "imports": [
@@ -604,7 +604,7 @@
             },
             "WolverineFx": {
               "target": "Package",
-              "version": "[5.16.2, )"
+              "version": "[5.16.4, )"
             }
           },
           "imports": [
@@ -1447,7 +1447,7 @@
           "dependencies": {
             "AWSSDK.S3": {
               "target": "Package",
-              "version": "[4.0.18.6, )"
+              "version": "[4.0.18.7, )"
             },
             "FluentEmail.Smtp": {
               "target": "Package",
@@ -2323,7 +2323,7 @@
             },
             "WolverineFx": {
               "target": "Package",
-              "version": "[5.16.2, )"
+              "version": "[5.16.4, )"
             }
           },
           "imports": [

@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "NePc8e9TPKY=",
+  "dgSpecHash": "BjtEpT6fjJE=",
   "success": true,
   "projectFilePath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Infrastructure\\ZenBlog.Infrastructure.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Murad\\.nuget\\packages\\awssdk.core\\4.0.3.12\\awssdk.core.4.0.3.12.nupkg.sha512",
-    "C:\\Users\\Murad\\.nuget\\packages\\awssdk.s3\\4.0.18.6\\awssdk.s3.4.0.18.6.nupkg.sha512",
+    "C:\\Users\\Murad\\.nuget\\packages\\awssdk.core\\4.0.3.15\\awssdk.core.4.0.3.15.nupkg.sha512",
+    "C:\\Users\\Murad\\.nuget\\packages\\awssdk.s3\\4.0.18.7\\awssdk.s3.4.0.18.7.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\fastexpressioncompiler\\5.3.0\\fastexpressioncompiler.5.3.0.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\fluentemail.core\\3.0.2\\fluentemail.core.3.0.2.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\fluentemail.smtp\\3.0.2\\fluentemail.smtp.3.0.2.nupkg.sha512",
@@ -15,8 +15,8 @@
     "C:\\Users\\Murad\\.nuget\\packages\\google.apis.core\\1.73.0\\google.apis.core.1.73.0.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\imtools\\4.0.0\\imtools.4.0.0.nupkg.sha512",
-    "C:\\Users\\Murad\\.nuget\\packages\\jasperfx\\1.19.0\\jasperfx.1.19.0.nupkg.sha512",
-    "C:\\Users\\Murad\\.nuget\\packages\\jasperfx.events\\1.21.0\\jasperfx.events.1.21.0.nupkg.sha512",
+    "C:\\Users\\Murad\\.nuget\\packages\\jasperfx\\1.20.0\\jasperfx.1.20.0.nupkg.sha512",
+    "C:\\Users\\Murad\\.nuget\\packages\\jasperfx.events\\1.22.0\\jasperfx.events.1.22.0.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\jasperfx.runtimecompiler\\4.4.0\\jasperfx.runtimecompiler.4.4.0.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\10.0.3\\microsoft.aspnetcore.authentication.jwtbearer.10.0.3.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\10.0.3\\microsoft.aspnetcore.cryptography.internal.10.0.3.nupkg.sha512",
@@ -92,7 +92,7 @@
     "C:\\Users\\Murad\\.nuget\\packages\\system.identitymodel.tokens.jwt\\8.0.1\\system.identitymodel.tokens.jwt.8.0.1.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\system.management\\7.0.2\\system.management.7.0.2.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\ts.entityframeworkcore.genericrepository\\10.0.0\\ts.entityframeworkcore.genericrepository.10.0.0.nupkg.sha512",
-    "C:\\Users\\Murad\\.nuget\\packages\\wolverinefx\\5.16.2\\wolverinefx.5.16.2.nupkg.sha512"
+    "C:\\Users\\Murad\\.nuget\\packages\\wolverinefx\\5.16.4\\wolverinefx.5.16.4.nupkg.sha512"
   ],
   "logs": []
 }
