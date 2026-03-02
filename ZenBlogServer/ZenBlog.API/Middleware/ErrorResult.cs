@@ -18,5 +18,5 @@ public class ErrorStatusCode
 
 public sealed class ValidationErrorDetails : ErrorStatusCode
 {
-    public IEnumerable<string> Errors { get; set; }
+    public IDictionary<string, string[]> Errors { get; set; } = new Dictionary<string, string[]>();
 }

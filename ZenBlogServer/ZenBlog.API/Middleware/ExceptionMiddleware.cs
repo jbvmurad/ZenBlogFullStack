@@ -39,7 +39,6 @@ public sealed class ExceptionMiddleware : IMiddleware
             _ => StatusCodes.Status500InternalServerError
         };
 
-
         if (statusCode == StatusCodes.Status500InternalServerError &&
             ex.Message?.Contains("already taken", StringComparison.OrdinalIgnoreCase) == true)
         {
@@ -50,18 +49,25 @@ public sealed class ExceptionMiddleware : IMiddleware
 
         if (ex is ValidationException vex)
         {
-            return context.Response.WriteAsync(new ValidationErrorDetails
+            var errors = vex.Errors
+                .GroupBy(e => e.PropertyName)
+                .ToDictionary(
+                    g => g.Key,
+                    g => g.Select(e => e.ErrorMessage).ToArray()
+                );
+
+            return context.Response.WriteAsJsonAsync(new ValidationErrorDetails
             {
-                Errors = vex.Errors.Select(s => s.PropertyName),
+                Errors = errors,
                 StatusCode = statusCode
-            }.ToString());
+            });
         }
 
-        return context.Response.WriteAsync(new ErrorResult
+        return context.Response.WriteAsJsonAsync(new
         {
-            Message = ex.Message,
-            StatusCode = statusCode
-        }.ToString());
+            StatusCode = statusCode,
+            Error = ex.Message
+        });
     }
     private async Task LogExceptionToDatabaseAsync(Exception ex, HttpRequest request)
     {
