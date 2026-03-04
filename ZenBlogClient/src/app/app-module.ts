@@ -13,6 +13,8 @@ import { Blog } from './_admin-components/blog/blog';
 import { Login } from './_main-components/login/login';
 import { Register } from './_main-components/register/register';
 import { VerifyEmail } from './_main-components/verify-email/verify-email';
+import { ForgotPassword } from './_main-components/forgot-password/forgot-password';
+import { ResetPassword } from './_main-components/reset-password/reset-password';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { AuthGuard } from './_guards/auth-guard';
 import { Blogdetails } from './_main-components/blogdetails/blogdetails';
@@ -37,6 +39,8 @@ import { SendMessage } from './_main-components/send-message/send-message';
     Login,
     Register,
     VerifyEmail,
+    ForgotPassword,
+    ResetPassword,
     Blogdetails,
     CommentForm,
     ContactMain,

@@ -58,7 +58,7 @@ public sealed class AuthService : IAuthService
         IdentityResult result = await _userManager.CreateAsync(user, request.Password);
         if (!result.Succeeded)
         {
-            throw new Exception(result.Errors.First().Description);
+            throw new ArgumentException(result.Errors.First().Description);
         }
         var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 
@@ -77,7 +77,7 @@ public sealed class AuthService : IAuthService
         var decodedToken = Uri.UnescapeDataString(request.Token);
         var result = await _userManager.ConfirmEmailAsync(user, decodedToken);
         if (!result.Succeeded)
-            throw new Exception(result.Errors.First().Description);
+            throw new ArgumentException(result.Errors.First().Description);
     }
 
     public async Task ResendEmailConfirmationAsync(ResendEmailConfirmationCommand request, CancellationToken cancellationToken)
@@ -120,7 +120,7 @@ public sealed class AuthService : IAuthService
         var decodedToken = Uri.UnescapeDataString(request.Token);
         var result = await _userManager.ResetPasswordAsync(user, decodedToken, request.NewPassword);
         if (!result.Succeeded)
-            throw new Exception(result.Errors.First().Description);
+            throw new ArgumentException(result.Errors.First().Description);
     }
 
 
@@ -139,12 +139,12 @@ public sealed class AuthService : IAuthService
             var result = await _userManager.ResetPasswordAsync(user, token, request.Password);
 
             if (!result.Succeeded)
-                throw new Exception(result.Errors.First().Description);
+                throw new ArgumentException(result.Errors.First().Description);
         }
 
         var updateResult = await _userManager.UpdateAsync(user);
         if (!updateResult.Succeeded)
-            throw new Exception(updateResult.Errors.First().Description);
+            throw new ArgumentException(updateResult.Errors.First().Description);
     }
 
     public async Task DeleteAsync(DeleteUserCommand request, CancellationToken cancellationToken)
@@ -155,7 +155,7 @@ public sealed class AuthService : IAuthService
 
         var result = await _userManager.DeleteAsync(user);
         if (!result.Succeeded)
-            throw new Exception(result.Errors.First().Description);
+            throw new ArgumentException(result.Errors.First().Description);
 
         await _bus.PublishAsync(new AccountDeletedIntegrationEvent(
             UserId: user.Id.ToString(),
@@ -199,7 +199,7 @@ public sealed class AuthService : IAuthService
 
             var create = await _userManager.CreateAsync(user);
             if (!create.Succeeded)
-                throw new Exception(create.Errors.First().Description);
+                throw new ArgumentException(create.Errors.First().Description);
         }
         else
         {

@@ -16,7 +16,7 @@
 }
 
 .verify-state.success {
-  background: rgba(25, 135, 84, 0.08);
+  background: #d1e7dd;
 }
 
 .verify-state.error {
@@ -42,4 +42,9 @@
 .verify-state.error .verify-icon {
   background: rgba(220, 53, 69, 0.15);
   color: #dc3545;
+}
+
+.verify-state.success .alert-success {
+  border: 0 !important;
+  box-shadow: none !important;
 }

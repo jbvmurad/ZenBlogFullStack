@@ -17,5 +17,5 @@ public class ZenBlogServer_AppHost
     /// <summary>
     /// The path to the Aspire Host project.
     /// </summary>
-    public static string ProjectPath => """C:\Users\Murad\Desktop\ZenBlogFullStack\ZenBlogServer\ZenBlogServer.AppHost""";
+    public static string ProjectPath => """C:\Users\Murad\Desktop\New folder\ZenBlogFullStack\ZenBlogServer\ZenBlogServer.AppHost""";
 }

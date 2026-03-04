@@ -3,4 +3,5 @@ namespace ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Comman
 public sealed record RegisterUserCommand(
     string FullName,
     string Email,
-    string Password);
+    string Password,
+    string ConfirmPassword);

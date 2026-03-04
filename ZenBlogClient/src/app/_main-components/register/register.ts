@@ -15,7 +15,6 @@ declare const google: any;
 })
 export class Register implements AfterViewInit {
   registerDto: RegisterDto = new RegisterDto();
-  confirmPassword: any;
 
   constructor(
     private authService: AuthService,
@@ -23,20 +22,32 @@ export class Register implements AfterViewInit {
   ) {}
 
   register() {
-    if (this.registerDto.password !== this.confirmPassword) {
-      alertify.error('Passwords do not match!');
-      return;
-    }
+    // Always send confirmPassword to backend (even if backend ignores it).
+    const payload = {
+      fullName: this.registerDto.fullName,
+      email: this.registerDto.email,
+      password: this.registerDto.password,
+      confirmPassword: this.registerDto.confirmPassword
+    };
 
-    // Server expects: { fullName, email, password }
-    this.authService.register(this.registerDto).subscribe({
+    this.authService.register(payload).subscribe({
       next: (res) => {
-        const msg = res?.Message ?? res?.message ?? 'Registration Successful! Please verify your email, then sign in.';
+        const msg =
+          res?.Message ??
+          res?.message ??
+          'Registration Successful! Please verify your email, then sign in.';
         alertify.success(msg);
         this.router.navigate(['/login']);
       },
       error: (err) => {
-        const msg = err?.error?.Message ?? err?.error?.message ?? 'Registration Failed!';
+        // show server validation messages if available
+        const msg =
+          err?.error?.Message ??
+          err?.error?.message ??
+          (err?.error?.errors
+            ? Object.values(err.error.errors).flat().join(' ')
+            : null) ??
+          'Registration Failed!';
         alertify.error(msg);
       }
     });
@@ -100,7 +111,6 @@ export class Register implements AfterViewInit {
         this.router.navigate(['/admin']);
       },
       error: (err) => {
-        // Try to surface the real backend/network error (Angular sometimes gives err.error as string or ProgressEvent)
         let parsedMsg: string | null = null;
         if (typeof err?.error === 'string') {
           try {
@@ -119,7 +129,7 @@ export class Register implements AfterViewInit {
             ? `Google token audience uyuşmuyor. Backend'de GoogleAuth:ClientId değeri, client'daki GOOGLE_CLIENT_ID ile aynı olmalı. (Client: ${GOOGLE_CLIENT_ID})`
             : null) ??
           (err?.status === 0
-            ? 'Google sign-up failed: API reachedilemedi. proxy.conf.json target adresini ve backend\'in çalıştığını kontrol et.'
+            ? "Google sign-up failed: API reachedilemedi. proxy.conf.json target adresini ve backend'in çalıştığını kontrol et."
             : null) ??
           `Google sign-up failed. (HTTP ${err?.status ?? 'unknown'})`;
 

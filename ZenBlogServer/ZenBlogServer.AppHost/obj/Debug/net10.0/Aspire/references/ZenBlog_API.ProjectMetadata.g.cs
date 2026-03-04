@@ -15,7 +15,7 @@ public class ZenBlog_API : global::Aspire.Hosting.IProjectMetadata
     /// <summary>
     /// The path to the ZenBlog_API project.
     /// </summary>
-    public string ProjectPath => """C:\Users\Murad\Desktop\ZenBlogFullStack\ZenBlogServer\ZenBlog.API\ZenBlog.API.csproj""";
+    public string ProjectPath => """C:\Users\Murad\Desktop\New folder\ZenBlogFullStack\ZenBlogServer\ZenBlog.API\ZenBlog.API.csproj""";
 
     /// <summary>
     /// Gets a value indicating whether building the project before running it should be suppressed.
