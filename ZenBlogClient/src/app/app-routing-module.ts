@@ -8,6 +8,8 @@ import { Blog } from './_admin-components/blog/blog';
 import { Login } from './_main-components/login/login';
 import { Register } from './_main-components/register/register';
 import { VerifyEmail } from './_main-components/verify-email/verify-email';
+import { ForgotPassword } from './_main-components/forgot-password/forgot-password';
+import { ResetPassword } from './_main-components/reset-password/reset-password';
 import { AuthGuard } from './_guards/auth-guard';
 import { Blogdetails } from './_main-components/blogdetails/blogdetails';
 import { ContactMain } from './_main-components/contact-main/contact-main';
@@ -27,7 +29,19 @@ const routes: Routes = [
     {path:'', component:Home},
     {path:'login',component:Login},
     {path:'register',component:Register},
+    {path:'forgot-password',component:ForgotPassword},
+    {path:'reset-password',component:ResetPassword},
     {path:'verify-email',component:VerifyEmail},
+
+    // Aliases (tolerate different link formats coming from emails)
+    { path: 'verifyEmail', redirectTo: 'verify-email', pathMatch: 'full' },
+    { path: 'VerifyEmail', redirectTo: 'verify-email', pathMatch: 'full' },
+    { path: 'confirm-email', redirectTo: 'verify-email', pathMatch: 'full' },
+    { path: 'confirmEmail', redirectTo: 'verify-email', pathMatch: 'full' },
+
+    { path: 'resetPassword', redirectTo: 'reset-password', pathMatch: 'full' },
+    { path: 'ResetPassword', redirectTo: 'reset-password', pathMatch: 'full' },
+
     {path:'blogdetails/:id',component:Blogdetails},
     {path:'contact',component:ContactMain}
   ]
@@ -62,6 +76,9 @@ const routes: Routes = [
 
   ]
 }
+
+// Fallback
+,{ path: '**', redirectTo: '' }
 
 
 ];

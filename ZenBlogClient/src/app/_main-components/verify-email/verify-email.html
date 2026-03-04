@@ -20,7 +20,7 @@
 
             <div *ngIf="status === 'success'" class="verify-state success">
               <div class="verify-icon">✓</div>
-              <div class="fw-semibold">{{ message }}</div>
+              <div class="alert alert-success mb-2" role="alert">{{ message }}</div>
               <div class="text-muted small mt-2">You can now sign in to your account.</div>
               <div class="d-flex justify-content-center gap-2 mt-4">
                 <button class="btn btn-primary" (click)="goLogin()">Go to Login</button>
@@ -30,7 +30,7 @@
 
             <div *ngIf="status === 'error'" class="verify-state error">
               <div class="verify-icon">!</div>
-              <div class="fw-semibold">{{ message }}</div>
+              <div class="alert alert-danger mb-2" role="alert">{{ message }}</div>
               <div class="text-muted small mt-2">
                 If you believe this is a mistake, request a new verification email from the login page.
               </div>
@@ -41,8 +41,6 @@
             </div>
           </div>
         </div>
-
-        <p class="text-center text-muted small mt-3 mb-0">© ZenBlog</p>
       </div>
     </div>
   </div>

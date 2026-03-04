@@ -36,6 +36,14 @@ export class AuthService {
     return this.http.post<any>(this.authBaseUrl + 'confirm-email', { userId, token });
   }
 
+  forgotPassword(model: any) {
+    return this.http.post<any>(this.authBaseUrl + 'forgot-password', model);
+  }
+
+  resetPassword(model: any) {
+    return this.http.post<any>(this.authBaseUrl + 'reset-password', model);
+  }
+
   logout() {
     localStorage.removeItem('token');
     this.router.navigate(['']);

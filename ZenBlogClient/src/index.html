@@ -6,6 +6,22 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Restore deep links rewritten by public/404.html (static hosts) -->
+  <script>
+    (function () {
+      var l = window.location;
+      // If URL is like https://site.com/?/verify-email&userId=..&token=..
+      // restore to https://site.com/verify-email?userId=..&token=..
+      if (l.search && l.search.startsWith('?/')) {
+        var raw = l.search.slice(2); // remove '?/'
+        var parts = raw.split('&');
+        var path = '/' + (parts.shift() || '');
+        var query = parts.length ? '?' + parts.join('&') : '';
+        window.history.replaceState(null, '', path + query + l.hash);
+      }
+    })();
+  </script>
 </head>
 <body>
   <app-root></app-root>

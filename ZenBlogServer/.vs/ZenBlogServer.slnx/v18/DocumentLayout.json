@@ -1,16 +1,7 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{786EF84C-FBB9-BB47-CC32-3BE6556079F2}|ZenBlog.API\\ZenBlog.API.csproj|c:\\users\\murad\\desktop\\zenblogfullstack\\zenblogserver\\zenblog.api\\middleware\\exceptionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{786EF84C-FBB9-BB47-CC32-3BE6556079F2}|ZenBlog.API\\ZenBlog.API.csproj|solutionrelative:zenblog.api\\middleware\\exceptionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{786EF84C-FBB9-BB47-CC32-3BE6556079F2}|ZenBlog.API\\ZenBlog.API.csproj|c:\\users\\murad\\desktop\\zenblogfullstack\\zenblogserver\\zenblog.api\\middleware\\errorresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{786EF84C-FBB9-BB47-CC32-3BE6556079F2}|ZenBlog.API\\ZenBlog.API.csproj|solutionrelative:zenblog.api\\middleware\\errorresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "WorkspaceRootPath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\",
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -18,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -51,32 +42,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ExceptionMiddleware.cs",
-              "DocumentMoniker": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.API\\Middleware\\ExceptionMiddleware.cs",
-              "RelativeDocumentMoniker": "ZenBlog.API\\Middleware\\ExceptionMiddleware.cs",
-              "ToolTip": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.API\\Middleware\\ExceptionMiddleware.cs",
-              "RelativeToolTip": "ZenBlog.API\\Middleware\\ExceptionMiddleware.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-02T07:59:50.419Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ErrorResult.cs",
-              "DocumentMoniker": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.API\\Middleware\\ErrorResult.cs",
-              "RelativeDocumentMoniker": "ZenBlog.API\\Middleware\\ErrorResult.cs",
-              "ToolTip": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.API\\Middleware\\ErrorResult.cs",
-              "RelativeToolTip": "ZenBlog.API\\Middleware\\ErrorResult.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-02T07:59:11.302Z",
-              "EditorCaption": ""
             }
           ]
         }

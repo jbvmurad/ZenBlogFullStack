@@ -17,10 +17,6 @@ export class ErrorInterceptor implements HttpInterceptor {
       catchError((err: HttpErrorResponse) => {
         if (err.status === 401) {
           localStorage.removeItem('token');
-          const msg = err?.error?.message ?? err?.error?.Message ?? 'Yetkin yok veya oturum süren dolmuş. Lütfen tekrar giriş yap.';
-          if (typeof alertify !== 'undefined') {
-            alertify.error(msg);
-          }
           if (!this.router.url.includes('/login')) {
             this.router.navigate(['/login']);
           }

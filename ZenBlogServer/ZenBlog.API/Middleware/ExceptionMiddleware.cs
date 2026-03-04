@@ -63,10 +63,10 @@ public sealed class ExceptionMiddleware : IMiddleware
             });
         }
 
-        return context.Response.WriteAsJsonAsync(new
+        return context.Response.WriteAsJsonAsync(new ErrorResult
         {
             StatusCode = statusCode,
-            Error = ex.Message
+            Message = ex.Message
         });
     }
     private async Task LogExceptionToDatabaseAsync(Exception ex, HttpRequest request)

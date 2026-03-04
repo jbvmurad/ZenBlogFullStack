@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../_services/auth-service';
 
-declare const alertify: any;
-
 @Component({
   selector: 'app-verify-email',
   standalone: false,
@@ -33,20 +31,28 @@ export class VerifyEmail implements OnInit {
     this.authService.confirmEmail(userId, token).subscribe({
       next: (res) => {
         this.status = 'success';
-        this.message = res?.Message ?? res?.message ?? 'Email verified successfully';
-        if (typeof alertify !== 'undefined') {
-          alertify.success(this.message);
-        }
+        // Show the server message directly on this page (no popups, no redirect)
+        this.message =
+          res?.Message ??
+          res?.message ??
+          res?.Error ??
+          res?.error ??
+          'Email verified successfully';
       },
       error: (err) => {
         this.status = 'error';
+        // Try multiple shapes because backend middleware may return {message} or {error}.
+        // Also handle FluentValidation style {errors: {field: [..]}}.
+        const e = err?.error;
+        const firstValidation = e?.errors ? (Object.values(e.errors).flat() as any)?.[0] : null;
+
         this.message =
-          err?.error?.Message ??
-          err?.error?.message ??
+          e?.Message ??
+          e?.message ??
+          e?.Error ??
+          e?.error ??
+          firstValidation ??
           'Email verification failed. Please request a new verification email.';
-        if (typeof alertify !== 'undefined') {
-          alertify.error(this.message);
-        }
       }
     });
   }

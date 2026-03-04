@@ -32,6 +32,5 @@ public sealed class RoleService : IRoleService
         var result = await _roleManager.DeleteAsync(role);
     }
 
-    public IQueryable<Role> GetAllRoles()
-           => _roleManager.Roles.AsNoTracking();
+    public IQueryable<Role> GetAllRoles() => _roleManager.Roles.AsNoTracking();
 }

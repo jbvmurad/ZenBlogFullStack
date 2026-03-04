@@ -1,7 +1,7 @@
+import "./chunk-GHHLFMQS.js";
 import {
   HTTP_INTERCEPTORS
 } from "./chunk-NP5XMR3H.js";
-import "./chunk-GHHLFMQS.js";
 import "./chunk-FTJJFYDV.js";
 import {
   DOCUMENT,
@@ -17,10 +17,10 @@ import {
   ɵɵdefineNgModule,
   ɵɵinject
 } from "./chunk-I53SQOD2.js";
-import "./chunk-YVXMBCE5.js";
 import {
   defer
 } from "./chunk-G6ECYYJH.js";
+import "./chunk-YVXMBCE5.js";
 import {
   map,
   mergeMap,

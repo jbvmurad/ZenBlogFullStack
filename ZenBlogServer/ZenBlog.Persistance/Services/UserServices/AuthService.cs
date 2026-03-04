@@ -58,7 +58,7 @@ public sealed class AuthService : IAuthService
         IdentityResult result = await _userManager.CreateAsync(user, request.Password);
         if (!result.Succeeded)
         {
-            throw new Exception(result.Errors.First().Description);
+            throw new ArgumentException(result.Errors.First().Description);
         }
         var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 
@@ -77,7 +77,7 @@ public sealed class AuthService : IAuthService
         var decodedToken = Uri.UnescapeDataString(request.Token);
         var result = await _userManager.ConfirmEmailAsync(user, decodedToken);
         if (!result.Succeeded)
-            throw new Exception(result.Errors.First().Description);
+            throw new ArgumentException(result.Errors.First().Description);
     }
 
     public async Task ResendEmailConfirmationAsync(ResendEmailConfirmationCommand request, CancellationToken cancellationToken)
@@ -120,7 +120,7 @@ public sealed class AuthService : IAuthService
         var decodedToken = Uri.UnescapeDataString(request.Token);
         var result = await _userManager.ResetPasswordAsync(user, decodedToken, request.NewPassword);
         if (!result.Succeeded)
-            throw new Exception(result.Errors.First().Description);
+            throw new ArgumentException(result.Errors.First().Description);
     }
 
 

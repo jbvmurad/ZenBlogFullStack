@@ -44,27 +44,37 @@ export class MainLayout implements OnInit, AfterViewInit {
       mirror: false
     });
 
-    // Initialize Swiper
-    this.swiper = new Swiper('.init-swiper', {
-      modules: [Navigation, Pagination, Autoplay],
-      loop: true,
-      speed: 600,
-      autoplay: {
-        delay: 5000,
-        disableOnInteraction: false
-      },
-      slidesPerView: 'auto',
-      centeredSlides: true,
-      pagination: {
-        el: '.swiper-pagination',
-        type: 'bullets',
-        clickable: true
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
+    // Initialize Swiper ONLY when the container exists.
+    // Home component already initializes Swiper. On routes like /verify-email,
+    // there is no swiper container; Swiper can throw and prevent routing.
+    const swiperContainer = document.querySelector('.init-swiper');
+    if (swiperContainer) {
+      try {
+        this.swiper = new Swiper('.init-swiper', {
+          modules: [Navigation, Pagination, Autoplay],
+          loop: true,
+          speed: 600,
+          autoplay: {
+            delay: 5000,
+            disableOnInteraction: false
+          },
+          slidesPerView: 'auto',
+          centeredSlides: true,
+          pagination: {
+            el: '.swiper-pagination',
+            type: 'bullets',
+            clickable: true
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
+          }
+        });
+      } catch {
+        // Swiper init failure should never block routing.
+        this.swiper = undefined;
       }
-    });
+    }
 
     // Handle scroll top button
     window.addEventListener('scroll', () => {

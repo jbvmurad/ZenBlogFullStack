@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ZenBlog</title>
+  <!--
+    SPA fallback for static hosts (e.g., GitHub Pages).
+    If a deep link like /verify-email is requested directly, some hosts return 404.
+    This page rewrites the URL so Angular can handle the route.
+  -->
+  <script>
+    (function () {
+      var l = window.location;
+      // Keep the original path/query by encoding it into the query string.
+      // The companion script in index.html will restore it.
+      var newUrl = l.origin + '/?/' + l.pathname.slice(1) + (l.search ? '&' + l.search.slice(1) : '') + l.hash;
+      // Avoid infinite redirect loops
+      if (l.search.indexOf('?/') === -1) {
+        l.replace(newUrl);
+      }
+    })();
+  </script>
+</head>
+<body></body>
+</html>
