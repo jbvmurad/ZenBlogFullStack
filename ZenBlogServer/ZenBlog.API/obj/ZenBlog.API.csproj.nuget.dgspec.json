@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.API\\ZenBlog.API.csproj": {}
+    "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.API\\ZenBlog.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.API\\ZenBlog.API.csproj": {
+    "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.API\\ZenBlog.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.API\\ZenBlog.API.csproj",
+        "projectUniqueName": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.API\\ZenBlog.API.csproj",
         "projectName": "ZenBlog.API",
-        "projectPath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.API\\ZenBlog.API.csproj",
+        "projectPath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.API\\ZenBlog.API.csproj",
         "packagesPath": "C:\\Users\\Murad\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.API\\obj\\",
+        "outputPath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -33,20 +33,20 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\ZenBlog.Application.csproj": {
-                "projectPath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\ZenBlog.Application.csproj"
+              "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\ZenBlog.Application.csproj": {
+                "projectPath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\ZenBlog.Application.csproj"
               },
-              "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Infrastructure\\ZenBlog.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Infrastructure\\ZenBlog.Infrastructure.csproj"
+              "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Infrastructure\\ZenBlog.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Infrastructure\\ZenBlog.Infrastructure.csproj"
               },
-              "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Persistance\\ZenBlog.Persistance.csproj": {
-                "projectPath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Persistance\\ZenBlog.Persistance.csproj"
+              "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Persistance\\ZenBlog.Persistance.csproj": {
+                "projectPath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Persistance\\ZenBlog.Persistance.csproj"
               },
-              "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Presentation\\ZenBlog.Presentation.csproj": {
-                "projectPath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Presentation\\ZenBlog.Presentation.csproj"
+              "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Presentation\\ZenBlog.Presentation.csproj": {
+                "projectPath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Presentation\\ZenBlog.Presentation.csproj"
               },
-              "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlogServer.ServiceDefaults\\ZenBlogServer.ServiceDefaults.csproj": {
-                "projectPath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlogServer.ServiceDefaults\\ZenBlogServer.ServiceDefaults.csproj"
+              "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlogServer.ServiceDefaults\\ZenBlogServer.ServiceDefaults.csproj": {
+                "projectPath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlogServer.ServiceDefaults\\ZenBlogServer.ServiceDefaults.csproj"
               }
             }
           }
@@ -547,14 +547,14 @@
         }
       }
     },
-    "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\ZenBlog.Application.csproj": {
+    "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\ZenBlog.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\ZenBlog.Application.csproj",
+        "projectUniqueName": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\ZenBlog.Application.csproj",
         "projectName": "ZenBlog.Application",
-        "projectPath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\ZenBlog.Application.csproj",
+        "projectPath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\ZenBlog.Application.csproj",
         "packagesPath": "C:\\Users\\Murad\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\obj\\",
+        "outputPath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -576,8 +576,8 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Domain\\ZenBlog.Domain.csproj": {
-                "projectPath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Domain\\ZenBlog.Domain.csproj"
+              "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Domain\\ZenBlog.Domain.csproj": {
+                "projectPath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Domain\\ZenBlog.Domain.csproj"
               }
             }
           }
@@ -1044,14 +1044,14 @@
         }
       }
     },
-    "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Domain\\ZenBlog.Domain.csproj": {
+    "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Domain\\ZenBlog.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Domain\\ZenBlog.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Domain\\ZenBlog.Domain.csproj",
         "projectName": "ZenBlog.Domain",
-        "projectPath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Domain\\ZenBlog.Domain.csproj",
+        "projectPath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Domain\\ZenBlog.Domain.csproj",
         "packagesPath": "C:\\Users\\Murad\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Domain\\obj\\",
+        "outputPath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1394,14 +1394,14 @@
         }
       }
     },
-    "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Infrastructure\\ZenBlog.Infrastructure.csproj": {
+    "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Infrastructure\\ZenBlog.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Infrastructure\\ZenBlog.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Infrastructure\\ZenBlog.Infrastructure.csproj",
         "projectName": "ZenBlog.Infrastructure",
-        "projectPath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Infrastructure\\ZenBlog.Infrastructure.csproj",
+        "projectPath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Infrastructure\\ZenBlog.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\Murad\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Infrastructure\\obj\\",
+        "outputPath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1423,8 +1423,8 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\ZenBlog.Application.csproj": {
-                "projectPath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\ZenBlog.Application.csproj"
+              "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\ZenBlog.Application.csproj": {
+                "projectPath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\ZenBlog.Application.csproj"
               }
             }
           }
@@ -1756,14 +1756,14 @@
         }
       }
     },
-    "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Persistance\\ZenBlog.Persistance.csproj": {
+    "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Persistance\\ZenBlog.Persistance.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Persistance\\ZenBlog.Persistance.csproj",
+        "projectUniqueName": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Persistance\\ZenBlog.Persistance.csproj",
         "projectName": "ZenBlog.Persistance",
-        "projectPath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Persistance\\ZenBlog.Persistance.csproj",
+        "projectPath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Persistance\\ZenBlog.Persistance.csproj",
         "packagesPath": "C:\\Users\\Murad\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Persistance\\obj\\",
+        "outputPath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Persistance\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1785,8 +1785,8 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\ZenBlog.Application.csproj": {
-                "projectPath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\ZenBlog.Application.csproj"
+              "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\ZenBlog.Application.csproj": {
+                "projectPath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\ZenBlog.Application.csproj"
               }
             }
           }
@@ -2259,14 +2259,14 @@
         }
       }
     },
-    "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Presentation\\ZenBlog.Presentation.csproj": {
+    "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Presentation\\ZenBlog.Presentation.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Presentation\\ZenBlog.Presentation.csproj",
+        "projectUniqueName": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Presentation\\ZenBlog.Presentation.csproj",
         "projectName": "ZenBlog.Presentation",
-        "projectPath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Presentation\\ZenBlog.Presentation.csproj",
+        "projectPath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Presentation\\ZenBlog.Presentation.csproj",
         "packagesPath": "C:\\Users\\Murad\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Presentation\\obj\\",
+        "outputPath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Presentation\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -2288,11 +2288,11 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\ZenBlog.Application.csproj": {
-                "projectPath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\ZenBlog.Application.csproj"
+              "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\ZenBlog.Application.csproj": {
+                "projectPath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Application\\ZenBlog.Application.csproj"
               },
-              "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Infrastructure\\ZenBlog.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Infrastructure\\ZenBlog.Infrastructure.csproj"
+              "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Infrastructure\\ZenBlog.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Infrastructure\\ZenBlog.Infrastructure.csproj"
               }
             }
           }
@@ -2763,14 +2763,14 @@
         }
       }
     },
-    "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlogServer.ServiceDefaults\\ZenBlogServer.ServiceDefaults.csproj": {
+    "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlogServer.ServiceDefaults\\ZenBlogServer.ServiceDefaults.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlogServer.ServiceDefaults\\ZenBlogServer.ServiceDefaults.csproj",
+        "projectUniqueName": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlogServer.ServiceDefaults\\ZenBlogServer.ServiceDefaults.csproj",
         "projectName": "ZenBlogServer.ServiceDefaults",
-        "projectPath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlogServer.ServiceDefaults\\ZenBlogServer.ServiceDefaults.csproj",
+        "projectPath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlogServer.ServiceDefaults\\ZenBlogServer.ServiceDefaults.csproj",
         "packagesPath": "C:\\Users\\Murad\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlogServer.ServiceDefaults\\obj\\",
+        "outputPath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlogServer.ServiceDefaults\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

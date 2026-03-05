@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pyuPsGHK1XY=",
+  "dgSpecHash": "oT06yyxWQGk=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlogServer.AppHost\\ZenBlogServer.AppHost.csproj",
+  "projectFilePath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlogServer.AppHost\\ZenBlogServer.AppHost.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Murad\\.nuget\\packages\\aspire.dashboard.sdk.win-x64\\13.1.1\\aspire.dashboard.sdk.win-x64.13.1.1.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\aspire.hosting\\13.1.2\\aspire.hosting.13.1.2.nupkg.sha512",
@@ -79,15 +79,5 @@
     "C:\\Users\\Murad\\.nuget\\packages\\system.threading.ratelimiting\\8.0.0\\system.threading.ratelimiting.8.0.0.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\yamldotnet\\16.3.0\\yamldotnet.16.3.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "message": "Error occurred while getting package vulnerability data: The download of 'https://api.nuget.org/v3-vulnerabilities/2026.02.28.05.40.06/vulnerability.base.json' timed out because no data was received for 60000ms.",
-      "projectPath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlogServer.AppHost\\ZenBlogServer.AppHost.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlogServer.AppHost\\ZenBlogServer.AppHost.csproj",
-      "targetGraphs": []
-    }
-  ]
+  "logs": []
 }

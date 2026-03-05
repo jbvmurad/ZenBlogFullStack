@@ -1,3 +1,4 @@
+using GenericRepository;
 using Microsoft.EntityFrameworkCore;
 using ZenBlog.API.Configurations.Abstraction;
 using ZenBlog.Persistance.Context;
@@ -16,5 +17,6 @@ public class PersistanceServiceInstaller : IServiceInstaller
         var connectionString = configuration.GetConnectionString("ZenBlogConnection");
         services.AddDbContext<ZenBlogContext>(options =>
             options.UseNpgsql(connectionString));
+        services.AddScoped<IUnitOfWork>(srv => srv.GetRequiredService<ZenBlogContext>());
     }
 }

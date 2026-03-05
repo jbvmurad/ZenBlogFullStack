@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "AnGaxyPpdjw=",
+  "dgSpecHash": "7nvPaf3fHY0=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Persistance\\ZenBlog.Persistance.csproj",
+  "projectFilePath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Persistance\\ZenBlog.Persistance.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Murad\\.nuget\\packages\\automapper\\16.0.0\\automapper.16.0.0.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\fastexpressioncompiler\\5.3.0\\fastexpressioncompiler.5.3.0.nupkg.sha512",
@@ -56,15 +56,5 @@
     "C:\\Users\\Murad\\.nuget\\packages\\ts.entityframeworkcore.genericrepository\\10.0.0\\ts.entityframeworkcore.genericrepository.10.0.0.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\wolverinefx\\5.16.4\\wolverinefx.5.16.4.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "message": "Error occurred while getting package vulnerability data: The download of 'https://api.nuget.org/v3-vulnerabilities/2026.02.28.05.40.06/vulnerability.base.json' timed out because no data was received for 60000ms.",
-      "projectPath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Persistance\\ZenBlog.Persistance.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Persistance\\ZenBlog.Persistance.csproj",
-      "targetGraphs": []
-    }
-  ]
+  "logs": []
 }

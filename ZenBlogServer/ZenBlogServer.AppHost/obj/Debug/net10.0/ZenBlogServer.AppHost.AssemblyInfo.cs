@@ -18,17 +18,15 @@ using System.Reflection;
     "ext\\")]
 [assembly: System.Reflection.AssemblyMetadata("dcpbinpath", "C:\\Users\\Murad\\.nuget\\packages\\aspire.hosting.orchestration.win-x64\\13.1.1\\tools\\" +
     "ext\\bin\\")]
-[assembly: System.Reflection.AssemblyMetadata("apphostprojectpath", "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlogServer.Ap" +
-    "pHost")]
+[assembly: System.Reflection.AssemblyMetadata("apphostprojectpath", "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlogServer.AppHost")]
 [assembly: System.Reflection.AssemblyMetadata("apphostprojectname", "ZenBlogServer.AppHost.csproj")]
 [assembly: System.Reflection.AssemblyMetadata("aspiredashboardpath", "C:\\Users\\Murad\\.nuget\\packages\\aspire.dashboard.sdk.win-x64\\13.1.1\\tools\\Aspire.D" +
     "ashboard.exe")]
-[assembly: System.Reflection.AssemblyMetadataAttribute("apphostprojectbaseintermediateoutputpath", "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlogServer.Ap" +
-    "pHost\\obj\\")]
+[assembly: System.Reflection.AssemblyMetadataAttribute("apphostprojectbaseintermediateoutputpath", "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlogServer.AppHost\\obj\\")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("ZenBlogServer.AppHost")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+84a0ae1ef5ab9d936860ebf9103f6f1f3679bf18")]
 [assembly: System.Reflection.AssemblyProductAttribute("ZenBlogServer.AppHost")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ZenBlogServer.AppHost")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
