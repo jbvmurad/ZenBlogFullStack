@@ -5,6 +5,8 @@ import { SocialDto } from '../../_models/socialDto';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import Swiper from 'swiper';
 import AOS from 'aos';
+import { AccessControlService } from '../../_services/access-control-service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'main-layout',
@@ -16,15 +18,24 @@ export class MainLayout implements OnInit, AfterViewInit {
 
   socials: SocialDto[] = [];
 
+  isAdmin$: Observable<boolean>;
+
   constructor(
     private authService: AuthService,
-    private socialService: SocialService
-  ){}
+    private socialService: SocialService,
+    private access: AccessControlService
+  ){
+    this.isAdmin$ = this.access.isAdmin$;
+  }
 
   private swiper: Swiper | undefined;
   isMobileMenuOpen = false;
 
   ngOnInit() {
+    if (this.loggedIn()) {
+      this.refreshAccess();
+    }
+
     // Load social icons/links from backend (Admin panel controls these)
     this.socialService.getAll().subscribe({
       next: (items: any) => {
@@ -89,6 +100,11 @@ export class MainLayout implements OnInit, AfterViewInit {
     });
   }
 
+  refreshAccess() {
+    // Best-effort role loading (used for showing/hiding the Dashboard link)
+    this.access.ensureLoaded().subscribe();
+  }
+
   ngAfterViewInit() {
     // Remove preloader after view is initialized
     const preloader = document.querySelector('#preloader');
@@ -115,6 +131,18 @@ export class MainLayout implements OnInit, AfterViewInit {
       top: 0,
       behavior: 'smooth'
     });
+  }
+
+  logout() {
+    this.access.clear();
+    this.authService.logout();
+  }
+
+  getUserDisplayName(): string {
+    // Prefer FullName, fallback to username
+    const full = this.authService.getFullName();
+    const userName = this.authService.getUserName();
+    return full || userName || 'Account';
   }
 
 

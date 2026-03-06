@@ -17,6 +17,11 @@ import { Comment } from './_admin-components/comment/comment';
 import { ContactInfo } from './_admin-components/contact-info/contact-info';
 import { Message } from './_admin-components/message/message';
 import { Social } from './_admin-components/social/social';
+import { Profile } from './_main-components/profile/profile';
+import { Settings } from './_main-components/settings/settings';
+import { AdminGuard } from './_guards/admin-guard';
+import { GuestGuard } from './_guards/guest-guard';
+import { UserRoles } from './_admin-components/user-roles/user-roles';
 
 
 const routes: Routes = [
@@ -27,8 +32,8 @@ const routes: Routes = [
 
   children: [
     {path:'', component:Home},
-    {path:'login',component:Login},
-    {path:'register',component:Register},
+    {path:'login',component:Login, canActivate:[GuestGuard]},
+    {path:'register',component:Register, canActivate:[GuestGuard]},
     {path:'forgot-password',component:ForgotPassword},
     {path:'reset-password',component:ResetPassword},
     {path:'verify-email',component:VerifyEmail},
@@ -43,7 +48,11 @@ const routes: Routes = [
     { path: 'ResetPassword', redirectTo: 'reset-password', pathMatch: 'full' },
 
     {path:'blogdetails/:id',component:Blogdetails},
-    {path:'contact',component:ContactMain}
+    {path:'contact',component:ContactMain},
+
+    // Account
+    {path:'profile',component:Profile, canActivate:[AuthGuard]},
+    {path:'settings',component:Settings, canActivate:[AuthGuard]}
   ]
 },
 
@@ -53,26 +62,30 @@ const routes: Routes = [
 
 {path:'admin',
   component:AdminLayout,
-  canActivate:[AuthGuard],
+  canActivate:[AdminGuard],
   children:[
+    { path: '', redirectTo: 'category', pathMatch: 'full' },
     {path:'category',
       component:Category,
-    canActivate:[AuthGuard]},
+    },
     {path:'blog',
        component:Blog,
-      canActivate:[AuthGuard]},
+      },
        {path:'comment',
        component:Comment,
-      canActivate:[AuthGuard]},
+      },
       {path:'contactinfo',
        component:ContactInfo,
-      canActivate:[AuthGuard]},
+      },
        {path:'message',
        component:Message,
-      canActivate:[AuthGuard]},
+      },
        {path:'social',
        component:Social,
-      canActivate:[AuthGuard]}
+      },
+
+      // Role assignment (admin only)
+      {path:'users', component:UserRoles}
 
   ]
 }

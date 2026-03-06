@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { RegisterDto } from '../../_models/registerDto';
 import { AuthService } from '../../_services/auth-service';
 import { GOOGLE_CLIENT_ID } from '../../_configs/google-auth';
+import { AccessControlService } from '../../_services/access-control-service';
 
 declare const alertify: any;
 declare const google: any;
@@ -18,7 +19,8 @@ export class Register implements AfterViewInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private access: AccessControlService
   ) {}
 
   register() {
@@ -108,7 +110,8 @@ export class Register implements AfterViewInit {
 
         localStorage.setItem('token', token);
         alertify.success('Welcome! Signed in with Google.');
-        this.router.navigate(['/admin']);
+        this.access.ensureLoaded(true).subscribe();
+        this.router.navigate(['']);
       },
       error: (err) => {
         let parsedMsg: string | null = null;

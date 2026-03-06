@@ -1,0 +1,16 @@
+.profile-card {
+  border: 0;
+  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+  border-radius: 16px;
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: rgba(14,162,189,.12);
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  color: #0ea2bd;
+}

@@ -31,11 +31,25 @@ export class TokenInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // Do NOT attach Bearer token to auth endpoints.
-    // Otherwise a stale/invalid token in localStorage can break anonymous flows like
-    // /api/Auth/login-google with "JWT contains untrusted 'aud' claim".
-    // (Backend always validates issuer/audience when a Bearer token is present.)
-    if (req.url.includes('/api/Auth/') || req.url.endsWith('/api/Auth')) {
+    // Only skip attaching Bearer token for *anonymous* auth endpoints.
+    // If we skip for every /api/Auth call, authenticated operations like:
+    //   - PUT /api/Auth (update user)
+    //   - DELETE /api/Auth?id=... (delete user)
+    // will fail because backend requires JWT for those.
+    const url = (req.url ?? '').toLowerCase();
+    const isAuthController = url.includes('/api/auth');
+    const anonymousAuthEndpoints = [
+      '/api/auth/login',
+      '/api/auth/login-google',
+      '/api/auth/register',
+      '/api/auth/confirm-email',
+      '/api/auth/resend-confirmation',
+      '/api/auth/forgot-password',
+      '/api/auth/reset-password',
+      '/api/auth/createtoken'
+    ];
+
+    if (isAuthController && anonymousAuthEndpoints.some(p => url.includes(p))) {
       return next.handle(req);
     }
 

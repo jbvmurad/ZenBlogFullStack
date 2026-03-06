@@ -9,7 +9,29 @@
         <ul>
           <li><a routerLink="" routerLinkActive="active">Home</a></li>
           <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
-          <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
+
+          <!-- Guest links -->
+          <ng-container *ngIf="!loggedIn(); else loggedInMenu">
+            <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
+            <li><a routerLink="/register" routerLinkActive="active">Register</a></li>
+          </ng-container>
+
+          <!-- Logged-in menu -->
+          <ng-template #loggedInMenu>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-user-circle me-1"></i>
+                <span>{{ getUserDisplayName() }}</span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end shadow">
+                <li><a class="dropdown-item" routerLink="/profile">Profile</a></li>
+                <li><a class="dropdown-item" routerLink="/settings">Settings</a></li>
+                <li *ngIf="(isAdmin$ | async)"><a class="dropdown-item" routerLink="/admin/category">Dashboard</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><button class="dropdown-item" (click)="logout()">Logout</button></li>
+              </ul>
+            </li>
+          </ng-template>
         </ul>
 
       </nav>

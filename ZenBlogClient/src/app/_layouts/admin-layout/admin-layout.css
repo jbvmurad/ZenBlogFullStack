@@ -133,3 +133,18 @@ main {
       .bd-mode-toggle .dropdown-menu .active .bi {
         display: block !important;
       }
+
+/* Make admin pages use the available width nicely (avoid large empty sides) */
+.admin-content {
+  width: 100%;
+  min-width: 0;
+}
+
+/* Provide a consistent comfortable max-width on ultra-wide screens, while
+   still filling normal screens. */
+@media (min-width: 1400px) {
+  .admin-content {
+    padding-left: 2.25rem !important;
+    padding-right: 2.25rem !important;
+  }
+}

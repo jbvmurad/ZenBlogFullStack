@@ -13,19 +13,36 @@ declare const alertify : any;
 })
 export class Message implements OnInit {
 
-  messages:MessageDto[];
-  unreadMessages: MessageDto[];
-  readMessages: MessageDto[];
+  messages: MessageDto[] = [];
+  unreadMessages: MessageDto[] = [];
+  readMessages: MessageDto[] = [];
   newMessage: MessageDto= new MessageDto();
   editMessage:any ={};
   errors:any= [];
 
-  ngOnInit(): void {
+  searchTerm: string = '';
 
+  ngOnInit(): void {
+    this.refresh();
+  }
+  refresh() {
     this.getUnReadMessages();
     this.getReadMessages();
+  }
 
+  private matchesSearch(m: any): boolean {
+    const q = (this.searchTerm ?? '').trim().toLowerCase();
+    if (!q) return true;
+    const hay = `${m?.name ?? ''} ${m?.email ?? ''} ${m?.subject ?? ''}`.toLowerCase();
+    return hay.includes(q);
+  }
 
+  get filteredUnread(): MessageDto[] {
+    return (this.unreadMessages ?? []).filter((m) => this.matchesSearch(m));
+  }
+
+  get filteredRead(): MessageDto[] {
+    return (this.readMessages ?? []).filter((m) => this.matchesSearch(m));
   }
 
 
@@ -48,7 +65,7 @@ export class Message implements OnInit {
 
   getUnReadMessages(){
    this.messageService.getUnreadMessages().subscribe({
-      next: result => this.unreadMessages= result,
+      next: result => this.unreadMessages= Array.isArray(result) ? result : [],
       error: err => {
         console.error(err);
         alertify.error(err?.error?.message ??  err?.error?.Message ?? err?.message ?? "An Error Occured!")
@@ -58,7 +75,7 @@ export class Message implements OnInit {
 
   getReadMessages(){
    this.messageService.getReadMessages().subscribe({
-      next: result => this.readMessages= result,
+      next: result => this.readMessages= Array.isArray(result) ? result : [],
       error: err => {
         console.error(err);
         alertify.error(err?.error?.message ??  err?.error?.Message ?? err?.message ?? "An Error Occured!")

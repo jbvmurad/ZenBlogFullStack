@@ -19,8 +19,27 @@ export class VerifyEmail implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const userId = this.route.snapshot.queryParamMap.get('userId');
-    const token = this.route.snapshot.queryParamMap.get('token');
+    const qp = this.route.snapshot.queryParamMap;
+
+    const userId =
+      qp.get('userId') ??
+      qp.get('userid') ??
+      qp.get('UserId') ??
+      qp.get('id') ??
+      qp.get('uid');
+
+    let token =
+      qp.get('token') ??
+      qp.get('Token') ??
+      qp.get('code') ??
+      qp.get('confirmationToken') ??
+      qp.get('emailToken');
+
+    // Common issue: confirmation tokens include '+' which can be converted to space
+    // by some URL parsers. Convert spaces back to '+' for safer backend validation.
+    if (token && token.includes(' ')) {
+      token = token.replace(/\s/g, '+');
+    }
 
     if (!userId || !token) {
       this.status = 'error';

@@ -210,6 +210,12 @@
             </a>
           </li>
 
+          <li class="nav-item">
+            <a routerLink="/admin/users" routerLinkActive="active" class="nav-link text-white" aria-current="page">
+              <i class="fa fa-users"></i> Users & Roles
+            </a>
+          </li>
+
 
 
 
@@ -232,23 +238,14 @@
             <strong>{{getUserName()}}</strong>
           </a>
           <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-            <li><a class="dropdown-item" href="#">New project...</a></li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a class="dropdown-item" routerLink="/settings">Settings</a></li>
+            <li><a class="dropdown-item" routerLink="/profile">Profile</a></li>
             <li><hr class="dropdown-divider" /></li>
             <li><button class="dropdown-item" (click)="logout()">Sign out </button></li>
           </ul>
         </div>
       </div>
-
-
-      <div class="b-example-vr"></div>
-
-
-
-
-
-<div class="flex-grow-1 overflow-auto p-3">
+<div class="flex-grow-1 overflow-auto px-4 py-4 admin-content">
  <router-outlet></router-outlet>
 </div>
 

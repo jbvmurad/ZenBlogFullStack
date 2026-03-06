@@ -1,0 +1,111 @@
+<div class="container" style="max-width: 900px;">
+  <div class="d-flex align-items-center justify-content-between mb-3">
+    <div>
+      <h2 class="mb-1">Settings</h2>
+      <p class="text-muted mb-0">Update your account details.</p>
+    </div>
+    <a routerLink="/profile" class="btn btn-light btn-sm">
+      <i class="fa fa-user me-1"></i> Profile
+    </a>
+  </div>
+
+  <div *ngIf="loading" class="card p-4">
+    <div class="d-flex align-items-center">
+      <div class="spinner-border" role="status" aria-label="Loading"></div>
+      <div class="ms-3">Loading settings…</div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading" class="row g-3">
+    <div class="col-12 col-lg-8">
+      <div class="card soft-card">
+        <div class="card-body">
+          <h5 class="card-title mb-3">Profile information</h5>
+
+          <form [formGroup]="form" (ngSubmit)="save()" novalidate>
+            <div class="mb-3">
+              <label class="form-label">Full name</label>
+              <input type="text" class="form-control" formControlName="fullName" placeholder="Your name" />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" formControlName="email" placeholder="name@example.com" />
+              <div class="text-danger small mt-1" *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
+                Please enter a valid email.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Phone</label>
+              <input type="text" class="form-control" formControlName="phoneNumber" placeholder="+994 ..." />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Current password <span class="text-danger">*</span></label>
+              <input
+                type="password"
+                class="form-control"
+                formControlName="currentPassword"
+                placeholder="Required to save changes"
+              />
+              <div class="text-danger small mt-1" *ngIf="form.get('currentPassword')?.touched && form.get('currentPassword')?.invalid">
+                Current password is required.
+              </div>
+              <div class="text-muted small mt-1">
+                For security, we need your current password to update your account details.
+              </div>
+            </div>
+
+            <div class="form-check form-switch mb-3">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="changePwd"
+                [checked]="changePassword"
+                (change)="changePassword = $any($event.target).checked"
+              />
+              <label class="form-check-label" for="changePwd">Change password</label>
+            </div>
+
+            <div *ngIf="changePassword" class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label">New password</label>
+                <input type="password" class="form-control" formControlName="newPassword" placeholder="Enter new password" />
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Confirm new password</label>
+                <input type="password" class="form-control" formControlName="confirmNewPassword" placeholder="Repeat new password" />
+              </div>
+              <div class="col-12">
+                <div class="alert alert-light border small mb-3">
+                  Password must meet the server rules (min 8 chars, upper/lowercase, number, special char).
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex flex-wrap gap-2">
+              <button class="btn btn-primary" type="submit" [disabled]="saving">
+                <span *ngIf="!saving">Save changes</span>
+                <span *ngIf="saving">Saving…</span>
+              </button>
+              <a routerLink="/" class="btn btn-light">Cancel</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-lg-4">
+      <div class="card soft-card border-danger">
+        <div class="card-body">
+          <h5 class="card-title text-danger">Delete account</h5>
+          <p class="text-muted">Once you delete your account, there is no going back.</p>
+          <button class="btn btn-outline-danger w-100" (click)="deleteAccount()">
+            <i class="fa fa-trash me-1"></i> Delete my account
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

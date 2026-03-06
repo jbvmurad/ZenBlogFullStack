@@ -32,6 +32,32 @@ a:hover {
   padding: 0 15px;
 }
 
+/* --------------------
+   Admin dashboard UI
+   -------------------- */
+.admin-page {
+  width: 100%;
+}
+
+.admin-page-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.admin-card {
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.admin-card .table thead th {
+  white-space: nowrap;
+}
+
 /* Utility Classes */
 .text-primary { color: var(--primary-color) !important; }
 .text-secondary { color: var(--secondary-color) !important; }
@@ -39,3 +65,38 @@ a:hover {
 .bg-secondary { background-color: var(--secondary-color) !important; }
 .bg-dark { background-color: var(--dark-color) !important; }
 .bg-light { background-color: var(--light-color) !important; }
+
+/* Admin dashboard shared styles */
+.admin-page {
+  width: 100%;
+}
+
+.admin-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.admin-card {
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.admin-card .table {
+  margin-bottom: 0;
+}
+
+.admin-card .table th,
+.admin-card .table td {
+  padding: 0.95rem 0.9rem;
+  vertical-align: middle;
+}
+
+.admin-page .btn-primary {
+  border-radius: 12px;
+}

@@ -1,0 +1,9 @@
+.soft-card {
+  border: 0;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+}
+
+.soft-card.border-danger {
+  border: 1px solid rgba(220,53,69,.25) !important;
+}

@@ -22,7 +22,7 @@
   margin: 0;
 }
 
-.navmenu ul {
+.navmenu > ul {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -30,21 +30,50 @@
   align-items: center;
 }
 
-.navmenu li {
+.navmenu > ul > li {
   position: relative;
   margin: 0 0.5rem;
 }
 
-.navmenu a {
+.navmenu > ul > li > a {
   color: #000;
   text-decoration: none;
   padding: 0.5rem 1rem;
   display: block;
 }
 
-.navmenu a:hover,
+.navmenu > ul > li > a:hover,
 .navmenu .active {
   color: #0ea2bd;
+}
+
+/* Keep bootstrap dropdown menus working inside our custom nav */
+.navmenu .dropdown-menu {
+  min-width: 220px;
+}
+
+/* Open profile dropdown on hover (desktop) */
+@media (min-width: 992px) {
+  .navmenu li.dropdown > .dropdown-menu {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition: opacity 150ms ease, transform 150ms ease, visibility 150ms ease;
+    pointer-events: none;
+  }
+
+  .navmenu li.dropdown:hover > .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
+
+.navmenu .dropdown-menu a,
+.navmenu .dropdown-menu button {
+  padding: 0.6rem 1rem;
 }
 
 .header-social-links a {

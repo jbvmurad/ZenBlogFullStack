@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../_services/auth-service';
+import { AccessControlService } from '../../_services/access-control-service';
 
 @Component({
   selector: 'admin-layout',
@@ -9,7 +10,7 @@ import { AuthService } from '../../_services/auth-service';
 })
 export class AdminLayout {
 
-constructor(private authService: AuthService){}
+constructor(private authService: AuthService, private access: AccessControlService){}
 
 
 
@@ -20,6 +21,7 @@ getUserName(){
 
 logout(){
 
+  this.access.clear();
   this.authService.logout();
 }
 
