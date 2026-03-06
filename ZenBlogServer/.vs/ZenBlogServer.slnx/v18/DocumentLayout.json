@@ -1,28 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{786EF84C-FBB9-BB47-CC32-3BE6556079F2}|ZenBlog.API\\ZenBlog.API.csproj|c:\\users\\murad\\desktop\\zenblogfullstack\\zenblogserver\\zenblog.api\\middleware\\middlewareextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{786EF84C-FBB9-BB47-CC32-3BE6556079F2}|ZenBlog.API\\ZenBlog.API.csproj|solutionrelative:zenblog.api\\middleware\\middlewareextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{786EF84C-FBB9-BB47-CC32-3BE6556079F2}|ZenBlog.API\\ZenBlog.API.csproj|c:\\users\\murad\\desktop\\zenblogfullstack\\zenblogserver\\zenblog.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{786EF84C-FBB9-BB47-CC32-3BE6556079F2}|ZenBlog.API\\ZenBlog.API.csproj|solutionrelative:zenblog.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{786EF84C-FBB9-BB47-CC32-3BE6556079F2}|ZenBlog.API\\ZenBlog.API.csproj|c:\\users\\murad\\desktop\\zenblogfullstack\\zenblogserver\\zenblog.api\\configurations\\serviceinstallers\\infrastructureserviceinstallers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{786EF84C-FBB9-BB47-CC32-3BE6556079F2}|ZenBlog.API\\ZenBlog.API.csproj|solutionrelative:zenblog.api\\configurations\\serviceinstallers\\infrastructureserviceinstallers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{786EF84C-FBB9-BB47-CC32-3BE6556079F2}|ZenBlog.API\\ZenBlog.API.csproj|c:\\users\\murad\\desktop\\zenblogfullstack\\zenblogserver\\zenblog.api\\configurations\\serviceinstallers\\applicationserviceinstaller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{786EF84C-FBB9-BB47-CC32-3BE6556079F2}|ZenBlog.API\\ZenBlog.API.csproj|solutionrelative:zenblog.api\\configurations\\serviceinstallers\\applicationserviceinstaller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{786EF84C-FBB9-BB47-CC32-3BE6556079F2}|ZenBlog.API\\ZenBlog.API.csproj|c:\\users\\murad\\desktop\\zenblogfullstack\\zenblogserver\\zenblog.api\\configurations\\serviceinstallers\\persistancediserviceinstaller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{786EF84C-FBB9-BB47-CC32-3BE6556079F2}|ZenBlog.API\\ZenBlog.API.csproj|solutionrelative:zenblog.api\\configurations\\serviceinstallers\\persistancediserviceinstaller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -30,34 +9,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": -1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MiddlewareExtension.cs",
-              "DocumentMoniker": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.API\\Middleware\\MiddlewareExtension.cs",
-              "RelativeDocumentMoniker": "ZenBlog.API\\Middleware\\MiddlewareExtension.cs",
-              "ToolTip": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.API\\Middleware\\MiddlewareExtension.cs",
-              "RelativeToolTip": "ZenBlog.API\\Middleware\\MiddlewareExtension.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-05T13:34:39.595Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "InfrastructureServiceInstallers.cs",
-              "DocumentMoniker": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.API\\Configurations\\ServiceInstallers\\InfrastructureServiceInstallers.cs",
-              "RelativeDocumentMoniker": "ZenBlog.API\\Configurations\\ServiceInstallers\\InfrastructureServiceInstallers.cs",
-              "ToolTip": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.API\\Configurations\\ServiceInstallers\\InfrastructureServiceInstallers.cs",
-              "RelativeToolTip": "ZenBlog.API\\Configurations\\ServiceInstallers\\InfrastructureServiceInstallers.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-05T13:03:57.27Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:131:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
@@ -89,45 +42,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ApplicationServiceInstaller.cs",
-              "DocumentMoniker": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.API\\Configurations\\ServiceInstallers\\ApplicationServiceInstaller.cs",
-              "RelativeDocumentMoniker": "ZenBlog.API\\Configurations\\ServiceInstallers\\ApplicationServiceInstaller.cs",
-              "ToolTip": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.API\\Configurations\\ServiceInstallers\\ApplicationServiceInstaller.cs",
-              "RelativeToolTip": "ZenBlog.API\\Configurations\\ServiceInstallers\\ApplicationServiceInstaller.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-05T13:32:57.957Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.API\\Program.cs",
-              "RelativeDocumentMoniker": "ZenBlog.API\\Program.cs",
-              "ToolTip": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.API\\Program.cs",
-              "RelativeToolTip": "ZenBlog.API\\Program.cs",
-              "ViewState": "AgIAADgAAAAAAAAAAAArwEwAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-05T13:32:26.199Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PersistanceDIServiceInstaller.cs",
-              "DocumentMoniker": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.API\\Configurations\\ServiceInstallers\\PersistanceDIServiceInstaller.cs",
-              "RelativeDocumentMoniker": "ZenBlog.API\\Configurations\\ServiceInstallers\\PersistanceDIServiceInstaller.cs",
-              "ToolTip": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.API\\Configurations\\ServiceInstallers\\PersistanceDIServiceInstaller.cs",
-              "RelativeToolTip": "ZenBlog.API\\Configurations\\ServiceInstallers\\PersistanceDIServiceInstaller.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-05T13:32:16.231Z",
-              "EditorCaption": ""
             }
           ]
         }
