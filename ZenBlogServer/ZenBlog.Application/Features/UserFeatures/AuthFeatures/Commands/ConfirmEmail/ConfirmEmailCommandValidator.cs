@@ -1,7 +1,7 @@
 using FluentValidation;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.ConfirmEmail;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.ConfirmEmail;
 
-namespace ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.ConfirmEmail;
+namespace ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.ConfirmEmail;
 
 public sealed class ConfirmEmailCommandValidator : AbstractValidator<ConfirmEmailCommand>
 {

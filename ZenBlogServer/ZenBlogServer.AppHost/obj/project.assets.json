@@ -3814,11 +3814,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlogServer.AppHost\\ZenBlogServer.AppHost.csproj",
+      "projectUniqueName": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlogServer.AppHost\\ZenBlogServer.AppHost.csproj",
       "projectName": "ZenBlogServer.AppHost",
-      "projectPath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlogServer.AppHost\\ZenBlogServer.AppHost.csproj",
+      "projectPath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlogServer.AppHost\\ZenBlogServer.AppHost.csproj",
       "packagesPath": "C:\\Users\\Murad\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlogServer.AppHost\\obj\\",
+      "outputPath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlogServer.AppHost\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -4179,13 +4179,5 @@
         }
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Error occurred while getting package vulnerability data: The download of 'https://api.nuget.org/v3-vulnerabilities/2026.02.28.05.40.06/vulnerability.base.json' timed out because no data was received for 60000ms."
-    }
-  ]
+  }
 }

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using ZenBlog.Application.Features.UserAttributeFeatures.RoleFeatures.Commands.CreateRole;
-using ZenBlog.Application.Features.UserAttributeFeatures.RoleFeatures.Commands.DeleteRole;
+using ZenBlog.Application.Features.UserFeatures.RoleFeatures.Commands.CreateRole;
+using ZenBlog.Application.Features.UserFeatures.RoleFeatures.Commands.DeleteRole;
 using ZenBlog.Application.Services.UserAttributeService;
 using ZenBlog.Domain.Entities.UserEntities;
 

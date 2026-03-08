@@ -1,7 +1,7 @@
 using ZenBlog.Application.Services.UserAttributeService;
 using ZenBlog.Domain.DTOs.SystemDTOs;
 
-namespace ZenBlog.Application.Features.UserAttributeFeatures.UserRoleFeatures.Commands.GiveUserRole;
+namespace ZenBlog.Application.Features.UserFeatures.UserRoleFeatures.Commands.GiveUserRole;
 
 public sealed class GiveUserRoleCommandHandler
 {

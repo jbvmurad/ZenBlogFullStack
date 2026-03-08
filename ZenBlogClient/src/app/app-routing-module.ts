@@ -17,7 +17,9 @@ import { Comment } from './_admin-components/comment/comment';
 import { ContactInfo } from './_admin-components/contact-info/contact-info';
 import { Message } from './_admin-components/message/message';
 import { Social } from './_admin-components/social/social';
-
+import { Profile } from './_main-components/profile/profile';
+import { Settings } from './_main-components/settings/settings';
+import { UserRoles } from './_admin-components/user-roles/user-roles';
 
 const routes: Routes = [
 
@@ -43,7 +45,9 @@ const routes: Routes = [
     { path: 'ResetPassword', redirectTo: 'reset-password', pathMatch: 'full' },
 
     {path:'blogdetails/:id',component:Blogdetails},
-    {path:'contact',component:ContactMain}
+    {path:'contact',component:ContactMain},
+    {path:'profile',component:Profile, canActivate:[AuthGuard]},
+    {path:'settings',component:Settings, canActivate:[AuthGuard]}
   ]
 },
 
@@ -54,7 +58,9 @@ const routes: Routes = [
 {path:'admin',
   component:AdminLayout,
   canActivate:[AuthGuard],
+  data:{ adminOnly: true },
   children:[
+    {path:'', redirectTo:'category', pathMatch:'full'},
     {path:'category',
       component:Category,
     canActivate:[AuthGuard]},
@@ -72,6 +78,9 @@ const routes: Routes = [
       canActivate:[AuthGuard]},
        {path:'social',
        component:Social,
+      canActivate:[AuthGuard]},
+      {path:'users',
+       component:UserRoles,
       canActivate:[AuthGuard]}
 
   ]

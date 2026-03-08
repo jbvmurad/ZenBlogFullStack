@@ -1,116 +1,253 @@
-<h3>Messages</h3>
-
-
-<!-- Show Message Modal -->
-<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="editModalLabel">Message Details</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-          <table class="table table-bordered table-striped">
-              <thead>
-                <tr>
-                  <th>Name :</th>
-                  <td>{{editMessage.name}}</td>
-                </tr>
-                <tr>
-                  <th>Email :</th>
-                  <td>{{editMessage.email}}</td>
-                </tr>
-                <tr>
-                  <th>Subject :</th>
-                  <td>{{editMessage.subject}}</td>
-                </tr>
-                <tr>
-                  <th>Message :</th>
-                  <td>{{editMessage.messageBody}}</td>
-                </tr>
-              </thead>
-          </table>
-
-          <button class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
-      </div>
-
+<div class="messages-page">
+  <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+    <div>
+      <h3 class="mb-0">Messages</h3>
+      <div class="text-muted small">Contact form inbox (Unread / Read)</div>
     </div>
 
-  </div>
-</div>
-
-
-
-
-
-<ul class="nav nav-tabs mt-4" id="myTab" role="tablist">
-  <li class="nav-item" role="presentation">
-    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Unread Messages</button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Read Messages</button>
-  </li>
-
-</ul>
-<div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-    <h4>Unread Messages</h4>
-    <table class="table table-bordered table-hover">
-  <thead>
-
-
-    <tr>
-      <th>#</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Subject</th>
-      <th>Options</th>
-    </tr>
-  </thead>
-<tbody>
-  <tr *ngFor="let item of unreadMessages; let i = index;">
-    <th>{{i+1}}</th>
-    <td>{{item.name}}</td>
-    <td>{{item.email}}</td>
-    <td>{{item.subject}}</td>
-    <td>
-      <button class="btn btn-outline-danger"  (click)="delete(item.id)"> <i class="fa fa-trash"></i>  </button>
-      <button class="btn btn-outline-info ms-2"  data-bs-toggle="modal" data-bs-target="#editModal" (click)="onSelected(item)" ><i class="fa fa-comments"></i>  </button>
-    </td>
-  </tr>
-</tbody>
-</table>
+    <div class="d-flex align-items-center gap-2">
+      <div class="input-group input-group-sm messages-search">
+        <span class="input-group-text"><i class="fa fa-search"></i></span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="searchTerm"
+          placeholder="Search name, email, subject…"
+          aria-label="Search messages"
+        />
+        <button class="btn btn-light" type="button" (click)="searchTerm=''" [disabled]="!searchTerm">
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
+      <button class="btn btn-sm btn-light" type="button" (click)="refresh()" title="Refresh">
+        <i class="fa fa-rotate-right"></i>
+      </button>
+    </div>
   </div>
 
+  <div class="row g-3 mb-3">
+    <div class="col-12 col-md-6">
+      <div class="card stat-card">
+        <div class="card-body d-flex align-items-center justify-content-between">
+          <div>
+            <div class="text-muted small">Unread</div>
+            <div class="stat-number">{{ unreadMessages?.length ?? 0 }}</div>
+          </div>
+          <div class="stat-icon"><i class="fa fa-envelope"></i></div>
+        </div>
+      </div>
+    </div>
 
-  <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-    <h4 class="justify-content-center">Read Messages</h4>
-    <table class="table table-bordered table-hover">
-  <thead>
-
-
-    <tr>
-      <th>#</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Subject</th>
-      <th>Options</th>
-    </tr>
-  </thead>
-<tbody>
-  <tr *ngFor="let item of readMessages; let i = index;">
-    <th>{{i+1}}</th>
-    <td>{{item.name}}</td>
-    <td>{{item.email}}</td>
-    <td>{{item.subject}}</td>
-    <td>
-      <button class="btn btn-outline-danger"  (click)="delete(item.id)"> <i class="fa fa-trash"></i>  </button>
-      <button class="btn btn-outline-info ms-2"  data-bs-toggle="modal" data-bs-target="#editModal" (click)="onSelected(item)" ><i class="fa fa-comments"></i>  </button>
-    </td>
-  </tr>
-</tbody>
-</table>
+    <div class="col-12 col-md-6">
+      <div class="card stat-card">
+        <div class="card-body d-flex align-items-center justify-content-between">
+          <div>
+            <div class="text-muted small">Read</div>
+            <div class="stat-number">{{ readMessages?.length ?? 0 }}</div>
+          </div>
+          <div class="stat-icon"><i class="fa fa-envelope-open"></i></div>
+        </div>
+      </div>
+    </div>
   </div>
 
+  <!-- Show Message Modal -->
+  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div>
+            <h1 class="modal-title fs-5 mb-0" id="editModalLabel">Message</h1>
+            <div class="small text-muted">{{ editMessage?.email }}</div>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="message-meta">
+            <div class="meta-row">
+              <div class="meta-label">Name</div>
+              <div class="meta-value">{{ editMessage?.name }}</div>
+            </div>
+            <div class="meta-row">
+              <div class="meta-label">Email</div>
+              <div class="meta-value">{{ editMessage?.email }}</div>
+            </div>
+            <div class="meta-row">
+              <div class="meta-label">Subject</div>
+              <div class="meta-value">{{ editMessage?.subject }}</div>
+            </div>
+          </div>
+
+          <div class="mt-3">
+            <div class="meta-label mb-1">Message</div>
+            <div class="message-body">{{ editMessage?.messageBody }}</div>
+          </div>
+
+          <div class="d-flex justify-content-end gap-2 mt-4">
+            <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <ul class="nav nav-pills mb-3" id="msgTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link active"
+        id="unread-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#unread-pane"
+        type="button"
+        role="tab"
+        aria-controls="unread-pane"
+        aria-selected="true"
+      >
+        Unread
+        <span class="badge ms-2 text-bg-dark">{{ unreadMessages?.length ?? 0 }}</span>
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="read-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#read-pane"
+        type="button"
+        role="tab"
+        aria-controls="read-pane"
+        aria-selected="false"
+      >
+        Read
+        <span class="badge ms-2 text-bg-secondary">{{ readMessages?.length ?? 0 }}</span>
+      </button>
+    </li>
+  </ul>
+
+  <div class="tab-content" id="msgTabsContent">
+    <!-- UNREAD -->
+    <div class="tab-pane fade show active" id="unread-pane" role="tabpanel" aria-labelledby="unread-tab" tabindex="0">
+      <div class="card soft-card">
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead>
+                <tr>
+                  <th style="width: 64px;">#</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Subject</th>
+                  <th class="text-end" style="width: 150px;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of filteredUnread; let i = index;">
+                  <td>
+                    <span class="text-muted">{{ i + 1 }}</span>
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <span class="avatar">{{ (item?.name ?? '?') | slice:0:1 }}</span>
+                      <div>
+                        <div class="fw-semibold">{{ item.name }}</div>
+                        <div class="small text-muted">Unread</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="text-muted">{{ item.email }}</td>
+                  <td>
+                    <span class="subject">{{ item.subject }}</span>
+                  </td>
+                  <td class="text-end">
+                    <button
+                      class="btn btn-sm btn-outline-secondary me-2"
+                      data-bs-toggle="modal"
+                      data-bs-target="#editModal"
+                      (click)="onSelected(item)"
+                      title="Open"
+                    >
+                      <i class="fa fa-eye"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-danger" (click)="delete(item.id)" title="Delete">
+                      <i class="fa fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr *ngIf="(filteredUnread?.length ?? 0) === 0">
+                  <td colspan="5" class="text-center text-muted py-4">
+                    No unread messages.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- READ -->
+    <div class="tab-pane fade" id="read-pane" role="tabpanel" aria-labelledby="read-tab" tabindex="0">
+      <div class="card soft-card">
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead>
+                <tr>
+                  <th style="width: 64px;">#</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Subject</th>
+                  <th class="text-end" style="width: 150px;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of filteredRead; let i = index;">
+                  <td>
+                    <span class="text-muted">{{ i + 1 }}</span>
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <span class="avatar avatar-read">{{ (item?.name ?? '?') | slice:0:1 }}</span>
+                      <div>
+                        <div class="fw-semibold">{{ item.name }}</div>
+                        <div class="small text-muted">Read</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="text-muted">{{ item.email }}</td>
+                  <td>
+                    <span class="subject">{{ item.subject }}</span>
+                  </td>
+                  <td class="text-end">
+                    <button
+                      class="btn btn-sm btn-outline-secondary me-2"
+                      data-bs-toggle="modal"
+                      data-bs-target="#editModal"
+                      (click)="onSelected(item)"
+                      title="Open"
+                    >
+                      <i class="fa fa-eye"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-danger" (click)="delete(item.id)" title="Delete">
+                      <i class="fa fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr *ngIf="(filteredRead?.length ?? 0) === 0">
+                  <td colspan="5" class="text-center text-muted py-4">
+                    No read messages.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

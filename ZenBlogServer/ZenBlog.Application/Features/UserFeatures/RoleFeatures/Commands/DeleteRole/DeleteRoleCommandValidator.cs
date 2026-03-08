@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace ZenBlog.Application.Features.UserAttributeFeatures.RoleFeatures.Commands.DeleteRole;
+namespace ZenBlog.Application.Features.UserFeatures.RoleFeatures.Commands.DeleteRole;
 
 public sealed class DeleteRoleCommandValidator : AbstractValidator<DeleteRoleCommand>
 {

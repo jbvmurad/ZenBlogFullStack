@@ -27,6 +27,9 @@ import { ErrorInterceptor } from './_interceptors/error-interceptor';
 import { Message } from './_admin-components/message/message';
 import { Social } from './_admin-components/social/social';
 import { SendMessage } from './_main-components/send-message/send-message';
+import { Profile } from './_main-components/profile/profile';
+import { Settings } from './_main-components/settings/settings';
+import { UserRoles } from './_admin-components/user-roles/user-roles';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,10 @@ import { SendMessage } from './_main-components/send-message/send-message';
     ContactInfo,
     Message,
     Social,
-    SendMessage
+    SendMessage,
+    Profile,
+    Settings,
+    UserRoles
   ],
   imports: [
     BrowserModule,

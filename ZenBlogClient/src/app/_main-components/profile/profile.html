@@ -1,0 +1,59 @@
+<section class="profile-page py-5">
+  <div class="container">
+    <div class="profile-shell" *ngIf="!loading && user; else loadingTpl">
+      <div class="profile-hero">
+        <div class="avatar-wrap">
+          <img *ngIf="user.imageUrl; else initialsAvatar" [src]="user.imageUrl" [alt]="displayName" class="avatar-img">
+          <ng-template #initialsAvatar>
+            <div class="avatar-fallback">{{ initials }}</div>
+          </ng-template>
+        </div>
+
+        <div class="profile-intro">
+          <span class="profile-badge" *ngIf="isAdmin()">Admin</span>
+          <h2>{{ displayName }}</h2>
+          <p>{{ user.email }}</p>
+          <div class="profile-actions">
+            <a routerLink="/settings" class="btn btn-dark rounded-pill px-4">Edit profile</a>
+            <a *ngIf="isAdmin()" routerLink="/admin/category" class="btn btn-outline-dark rounded-pill px-4">Dashboard</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4 mt-1">
+        <div class="col-lg-6">
+          <div class="profile-card h-100">
+            <h5>Account details</h5>
+            <div class="info-row">
+              <span>Full name</span>
+              <strong>{{ user.fullName || '-' }}</strong>
+            </div>
+            <div class="info-row">
+              <span>Email</span>
+              <strong>{{ user.email || '-' }}</strong>
+            </div>
+            <div class="info-row">
+              <span>Phone</span>
+              <strong>{{ user.phoneNumber || 'Not added yet' }}</strong>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="profile-card h-100 profile-note-card">
+            <h5>Profile photo</h5>
+            <p>Your uploaded profile image will be used in the website header, profile page and admin dashboard sidebar.</p>
+            <a routerLink="/settings" class="btn btn-outline-dark rounded-pill px-4">Change photo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #loadingTpl>
+  <section class="profile-page py-5">
+    <div class="container">
+      <div class="profile-card text-center py-5">Loading profile...</div>
+    </div>
+  </section>
+</ng-template>

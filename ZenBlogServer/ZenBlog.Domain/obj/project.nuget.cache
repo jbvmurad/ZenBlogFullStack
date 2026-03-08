@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1Nf3Zmo21es=",
+  "dgSpecHash": "+m10fGClo2M=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Domain\\ZenBlog.Domain.csproj",
+  "projectFilePath": "C:\\Users\\Murad\\Desktop\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Domain\\ZenBlog.Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Murad\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\10.0.3\\microsoft.aspnetcore.cryptography.internal.10.0.3.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\10.0.3\\microsoft.aspnetcore.cryptography.keyderivation.10.0.3.nupkg.sha512",
@@ -29,15 +29,5 @@
     "C:\\Users\\Murad\\.nuget\\packages\\microsoft.extensions.primitives\\10.0.3\\microsoft.extensions.primitives.10.0.3.nupkg.sha512",
     "C:\\Users\\Murad\\.nuget\\packages\\ts.entityframeworkcore.genericrepository\\10.0.0\\ts.entityframeworkcore.genericrepository.10.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "message": "Error occurred while getting package vulnerability data: The download of 'https://api.nuget.org/v3-vulnerabilities/2026.02.28.05.40.06/vulnerability.base.json' timed out because no data was received for 60000ms.",
-      "projectPath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Domain\\ZenBlog.Domain.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\Murad\\Desktop\\New folder\\ZenBlogFullStack\\ZenBlogServer\\ZenBlog.Domain\\ZenBlog.Domain.csproj",
-      "targetGraphs": []
-    }
-  ]
+  "logs": []
 }

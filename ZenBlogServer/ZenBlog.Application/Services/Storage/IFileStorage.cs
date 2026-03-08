@@ -6,5 +6,6 @@ public interface IFileStorage
 {
     Task<string> SaveImageAsync(IFormFile media, CancellationToken cancellationToken);
 
+#nullable enable
     Task TryDeleteAsync(string? mediaUrl, CancellationToken cancellationToken);
 }

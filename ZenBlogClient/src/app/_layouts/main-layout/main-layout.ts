@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { AuthService } from '../../_services/auth-service';
 import { SocialService } from '../../_services/social-service';
 import { SocialDto } from '../../_models/socialDto';
+import { UserDto } from '../../_models/userDto';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import Swiper from 'swiper';
 import AOS from 'aos';
@@ -13,8 +14,9 @@ import AOS from 'aos';
   styleUrl: './main-layout.css'
 })
 export class MainLayout implements OnInit, AfterViewInit {
-
   socials: SocialDto[] = [];
+  currentUser: UserDto | null = null;
+  isAdminUser = false;
 
   constructor(
     private authService: AuthService,
@@ -25,18 +27,22 @@ export class MainLayout implements OnInit, AfterViewInit {
   isMobileMenuOpen = false;
 
   ngOnInit() {
-    // Load social icons/links from backend (Admin panel controls these)
     this.socialService.getAll().subscribe({
       next: (items: any) => {
         this.socials = Array.isArray(items) ? items : [];
       },
       error: () => {
-        // no-op (fallback to static icons in template)
         this.socials = [];
       }
     });
 
-    // Initialize AOS
+    if (this.loggedIn()) {
+      this.authService.getCurrentUser(true).subscribe(user => this.currentUser = user);
+      this.authService.currentUser$.subscribe(user => this.currentUser = user);
+      this.authService.refreshAdminStatus().subscribe(isAdmin => this.isAdminUser = isAdmin);
+      this.authService.isAdmin$.subscribe(isAdmin => this.isAdminUser = isAdmin);
+    }
+
     AOS.init({
       duration: 1000,
       easing: 'ease-in-out',
@@ -44,9 +50,6 @@ export class MainLayout implements OnInit, AfterViewInit {
       mirror: false
     });
 
-    // Initialize Swiper ONLY when the container exists.
-    // Home component already initializes Swiper. On routes like /verify-email,
-    // there is no swiper container; Swiper can throw and prevent routing.
     const swiperContainer = document.querySelector('.init-swiper');
     if (swiperContainer) {
       try {
@@ -71,12 +74,10 @@ export class MainLayout implements OnInit, AfterViewInit {
           }
         });
       } catch {
-        // Swiper init failure should never block routing.
         this.swiper = undefined;
       }
     }
 
-    // Handle scroll top button
     window.addEventListener('scroll', () => {
       const scrollTop = document.querySelector('.scroll-top');
       if (scrollTop) {
@@ -90,7 +91,6 @@ export class MainLayout implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // Remove preloader after view is initialized
     const preloader = document.querySelector('#preloader');
     if (preloader) {
       preloader.remove();
@@ -111,27 +111,45 @@ export class MainLayout implements OnInit, AfterViewInit {
 
   scrollToTop(event: Event) {
     event.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-
-
-  getFullName(){
-    let decodedToken =  this.authService.decodeToken();
-
-    return decodedToken.fullName;
-  }
-
 
   loggedIn(){
     return this.authService.loggedIn();
   }
 
+  logout() {
+    this.authService.logout();
+  }
+
+  get displayName() {
+    return this.currentUser?.fullName || this.authService.getFullName() || this.authService.getUserName() || 'User';
+  }
+
+  get userImage() {
+    return this.currentUser?.imageUrl || null;
+  }
+
+  get userEmail() {
+    return this.currentUser?.email || this.getUserName();
+  }
+
+  getUserName() {
+    return this.authService.getUserName();
+  }
+
+  get initials() {
+    return this.displayName
+      .split(' ')
+      .filter(Boolean)
+      .slice(0, 2)
+      .map(x => x[0])
+      .join('')
+      .toUpperCase();
+  }
+
   isIconClass(icon: any): boolean {
     if (typeof icon !== 'string' || !icon) return false;
-    // Heuristic: old UI stored CSS class names. New UI stores image URLs (/uploads/... or http(s)://...)
     const looksLikePath = icon.includes('/') || icon.includes('\\') || /^https?:\/\//i.test(icon) || /\.(png|jpe?g|webp|svg)$/i.test(icon);
     return !looksLikePath;
   }
@@ -140,5 +158,4 @@ export class MainLayout implements OnInit, AfterViewInit {
     if (typeof icon !== 'string') return '';
     return icon;
   }
-
 }

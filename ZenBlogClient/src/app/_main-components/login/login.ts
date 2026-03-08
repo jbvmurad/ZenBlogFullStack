@@ -39,7 +39,7 @@ this.authService.login(this.loginDto).subscribe({
     localStorage.setItem("token", token);
 
           alertify.success("Login Successful!");
-          this.router.navigate(["/admin"])
+          this.router.navigate(["/"])
 
 
   },
@@ -109,7 +109,7 @@ private handleGoogleCredential(response: any) {
 
       localStorage.setItem('token', token);
       alertify.success('Signed in with Google!');
-      this.router.navigate(['/admin']);
+      this.router.navigate(['/']);
     },
     error: (err) => {
       // Try to surface the real backend/network error (Angular sometimes gives err.error as string or ProgressEvent)

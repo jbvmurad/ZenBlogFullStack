@@ -1,4 +1,4 @@
-namespace ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.ResetPassword;
+namespace ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.ResetPassword;
 
 public sealed record ResetPasswordCommand(
     string UserId,
