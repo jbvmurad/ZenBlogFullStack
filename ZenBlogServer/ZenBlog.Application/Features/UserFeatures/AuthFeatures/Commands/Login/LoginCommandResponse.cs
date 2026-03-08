@@ -1,4 +1,4 @@
-namespace ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.Login;
+namespace ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.Login;
 
 public sealed record LoginCommandResponse(
     string Token,

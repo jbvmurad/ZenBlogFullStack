@@ -27,13 +27,14 @@ public sealed class BlogController : APIController
     [EnableQuery]
     public IQueryable<Blog> GetAll() => _blogService.GetAllBlogs();
 
+#nullable enable
     [HttpGet("by-id-cached")]
     public async Task<IActionResult> GetByIdCached([FromQuery] string id, CancellationToken cancellationToken)
     {
         var blog = await _bus.InvokeAsync<Blog?>(new GetBlogByIdCachedQuery(id), cancellationToken);
         return Ok(blog);
     }
-
+#nullable disable
     [HttpPost]
     public async Task<IActionResult> Create(CreateBlogCommand request, CancellationToken cancellationToken)
     {

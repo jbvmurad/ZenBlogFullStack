@@ -1,5 +1,5 @@
-using ZenBlog.Application.Features.UserAttributeFeatures.UserRoleFeatures.Commands.DeleteUserRole;
-using ZenBlog.Application.Features.UserAttributeFeatures.UserRoleFeatures.Commands.GiveUserRole;
+using ZenBlog.Application.Features.UserFeatures.UserRoleFeatures.Commands.DeleteUserRole;
+using ZenBlog.Application.Features.UserFeatures.UserRoleFeatures.Commands.GiveUserRole;
 using ZenBlog.Domain.Entities.UserEntities;
 
 namespace ZenBlog.Application.Services.UserAttributeService;

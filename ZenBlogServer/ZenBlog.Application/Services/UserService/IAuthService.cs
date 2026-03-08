@@ -1,13 +1,14 @@
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.ConfirmEmail;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.CreateNewTokenByRefreshToken;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.DeleteUser;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.ForgotPassword;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.Login;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.LoginWithGoogle;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.RegisterUser;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.ResendEmailConfirmation;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.ResetPassword;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.UpdateUser;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.ConfirmEmail;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.CreateNewTokenByRefreshToken;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.DeleteUser;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.ForgotPassword;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.Login;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.LoginWithGoogle;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.RegisterUser;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.ResendEmailConfirmation;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.ResetPassword;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.UpdateUser;
+using Microsoft.AspNetCore.Http;
 using ZenBlog.Domain.Entities.UserEntities;
 
 namespace ZenBlog.Application.Services.UserAttributeService;
@@ -24,6 +25,10 @@ public interface IAuthService
     Task<LoginCommandResponse> CreateTokenByRefreshTokenAsync(
         CreateNewTokenByRefreshTokenCommand request, CancellationToken cancellationToken);
     IQueryable<User> GetAllUsers();
+#nullable enable
+    Task<User?> GetByIdAsync(string id, CancellationToken cancellationToken);
+#nullable disable
     Task UpdateAsync(UpdateUserCommand request, CancellationToken cancellationToken);
     Task DeleteAsync(DeleteUserCommand request, CancellationToken cancellationToken);
+    Task<string> SaveUserImageAsync(IFormFile media, CancellationToken cancellationToken);
 }

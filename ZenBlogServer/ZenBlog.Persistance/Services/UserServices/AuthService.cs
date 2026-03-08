@@ -1,24 +1,26 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.ConfirmEmail;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.CreateNewTokenByRefreshToken;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.DeleteUser;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.ForgotPassword;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.Login;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.LoginWithGoogle;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.RegisterUser;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.ResendEmailConfirmation;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.ResetPassword;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.UpdateUser;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.ConfirmEmail;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.CreateNewTokenByRefreshToken;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.DeleteUser;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.ForgotPassword;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.Login;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.LoginWithGoogle;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.RegisterUser;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.ResendEmailConfirmation;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.ResetPassword;
 using ZenBlog.Application.Jwt;
 using ZenBlog.Application.Services.ExternalAuth;
 using ZenBlog.Application.Services.MailService;
+using ZenBlog.Application.Services.Storage;
 using ZenBlog.Application.Services.UserAttributeService;
 using ZenBlog.Domain.Entities.UserEntities;
 using ZenBlog.Domain.Events;
 using ZenBlog.Domain.Repositories.UserRepositories;
 using Wolverine;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.UpdateUser;
 
 namespace ZenBlog.Persistance.Services.UserServices;
 
@@ -31,6 +33,7 @@ public sealed class AuthService : IAuthService
     private readonly IEmailService _emailService;
     private readonly IGoogleTokenValidator _googleTokenValidator;
     private readonly IMessageBus _bus;
+    private readonly IFileStorage _fileStorage;
 
     public AuthService(
         UserManager<User> userManager,
@@ -39,7 +42,8 @@ public sealed class AuthService : IAuthService
         IAuthRepository authRepository,
         IJwtProvider jwtProvider,
         IGoogleTokenValidator googleTokenValidator,
-        IMessageBus bus)
+        IMessageBus bus,
+        IFileStorage fileStorage)
     {
         _userManager = userManager;
         _mapper = mapper;
@@ -48,6 +52,17 @@ public sealed class AuthService : IAuthService
         _emailService = emailService;
         _googleTokenValidator = googleTokenValidator;
         _bus = bus;
+        _fileStorage = fileStorage;
+    }
+#nullable enable
+    public async Task<User?> GetByIdAsync(string id, CancellationToken cancellationToken)
+    {
+        return await _userManager.FindByIdAsync(id);
+    }
+#nullable disable
+    public async Task<string> SaveUserImageAsync(IFormFile media, CancellationToken cancellationToken)
+    {
+        return await _fileStorage.SaveImageAsync(media, cancellationToken);
     }
 
     public async Task RegisterAsync(RegisterUserCommand request)
@@ -131,7 +146,27 @@ public sealed class AuthService : IAuthService
         if (user is null)
             throw new ArgumentException($"User with ID {request.Id} not found.");
 
+        var oldFullName = user.FullName;
+        var oldEmail = user.Email;
+        var oldPhone = user.PhoneNumber;
+        var oldImageUrl = user.ImageUrl;
+
         _mapper.Map(request, user);
+
+        if (string.IsNullOrWhiteSpace(request.FullName))
+            user.FullName = oldFullName;
+
+        if (string.IsNullOrWhiteSpace(request.Email))
+            user.Email = oldEmail;
+
+        if (string.IsNullOrWhiteSpace(request.PhoneNumber))
+            user.PhoneNumber = oldPhone;
+
+        if (string.IsNullOrWhiteSpace(request.ImageUrl))
+            user.ImageUrl = oldImageUrl;
+
+        if (!string.IsNullOrWhiteSpace(user.Email) && !string.Equals(user.UserName, user.Email, StringComparison.OrdinalIgnoreCase))
+            user.UserName = user.Email;
 
         if (!string.IsNullOrEmpty(request.Password))
         {
@@ -145,6 +180,13 @@ public sealed class AuthService : IAuthService
         var updateResult = await _userManager.UpdateAsync(user);
         if (!updateResult.Succeeded)
             throw new ArgumentException(updateResult.Errors.First().Description);
+
+        if (!string.IsNullOrWhiteSpace(oldImageUrl) &&
+            !string.IsNullOrWhiteSpace(user.ImageUrl) &&
+            !string.Equals(oldImageUrl, user.ImageUrl, StringComparison.OrdinalIgnoreCase))
+        {
+            await _fileStorage.TryDeleteAsync(oldImageUrl, cancellationToken);
+        }
     }
 
     public async Task DeleteAsync(DeleteUserCommand request, CancellationToken cancellationToken)
@@ -153,9 +195,14 @@ public sealed class AuthService : IAuthService
         if (user is null)
             throw new ArgumentException($"User with ID {request.Id} not found.");
 
+        var imageUrl = user.ImageUrl;
+
         var result = await _userManager.DeleteAsync(user);
         if (!result.Succeeded)
             throw new ArgumentException(result.Errors.First().Description);
+
+        if (!string.IsNullOrWhiteSpace(imageUrl))
+            await _fileStorage.TryDeleteAsync(imageUrl, cancellationToken);
 
         await _bus.PublishAsync(new AccountDeletedIntegrationEvent(
             UserId: user.Id.ToString(),

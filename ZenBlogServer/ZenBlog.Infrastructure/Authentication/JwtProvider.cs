@@ -5,7 +5,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.Login;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.Login;
 using ZenBlog.Application.Jwt;
 using ZenBlog.Domain.Entities.UserEntities;
 

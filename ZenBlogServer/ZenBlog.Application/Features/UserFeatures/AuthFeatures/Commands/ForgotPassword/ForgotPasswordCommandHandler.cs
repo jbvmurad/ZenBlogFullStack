@@ -1,7 +1,7 @@
 using ZenBlog.Application.Services.UserAttributeService;
 using ZenBlog.Domain.DTOs.SystemDTOs;
 
-namespace ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.ForgotPassword;
+namespace ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.ForgotPassword;
 
 public sealed class ForgotPasswordCommandHandler
 {

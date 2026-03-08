@@ -1,4 +1,4 @@
-namespace ZenBlog.Application.Features.UserAttributeFeatures.UserRoleFeatures.Commands.GiveUserRole;
+namespace ZenBlog.Application.Features.UserFeatures.UserRoleFeatures.Commands.GiveUserRole;
 
 public sealed record GiveUserRoleCommand(
     string UserId,

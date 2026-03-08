@@ -49,8 +49,13 @@ public sealed class SocialService : ISocialService
         if (social is null)
             throw new KeyNotFoundException("Social record not found.");
 
+        var oldIcon = social.Icon;
+
         _socialRepository.Delete(social);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+        if (!string.IsNullOrWhiteSpace(oldIcon))
+            await _fileStorage.TryDeleteAsync(oldIcon, cancellationToken);
     }
 
     public IQueryable<Social> GetAllSocial() => _socialRepository.GetAll().AsQueryable();

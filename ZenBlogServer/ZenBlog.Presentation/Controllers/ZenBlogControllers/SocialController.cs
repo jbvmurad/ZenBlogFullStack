@@ -60,7 +60,7 @@ public sealed class SocialController :APIController
         MessageResponse response = await _bus.InvokeAsync<MessageResponse>(request, cancellationToken);
         return Ok(response);
     }
-
+#nullable enable
     [HttpPut("with-media")]
     [Consumes("multipart/form-data")]
     public async Task<IActionResult> UpdateWithMedia(

@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Wolverine;
-using ZenBlog.Application.Features.UserAttributeFeatures.UserRoleFeatures.Commands.DeleteUserRole;
-using ZenBlog.Application.Features.UserAttributeFeatures.UserRoleFeatures.Commands.GiveUserRole;
+using ZenBlog.Application.Features.UserFeatures.UserRoleFeatures.Commands.DeleteUserRole;
+using ZenBlog.Application.Features.UserFeatures.UserRoleFeatures.Commands.GiveUserRole;
 using ZenBlog.Application.Services.UserAttributeService;
 using ZenBlog.Domain.DTOs.SystemDTOs;
 using ZenBlog.Domain.DTOs.UserDTOs;

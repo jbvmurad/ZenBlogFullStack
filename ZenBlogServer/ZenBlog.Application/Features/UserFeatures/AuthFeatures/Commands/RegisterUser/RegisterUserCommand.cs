@@ -1,4 +1,4 @@
-namespace ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.RegisterUser;
+namespace ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.RegisterUser;
 
 public sealed record RegisterUserCommand(
     string FullName,

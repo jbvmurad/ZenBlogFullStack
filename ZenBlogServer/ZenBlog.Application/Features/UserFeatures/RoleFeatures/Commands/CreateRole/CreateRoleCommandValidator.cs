@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace ZenBlog.Application.Features.UserAttributeFeatures.RoleFeatures.Commands.CreateRole;
+namespace ZenBlog.Application.Features.UserFeatures.RoleFeatures.Commands.CreateRole;
 
 public class CreateRoleCommandValidator : AbstractValidator<CreateRoleCommand>
 {

@@ -1,8 +1,7 @@
-using ZenBlog.Application.Features.UserAttributeFeatures.RoleFeatures.Commands.DeleteRole;
 using ZenBlog.Application.Services.UserAttributeService;
 using ZenBlog.Domain.DTOs.SystemDTOs;
 
-namespace ZenBlog.Application.Features.UserAttributeFeatures.RoleFeatures.Commands.DeleteRole;
+namespace ZenBlog.Application.Features.UserFeatures.RoleFeatures.Commands.DeleteRole;
 
 public class DeleteRoleCommandHandler
 {

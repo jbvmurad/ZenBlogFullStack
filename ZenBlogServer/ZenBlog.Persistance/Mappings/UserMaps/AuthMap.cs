@@ -1,6 +1,6 @@
 using AutoMapper;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.RegisterUser;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.UpdateUser;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.RegisterUser;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.UpdateUser;
 using ZenBlog.Domain.DTOs.UserDTOs;
 using ZenBlog.Domain.Entities.UserEntities;
 

@@ -2,16 +2,17 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Wolverine;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.ConfirmEmail;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.CreateNewTokenByRefreshToken;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.DeleteUser;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.ForgotPassword;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.Login;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.LoginWithGoogle;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.RegisterUser;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.ResendEmailConfirmation;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.ResetPassword;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.UpdateUser;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.ConfirmEmail;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.CreateNewTokenByRefreshToken;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.DeleteUser;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.ForgotPassword;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.Login;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.LoginWithGoogle;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.RegisterUser;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.ResendEmailConfirmation;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.ResetPassword;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.UpdateUser;
+using ZenBlog.Application.Requests.UserRequests;
 using ZenBlog.Application.Services.UserAttributeService;
 using ZenBlog.Domain.DTOs.SystemDTOs;
 using ZenBlog.Domain.Entities.UserEntities;
@@ -110,6 +111,22 @@ public sealed class AuthController : APIController
     public async Task<IActionResult> Update(UpdateUserCommand request, CancellationToken cancellationToken)
     {
         MessageResponse response = await _bus.InvokeAsync<MessageResponse>(request);
+        return Ok(response);
+    }
+#nullable enable
+    [HttpPut("with-media")]
+    [Consumes("multipart/form-data")]
+    public async Task<IActionResult> UpdateWithMedia(
+        [FromForm] UpdateUserMediaOptionalRequest media,
+        [FromQuery] string id,
+        [FromQuery] string? FullName,
+        [FromQuery] string? Email,
+        [FromQuery] string? PhoneNumber,
+        [FromQuery] string? Password,
+        CancellationToken cancellationToken)
+    {
+        var command = media.ToUpdateUserWithMediaCommand(id, FullName, Email, PhoneNumber, Password);
+        MessageResponse response = await _bus.InvokeAsync<MessageResponse>(command, cancellationToken);
         return Ok(response);
     }
 }

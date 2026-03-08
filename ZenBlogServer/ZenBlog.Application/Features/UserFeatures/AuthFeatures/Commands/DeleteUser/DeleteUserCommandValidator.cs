@@ -1,7 +1,7 @@
 using FluentValidation;
-using ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.DeleteUser;
+using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.DeleteUser;
 
-namespace ZenBlog.Application.Features.UserAttributeFeatures.AuthFeatures.Commands.DeleteUser;
+namespace ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.DeleteUser;
 
 public sealed class DeleteUserCommandValidator : AbstractValidator<DeleteUserCommand>
 {
