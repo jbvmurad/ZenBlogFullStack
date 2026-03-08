@@ -1,60 +1,63 @@
-<div class="container-fluid admin-fluid">
-  <div class="d-flex align-items-start align-items-md-center justify-content-between gap-2 mb-3">
+<div class="users-role-page">
+  <div class="header-panel">
     <div>
+      <div class="eyebrow">Access control</div>
       <h3 class="mb-1">Users & Roles</h3>
-      <div class="text-muted">Give or remove <span class="badge text-bg-dark">Admin</span> access.</div>
+      <div class="text-muted">Give or remove <span class="badge text-bg-dark">Admin</span> access for website accounts.</div>
     </div>
 
-    <div class="d-flex gap-2">
-      <button class="btn btn-outline-secondary" (click)="load()" [disabled]="loading || busy">
+    <div class="d-flex gap-2 flex-wrap">
+      <button class="btn btn-outline-secondary rounded-pill" (click)="load()" [disabled]="loading || busy">
         <i class="fa fa-refresh me-1"></i> Refresh
       </button>
-      <button *ngIf="!adminRoleId" class="btn btn-primary" (click)="createAdminRole()" [disabled]="busy">
+      <button *ngIf="!adminRoleId" class="btn btn-primary rounded-pill" (click)="createAdminRole()" [disabled]="busy">
         <i class="fa fa-plus me-1"></i> Create Admin role
       </button>
     </div>
   </div>
 
-  <div *ngIf="loading" class="card p-4">
-    <div class="d-flex align-items-center">
+  <div *ngIf="loading" class="card soft-card p-4">
+    <div class="d-flex align-items-center gap-3">
       <div class="spinner-border" role="status" aria-label="Loading"></div>
-      <div class="ms-3">Loading users…</div>
+      <div>Loading users…</div>
     </div>
   </div>
 
   <div *ngIf="!loading" class="card soft-card">
     <div class="card-body">
-      <div class="row g-2 align-items-center mb-3">
-        <div class="col-md-6">
-          <div class="input-group">
-            <span class="input-group-text"><i class="fa fa-search"></i></span>
-            <input class="form-control" placeholder="Search users (name / email)" [(ngModel)]="query" />
-          </div>
+      <div class="toolbar">
+        <div class="input-group search-box">
+          <span class="input-group-text"><i class="fa fa-search"></i></span>
+          <input class="form-control" placeholder="Search users (name / email)" [(ngModel)]="query" />
         </div>
-        <div class="col-md-6 text-md-end">
-          <span class="text-muted" *ngIf="adminRoleId; else noRole">
-            Admin role detected. Toggle access per user.
-          </span>
-          <ng-template #noRole>
-            <span class="text-danger">Admin role not found. Create it first.</span>
-          </ng-template>
-        </div>
+
+        <span class="text-muted status-copy" *ngIf="adminRoleId; else noRole">
+          Admin role detected. Toggle access per user.
+        </span>
+        <ng-template #noRole>
+          <span class="text-danger status-copy">Admin role not found. Create it first.</span>
+        </ng-template>
       </div>
 
       <div class="table-responsive">
-        <table class="table align-middle">
+        <table class="table align-middle role-table mb-0">
           <thead>
             <tr>
               <th>User</th>
               <th>Email</th>
-              <th style="width: 160px;">Admin</th>
+              <th style="width: 180px;">Admin access</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let u of filteredUsers()">
               <td>
-                <div class="d-flex align-items-center gap-2">
-                  <div class="user-avatar"><i class="fa fa-user"></i></div>
+                <div class="user-cell">
+                  <ng-container *ngIf="u.imageUrl; else fallbackAvatar">
+                    <img [src]="u.imageUrl" class="user-avatar-img" [alt]="u.fullName || u.userName || 'User'">
+                  </ng-container>
+                  <ng-template #fallbackAvatar>
+                    <div class="user-avatar">{{ initials(u) }}</div>
+                  </ng-template>
                   <div>
                     <div class="fw-semibold">{{ u.fullName || u.userName || 'User' }}</div>
                     <div class="text-muted small">{{ u.userName || '-' }}</div>
@@ -63,7 +66,7 @@
               </td>
               <td>{{ u.email || '-' }}</td>
               <td>
-                <div class="form-check form-switch">
+                <div class="form-check form-switch m-0">
                   <input
                     class="form-check-input"
                     type="checkbox"
@@ -71,7 +74,7 @@
                     [checked]="isUserAdmin(u.id)"
                     (change)="toggleAdmin(u, $any($event.target).checked)"
                   />
-                  <label class="form-check-label">Access</label>
+                  <label class="form-check-label ms-2">Access</label>
                 </div>
               </td>
             </tr>

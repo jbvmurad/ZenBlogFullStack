@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RoleDto, RoleService } from '../../_services/role-service';
 import { UserDto, UserService } from '../../_services/user-service';
 import { UserRoleDto, UserRoleService } from '../../_services/user-role-service';
-import { AccessControlService } from '../../_services/access-control-service';
+import { AuthService } from '../../_services/auth-service';
 
 declare const alertify: any;
 
@@ -19,7 +19,6 @@ export class UserRoles {
   users: UserDto[] = [];
   roles: RoleDto[] = [];
   userRoles: UserRoleDto[] = [];
-
   adminRoleId: string | null = null;
   query = '';
 
@@ -27,7 +26,7 @@ export class UserRoles {
     private userService: UserService,
     private roleService: RoleService,
     private userRoleService: UserRoleService,
-    private access: AccessControlService
+    private authService: AuthService
   ) {
     this.load();
   }
@@ -35,13 +34,11 @@ export class UserRoles {
   load() {
     this.loading = true;
 
-    // Fetch everything in parallel
     this.roleService.getAll().subscribe({
       next: (roles) => {
         this.roles = roles;
         this.adminRoleId = this.findAdminRoleId(roles);
 
-        // Users + userRoles depend on token only
         this.userService.getAll().subscribe({
           next: (users) => {
             this.users = users;
@@ -93,7 +90,18 @@ export class UserRoles {
     return (this.userRoles ?? []).some(ur => ur.userId === userId && ur.roleId === this.adminRoleId);
   }
 
-  async createAdminRole() {
+  initials(user: UserDto): string {
+    const name = user.fullName || user.userName || user.email || 'U';
+    return name
+      .split(' ')
+      .filter(Boolean)
+      .slice(0, 2)
+      .map(x => x[0])
+      .join('')
+      .toUpperCase();
+  }
+
+  createAdminRole() {
     if (this.busy) return;
     this.busy = true;
     this.roleService.create('Admin').subscribe({
@@ -112,19 +120,18 @@ export class UserRoles {
   }
 
   toggleAdmin(user: UserDto, checked: boolean) {
-    if (!this.adminRoleId || this.busy) return;
-    const userId = user.id;
-    if (!userId) return;
+    if (!this.adminRoleId || this.busy || !user?.id) return;
 
     this.busy = true;
+    const done = () => this.authService.refreshAdminStatus().subscribe();
+
     if (checked) {
-      this.userRoleService.giveRole(userId, this.adminRoleId).subscribe({
+      this.userRoleService.giveRole(user.id, this.adminRoleId).subscribe({
         next: (res: any) => {
           try { alertify?.success?.(res?.message ?? 'Role granted.'); } catch {}
           this.busy = false;
           this.load();
-          // In case we changed the current user's role, refresh access state
-          this.access.ensureLoaded(true).subscribe();
+          done();
         },
         error: (err) => {
           console.error(err);
@@ -134,12 +141,12 @@ export class UserRoles {
         }
       });
     } else {
-      this.userRoleService.deleteRoles(userId, [this.adminRoleId]).subscribe({
+      this.userRoleService.deleteRoles(user.id, [this.adminRoleId]).subscribe({
         next: (res: any) => {
           try { alertify?.success?.(res?.message ?? 'Role removed.'); } catch {}
           this.busy = false;
           this.load();
-          this.access.ensureLoaded(true).subscribe();
+          done();
         },
         error: (err) => {
           console.error(err);

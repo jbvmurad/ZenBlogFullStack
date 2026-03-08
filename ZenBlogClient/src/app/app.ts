@@ -2,7 +2,6 @@ import { Component, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 declare const alertify :any;
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
@@ -14,51 +13,55 @@ export class App implements OnInit  {
 
   constructor(private router: Router) {}
 
-
-ngOnInit(): void {
-
-  alertify.set('notifier','position','top-right')
-
-  // Some deployments (or older email templates) may generate hash-based links like:
-  //   http://host/#/verify-email?userId=...&token=...
-  // If the app uses PathLocationStrategy, Angular won't match routes from the hash.
-  // This helper detects such links and forwards the user to the correct route.
-  this.forwardHashDeepLinks();
-
-}
-
-private forwardHashDeepLinks() {
-  try {
-    const url = new URL(window.location.href);
-    const hash = (url.hash ?? '').replace(/^#/, '').replace(/^!/, '');
-    if (!hash) return;
-
-    const normalized = hash.startsWith('/') ? hash.slice(1) : hash;
-    const [hashPathRaw, hashQueryRaw] = normalized.split('?');
-    const hashPath = (hashPathRaw ?? '').trim();
-    if (!hashPath) return;
-
-    const pathLower = hashPath.toLowerCase();
-
-    const routeMap: Array<{ match: RegExp; target: string }> = [
-      { match: /^(verify-email|verifyemail|confirm-email|confirmemail)$/i, target: 'verify-email' },
-      { match: /^(reset-password|resetpassword)$/i, target: 'reset-password' }
-    ];
-
-    const hit = routeMap.find((r) => r.match.test(pathLower));
-    if (!hit) return;
-
-    const qp = new URLSearchParams(hashQueryRaw ?? '');
-    const queryParams: any = {};
-    qp.forEach((v, k) => (queryParams[k] = v));
-
-    // Replace the URL so the user doesn't keep the old hash link in history.
-    this.router.navigate(['/', hit.target], { queryParams, replaceUrl: true });
-  } catch {
-    // no-op
+  ngOnInit(): void {
+    alertify.set('notifier','position','top-right');
+    this.normalizeIncomingLinks();
   }
-}
 
+  private normalizeIncomingLinks() {
+    if (typeof window === 'undefined') return;
 
+    const href = window.location.href;
+    const url = new URL(href);
+    const path = url.pathname.toLowerCase();
+    const hash = url.hash || '';
+    let target: string | null = null;
 
+    const aliasPathMap: Record<string, string> = {
+      '/verifyemail': '/verify-email',
+      '/confirmemail': '/verify-email',
+      '/confirm-email': '/verify-email',
+      '/resetpassword': '/reset-password'
+    };
+
+    if (hash.startsWith('#/')) {
+      const hashValue = hash.slice(1);
+      const [hashPathRaw, hashQueryRaw = ''] = hashValue.split('?');
+      const hashPath = hashPathRaw.toLowerCase();
+
+      if (hashPath === '/verify-email' || hashPath === '/verifyemail' || hashPath === '/confirm-email' || hashPath === '/confirmemail') {
+        target = `/verify-email${hashQueryRaw ? `?${hashQueryRaw}` : ''}`;
+      } else if (hashPath === '/reset-password' || hashPath === '/resetpassword') {
+        target = `/reset-password${hashQueryRaw ? `?${hashQueryRaw}` : ''}`;
+      }
+    }
+
+    if (!target && aliasPathMap[path]) {
+      target = `${aliasPathMap[path]}${url.search}`;
+    }
+
+    if (!target && path === '/' && this.hasVerifyParams(url.searchParams)) {
+      target = `/verify-email${url.search}`;
+    }
+
+    if (target && this.router.url !== target) {
+      this.router.navigateByUrl(target, { replaceUrl: true });
+    }
+  }
+
+  private hasVerifyParams(params: URLSearchParams): boolean {
+    const hasUser = !!(params.get('userId') || params.get('id') || params.get('uid'));
+    const hasToken = !!(params.get('token') || params.get('code') || params.get('emailToken'));
+    return hasUser && hasToken;
+  }
 }

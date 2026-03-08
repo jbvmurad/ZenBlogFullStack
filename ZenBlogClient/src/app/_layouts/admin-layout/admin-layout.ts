@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../_services/auth-service';
-import { AccessControlService } from '../../_services/access-control-service';
+import { UserDto } from '../../_models/userDto';
 
 @Component({
   selector: 'admin-layout',
@@ -8,22 +8,35 @@ import { AccessControlService } from '../../_services/access-control-service';
   templateUrl: './admin-layout.html',
   styleUrl: './admin-layout.css'
 })
-export class AdminLayout {
+export class AdminLayout implements OnInit {
+  currentUser: UserDto | null = null;
 
-constructor(private authService: AuthService, private access: AccessControlService){}
+  constructor(private authService: AuthService){}
 
+  ngOnInit(): void {
+    this.authService.getCurrentUser(true).subscribe(user => this.currentUser = user);
+    this.authService.currentUser$.subscribe(user => this.currentUser = user);
+  }
 
+  getUserName(){
+    return this.currentUser?.fullName || this.currentUser?.userName || this.authService.getUserName() || 'Admin user';
+  }
 
-getUserName(){
- let decodedToken= this.authService.decodeToken();
- return decodedToken.name
-}
+  get userImage() {
+    return this.currentUser?.imageUrl || null;
+  }
 
-logout(){
+  get initials() {
+    return this.getUserName()
+      .split(' ')
+      .filter(Boolean)
+      .slice(0, 2)
+      .map(x => x[0])
+      .join('')
+      .toUpperCase();
+  }
 
-  this.access.clear();
-  this.authService.logout();
-}
-
-
+  logout(){
+    this.authService.logout();
+  }
 }

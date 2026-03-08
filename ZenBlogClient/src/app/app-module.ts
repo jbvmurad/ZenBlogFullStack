@@ -29,7 +29,6 @@ import { Social } from './_admin-components/social/social';
 import { SendMessage } from './_main-components/send-message/send-message';
 import { Profile } from './_main-components/profile/profile';
 import { Settings } from './_main-components/settings/settings';
-import { ReactiveFormsModule } from '@angular/forms';
 import { UserRoles } from './_admin-components/user-roles/user-roles';
 
 @NgModule({
@@ -60,8 +59,7 @@ import { UserRoles } from './_admin-components/user-roles/user-roles';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule
+    FormsModule
 
   ],
   providers: [

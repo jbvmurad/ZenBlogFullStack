@@ -1,70 +1,59 @@
-<div class="container" style="max-width: 900px;">
-  <div class="d-flex align-items-center justify-content-between mb-3">
-    <div>
-      <h2 class="mb-1">Profile</h2>
-      <p class="text-muted mb-0">Your account information.</p>
-    </div>
-    <a routerLink="/settings" class="btn btn-primary btn-sm">
-      <i class="fa fa-cog me-1"></i> Settings
-    </a>
-  </div>
+<section class="profile-page py-5">
+  <div class="container">
+    <div class="profile-shell" *ngIf="!loading && user; else loadingTpl">
+      <div class="profile-hero">
+        <div class="avatar-wrap">
+          <img *ngIf="user.imageUrl; else initialsAvatar" [src]="user.imageUrl" [alt]="displayName" class="avatar-img">
+          <ng-template #initialsAvatar>
+            <div class="avatar-fallback">{{ initials }}</div>
+          </ng-template>
+        </div>
 
-  <div *ngIf="loading" class="card p-4">
-    <div class="d-flex align-items-center">
-      <div class="spinner-border" role="status" aria-label="Loading"></div>
-      <div class="ms-3">Loading profile…</div>
-    </div>
-  </div>
+        <div class="profile-intro">
+          <span class="profile-badge" *ngIf="isAdmin()">Admin</span>
+          <h2>{{ displayName }}</h2>
+          <p>{{ user.email }}</p>
+          <div class="profile-actions">
+            <a routerLink="/settings" class="btn btn-dark rounded-pill px-4">Edit profile</a>
+            <a *ngIf="isAdmin()" routerLink="/admin/category" class="btn btn-outline-dark rounded-pill px-4">Dashboard</a>
+          </div>
+        </div>
+      </div>
 
-  <div *ngIf="!loading && error" class="alert alert-danger">
-    {{ error }}
-  </div>
-
-  <div *ngIf="!loading && user" class="row g-3">
-    <div class="col-12">
-      <div class="card profile-card">
-        <div class="card-body">
-          <div class="d-flex align-items-center gap-3">
-            <div class="avatar">
-              <i class="fa fa-user"></i>
+      <div class="row g-4 mt-1">
+        <div class="col-lg-6">
+          <div class="profile-card h-100">
+            <h5>Account details</h5>
+            <div class="info-row">
+              <span>Full name</span>
+              <strong>{{ user.fullName || '-' }}</strong>
             </div>
-            <div class="flex-grow-1">
-              <h4 class="mb-0">{{ user.fullName || user.userName }}</h4>
-              <div class="text-muted">{{ user.email }}</div>
+            <div class="info-row">
+              <span>Email</span>
+              <strong>{{ user.email || '-' }}</strong>
+            </div>
+            <div class="info-row">
+              <span>Phone</span>
+              <strong>{{ user.phoneNumber || 'Not added yet' }}</strong>
             </div>
           </div>
-
-          <hr class="my-4" />
-
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <div class="text-muted small">Full Name</div>
-              <div class="fw-semibold">{{ user.fullName || '-' }}</div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <div class="text-muted small">Username</div>
-              <div class="fw-semibold">{{ user.userName || '-' }}</div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <div class="text-muted small">Email</div>
-              <div class="fw-semibold">{{ user.email || '-' }}</div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <div class="text-muted small">Phone</div>
-              <div class="fw-semibold">{{ user.phoneNumber || '-' }}</div>
-            </div>
-          </div>
-
-          <div class="d-flex flex-wrap gap-2 mt-2">
-            <a routerLink="/settings" class="btn btn-outline-primary">
-              Edit profile
-            </a>
-            <a routerLink="/" class="btn btn-light">
-              Back to Home
-            </a>
+        </div>
+        <div class="col-lg-6">
+          <div class="profile-card h-100 profile-note-card">
+            <h5>Profile photo</h5>
+            <p>Your uploaded profile image will be used in the website header, profile page and admin dashboard sidebar.</p>
+            <a routerLink="/settings" class="btn btn-outline-dark rounded-pill px-4">Change photo</a>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
+
+<ng-template #loadingTpl>
+  <section class="profile-page py-5">
+    <div class="container">
+      <div class="profile-card text-center py-5">Loading profile...</div>
+    </div>
+  </section>
+</ng-template>

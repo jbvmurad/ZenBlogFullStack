@@ -30,7 +30,6 @@ export class RoleService {
   }
 
   create(name: string) {
-    // CreateRoleCommand expects: { Name: string }
     return this.http.post<any>(this.baseUrl, { Name: name });
   }
 }

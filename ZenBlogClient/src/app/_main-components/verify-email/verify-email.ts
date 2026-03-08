@@ -20,26 +20,25 @@ export class VerifyEmail implements OnInit {
 
   ngOnInit(): void {
     const qp = this.route.snapshot.queryParamMap;
+    const fragmentParams = this.readFragmentParams(this.route.snapshot.fragment);
 
     const userId =
       qp.get('userId') ??
-      qp.get('userid') ??
-      qp.get('UserId') ??
       qp.get('id') ??
-      qp.get('uid');
+      qp.get('uid') ??
+      fragmentParams.get('userId') ??
+      fragmentParams.get('id') ??
+      fragmentParams.get('uid');
 
     let token =
       qp.get('token') ??
-      qp.get('Token') ??
       qp.get('code') ??
-      qp.get('confirmationToken') ??
-      qp.get('emailToken');
+      qp.get('emailToken') ??
+      fragmentParams.get('token') ??
+      fragmentParams.get('code') ??
+      fragmentParams.get('emailToken');
 
-    // Common issue: confirmation tokens include '+' which can be converted to space
-    // by some URL parsers. Convert spaces back to '+' for safer backend validation.
-    if (token && token.includes(' ')) {
-      token = token.replace(/\s/g, '+');
-    }
+    token = token?.replace(/ /g, '+') ?? null;
 
     if (!userId || !token) {
       this.status = 'error';
@@ -50,7 +49,6 @@ export class VerifyEmail implements OnInit {
     this.authService.confirmEmail(userId, token).subscribe({
       next: (res) => {
         this.status = 'success';
-        // Show the server message directly on this page (no popups, no redirect)
         this.message =
           res?.Message ??
           res?.message ??
@@ -60,8 +58,6 @@ export class VerifyEmail implements OnInit {
       },
       error: (err) => {
         this.status = 'error';
-        // Try multiple shapes because backend middleware may return {message} or {error}.
-        // Also handle FluentValidation style {errors: {field: [..]}}.
         const e = err?.error;
         const firstValidation = e?.errors ? (Object.values(e.errors).flat() as any)?.[0] : null;
 
@@ -82,5 +78,11 @@ export class VerifyEmail implements OnInit {
 
   goHome() {
     this.router.navigate(['/']);
+  }
+
+  private readFragmentParams(fragment: string | null): URLSearchParams {
+    if (!fragment) return new URLSearchParams();
+    const queryLike = fragment.includes('?') ? fragment.split('?')[1] : fragment;
+    return new URLSearchParams(queryLike);
   }
 }

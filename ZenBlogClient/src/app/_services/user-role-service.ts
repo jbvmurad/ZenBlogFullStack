@@ -6,7 +6,6 @@ export interface UserRoleDto {
   id?: string;
   userId: string;
   roleId: string;
-  // Sometimes OData can expand role
   role?: { id?: string; name?: string };
 }
 
@@ -32,29 +31,25 @@ export class UserRoleService {
     return ur as UserRoleDto;
   }
 
-  /** GET /api/UserRole (OData) */
   getAll() {
-    return this.http.get<any>(this.baseUrl).pipe(
+    return this.http.get<any>(`${this.baseUrl}?$expand=Role`).pipe(
       map((res: any) => (Array.isArray(res) ? res : res?.value ?? [])),
       map((items: any[]) => items.map(i => this.normalize(i)))
     );
   }
 
-  /** GET /api/UserRole?$filter=UserId eq '...' */
   getForUser(userId: string) {
-    const params = new HttpParams().set('$filter', `UserId eq '${userId}'`);
+    const params = new HttpParams().set('$expand', 'Role').set('$filter', `UserId eq '${userId}'`);
     return this.http.get<any>(this.baseUrl, { params }).pipe(
       map((res: any) => (Array.isArray(res) ? res : res?.value ?? [])),
       map((items: any[]) => items.map(i => this.normalize(i)))
     );
   }
 
-  /** POST /api/UserRole  (GiveUserRoleCommand expects { UserId, RoleId }) */
   giveRole(userId: string, roleId: string) {
     return this.http.post<any>(this.baseUrl, { UserId: userId, RoleId: roleId });
   }
 
-  /** DELETE /api/UserRole/{userId} with body { RoleIds: [...] } */
   deleteRoles(userId: string, roleIds: string[]) {
     return this.http.delete<any>(`${this.baseUrl}/${encodeURIComponent(userId)}`, {
       body: { RoleIds: roleIds }

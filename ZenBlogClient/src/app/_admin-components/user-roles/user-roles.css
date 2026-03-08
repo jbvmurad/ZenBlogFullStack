@@ -1,28 +1,92 @@
-.admin-fluid {
+.users-role-page {
   width: 100%;
-  padding-left: 0;
-  padding-right: 0;
+}
+
+.header-panel {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 1.3rem;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(25, 135, 84, 0.08), rgba(25, 135, 84, 0.02));
+  border: 1px solid rgba(25, 135, 84, 0.08);
+}
+
+.eyebrow {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #5f6b7a;
+  margin-bottom: 0.35rem;
 }
 
 .soft-card {
-  border: 0;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.05);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.search-box {
+  width: min(480px, 100%);
+}
+
+.user-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.user-avatar,
+.user-avatar-img {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  flex-shrink: 0;
 }
 
 .user-avatar {
-  width: 38px;
-  height: 38px;
-  border-radius: 12px;
   background: rgba(13,110,253,.12);
+  color: #0d6efd;
   display: grid;
   place-items: center;
-  color: #0d6efd;
+  font-weight: 700;
 }
 
-.soft-card .table th,
-.soft-card .table td {
+.user-avatar-img {
+  object-fit: cover;
+  border: 1px solid rgba(0,0,0,.06);
+}
+
+.role-table th,
+.role-table td {
   padding-top: 1rem;
   padding-bottom: 1rem;
   vertical-align: middle;
+}
+
+.status-copy {
+  font-size: 0.95rem;
+}
+
+@media (max-width: 991.98px) {
+  .header-panel,
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-box {
+    width: 100%;
+  }
 }

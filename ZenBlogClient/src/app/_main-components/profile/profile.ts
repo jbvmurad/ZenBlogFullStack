@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../_services/auth-service';
-import { UserService, UserDto } from '../../_services/user-service';
+import { UserDto } from '../../_models/userDto';
 
 @Component({
   selector: 'app-profile',
@@ -8,37 +8,40 @@ import { UserService, UserDto } from '../../_services/user-service';
   templateUrl: './profile.html',
   styleUrl: './profile.css'
 })
-export class Profile {
-  loading = true;
+export class Profile implements OnInit {
   user: UserDto | null = null;
-  error: string | null = null;
+  loading = true;
 
-  constructor(private auth: AuthService, private userService: UserService) {
-    this.load();
-  }
+  constructor(private authService: AuthService) {}
 
-  private load() {
-    this.loading = true;
-    this.error = null;
-
-    const userId = this.auth.getUserId();
-    if (!userId) {
-      this.loading = false;
-      this.error = 'User not found in token.';
-      return;
-    }
-
-    this.userService.getById(userId).subscribe({
-      next: (u) => {
-        this.user = u;
+  ngOnInit(): void {
+    this.authService.getCurrentUser(true).subscribe({
+      next: user => {
+        this.user = user;
         this.loading = false;
       },
-      error: (err) => {
-        console.error(err);
-        this.user = null;
+      error: () => {
         this.loading = false;
-        this.error = 'Failed to load profile.';
       }
     });
+    this.authService.refreshAdminStatus().subscribe();
+  }
+
+  get displayName(): string {
+    return this.user?.fullName || this.user?.userName || 'User';
+  }
+
+  get initials(): string {
+    return this.displayName
+      .split(' ')
+      .filter(Boolean)
+      .slice(0, 2)
+      .map(x => x[0])
+      .join('')
+      .toUpperCase();
+  }
+
+  isAdmin(): boolean {
+    return this.authService.isAdmin();
   }
 }

@@ -1,9 +1,8 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { AuthService } from '../../_services/auth-service';
 import { LoginDto } from '../../_models/loginDto';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { GOOGLE_CLIENT_ID } from '../../_configs/google-auth';
-import { AccessControlService } from '../../_services/access-control-service';
 declare const alertify:any;
 declare const google: any;
 
@@ -16,9 +15,7 @@ declare const google: any;
 export class Login implements AfterViewInit {
 
 constructor(private authService:AuthService,
-  private router: Router,
-  private route: ActivatedRoute,
-  private access: AccessControlService
+  private router: Router
 ){}
 
 loginDto: LoginDto = new LoginDto()
@@ -42,9 +39,7 @@ this.authService.login(this.loginDto).subscribe({
     localStorage.setItem("token", token);
 
           alertify.success("Login Successful!");
-          this.access.ensureLoaded(true).subscribe();
-          const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '';
-          this.router.navigateByUrl(returnUrl);
+          this.router.navigate(["/"])
 
 
   },
@@ -114,9 +109,7 @@ private handleGoogleCredential(response: any) {
 
       localStorage.setItem('token', token);
       alertify.success('Signed in with Google!');
-      this.access.ensureLoaded(true).subscribe();
-      const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '';
-      this.router.navigateByUrl(returnUrl);
+      this.router.navigate(['/']);
     },
     error: (err) => {
       // Try to surface the real backend/network error (Angular sometimes gives err.error as string or ProgressEvent)

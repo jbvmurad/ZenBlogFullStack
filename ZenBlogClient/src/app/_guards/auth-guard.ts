@@ -1,31 +1,36 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, GuardResult, MaybeAsync, Router, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from '../_services/auth-service';
-
-declare const alertify: any;
+import { catchError, map, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-
-
-  constructor(private authserService: AuthService,
-              private router: Router
+  constructor(
+    private authService: AuthService,
+    private router: Router
   ){}
 
-
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): MaybeAsync<GuardResult> {
+    if (!this.authService.loggedIn()) {
+      this.router.navigate(['']);
+      return false;
+    }
 
-if(this.authserService.loggedIn()){
-  return true;
-}
-console.log("auth guard");
-try { alertify?.error?.('Please login first.'); } catch {}
-this.router.navigate(["/login"], { queryParams: { returnUrl: state.url } });
-return false;
+    const adminOnly = route.data?.['adminOnly'] === true;
+    if (!adminOnly) return true;
 
+    return this.authService.refreshAdminStatus().pipe(
+      map(isAdmin => {
+        if (isAdmin) return true;
+        this.router.navigate(['']);
+        return false;
+      }),
+      catchError(() => {
+        this.router.navigate(['']);
+        return of(false);
+      })
+    );
   }
-
-
 }

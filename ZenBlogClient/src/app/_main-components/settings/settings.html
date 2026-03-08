@@ -1,111 +1,70 @@
-<div class="container" style="max-width: 900px;">
-  <div class="d-flex align-items-center justify-content-between mb-3">
-    <div>
-      <h2 class="mb-1">Settings</h2>
-      <p class="text-muted mb-0">Update your account details.</p>
-    </div>
-    <a routerLink="/profile" class="btn btn-light btn-sm">
-      <i class="fa fa-user me-1"></i> Profile
-    </a>
-  </div>
-
-  <div *ngIf="loading" class="card p-4">
-    <div class="d-flex align-items-center">
-      <div class="spinner-border" role="status" aria-label="Loading"></div>
-      <div class="ms-3">Loading settings…</div>
-    </div>
-  </div>
-
-  <div *ngIf="!loading" class="row g-3">
-    <div class="col-12 col-lg-8">
-      <div class="card soft-card">
-        <div class="card-body">
-          <h5 class="card-title mb-3">Profile information</h5>
-
-          <form [formGroup]="form" (ngSubmit)="save()" novalidate>
-            <div class="mb-3">
-              <label class="form-label">Full name</label>
-              <input type="text" class="form-control" formControlName="fullName" placeholder="Your name" />
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label">Email</label>
-              <input type="email" class="form-control" formControlName="email" placeholder="name@example.com" />
-              <div class="text-danger small mt-1" *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
-                Please enter a valid email.
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label">Phone</label>
-              <input type="text" class="form-control" formControlName="phoneNumber" placeholder="+994 ..." />
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label">Current password <span class="text-danger">*</span></label>
-              <input
-                type="password"
-                class="form-control"
-                formControlName="currentPassword"
-                placeholder="Required to save changes"
-              />
-              <div class="text-danger small mt-1" *ngIf="form.get('currentPassword')?.touched && form.get('currentPassword')?.invalid">
-                Current password is required.
-              </div>
-              <div class="text-muted small mt-1">
-                For security, we need your current password to update your account details.
-              </div>
-            </div>
-
-            <div class="form-check form-switch mb-3">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                id="changePwd"
-                [checked]="changePassword"
-                (change)="changePassword = $any($event.target).checked"
-              />
-              <label class="form-check-label" for="changePwd">Change password</label>
-            </div>
-
-            <div *ngIf="changePassword" class="row">
-              <div class="col-md-6 mb-3">
-                <label class="form-label">New password</label>
-                <input type="password" class="form-control" formControlName="newPassword" placeholder="Enter new password" />
-              </div>
-              <div class="col-md-6 mb-3">
-                <label class="form-label">Confirm new password</label>
-                <input type="password" class="form-control" formControlName="confirmNewPassword" placeholder="Repeat new password" />
-              </div>
-              <div class="col-12">
-                <div class="alert alert-light border small mb-3">
-                  Password must meet the server rules (min 8 chars, upper/lowercase, number, special char).
-                </div>
-              </div>
-            </div>
-
-            <div class="d-flex flex-wrap gap-2">
-              <button class="btn btn-primary" type="submit" [disabled]="saving">
-                <span *ngIf="!saving">Save changes</span>
-                <span *ngIf="saving">Saving…</span>
-              </button>
-              <a routerLink="/" class="btn btn-light">Cancel</a>
-            </div>
-          </form>
+<section class="settings-page py-5">
+  <div class="container">
+    <div class="settings-shell">
+      <div class="settings-sidebar-card">
+        <div class="settings-avatar-wrap">
+          <img *ngIf="previewUrl; else settingsInitials" [src]="previewUrl" alt="Profile image" class="settings-avatar">
+          <ng-template #settingsInitials>
+            <div class="settings-avatar settings-avatar-fallback">{{ initials }}</div>
+          </ng-template>
         </div>
-      </div>
-    </div>
+        <h4>{{ form.fullName || 'Your profile' }}</h4>
+        <p>{{ form.email || 'Add your email' }}</p>
 
-    <div class="col-12 col-lg-4">
-      <div class="card soft-card border-danger">
-        <div class="card-body">
-          <h5 class="card-title text-danger">Delete account</h5>
-          <p class="text-muted">Once you delete your account, there is no going back.</p>
-          <button class="btn btn-outline-danger w-100" (click)="deleteAccount()">
-            <i class="fa fa-trash me-1"></i> Delete my account
+        <label class="btn btn-dark rounded-pill px-4 mt-2">
+          <input type="file" accept="image/*" hidden (change)="onImageSelected($event)">
+          Choose photo
+        </label>
+        <button *ngIf="selectedImage" type="button" class="btn btn-outline-secondary rounded-pill px-4 mt-2" (click)="clearSelectedImage()">Reset selection</button>
+      </div>
+
+      <div class="settings-form-card">
+        <div class="settings-header">
+          <div>
+            <span class="eyebrow">Profile settings</span>
+            <h2>Manage your account</h2>
+            <p>Update your profile information and upload your own avatar.</p>
+          </div>
+        </div>
+
+        <form (ngSubmit)="save()" #settingsForm="ngForm">
+          <div class="row g-4">
+            <div class="col-md-6">
+              <label class="form-label">Full name</label>
+              <input class="form-control form-control-lg rounded-4" name="fullName" [(ngModel)]="form.fullName" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Email</label>
+              <input class="form-control form-control-lg rounded-4" name="email" [(ngModel)]="form.email" type="email" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Phone number</label>
+              <input class="form-control form-control-lg rounded-4" name="phoneNumber" [(ngModel)]="form.phoneNumber">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">New password</label>
+              <input class="form-control form-control-lg rounded-4" name="password" [(ngModel)]="form.password" type="password" placeholder="Leave empty if backend allows it">
+            </div>
+          </div>
+
+          <div class="settings-actions">
+            <button type="submit" class="btn btn-dark rounded-pill px-4" [disabled]="saving">
+              {{ saving ? 'Saving...' : 'Save changes' }}
+            </button>
+            <a routerLink="/profile" class="btn btn-outline-dark rounded-pill px-4">Cancel</a>
+          </div>
+        </form>
+
+        <div class="danger-zone">
+          <div>
+            <h5>Delete account</h5>
+            <p>This will permanently remove your account.</p>
+          </div>
+          <button type="button" class="btn btn-outline-danger rounded-pill px-4" [disabled]="deleting" (click)="deleteAccount()">
+            {{ deleting ? 'Deleting...' : 'Delete account' }}
           </button>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
