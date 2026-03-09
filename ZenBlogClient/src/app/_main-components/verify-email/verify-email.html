@@ -1,4 +1,4 @@
-<section class="section auth-section">
+<section class="section auth-section verify-shell">
   <div class="container" data-aos="fade-up" data-aos-delay="100">
     <div class="row justify-content-center">
       <div class="col-12 col-md-9 col-lg-6">
@@ -20,23 +20,23 @@
 
             <div *ngIf="status === 'success'" class="verify-state success">
               <div class="verify-icon">✓</div>
-              <div class="alert alert-success mb-2" role="alert">{{ message }}</div>
-              <div class="text-muted small mt-2">You can now sign in to your account.</div>
-              <div class="d-flex justify-content-center gap-2 mt-4">
-                <button class="btn btn-primary" (click)="goLogin()">Go to Login</button>
-                <button class="btn btn-outline-secondary" (click)="goHome()">Home</button>
+              <div class="verify-message mb-2">{{ message }}</div>
+              <div class="text-muted small mt-2">Your verification is complete. Redirecting to login in {{ redirectCountdown }}s.</div>
+              <div class="d-flex justify-content-center gap-2 mt-4 flex-wrap">
+                <button class="btn btn-primary rounded-pill px-4" (click)="goLogin()">Go to Login</button>
+                <button class="btn btn-outline-secondary rounded-pill px-4" (click)="goHome()">Home</button>
               </div>
             </div>
 
             <div *ngIf="status === 'error'" class="verify-state error">
               <div class="verify-icon">!</div>
-              <div class="alert alert-danger mb-2" role="alert">{{ message }}</div>
+              <div class="verify-message mb-2">{{ message }}</div>
               <div class="text-muted small mt-2">
                 If you believe this is a mistake, request a new verification email from the login page.
               </div>
-              <div class="d-flex justify-content-center gap-2 mt-4">
-                <button class="btn btn-primary" (click)="goLogin()">Go to Login</button>
-                <button class="btn btn-outline-secondary" (click)="goHome()">Home</button>
+              <div class="d-flex justify-content-center gap-2 mt-4 flex-wrap">
+                <button class="btn btn-primary rounded-pill px-4" (click)="goLogin()">Go to Login</button>
+                <button class="btn btn-outline-secondary rounded-pill px-4" (click)="goHome()">Home</button>
               </div>
             </div>
           </div>

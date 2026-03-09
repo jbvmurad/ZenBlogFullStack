@@ -23,35 +23,39 @@ export class App implements OnInit  {
 
     const href = window.location.href;
     const url = new URL(href);
-    const path = url.pathname.toLowerCase();
+    const normalizedPath = this.normalizePath(url.pathname);
     const hash = url.hash || '';
     let target: string | null = null;
 
     const aliasPathMap: Record<string, string> = {
       '/verifyemail': '/verify-email',
+      '/verify-email': '/verify-email',
       '/confirmemail': '/verify-email',
       '/confirm-email': '/verify-email',
-      '/resetpassword': '/reset-password'
+      '/resetpassword': '/reset-password',
+      '/reset-password': '/reset-password'
     };
 
     if (hash.startsWith('#/')) {
       const hashValue = hash.slice(1);
       const [hashPathRaw, hashQueryRaw = ''] = hashValue.split('?');
-      const hashPath = hashPathRaw.toLowerCase();
+      const hashPath = this.normalizePath(hashPathRaw);
 
-      if (hashPath === '/verify-email' || hashPath === '/verifyemail' || hashPath === '/confirm-email' || hashPath === '/confirmemail') {
-        target = `/verify-email${hashQueryRaw ? `?${hashQueryRaw}` : ''}`;
-      } else if (hashPath === '/reset-password' || hashPath === '/resetpassword') {
-        target = `/reset-password${hashQueryRaw ? `?${hashQueryRaw}` : ''}`;
+      if (aliasPathMap[hashPath]) {
+        target = `${aliasPathMap[hashPath]}${hashQueryRaw ? `?${hashQueryRaw}` : ''}`;
       }
     }
 
-    if (!target && aliasPathMap[path]) {
-      target = `${aliasPathMap[path]}${url.search}`;
+    if (!target && aliasPathMap[normalizedPath]) {
+      target = `${aliasPathMap[normalizedPath]}${url.search}`;
     }
 
-    if (!target && path === '/' && this.hasVerifyParams(url.searchParams)) {
+    if (!target && normalizedPath === '/' && this.hasVerifyParams(url.searchParams)) {
       target = `/verify-email${url.search}`;
+    }
+
+    if (!target && normalizedPath === '/' && this.hasResetParams(url.searchParams)) {
+      target = `/reset-password${url.search}`;
     }
 
     if (target && this.router.url !== target) {
@@ -59,9 +63,22 @@ export class App implements OnInit  {
     }
   }
 
+  private normalizePath(value: string): string {
+    if (!value) return '/';
+    const lower = value.toLowerCase();
+    const trimmed = lower.length > 1 ? lower.replace(/\/+$/, '') : lower;
+    return trimmed || '/';
+  }
+
   private hasVerifyParams(params: URLSearchParams): boolean {
     const hasUser = !!(params.get('userId') || params.get('id') || params.get('uid'));
     const hasToken = !!(params.get('token') || params.get('code') || params.get('emailToken'));
+    return hasUser && hasToken;
+  }
+
+  private hasResetParams(params: URLSearchParams): boolean {
+    const hasUser = !!(params.get('userId') || params.get('id') || params.get('uid'));
+    const hasToken = !!(params.get('token') || params.get('code') || params.get('resetToken'));
     return hasUser && hasToken;
   }
 }

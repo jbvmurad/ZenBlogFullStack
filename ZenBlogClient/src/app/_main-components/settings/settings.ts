@@ -17,6 +17,7 @@ export class Settings implements OnInit {
     email: '',
     phoneNumber: '',
     password: '',
+    confirmPassword: '',
     imageUrl: ''
   };
 
@@ -24,6 +25,8 @@ export class Settings implements OnInit {
   previewUrl: string | null = null;
   saving = false;
   deleting = false;
+  enablePasswordChange = false;
+  private authEmailForConfirmation = '';
 
   constructor(
     private authService: AuthService,
@@ -38,6 +41,7 @@ export class Settings implements OnInit {
       this.form.phoneNumber = user?.phoneNumber ?? '';
       this.form.imageUrl = user?.imageUrl ?? '';
       this.previewUrl = user?.imageUrl ?? null;
+      this.authEmailForConfirmation = user?.email ?? this.authService.getUserName() ?? '';
     });
   }
 
@@ -53,6 +57,12 @@ export class Settings implements OnInit {
     this.previewUrl = this.form.imageUrl || null;
   }
 
+  onPasswordToggleChange() {
+    if (!this.enablePasswordChange) {
+      this.form.password = '';
+    }
+  }
+
   save() {
     if (!this.form.id) {
       alertify.error('User id not found.');
@@ -64,14 +74,43 @@ export class Settings implements OnInit {
       return;
     }
 
+    if (!this.form.confirmPassword?.trim()) {
+      alertify.error('Please enter your confirm password first.');
+      return;
+    }
+
+    if (this.enablePasswordChange && !this.form.password?.trim()) {
+      alertify.error('Please enter your new password.');
+      return;
+    }
+
+    const authEmail = this.authEmailForConfirmation || this.form.email;
+    if (!authEmail) {
+      alertify.error('Confirmation email could not be determined.');
+      return;
+    }
+
     this.saving = true;
 
+    this.authService.login({
+      email: authEmail,
+      password: this.form.confirmPassword
+    }).subscribe({
+      next: () => this.performUpdate(),
+      error: () => {
+        this.saving = false;
+        alertify.error('Confirm password is incorrect. Changes were not saved.');
+      }
+    });
+  }
+
+  private performUpdate() {
     const request = {
       id: this.form.id,
       fullName: this.form.fullName,
       email: this.form.email,
       phoneNumber: this.form.phoneNumber,
-      password: this.form.password,
+      password: this.enablePasswordChange ? this.form.password : '',
       imageUrl: this.form.imageUrl
     };
 
@@ -84,6 +123,9 @@ export class Settings implements OnInit {
         alertify.success('Profile updated successfully.');
         this.selectedImage = null;
         this.form.password = '';
+        this.form.confirmPassword = '';
+        this.enablePasswordChange = false;
+        this.authEmailForConfirmation = this.form.email;
         this.authService.refreshCurrentUser().subscribe(() => {
           this.saving = false;
           this.router.navigate(['/profile']);

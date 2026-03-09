@@ -2,20 +2,31 @@
   <div class="container">
     <div class="settings-shell">
       <div class="settings-sidebar-card">
-        <div class="settings-avatar-wrap">
-          <img *ngIf="previewUrl; else settingsInitials" [src]="previewUrl" alt="Profile image" class="settings-avatar">
-          <ng-template #settingsInitials>
-            <div class="settings-avatar settings-avatar-fallback">{{ initials }}</div>
-          </ng-template>
-        </div>
-        <h4>{{ form.fullName || 'Your profile' }}</h4>
-        <p>{{ form.email || 'Add your email' }}</p>
+        <div>
+          <div class="settings-avatar-wrap">
+            <img *ngIf="previewUrl; else settingsInitials" [src]="previewUrl" alt="Profile image" class="settings-avatar">
+            <ng-template #settingsInitials>
+              <div class="settings-avatar settings-avatar-fallback">{{ initials }}</div>
+            </ng-template>
+          </div>
+          <h4>{{ form.fullName || 'Your profile' }}</h4>
+          <p>{{ form.email || 'Add your email' }}</p>
 
-        <label class="btn btn-dark rounded-pill px-4 mt-2">
-          <input type="file" accept="image/*" hidden (change)="onImageSelected($event)">
-          Choose photo
-        </label>
-        <button *ngIf="selectedImage" type="button" class="btn btn-outline-secondary rounded-pill px-4 mt-2" (click)="clearSelectedImage()">Reset selection</button>
+          <label class="btn btn-dark rounded-pill px-4 mt-2">
+            <input type="file" accept="image/*" hidden (change)="onImageSelected($event)">
+            Choose photo
+          </label>
+          <button *ngIf="selectedImage" type="button" class="btn btn-outline-secondary rounded-pill px-4 mt-2" (click)="clearSelectedImage()">Reset selection</button>
+        </div>
+
+        <div class="danger-card">
+          <span class="eyebrow danger-eyebrow">Danger zone</span>
+          <h5>Delete account</h5>
+          <p>Your account and active session will be removed permanently.</p>
+          <button type="button" class="btn btn-outline-danger rounded-pill px-4" [disabled]="deleting" (click)="deleteAccount()">
+            {{ deleting ? 'Deleting...' : 'Delete account' }}
+          </button>
+        </div>
       </div>
 
       <div class="settings-form-card">
@@ -23,7 +34,7 @@
           <div>
             <span class="eyebrow">Profile settings</span>
             <h2>Manage your account</h2>
-            <p>Update your profile information and upload your own avatar.</p>
+            <p>Update your profile details, refresh your avatar and confirm changes with your password from one clean panel.</p>
           </div>
         </div>
 
@@ -42,8 +53,51 @@
               <input class="form-control form-control-lg rounded-4" name="phoneNumber" [(ngModel)]="form.phoneNumber">
             </div>
             <div class="col-md-6">
-              <label class="form-label">New password</label>
-              <input class="form-control form-control-lg rounded-4" name="password" [(ngModel)]="form.password" type="password" placeholder="Leave empty if backend allows it">
+              <label class="form-label">Confirm password</label>
+              <input
+                class="form-control form-control-lg rounded-4"
+                name="confirmPassword"
+                [(ngModel)]="form.confirmPassword"
+                type="password"
+                placeholder="Enter your current password to save changes"
+                autocomplete="current-password"
+                required
+              >
+            </div>
+            <div class="col-12">
+              <div class="password-change-panel">
+                <div class="password-change-top">
+                  <label class="password-toggle-row" for="passwordToggle">
+                    <div class="form-check form-switch m-0">
+                      <input
+                        id="passwordToggle"
+                        class="form-check-input"
+                        type="checkbox"
+                        name="passwordToggle"
+                        [(ngModel)]="enablePasswordChange"
+                        (ngModelChange)="onPasswordToggleChange()"
+                      >
+                    </div>
+                    <div>
+                      <strong>Enable password change</strong><span></span>
+                      <span>Turn this on only when you want to set a brand new password.</span>
+                    </div>
+                  </label>
+
+                  <div class="new-password-inline">
+                    <label class="form-label mb-2">New password</label>
+                    <input
+                      class="form-control form-control-lg rounded-4"
+                      name="password"
+                      [(ngModel)]="form.password"
+                      type="password"
+                      placeholder="Enter your new password"
+                      autocomplete="new-password"
+                      [disabled]="!enablePasswordChange"
+                    >
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -54,16 +108,6 @@
             <a routerLink="/profile" class="btn btn-outline-dark rounded-pill px-4">Cancel</a>
           </div>
         </form>
-
-        <div class="danger-zone">
-          <div>
-            <h5>Delete account</h5>
-            <p>This will permanently remove your account.</p>
-          </div>
-          <button type="button" class="btn btn-outline-danger rounded-pill px-4" [disabled]="deleting" (click)="deleteAccount()">
-            {{ deleting ? 'Deleting...' : 'Delete account' }}
-          </button>
-        </div>
       </div>
     </div>
   </div>
