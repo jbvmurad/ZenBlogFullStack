@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../_services/auth-service';
 
@@ -8,9 +8,11 @@ import { AuthService } from '../../_services/auth-service';
   templateUrl: './verify-email.html',
   styleUrl: './verify-email.css'
 })
-export class VerifyEmail implements OnInit {
+export class VerifyEmail implements OnInit, OnDestroy {
   status: 'loading' | 'success' | 'error' = 'loading';
   message = 'Verifying your email...';
+  redirectCountdown = 5;
+  private redirectTimer: ReturnType<typeof setInterval> | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -55,6 +57,7 @@ export class VerifyEmail implements OnInit {
           res?.Error ??
           res?.error ??
           'Email verified successfully';
+        this.startRedirectCountdown();
       },
       error: (err) => {
         this.status = 'error';
@@ -72,12 +75,36 @@ export class VerifyEmail implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    this.clearRedirectTimer();
+  }
+
   goLogin() {
+    this.clearRedirectTimer();
     this.router.navigate(['/login']);
   }
 
   goHome() {
+    this.clearRedirectTimer();
     this.router.navigate(['/']);
+  }
+
+  private startRedirectCountdown() {
+    this.clearRedirectTimer();
+    this.redirectCountdown = 5;
+    this.redirectTimer = setInterval(() => {
+      this.redirectCountdown -= 1;
+      if (this.redirectCountdown <= 0) {
+        this.goLogin();
+      }
+    }, 1000);
+  }
+
+  private clearRedirectTimer() {
+    if (this.redirectTimer) {
+      clearInterval(this.redirectTimer);
+      this.redirectTimer = null;
+    }
   }
 
   private readFragmentParams(fragment: string | null): URLSearchParams {

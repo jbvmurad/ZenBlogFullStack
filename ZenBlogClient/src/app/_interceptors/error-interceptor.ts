@@ -17,12 +17,30 @@ export class ErrorInterceptor implements HttpInterceptor {
       catchError((err: HttpErrorResponse) => {
         if (err.status === 401) {
           localStorage.removeItem('token');
-          if (!this.router.url.includes('/login')) {
+          if (!this.shouldStayOnCurrentPage(req.url)) {
             this.router.navigate(['/login']);
           }
         }
         return throwError(() => err);
       })
     );
+  }
+
+  private shouldStayOnCurrentPage(requestUrl: string): boolean {
+    const currentUrl = this.router.url || '';
+    const publicRouteActive = ['/verify-email', '/reset-password', '/forgot-password', '/register', '/login']
+      .some(path => currentUrl.startsWith(path));
+
+    const publicAuthRequest = [
+      '/api/Auth/confirm-email',
+      '/api/Auth/reset-password',
+      '/api/Auth/forgot-password',
+      '/api/Auth/register',
+      '/api/Auth/login',
+      '/api/Auth/login-google',
+      '/api/Auth/resend-confirmation'
+    ].some(path => requestUrl.includes(path));
+
+    return publicRouteActive || publicAuthRequest;
   }
 }

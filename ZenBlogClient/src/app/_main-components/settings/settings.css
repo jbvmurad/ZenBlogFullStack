@@ -1,27 +1,38 @@
 .settings-page {
-  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+  background: #ffffff;
 }
 
 .settings-shell {
   display: grid;
   grid-template-columns: 340px 1fr;
   gap: 24px;
-  align-items: start;
+  align-items: stretch;
 }
 
 .settings-sidebar-card,
 .settings-form-card {
-  background: rgba(255, 255, 255, 0.94);
-  border: 1px solid rgba(15, 23, 42, 0.06);
-  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
   border-radius: 28px;
   padding: 28px;
 }
 
 .settings-sidebar-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   text-align: center;
-  position: sticky;
-  top: 110px;
+  min-height: 100%;
+  gap: 28px;
+}
+
+.settings-form-card {
+  height: 100%;
+}
+
+.settings-avatar-wrap {
+  margin-bottom: 6px;
 }
 
 .settings-avatar {
@@ -50,7 +61,9 @@
 
 .settings-sidebar-card p,
 .settings-header p,
-.danger-zone p {
+.password-toggle-row span,
+.danger-card p,
+.field-help {
   color: #64748b;
 }
 
@@ -59,6 +72,10 @@
   color: #0ea2bd;
   font-weight: 700;
   margin-bottom: 6px;
+}
+
+.danger-eyebrow {
+  color: #dc2626;
 }
 
 .settings-header h2 {
@@ -76,6 +93,12 @@
 .form-control {
   border: 1px solid rgba(148, 163, 184, 0.34);
   padding: 0.9rem 1rem;
+  background: #fff;
+}
+
+.form-control:disabled {
+  background: #f8fafc;
+  color: #94a3b8;
 }
 
 .form-control:focus {
@@ -83,21 +106,140 @@
   box-shadow: 0 0 0 0.25rem rgba(14, 162, 189, 0.12);
 }
 
+.field-help {
+  font-size: 0.92rem;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+.password-change-panel {
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 22px;
+  background: #ffffff;
+  padding: 18px 20px;
+}
+
+.password-change-panel {
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 22px;
+  background: #ffffff;
+  padding: 18px 12px;
+  margin-top: 8px;
+}
+
+.password-change-top {
+  display: grid;
+  grid-template-columns: minmax(180px, 260px) 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+.password-toggle-row {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 18px;
+  padding: 14px 10px 14px 8px;
+  text-align: left;
+  background: #ffffff;
+}
+
+.password-toggle-row .form-check {
+  margin: 0;
+  padding-left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.password-toggle-row .form-check-input {
+  margin: 0;
+  margin-left: 0;
+  flex-shrink: 0;
+}
+
+.password-toggle-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2px;
+}
+
+.password-toggle-copy h6 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.password-toggle-copy p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #64748b;
+}
+
+.password-change-field {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.password-change-field label {
+  margin-bottom: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.password-change-field input {
+  width: 100%;
+  min-height: 60px;
+  border: 1px solid #cbd5e1;
+  border-radius: 18px;
+  padding: 16px 18px;
+  font-size: 16px;
+  outline: none;
+  box-shadow: none;
+  background: #ffffff;
+}
+
+.password-change-field input:focus {
+  border-color: #94a3b8;
+  box-shadow: none;
+}
+
+.new-password-inline {
+  width: 100%;
+}
+
 .settings-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 28px;
+  justify-content: center;
 }
 
-.danger-zone {
-  margin-top: 32px;
+.danger-card {
+  border-top: 1px solid rgba(148, 163, 184, 0.18);
   padding-top: 24px;
-  border-top: 1px solid rgba(148, 163, 184, 0.22);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+  text-align: left;
+}
+
+.danger-card h5 {
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.danger-card .btn {
+  margin-top: 10px;
 }
 
 @media (max-width: 992px) {
@@ -105,14 +247,18 @@
     grid-template-columns: 1fr;
   }
 
-  .settings-sidebar-card {
-    position: static;
+  .password-change-top {
+    grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 576px) {
-  .danger-zone {
-    flex-direction: column;
+  .settings-sidebar-card,
+  .settings-form-card {
+    padding: 22px;
+  }
+
+  .password-toggle-row {
     align-items: flex-start;
   }
 }
