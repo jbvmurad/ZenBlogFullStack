@@ -6,7 +6,7 @@
   display: grid;
   grid-template-columns: 320px 1fr;
   gap: 24px;
-  align-items: start;
+  align-items: stretch;
 }
 
 .profile-sidebar-card,
@@ -20,9 +20,10 @@
 
 .profile-sidebar-card {
   padding: 28px;
-  position: sticky;
-  top: 110px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .profile-content {
@@ -97,6 +98,7 @@
   color: #0f766e;
   font-weight: 700;
   font-size: 0.85rem;
+  margin: 0 auto;
 }
 
 .profile-sidebar-card h2 {
@@ -130,7 +132,20 @@
   gap: 12px;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 22px;
+  margin-top: auto;
+  padding-top: 22px;
+}
+
+.profile-actions .btn {
+  min-width: 160px;
+}
+
+.profile-actions-single {
+  justify-content: center;
+}
+
+.profile-actions-dual {
+  justify-content: center;
 }
 
 .profile-card {
@@ -171,7 +186,7 @@
   }
 
   .profile-sidebar-card {
-    position: static;
+    height: auto;
   }
 }
 
@@ -183,5 +198,15 @@
 
   .info-row strong {
     text-align: left;
+  }
+
+  .profile-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-actions .btn {
+    width: 100%;
+    max-width: 280px;
   }
 }

@@ -24,7 +24,7 @@
           </div>
         </div>
 
-        <div class="profile-actions">
+        <div class="profile-actions" [ngClass]="isAdmin() ? 'profile-actions-dual' : 'profile-actions-single'">
           <a routerLink="/settings" class="btn btn-dark rounded-pill px-4">Edit profile</a>
           <a *ngIf="isAdmin()" routerLink="/admin/category" class="btn btn-outline-dark rounded-pill px-4">Dashboard</a>
         </div>

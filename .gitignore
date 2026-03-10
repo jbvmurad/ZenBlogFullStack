@@ -1,0 +1,103 @@
+# =========================
+# Secrets / environment
+# =========================
+.env
+.env.*
+!.env.example
+
+*.secret*.json
+*serviceAccount*.json
+*credentials*.json
+
+# =========================
+# Git / archive / temp
+# =========================
+*.zip
+*.tar
+*.gz
+*.rar
+*.7z
+*.tmp
+*.temp
+
+# =========================
+# OS files
+# =========================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =========================
+# IDE / Editor
+# =========================
+.vs/
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# =========================
+# Node / Angular
+# =========================
+**/node_modules/
+**/.angular/
+**/.angular/cache/
+**/dist/
+**/coverage/
+**/.sass-cache/
+**/.cache/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Angular test outputs
+**/test-results/
+**/playwright-report/
+
+# =========================
+# .NET / ASP.NET Core
+# =========================
+**/bin/
+**/obj/
+**/out/
+**/publish/
+
+# Logs
+**/logs/
+**/Logs/
+*.log
+
+# User secrets / certificates
+**/secrets.json
+**/appsettings.Development.json
+**/appsettings.Local.json
+**/*.pfx
+**/*.snk
+
+# EF / local db leftovers
+*.db
+*.db-shm
+*.db-wal
+
+# =========================
+# Docker / containers
+# =========================
+docker-data/
+.pgdata/
+redis-data/
+.localstack/
+.mssql-data/
+
+# =========================
+# Runtime uploads / generated media
+# =========================
+**/wwwroot/uploads/
+**/uploads/
+
+# =========================
+# Optional: generated frontend env files
+# =========================
+**/src/environments/environment*.local.ts
