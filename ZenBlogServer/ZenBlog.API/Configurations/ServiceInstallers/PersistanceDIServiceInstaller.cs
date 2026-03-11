@@ -26,7 +26,6 @@ public class PersistanceDIServiceInstaller : IServiceInstaller
         services.AddScoped<IMessageService, MessageService>();
         services.AddScoped<ISocialService, SocialService>();
         services.AddScoped<ISubCommentService, SubCommentService>();
-
         services.AddScoped<IUserRoleRepository, UserRoleRepository>();
         services.AddScoped<IAuthRepository, AuthRepository>();
         services.AddScoped<IBlogRepository, BlogRepository>();
