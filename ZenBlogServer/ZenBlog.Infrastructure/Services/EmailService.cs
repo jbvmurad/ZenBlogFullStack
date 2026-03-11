@@ -63,8 +63,6 @@ public class EmailService : IEmailService
         <h2>Welcome!</h2>
         <p>Please click the link below to verify your account:</p>
         <p><a href=""{verificationLink}"">Verify My Account</a></p>
-        <p>If the button doesn't work, copy this link:</p>
-        <p>{verificationLink}</p>
         ";
 
         return await SendEmailAsync(to, "Verify Your Account", body);
@@ -82,8 +80,6 @@ public class EmailService : IEmailService
         <h2>Reset Password</h2>
         <p>Click the link below to reset your password:</p>
         <p><a href=""{resetLink}"">Reset Password</a></p>
-        <p>If the button doesn't work, copy this link:</p>
-        <p>{resetLink}</p>
         ";
 
         return await SendEmailAsync(to, "Reset Password", body);

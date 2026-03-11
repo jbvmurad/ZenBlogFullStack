@@ -2,10 +2,9 @@ import { AfterViewInit, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { RegisterDto } from '../../_models/registerDto';
 import { AuthService } from '../../_services/auth-service';
-import { GOOGLE_CLIENT_ID } from '../../_configs/google-auth';
+import { GoogleIdentityService } from '../../_services/google-identity-service';
 
 declare const alertify: any;
-declare const google: any;
 
 @Component({
   selector: 'app-register',
@@ -18,11 +17,11 @@ export class Register implements AfterViewInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private googleIdentityService: GoogleIdentityService
   ) {}
 
   register() {
-    // Always send confirmPassword to backend (even if backend ignores it).
     const payload = {
       fullName: this.registerDto.fullName,
       email: this.registerDto.email,
@@ -40,7 +39,6 @@ export class Register implements AfterViewInit {
         this.router.navigate(['/login']);
       },
       error: (err) => {
-        // show server validation messages if available
         const msg =
           err?.error?.Message ??
           err?.error?.message ??
@@ -54,35 +52,11 @@ export class Register implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.renderGoogleButtonWithRetry();
-  }
-
-  private renderGoogleButtonWithRetry(triesLeft: number = 20) {
-    const el = document.getElementById('googleBtnRegister');
-    if (!el) return;
-
-    if (typeof google === 'undefined' || !google?.accounts?.id) {
-      if (triesLeft <= 0) return;
-      setTimeout(() => this.renderGoogleButtonWithRetry(triesLeft - 1), 200);
-      return;
-    }
-
-    try {
-      google.accounts.id.initialize({
-        client_id: GOOGLE_CLIENT_ID,
-        callback: (response: any) => this.handleGoogleCredential(response)
+    this.googleIdentityService
+      .renderButton('googleBtnRegister', 'signup_with', (response: any) => this.handleGoogleCredential(response))
+      .catch(() => {
+        alertify.error('Google sign-up button could not be loaded.');
       });
-
-      google.accounts.id.renderButton(el, {
-        theme: 'outline',
-        size: 'large',
-        shape: 'pill',
-        text: 'signup_with',
-        width: 360
-      });
-    } catch {
-      // no-op
-    }
   }
 
   private handleGoogleCredential(response: any) {
@@ -92,7 +66,6 @@ export class Register implements AfterViewInit {
       return;
     }
 
-    // Server auto-registers user if not exists and returns JWT
     this.authService.loginWithGoogle(credential).subscribe({
       next: (result) => {
         const token =
@@ -106,9 +79,16 @@ export class Register implements AfterViewInit {
           return;
         }
 
-        localStorage.setItem('token', token);
-        alertify.success('Welcome! Signed in with Google.');
-        this.router.navigate(['/admin']);
+        this.authService.setSessionToken(token).subscribe({
+          next: () => {
+            alertify.success('Welcome! Signed in with Google.');
+            this.router.navigate(['/admin']);
+          },
+          error: () => {
+            alertify.success('Welcome! Signed in with Google.');
+            this.router.navigate(['/admin']);
+          }
+        });
       },
       error: (err) => {
         let parsedMsg: string | null = null;
@@ -125,9 +105,6 @@ export class Register implements AfterViewInit {
           err?.error?.Message ??
           err?.error?.message ??
           parsedMsg ??
-          (typeof parsedMsg === 'string' && /untrusted\s+'aud'|audience/i.test(parsedMsg)
-            ? `Google token audience uyuşmuyor. Backend'de GoogleAuth:ClientId değeri, client'daki GOOGLE_CLIENT_ID ile aynı olmalı. (Client: ${GOOGLE_CLIENT_ID})`
-            : null) ??
           (err?.status === 0
             ? "Google sign-up failed: API reachedilemedi. proxy.conf.json target adresini ve backend'in çalıştığını kontrol et."
             : null) ??

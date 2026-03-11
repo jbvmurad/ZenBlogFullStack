@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { BehaviorSubject, Observable, catchError, map, of, tap } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, forkJoin, map, of, tap } from 'rxjs';
 import { UserDto } from '../_models/userDto';
 
 @Injectable({
@@ -13,6 +13,7 @@ export class AuthService {
   private userRoleBaseUrl = '/api/UserRole';
   private cachedUserKey = 'currentUserProfile';
   private cachedAdminKey = 'currentUserIsAdmin';
+  private accountMenuVisibleKey = 'accountMenuVisible';
 
   decodedToken: any;
   jwtHelper = new JwtHelperService();
@@ -22,6 +23,9 @@ export class AuthService {
 
   private adminStatusSubject = new BehaviorSubject<boolean>(this.readCachedAdmin());
   isAdmin$ = this.adminStatusSubject.asObservable();
+
+  private accountMenuVisibleSubject = new BehaviorSubject<boolean>(this.readAccountMenuVisible());
+  accountMenuVisible$ = this.accountMenuVisibleSubject.asObservable();
 
   constructor(
     private http: HttpClient,
@@ -34,6 +38,19 @@ export class AuthService {
 
   loginWithGoogle(idToken: string) {
     return this.http.post<any>(`${this.authBaseUrl}/login-google`, { idToken });
+  }
+
+  setSessionToken(token: string): Observable<void> {
+    localStorage.setItem('token', token);
+    this.setAccountMenuVisible(false);
+    this.decodeToken();
+
+    return forkJoin({
+      user: this.refreshCurrentUser().pipe(catchError(() => of(null))),
+      admin: this.refreshAdminStatus().pipe(catchError(() => of(false)))
+    }).pipe(
+      map(() => void 0)
+    );
   }
 
   register(model: any) {
@@ -159,12 +176,27 @@ export class AuthService {
     this.router.navigate(['']);
   }
 
+  showAuthenticatedUi() {
+    if (!this.loggedIn()) {
+      this.setAccountMenuVisible(false);
+      return;
+    }
+
+    this.setAccountMenuVisible(true);
+  }
+
+  shouldShowAuthenticatedUi(): boolean {
+    return this.loggedIn() && this.accountMenuVisibleSubject.value;
+  }
+
   clearSession() {
     localStorage.removeItem('token');
     localStorage.removeItem(this.cachedUserKey);
     localStorage.removeItem(this.cachedAdminKey);
+    localStorage.removeItem(this.accountMenuVisibleKey);
     this.currentUserSubject.next(null);
     this.adminStatusSubject.next(false);
+    this.accountMenuVisibleSubject.next(false);
   }
 
   decodeToken() {
@@ -200,11 +232,17 @@ export class AuthService {
     return decodedToken?.FullName ?? decodedToken?.fullName;
   }
 
+  private setAccountMenuVisible(value: boolean) {
+    localStorage.setItem(this.accountMenuVisibleKey, value ? 'true' : 'false');
+    this.accountMenuVisibleSubject.next(value);
+  }
+
   private normalizeUser(user: any): UserDto {
     if (!user || typeof user !== 'object') return {};
     const fullName = user.fullName ?? user.FullName ?? [user.firstName ?? user.FirstName, user.lastName ?? user.LastName].filter(Boolean).join(' ');
     const firstName = user.firstName ?? user.FirstName ?? (typeof fullName === 'string' ? fullName.split(' ')[0] : undefined);
     const lastName = user.lastName ?? user.LastName ?? (typeof fullName === 'string' ? fullName.split(' ').slice(1).join(' ') : undefined);
+
     const normalized: UserDto = {
       id: user.id ?? user.Id,
       fullName,
@@ -216,6 +254,7 @@ export class AuthService {
       imageUrl: this.normalizeUploadsUrl(user.imageUrl ?? user.ImageUrl),
       emailConfirmed: user.emailConfirmed ?? user.EmailConfirmed
     };
+
     return normalized;
   }
 
@@ -239,6 +278,7 @@ export class AuthService {
   private readCachedUser(): UserDto | null {
     const raw = localStorage.getItem(this.cachedUserKey);
     if (!raw) return null;
+
     try {
       return JSON.parse(raw);
     } catch {
@@ -249,6 +289,12 @@ export class AuthService {
   private setAdminStatus(isAdmin: boolean) {
     this.adminStatusSubject.next(isAdmin);
     localStorage.setItem(this.cachedAdminKey, String(isAdmin));
+  }
+
+  private readAccountMenuVisible(): boolean {
+    const cached = localStorage.getItem(this.accountMenuVisibleKey);
+    if (cached == null) return this.loggedIn();
+    return cached === 'true';
   }
 
   private readCachedAdmin(): boolean {
