@@ -13,5 +13,4 @@
     <Project Path="ZenBlog.Persistance/ZenBlog.Persistance.csproj" />
     <Project Path="ZenBlog.Presentation/ZenBlog.Presentation.csproj" />
   </Folder>
-  <Folder Name="/test/" />
 </Solution>
