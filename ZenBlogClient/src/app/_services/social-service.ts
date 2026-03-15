@@ -13,7 +13,6 @@ export class SocialService {
 
   private baseUrl = '/api/Social';
 
-  /** Coerce OData/PascalCase payloads to the UI's camelCase shape. */
   private coerceSocialCasing(s: any): any {
     if (!s || typeof s !== 'object') return s;
     if (s.Id != null && s.id == null) s.id = s.Id;
@@ -23,7 +22,6 @@ export class SocialService {
     return s;
   }
 
-  /** Ensure /uploads/... urls work with the Angular dev proxy. */
   private normalizeUploadsUrl(url: any): any {
     if (typeof url !== 'string' || !url) return url;
     if (/^https?:\/\//i.test(url)) return url;
@@ -46,10 +44,6 @@ export class SocialService {
     );
   }
 
-  /**
-   * Store-style create: send icon as multipart/form-data and other fields as query params.
-   * Backend endpoint: POST /api/Social/with-media
-   */
   createWithMedia(model: Partial<SocialDto>, iconFile: File){
     const form = new FormData();
     form.append('Icon', iconFile);
@@ -61,10 +55,6 @@ export class SocialService {
     return this.http.post<any>(url, form);
   }
 
-  /**
-   * Store-style update: optional icon. If not sent, server keeps the old one.
-   * Backend endpoint: PUT /api/Social/with-media
-   */
   updateWithMedia(model: Partial<SocialDto> & { id: string }, iconFile?: File | null){
     const form = new FormData();
     if (iconFile) form.append('Icon', iconFile);
@@ -77,7 +67,6 @@ export class SocialService {
     return this.http.put<any>(url, form);
   }
 
-  // Backward-compatible JSON endpoints (kept for older API versions)
   create(model:SocialDto){
     return this.http.post<any>(this.baseUrl, model);
   }
@@ -89,7 +78,4 @@ export class SocialService {
   delete(id:string){
     return this.http.delete<any>(`${this.baseUrl}?id=${encodeURIComponent(id)}`);
   }
-
-  // NOTE: ZenBlogServer tarafında Social için "GetById" endpoint'i yok.
-  // Gerekirse OData ile filtrelenebilir: /api/Social?$filter=Id eq '...'
 }
