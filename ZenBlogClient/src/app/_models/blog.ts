@@ -15,8 +15,4 @@ export class BlogDto{
   updatedAt;
   user: UserDto;
   comments: CommentDto[]
-
-
-
-
 }

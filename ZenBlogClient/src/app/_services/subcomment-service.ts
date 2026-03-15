@@ -32,5 +32,4 @@ export class SubCommentService {
     return this.http.delete<any>(`${this.baseUrl}?id=${encodeURIComponent(id)}`);
   }
 
-  // NOTE: ZenBlogServer tarafında SubComment için "GetById" endpoint'i yok.
 }
