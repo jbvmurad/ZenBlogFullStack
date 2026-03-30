@@ -6,7 +6,7 @@ using ZenBlog.Application.Features.ZenBlogFeatures.CategoryFeatures.Commands.Del
 using ZenBlog.Application.Features.ZenBlogFeatures.CategoryFeatures.Commands.UpdateCategory;
 using ZenBlog.Application.Services.ZenBlogService;
 using ZenBlog.Domain.DTOs.SystemDTOs;
-using ZenBlog.Domain.Entities.ZenBlogEntities;
+using ZenBlog.Domain.DTOs.ZenBlogResponses;
 using ZenBlog.Presentation.Controllers.Abstraction;
 
 namespace ZenBlog.Presentation.Controllers.ZenBlogControllers;
@@ -23,7 +23,7 @@ public sealed class CategoryController : APIController
 
     [HttpGet]
     [EnableQuery]
-    public IQueryable<Category> GetAll() => _categoryService.GetAllCategories();
+    public IQueryable<CategoryResponse> GetAll() => _categoryService.GetAllCategories();
 
     [HttpPost]
     public async Task<IActionResult> Create(CreateCategoryCommand request, CancellationToken cancellationToken)

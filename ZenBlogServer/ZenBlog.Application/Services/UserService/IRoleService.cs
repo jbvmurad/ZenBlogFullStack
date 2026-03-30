@@ -1,12 +1,13 @@
 using ZenBlog.Application.Features.UserFeatures.RoleFeatures.Commands.CreateRole;
 using ZenBlog.Application.Features.UserFeatures.RoleFeatures.Commands.DeleteRole;
+using ZenBlog.Domain.DTOs.UserDTOs;
 using ZenBlog.Domain.Entities.UserEntities;
 
 namespace ZenBlog.Application.Services.UserAttributeService;
 
 public interface IRoleService
 {
-    IQueryable<Role> GetAllRoles();
+    IQueryable<RoleResponse> GetAllRoles();
     Task CreateAsync(CreateRoleCommand request);
     Task DeleteAsync(DeleteRoleCommand request);
 }

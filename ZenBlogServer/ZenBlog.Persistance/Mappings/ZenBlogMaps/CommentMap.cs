@@ -1,6 +1,7 @@
 using AutoMapper;
 using ZenBlog.Application.Features.ZenBlogFeatures.CommentFeatures.Commands.CreateComment;
 using ZenBlog.Application.Features.ZenBlogFeatures.CommentFeatures.Commands.UpdateComment;
+using ZenBlog.Domain.DTOs.ZenBlogResponses;
 using ZenBlog.Domain.Entities.ZenBlogEntities;
 
 namespace ZenBlog.Persistance.Mappings.ZenBlogMaps;
@@ -11,5 +12,6 @@ public sealed class CommentMap:Profile
     {
         CreateMap<CreateCommentCommand, Comment>().ReverseMap();
         CreateMap<UpdateCommentCommand, Comment>().ReverseMap();
+        CreateMap<Comment, CommentResponse>();
     }
 }

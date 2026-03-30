@@ -1,10 +1,12 @@
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using GenericRepository;
 using Microsoft.EntityFrameworkCore;
 using ZenBlog.Application.Features.ZenBlogFeatures.CommentFeatures.Commands.CreateComment;
 using ZenBlog.Application.Features.ZenBlogFeatures.CommentFeatures.Commands.DeleteComment;
 using ZenBlog.Application.Features.ZenBlogFeatures.CommentFeatures.Commands.UpdateComment;
 using ZenBlog.Application.Services.ZenBlogService;
+using ZenBlog.Domain.DTOs.ZenBlogResponses;
 using ZenBlog.Domain.Entities.ZenBlogEntities;
 using ZenBlog.Domain.Repositories.ZenBlogRepositories;
 
@@ -25,26 +27,29 @@ public sealed class CommentService : ICommentService
 
     public async Task CreateAsync(CreateCommentCommand request, CancellationToken cancellationToken)
     {
-        Comment comment =_mapper.Map<Comment>(request);
-        await _commentRepository.AddAsync(comment);
+        Comment comment = _mapper.Map<Comment>(request);
+        await _commentRepository.AddAsync(comment, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
     public async Task DeleteAsync(DeleteCommentCommand request, CancellationToken cancellationToken)
     {
-        var comment= await _commentRepository.Where(x=>x.Id==request.Id).FirstOrDefaultAsync();
+        var comment = await _commentRepository.Where(x => x.Id == request.Id).FirstOrDefaultAsync(cancellationToken);
         if (comment is null) throw new ArgumentException($"Comment with Id {request.Id} isn't found");
         _commentRepository.Delete(comment);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
-    public IQueryable<Comment> GetAllComments() => _commentRepository.GetAll().AsQueryable();
+    public IQueryable<CommentResponse> GetAllComments() => _commentRepository
+        .GetAll()
+        .AsNoTracking()
+        .ProjectTo<CommentResponse>(_mapper.ConfigurationProvider);
 
     public async Task UpdateAsync(UpdateCommentCommand request, CancellationToken cancellationToken)
     {
-        var comment = await _commentRepository.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
+        var comment = await _commentRepository.Where(x => x.Id == request.Id).FirstOrDefaultAsync(cancellationToken);
         if (comment is null) throw new ArgumentException($"Comment with Id {request.Id} isn't found");
-        _mapper.Map(request,comment);
+        _mapper.Map(request, comment);
         _commentRepository.Update(comment);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }

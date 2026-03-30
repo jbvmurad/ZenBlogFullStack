@@ -1,8 +1,11 @@
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using GenericRepository;
 using Microsoft.EntityFrameworkCore;
 using ZenBlog.Application.Features.UserFeatures.UserRoleFeatures.Commands.DeleteUserRole;
 using ZenBlog.Application.Features.UserFeatures.UserRoleFeatures.Commands.GiveUserRole;
 using ZenBlog.Application.Services.UserAttributeService;
+using ZenBlog.Domain.DTOs.UserDTOs;
 using ZenBlog.Domain.Entities.UserEntities;
 using ZenBlog.Domain.Repositories.UserRepositories;
 
@@ -12,11 +15,13 @@ namespace ZenBlog.Persistance.Services.UserServices
     {
         private readonly IUserRoleRepository _userRoleRepository;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public UserRoleService(IUserRoleRepository userRoleRepository, IUnitOfWork unitOfWork)
+        public UserRoleService(IUserRoleRepository userRoleRepository, IUnitOfWork unitOfWork, IMapper mapper)
         {
             _userRoleRepository = userRoleRepository;
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         public async Task GiveAsync(GiveUserRoleCommand request, CancellationToken cancellationToken)
@@ -60,6 +65,9 @@ namespace ZenBlog.Persistance.Services.UserServices
             await _unitOfWork.SaveChangesAsync(cancellationToken);
         }
 
-        public IQueryable<UserRole> GetAllUserRoles() => _userRoleRepository.GetAll().AsNoTracking();
+        public IQueryable<UserRoleResponse> GetAllUserRoles() => _userRoleRepository
+            .GetAll()
+            .AsNoTracking()
+            .ProjectTo<UserRoleResponse>(_mapper.ConfigurationProvider);
     }
 }

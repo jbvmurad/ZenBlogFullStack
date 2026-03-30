@@ -6,7 +6,7 @@ using ZenBlog.Application.Features.ZenBlogFeatures.MessageFeatures.Commands.Dele
 using ZenBlog.Application.Features.ZenBlogFeatures.MessageFeatures.Commands.UpdateMessage;
 using ZenBlog.Application.Services.ZenBlogService;
 using ZenBlog.Domain.DTOs.SystemDTOs;
-using ZenBlog.Domain.Entities.ZenBlogEntities;
+using ZenBlog.Domain.DTOs.ZenBlogResponses;
 using ZenBlog.Presentation.Controllers.Abstraction;
 
 namespace ZenBlog.Presentation.Controllers.ZenBlogControllers;
@@ -23,7 +23,7 @@ public sealed class MessageController :APIController
 
     [HttpGet]
     [EnableQuery]
-    public IQueryable<Message> GetAll() => _messageService.GetAllMessages();
+    public IQueryable<MessageItemResponse> GetAll() => _messageService.GetAllMessages();
 
     [HttpPost]
     public async Task<IActionResult> Create(CreateMessageCommand request, CancellationToken cancellationToken)

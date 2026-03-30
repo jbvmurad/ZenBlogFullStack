@@ -6,7 +6,7 @@ using ZenBlog.Application.Features.ZenBlogFeatures.ContactInfoFeatures.Commands.
 using ZenBlog.Application.Features.ZenBlogFeatures.ContactInfoFeatures.Commands.UpdateContactInfo;
 using ZenBlog.Application.Services.ZenBlogService;
 using ZenBlog.Domain.DTOs.SystemDTOs;
-using ZenBlog.Domain.Entities.ZenBlogEntities;
+using ZenBlog.Domain.DTOs.ZenBlogResponses;
 using ZenBlog.Presentation.Controllers.Abstraction;
 
 namespace ZenBlog.Presentation.Controllers.ZenBlogControllers;
@@ -23,7 +23,7 @@ public sealed class ContactInfoController :APIController
 
     [HttpGet]
     [EnableQuery]
-    public IQueryable<ContactInfo> GetAll() => _contactInfoService.GetContactInfo();
+    public IQueryable<ContactInfoResponse> GetAll() => _contactInfoService.GetContactInfo();
 
     [HttpPost]
     public async Task<IActionResult> Create(CreateContactInfoCommand request, CancellationToken cancellationToken)

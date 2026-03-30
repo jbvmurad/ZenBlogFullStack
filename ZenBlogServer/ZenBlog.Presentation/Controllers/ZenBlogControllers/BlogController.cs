@@ -4,11 +4,9 @@ using Wolverine;
 using ZenBlog.Application.Features.ZenBlogFeatures.BlogFeatures.Commands.CreateBlog;
 using ZenBlog.Application.Features.ZenBlogFeatures.BlogFeatures.Commands.DeleteBlog;
 using ZenBlog.Application.Features.ZenBlogFeatures.BlogFeatures.Commands.UpdateBlog;
-using ZenBlog.Application.Features.ZenBlogFeatures.BlogFeatures.Queries.GetBlogByIdCached;
-using ZenBlog.Application.Requests.BlogRequests;
 using ZenBlog.Application.Services.ZenBlogService;
 using ZenBlog.Domain.DTOs.SystemDTOs;
-using ZenBlog.Domain.Entities.ZenBlogEntities;
+using ZenBlog.Domain.DTOs.ZenBlogResponses;
 using ZenBlog.Presentation.Controllers.Abstraction;
 
 namespace ZenBlog.Presentation.Controllers.ZenBlogControllers;
@@ -25,35 +23,14 @@ public sealed class BlogController : APIController
 
     [HttpGet]
     [EnableQuery]
-    public IQueryable<Blog> GetAll() => _blogService.GetAllBlogs();
+    public IQueryable<BlogResponse> GetAll() => _blogService.GetAllBlogs();
 
-#nullable enable
-    [HttpGet("by-id-cached")]
-    public async Task<IActionResult> GetByIdCached([FromQuery] string id, CancellationToken cancellationToken)
-    {
-        var blog = await _bus.InvokeAsync<Blog?>(new GetBlogByIdCachedQuery(id), cancellationToken);
-        return Ok(blog);
-    }
-#nullable disable
+
     [HttpPost]
-    public async Task<IActionResult> Create(CreateBlogCommand request, CancellationToken cancellationToken)
+    [Consumes("multipart/form-data")]
+    public async Task<IActionResult> Create([FromForm] CreateBlogCommand request, CancellationToken cancellationToken)
     {
         MessageResponse response = await _bus.InvokeAsync<MessageResponse>(request, cancellationToken);
-        return Ok(response);
-    }
-
-    [HttpPost("with-media")]
-    [Consumes("multipart/form-data")]
-    public async Task<IActionResult> CreateWithMedia(
-        [FromForm] CreateBlogMediaOnlyRequest media,
-        [FromQuery] string Title,
-        [FromQuery] string Description,
-        [FromQuery] string CategoryId,
-        [FromQuery] string UserId,
-        CancellationToken cancellationToken)
-    {
-        var command = media.ToCreateBlogWithMediaCommand(Title, Description, CategoryId, UserId);
-        MessageResponse response = await _bus.InvokeAsync<MessageResponse>(command, cancellationToken);
         return Ok(response);
     }
 
@@ -66,25 +43,10 @@ public sealed class BlogController : APIController
     }
 
     [HttpPut]
-    public async Task<IActionResult> Update(UpdateBlogCommand request, CancellationToken cancellationToken)
+    [Consumes("multipart/form-data")]
+    public async Task<IActionResult> Update([FromForm] UpdateBlogCommand request, CancellationToken cancellationToken)
     {
         MessageResponse response = await _bus.InvokeAsync<MessageResponse>(request, cancellationToken);
-        return Ok(response);
-    }
-
-    [HttpPut("with-media")]
-    [Consumes("multipart/form-data")]
-    public async Task<IActionResult> UpdateWithMedia(
-        [FromForm] UpdateBlogMediaOptionalRequest media,
-        [FromQuery] string id,
-        [FromQuery] string? Title,
-        [FromQuery] string? Description,
-        [FromQuery] string? CategoryId,
-        [FromQuery] string? UserId,
-        CancellationToken cancellationToken)
-    {
-        var command = media.ToUpdateBlogWithMediaCommand(id, Title, Description, CategoryId, UserId);
-        MessageResponse response = await _bus.InvokeAsync<MessageResponse>(command, cancellationToken);
         return Ok(response);
     }
 }

@@ -6,7 +6,6 @@ using ZenBlog.Application.Features.UserFeatures.UserRoleFeatures.Commands.GiveUs
 using ZenBlog.Application.Services.UserAttributeService;
 using ZenBlog.Domain.DTOs.SystemDTOs;
 using ZenBlog.Domain.DTOs.UserDTOs;
-using ZenBlog.Domain.Entities.UserEntities;
 using ZenBlog.Presentation.Controllers.Abstraction;
 
 namespace ZenBlog.Presentation.Controllers.UserControllers;
@@ -24,7 +23,7 @@ public sealed class UserRoleController : APIController
 
     [HttpGet]
     [EnableQuery]
-    public IQueryable<UserRole> GetAll() => _userRoleService.GetAllUserRoles();
+    public IQueryable<UserRoleResponse> GetAll() => _userRoleService.GetAllUserRoles();
 
     [HttpDelete("{userId}")]
     public async Task<IActionResult> DeleteRoles([FromRoute] string userId, [FromBody] DeleteUserRoleBody body)
@@ -37,7 +36,7 @@ public sealed class UserRoleController : APIController
     [HttpPost]
     public async Task<IActionResult> Create(GiveUserRoleCommand request, CancellationToken cancellationToken)
     {
-        MessageResponse response = await _bus.InvokeAsync<MessageResponse>(request);
+        MessageResponse response = await _bus.InvokeAsync<MessageResponse>(request, cancellationToken);
         return Ok(response);
     }
 }

@@ -1,6 +1,7 @@
 using AutoMapper;
 using ZenBlog.Application.Features.ZenBlogFeatures.CategoryFeatures.Commands.CreateCategory;
 using ZenBlog.Application.Features.ZenBlogFeatures.CategoryFeatures.Commands.UpdateCategory;
+using ZenBlog.Domain.DTOs.ZenBlogResponses;
 using ZenBlog.Domain.Entities.ZenBlogEntities;
 
 namespace ZenBlog.Persistance.Mappings.ZenBlogMaps;
@@ -11,5 +12,6 @@ public sealed class CategoryMap:Profile
     {
         CreateMap<CreateCategoryCommand,Category>().ReverseMap();
         CreateMap<UpdateCategoryCommand,Category>().ReverseMap();
+        CreateMap<Category, CategoryResponse>();
     }
 }

@@ -5,7 +5,7 @@ using ZenBlog.Application.Features.UserFeatures.RoleFeatures.Commands.CreateRole
 using ZenBlog.Application.Features.UserFeatures.RoleFeatures.Commands.DeleteRole;
 using ZenBlog.Application.Services.UserAttributeService;
 using ZenBlog.Domain.DTOs.SystemDTOs;
-using ZenBlog.Domain.Entities.UserEntities;
+using ZenBlog.Domain.DTOs.UserDTOs;
 using ZenBlog.Presentation.Controllers.Abstraction;
 
 namespace ZenBlog.Presentation.Controllers.UserControllers;
@@ -23,12 +23,12 @@ public sealed class RoleController : APIController
 
     [HttpGet]
     [EnableQuery]
-    public IQueryable<Role> GetAll() => _roleService.GetAllRoles();
+    public IQueryable<RoleResponse> GetAll() => _roleService.GetAllRoles();
 
     [HttpPost]
     public async Task<IActionResult> Create(CreateRoleCommand request, CancellationToken cancellationToken)
     {
-        MessageResponse response = await _bus.InvokeAsync<MessageResponse>(request);
+        MessageResponse response = await _bus.InvokeAsync<MessageResponse>(request, cancellationToken);
         return Ok(response);
     }
 
@@ -36,7 +36,7 @@ public sealed class RoleController : APIController
     public async Task<IActionResult> Delete(string id, CancellationToken cancellationToken)
     {
         DeleteRoleCommand request = new(id.ToString());
-        MessageResponse response = await _bus.InvokeAsync<MessageResponse>(request);
+        MessageResponse response = await _bus.InvokeAsync<MessageResponse>(request, cancellationToken);
         return Ok(response);
     }
 }

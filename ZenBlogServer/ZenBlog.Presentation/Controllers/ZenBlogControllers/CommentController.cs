@@ -6,7 +6,7 @@ using ZenBlog.Application.Features.ZenBlogFeatures.CommentFeatures.Commands.Dele
 using ZenBlog.Application.Features.ZenBlogFeatures.CommentFeatures.Commands.UpdateComment;
 using ZenBlog.Application.Services.ZenBlogService;
 using ZenBlog.Domain.DTOs.SystemDTOs;
-using ZenBlog.Domain.Entities.ZenBlogEntities;
+using ZenBlog.Domain.DTOs.ZenBlogResponses;
 using ZenBlog.Presentation.Controllers.Abstraction;
 
 namespace ZenBlog.Presentation.Controllers.ZenBlogControllers;
@@ -24,7 +24,7 @@ public sealed class CommentController :APIController
 
     [HttpGet]
     [EnableQuery]
-    public IQueryable<Comment> GetAll() => _commentService.GetAllComments();
+    public IQueryable<CommentResponse> GetAll() => _commentService.GetAllComments();
 
     [HttpPost]
     public async Task<IActionResult> Create(CreateCommentCommand request, CancellationToken cancellationToken)

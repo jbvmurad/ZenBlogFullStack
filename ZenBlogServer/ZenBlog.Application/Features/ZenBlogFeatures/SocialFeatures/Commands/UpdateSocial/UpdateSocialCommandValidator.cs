@@ -7,8 +7,5 @@ public sealed class UpdateSocialCommandValidator : AbstractValidator<UpdateSocia
     public UpdateSocialCommandValidator()
     {
         RuleFor(x => x.Id).NotEmpty();
-        RuleFor(x => x.Title).NotEmpty();
-        RuleFor(x => x.Url).NotEmpty();
-        RuleFor(x => x.Icon).NotEmpty();
     }
 }

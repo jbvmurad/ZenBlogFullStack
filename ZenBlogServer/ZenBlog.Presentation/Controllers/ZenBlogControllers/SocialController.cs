@@ -4,17 +4,16 @@ using Wolverine;
 using ZenBlog.Application.Features.ZenBlogFeatures.SocialFeatures.Commands.CreateSocial;
 using ZenBlog.Application.Features.ZenBlogFeatures.SocialFeatures.Commands.DeleteSocial;
 using ZenBlog.Application.Features.ZenBlogFeatures.SocialFeatures.Commands.UpdateSocial;
-using ZenBlog.Application.Requests.SocialRequests;
 using ZenBlog.Application.Services.ZenBlogService;
 using ZenBlog.Domain.DTOs.SystemDTOs;
-using ZenBlog.Domain.Entities.ZenBlogEntities;
+using ZenBlog.Domain.DTOs.ZenBlogResponses;
 using ZenBlog.Presentation.Controllers.Abstraction;
 
 namespace ZenBlog.Presentation.Controllers.ZenBlogControllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public sealed class SocialController :APIController
+public sealed class SocialController : APIController
 {
     private readonly ISocialService _socialService;
     public SocialController(ISocialService socialService, IMessageBus bus) : base(bus)
@@ -24,25 +23,13 @@ public sealed class SocialController :APIController
 
     [HttpGet]
     [EnableQuery]
-    public IQueryable<Social> GetAll() => _socialService.GetAllSocial();
+    public IQueryable<SocialResponse> GetAll() => _socialService.GetAllSocial();
 
     [HttpPost]
-    public async Task<IActionResult> Create(CreateSocialCommand request, CancellationToken cancellationToken)
+    [Consumes("multipart/form-data")]
+    public async Task<IActionResult> Create([FromForm] CreateSocialCommand request, CancellationToken cancellationToken)
     {
         MessageResponse response = await _bus.InvokeAsync<MessageResponse>(request, cancellationToken);
-        return Ok(response);
-    }
-
-    [HttpPost("with-media")]
-    [Consumes("multipart/form-data")]
-    public async Task<IActionResult> CreateWithMedia(
-        [FromForm] CreateSocialMediaOnlyRequest media,
-        [FromQuery] string Title,
-        [FromQuery] string Url,
-        CancellationToken cancellationToken)
-    {
-        var command = media.ToCreateSocialWithMediaCommand(Title, Url);
-        MessageResponse response = await _bus.InvokeAsync<MessageResponse>(command, cancellationToken);
         return Ok(response);
     }
 
@@ -55,23 +42,10 @@ public sealed class SocialController :APIController
     }
 
     [HttpPut]
-    public async Task<IActionResult> Update(UpdateSocialCommand request, CancellationToken cancellationToken)
+    [Consumes("multipart/form-data")]
+    public async Task<IActionResult> Update([FromForm] UpdateSocialCommand request, CancellationToken cancellationToken)
     {
         MessageResponse response = await _bus.InvokeAsync<MessageResponse>(request, cancellationToken);
-        return Ok(response);
-    }
-#nullable enable
-    [HttpPut("with-media")]
-    [Consumes("multipart/form-data")]
-    public async Task<IActionResult> UpdateWithMedia(
-        [FromForm] UpdateSocialMediaOptionalRequest media,
-        [FromQuery] string id,
-        [FromQuery] string? Title,
-        [FromQuery] string? Url,
-        CancellationToken cancellationToken)
-    {
-        var command = media.ToUpdateSocialWithMediaCommand(id, Title, Url);
-        MessageResponse response = await _bus.InvokeAsync<MessageResponse>(command, cancellationToken);
         return Ok(response);
     }
 }

@@ -6,7 +6,7 @@ using ZenBlog.Application.Features.ZenBlogFeatures.SubCommentFeatures.Commands.D
 using ZenBlog.Application.Features.ZenBlogFeatures.SubCommentFeatures.Commands.UpdateSubComment;
 using ZenBlog.Application.Services.ZenBlogService;
 using ZenBlog.Domain.DTOs.SystemDTOs;
-using ZenBlog.Domain.Entities.ZenBlogEntities;
+using ZenBlog.Domain.DTOs.ZenBlogResponses;
 using ZenBlog.Presentation.Controllers.Abstraction;
 
 namespace ZenBlog.Presentation.Controllers.ZenBlogControllers;
@@ -23,7 +23,7 @@ public sealed class SubCommentController :APIController
 
     [HttpGet]
     [EnableQuery]
-    public IQueryable<SubComment> GetAll() => _subCommentService.GetAllSubComments();
+    public IQueryable<SubCommentResponse> GetAll() => _subCommentService.GetAllSubComments();
 
     [HttpPost]
     public async Task<IActionResult> Create(CreateSubCommentCommand request, CancellationToken cancellationToken)
