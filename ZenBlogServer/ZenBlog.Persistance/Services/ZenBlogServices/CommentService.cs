@@ -1,12 +1,10 @@
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using GenericRepository;
 using Microsoft.EntityFrameworkCore;
 using ZenBlog.Application.Features.ZenBlogFeatures.CommentFeatures.Commands.CreateComment;
 using ZenBlog.Application.Features.ZenBlogFeatures.CommentFeatures.Commands.DeleteComment;
 using ZenBlog.Application.Features.ZenBlogFeatures.CommentFeatures.Commands.UpdateComment;
 using ZenBlog.Application.Services.ZenBlogService;
-using ZenBlog.Domain.DTOs.ZenBlogResponses;
 using ZenBlog.Domain.Entities.ZenBlogEntities;
 using ZenBlog.Domain.Repositories.ZenBlogRepositories;
 
@@ -40,10 +38,7 @@ public sealed class CommentService : ICommentService
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
-    public IQueryable<CommentResponse> GetAllComments() => _commentRepository
-        .GetAll()
-        .AsNoTracking()
-        .ProjectTo<CommentResponse>(_mapper.ConfigurationProvider);
+    public IQueryable<Comment> GetAllComments() => _commentRepository.GetAll().AsNoTracking();
 
     public async Task UpdateAsync(UpdateCommentCommand request, CancellationToken cancellationToken)
     {

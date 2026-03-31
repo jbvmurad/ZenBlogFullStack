@@ -1,6 +1,9 @@
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
+using Microsoft.EntityFrameworkCore;
 using Wolverine;
 using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.ConfirmEmail;
 using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.CreateNewTokenByRefreshToken;
@@ -15,6 +18,7 @@ using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.UpdateUser
 using ZenBlog.Application.Services.UserAttributeService;
 using ZenBlog.Domain.DTOs.SystemDTOs;
 using ZenBlog.Domain.DTOs.UserDTOs;
+using ZenBlog.Domain.Entities.UserEntities;
 using ZenBlog.Presentation.Controllers.Abstraction;
 
 namespace ZenBlog.Presentation.Controllers.UserControllers;
@@ -24,16 +28,27 @@ namespace ZenBlog.Presentation.Controllers.UserControllers;
 public sealed class AuthController : APIController
 {
     private readonly IAuthService _authService;
+    private readonly IMapper _mapper;
 
-    public AuthController(IMessageBus bus, IAuthService authService) : base(bus)
+    public AuthController(IMessageBus bus, IAuthService authService, IMapper mapper) : base(bus)
     {
         _authService = authService;
+        _mapper = mapper;
     }
 
     [HttpGet]
-    [EnableQuery]
-    public IQueryable<UserResponse> GetAll() => _authService.GetAllUsers();
+    public async Task<IActionResult> GetAll(ODataQueryOptions<User> options, CancellationToken cancellationToken)
+    {
+        IQueryable<User> query = _authService.GetAllUsers();
 
+        query = (IQueryable<User>)options.ApplyTo(query, new ODataQuerySettings());
+
+        var result = await query
+            .ProjectTo<UserResponse>(_mapper.ConfigurationProvider)
+            .ToListAsync(cancellationToken);
+
+        return Ok(result);
+    }
     [HttpPost("register")]
     [AllowAnonymous]
     public async Task<IActionResult> Register(RegisterUserCommand request, CancellationToken cancellationToken)

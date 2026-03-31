@@ -1,5 +1,8 @@
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
+using Microsoft.EntityFrameworkCore;
 using Wolverine;
 using ZenBlog.Application.Features.ZenBlogFeatures.BlogFeatures.Commands.CreateBlog;
 using ZenBlog.Application.Features.ZenBlogFeatures.BlogFeatures.Commands.DeleteBlog;
@@ -7,6 +10,7 @@ using ZenBlog.Application.Features.ZenBlogFeatures.BlogFeatures.Commands.UpdateB
 using ZenBlog.Application.Services.ZenBlogService;
 using ZenBlog.Domain.DTOs.SystemDTOs;
 using ZenBlog.Domain.DTOs.ZenBlogResponses;
+using ZenBlog.Domain.Entities.ZenBlogEntities;
 using ZenBlog.Presentation.Controllers.Abstraction;
 
 namespace ZenBlog.Presentation.Controllers.ZenBlogControllers;
@@ -16,14 +20,26 @@ namespace ZenBlog.Presentation.Controllers.ZenBlogControllers;
 public sealed class BlogController : APIController
 {
     private readonly IBlogService _blogService;
-    public BlogController(IBlogService blogService, IMessageBus bus) : base(bus)
+    private readonly IMapper _mapper;
+    public BlogController(IBlogService blogService, IMessageBus bus, IMapper mapper) : base(bus)
     {
         _blogService = blogService;
+        _mapper = mapper;
     }
 
     [HttpGet]
-    [EnableQuery]
-    public IQueryable<BlogResponse> GetAll() => _blogService.GetAllBlogs();
+    public async Task<IActionResult> GetAll(ODataQueryOptions<Blog> options, CancellationToken cancellationToken)
+    {
+        IQueryable<Blog> query = _blogService.GetAllBlogs();
+
+        query = (IQueryable<Blog>)options.ApplyTo(query, new ODataQuerySettings());
+
+        var result = await query
+            .ProjectTo<BlogResponse>(_mapper.ConfigurationProvider)
+            .ToListAsync(cancellationToken);
+
+        return Ok(result);
+    }
 
 
     [HttpPost]

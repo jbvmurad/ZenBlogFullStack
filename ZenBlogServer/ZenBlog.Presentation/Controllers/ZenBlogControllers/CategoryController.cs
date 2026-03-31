@@ -1,5 +1,8 @@
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
+using Microsoft.EntityFrameworkCore;
 using Wolverine;
 using ZenBlog.Application.Features.ZenBlogFeatures.CategoryFeatures.Commands.CreateCategory;
 using ZenBlog.Application.Features.ZenBlogFeatures.CategoryFeatures.Commands.DeleteCategory;
@@ -7,6 +10,7 @@ using ZenBlog.Application.Features.ZenBlogFeatures.CategoryFeatures.Commands.Upd
 using ZenBlog.Application.Services.ZenBlogService;
 using ZenBlog.Domain.DTOs.SystemDTOs;
 using ZenBlog.Domain.DTOs.ZenBlogResponses;
+using ZenBlog.Domain.Entities.ZenBlogEntities;
 using ZenBlog.Presentation.Controllers.Abstraction;
 
 namespace ZenBlog.Presentation.Controllers.ZenBlogControllers;
@@ -16,14 +20,27 @@ namespace ZenBlog.Presentation.Controllers.ZenBlogControllers;
 public sealed class CategoryController : APIController
 {
     private readonly ICategoryService _categoryService;
-    public CategoryController(ICategoryService categoryService,IMessageBus bus) : base(bus)
+    private readonly IMapper _mapper;
+
+    public CategoryController(ICategoryService categoryService,IMessageBus bus, IMapper mapper) : base(bus)
     {
         _categoryService=categoryService;
+        _mapper = mapper;
     }
 
     [HttpGet]
-    [EnableQuery]
-    public IQueryable<CategoryResponse> GetAll() => _categoryService.GetAllCategories();
+    public async Task<IActionResult> GetAll(ODataQueryOptions<Category> options, CancellationToken cancellationToken)
+    {
+        IQueryable<Category> query = _categoryService.GetAllCategories();
+
+        query = (IQueryable<Category>)options.ApplyTo(query, new ODataQuerySettings());
+
+        var result = await query
+            .ProjectTo<CategoryResponse>(_mapper.ConfigurationProvider)
+            .ToListAsync(cancellationToken);
+
+        return Ok(result);
+    }
 
     [HttpPost]
     public async Task<IActionResult> Create(CreateCategoryCommand request, CancellationToken cancellationToken)

@@ -1,12 +1,10 @@
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using GenericRepository;
 using Microsoft.EntityFrameworkCore;
 using ZenBlog.Application.Features.ZenBlogFeatures.CategoryFeatures.Commands.CreateCategory;
 using ZenBlog.Application.Features.ZenBlogFeatures.CategoryFeatures.Commands.DeleteCategory;
 using ZenBlog.Application.Features.ZenBlogFeatures.CategoryFeatures.Commands.UpdateCategory;
 using ZenBlog.Application.Services.ZenBlogService;
-using ZenBlog.Domain.DTOs.ZenBlogResponses;
 using ZenBlog.Domain.Entities.ZenBlogEntities;
 using ZenBlog.Domain.Repositories.ZenBlogRepositories;
 
@@ -40,10 +38,7 @@ public sealed class CategoryService : ICategoryService
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
-    public IQueryable<CategoryResponse> GetAllCategories() => _categoryRepository
-        .GetAll()
-        .AsNoTracking()
-        .ProjectTo<CategoryResponse>(_mapper.ConfigurationProvider);
+    public IQueryable<Category> GetAllCategories() => _categoryRepository.GetAll().AsNoTracking();
 
     public async Task UpdateAsync(UpdateCategoryCommand request, CancellationToken cancellationToken)
     {

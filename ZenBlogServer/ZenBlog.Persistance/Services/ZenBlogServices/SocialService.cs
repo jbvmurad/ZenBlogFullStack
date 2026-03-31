@@ -75,10 +75,7 @@ public sealed class SocialService : ISocialService
             await _fileStorage.TryDeleteAsync(oldIcon, cancellationToken);
     }
 
-    public IQueryable<SocialResponse> GetAllSocial() => _socialRepository
-        .GetAll()
-        .AsNoTracking()
-        .ProjectTo<SocialResponse>(_mapper.ConfigurationProvider);
+    public IQueryable<Social> GetAllSocial() => _socialRepository.GetAll().AsNoTracking();
 
     public async Task<SocialResponse?> GetByIdAsync(string id, CancellationToken cancellationToken)
     {

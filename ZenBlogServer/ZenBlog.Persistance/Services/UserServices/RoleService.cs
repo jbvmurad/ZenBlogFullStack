@@ -1,11 +1,9 @@
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ZenBlog.Application.Features.UserFeatures.RoleFeatures.Commands.CreateRole;
 using ZenBlog.Application.Features.UserFeatures.RoleFeatures.Commands.DeleteRole;
 using ZenBlog.Application.Services.UserAttributeService;
-using ZenBlog.Domain.DTOs.UserDTOs;
 using ZenBlog.Domain.Entities.UserEntities;
 
 namespace ZenBlog.Persistance.Services.UserServices;
@@ -40,7 +38,5 @@ public sealed class RoleService : IRoleService
         var result = await _roleManager.DeleteAsync(role);
     }
 
-    public IQueryable<RoleResponse> GetAllRoles() => _roleManager.Roles
-        .AsNoTracking()
-        .ProjectTo<RoleResponse>(_mapper.ConfigurationProvider);
+    public IQueryable<Role> GetAllRoles() => _roleManager.Roles.AsNoTracking();
 }

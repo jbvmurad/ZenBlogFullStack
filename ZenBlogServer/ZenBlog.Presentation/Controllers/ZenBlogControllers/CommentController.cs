@@ -1,5 +1,8 @@
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
+using Microsoft.EntityFrameworkCore;
 using Wolverine;
 using ZenBlog.Application.Features.ZenBlogFeatures.CommentFeatures.Commands.CreateComment;
 using ZenBlog.Application.Features.ZenBlogFeatures.CommentFeatures.Commands.DeleteComment;
@@ -7,6 +10,7 @@ using ZenBlog.Application.Features.ZenBlogFeatures.CommentFeatures.Commands.Upda
 using ZenBlog.Application.Services.ZenBlogService;
 using ZenBlog.Domain.DTOs.SystemDTOs;
 using ZenBlog.Domain.DTOs.ZenBlogResponses;
+using ZenBlog.Domain.Entities.ZenBlogEntities;
 using ZenBlog.Presentation.Controllers.Abstraction;
 
 namespace ZenBlog.Presentation.Controllers.ZenBlogControllers;
@@ -16,15 +20,27 @@ namespace ZenBlog.Presentation.Controllers.ZenBlogControllers;
 public sealed class CommentController :APIController
 {
     private readonly ICommentService _commentService;
+    private readonly IMapper _mapper;
 
-    public CommentController(ICommentService commentService, IMessageBus bus) : base(bus)
+    public CommentController(ICommentService commentService, IMessageBus bus, IMapper mapper) : base(bus)
     {
         _commentService = commentService;
+        _mapper = mapper;
     }
 
     [HttpGet]
-    [EnableQuery]
-    public IQueryable<CommentResponse> GetAll() => _commentService.GetAllComments();
+    public async Task<IActionResult> GetAll(ODataQueryOptions<Comment> options, CancellationToken cancellationToken)
+    {
+        IQueryable<Comment> query = _commentService.GetAllComments();
+
+        query = (IQueryable<Comment>)options.ApplyTo(query, new ODataQuerySettings());
+
+        var result = await query
+            .ProjectTo<CommentResponse>(_mapper.ConfigurationProvider)
+            .ToListAsync(cancellationToken);
+
+        return Ok(result);
+    }
 
     [HttpPost]
     public async Task<IActionResult> Create(CreateCommentCommand request, CancellationToken cancellationToken)

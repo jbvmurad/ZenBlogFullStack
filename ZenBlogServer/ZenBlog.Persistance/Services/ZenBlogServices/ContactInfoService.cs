@@ -1,12 +1,10 @@
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using GenericRepository;
 using Microsoft.EntityFrameworkCore;
 using ZenBlog.Application.Features.ZenBlogFeatures.ContactInfoFeatures.Commands.CreateContactInfo;
 using ZenBlog.Application.Features.ZenBlogFeatures.ContactInfoFeatures.Commands.DeleteContactInfo;
 using ZenBlog.Application.Features.ZenBlogFeatures.ContactInfoFeatures.Commands.UpdateContactInfo;
 using ZenBlog.Application.Services.ZenBlogService;
-using ZenBlog.Domain.DTOs.ZenBlogResponses;
 using ZenBlog.Domain.Entities.ZenBlogEntities;
 using ZenBlog.Domain.Repositories.ZenBlogRepositories;
 
@@ -54,10 +52,7 @@ public sealed class ContactInfoService : IContactInfoService
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
-    public IQueryable<ContactInfoResponse> GetContactInfo() => _contactInfoRepository
-        .GetAll()
-        .AsNoTracking()
-        .ProjectTo<ContactInfoResponse>(_mapper.ConfigurationProvider);
+    public IQueryable<ContactInfo> GetContactInfo() => _contactInfoRepository.GetAll().AsNoTracking();
 
     public async Task UpdateAsync(UpdateContactInfoCommand request, CancellationToken cancellationToken)
     {

@@ -1,11 +1,15 @@
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
+using Microsoft.EntityFrameworkCore;
 using Wolverine;
 using ZenBlog.Application.Features.UserFeatures.RoleFeatures.Commands.CreateRole;
 using ZenBlog.Application.Features.UserFeatures.RoleFeatures.Commands.DeleteRole;
 using ZenBlog.Application.Services.UserAttributeService;
 using ZenBlog.Domain.DTOs.SystemDTOs;
 using ZenBlog.Domain.DTOs.UserDTOs;
+using ZenBlog.Domain.Entities.UserEntities;
 using ZenBlog.Presentation.Controllers.Abstraction;
 
 namespace ZenBlog.Presentation.Controllers.UserControllers;
@@ -15,15 +19,27 @@ namespace ZenBlog.Presentation.Controllers.UserControllers;
 public sealed class RoleController : APIController
 {
     private readonly IRoleService _roleService;
+    private readonly IMapper _mapper;
 
-    public RoleController(IMessageBus bus, IRoleService roleService) : base(bus)
+    public RoleController(IMessageBus bus, IRoleService roleService, IMapper mapper) : base(bus)
     {
         _roleService = roleService;
+        _mapper = mapper;
     }
 
     [HttpGet]
-    [EnableQuery]
-    public IQueryable<RoleResponse> GetAll() => _roleService.GetAllRoles();
+    public async Task<IActionResult> GetAll(ODataQueryOptions<Role> options, CancellationToken cancellationToken)
+    {
+        IQueryable<Role> query = _roleService.GetAllRoles();
+
+        query = (IQueryable<Role>)options.ApplyTo(query, new ODataQuerySettings());
+
+        var result = await query
+            .ProjectTo<RoleResponse>(_mapper.ConfigurationProvider)
+            .ToListAsync(cancellationToken);
+
+        return Ok(result);
+    }
 
     [HttpPost]
     public async Task<IActionResult> Create(CreateRoleCommand request, CancellationToken cancellationToken)

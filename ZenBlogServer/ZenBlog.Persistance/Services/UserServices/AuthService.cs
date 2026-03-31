@@ -1,5 +1,4 @@
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -19,7 +18,6 @@ using ZenBlog.Application.Jwt;
 using ZenBlog.Application.Services.ExternalAuth;
 using ZenBlog.Application.Services.Storage;
 using ZenBlog.Application.Services.UserAttributeService;
-using ZenBlog.Domain.DTOs.UserDTOs;
 using ZenBlog.Domain.Entities.UserEntities;
 using ZenBlog.Domain.Events;
 
@@ -49,12 +47,7 @@ public sealed class AuthService : IAuthService
         _bus = bus;
         _fileStorage = fileStorage;
     }
-#nullable enable
-    public async Task<User?> GetByIdAsync(string id, CancellationToken cancellationToken)
-    {
-        return await _userManager.FindByIdAsync(id);
-    }
-#nullable disable
+
     public async Task<string> SaveUserImageAsync(IFormFile media, CancellationToken cancellationToken)
     {
         return await _fileStorage.SaveImageAsync(media, cancellationToken);
@@ -315,7 +308,5 @@ public sealed class AuthService : IAuthService
             throw new Exception(string.Join(" | ", result.Errors.Select(s => s.Description)));
     }
 
-    public IQueryable<UserResponse> GetAllUsers() => _userManager.Users
-        .AsNoTracking()
-        .ProjectTo<UserResponse>(_mapper.ConfigurationProvider);
+    public IQueryable<User> GetAllUsers() => _userManager.Users.AsNoTracking();
 }

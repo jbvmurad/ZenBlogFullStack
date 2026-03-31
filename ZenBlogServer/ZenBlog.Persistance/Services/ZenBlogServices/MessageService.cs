@@ -1,12 +1,10 @@
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using GenericRepository;
 using Microsoft.EntityFrameworkCore;
 using ZenBlog.Application.Features.ZenBlogFeatures.MessageFeatures.Commands.CreateMessage;
 using ZenBlog.Application.Features.ZenBlogFeatures.MessageFeatures.Commands.DeleteMessage;
 using ZenBlog.Application.Features.ZenBlogFeatures.MessageFeatures.Commands.UpdateMessage;
 using ZenBlog.Application.Services.ZenBlogService;
-using ZenBlog.Domain.DTOs.ZenBlogResponses;
 using ZenBlog.Domain.Entities.ZenBlogEntities;
 using ZenBlog.Domain.Repositories.ZenBlogRepositories;
 
@@ -50,10 +48,7 @@ public sealed class MessageService : IMessageService
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
-    public IQueryable<MessageItemResponse> GetAllMessages() => _messageRepository
-        .GetAll()
-        .AsNoTracking()
-        .ProjectTo<MessageItemResponse>(_mapper.ConfigurationProvider);
+    public IQueryable<Message> GetAllMessages() => _messageRepository.GetAll().AsNoTracking();
 
     public async Task UpdateReadStateAsync(UpdateMessageCommand request, CancellationToken cancellationToken)
     {

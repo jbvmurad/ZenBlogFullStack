@@ -1,5 +1,8 @@
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
+using Microsoft.EntityFrameworkCore;
 using Wolverine;
 using ZenBlog.Application.Features.ZenBlogFeatures.SocialFeatures.Commands.CreateSocial;
 using ZenBlog.Application.Features.ZenBlogFeatures.SocialFeatures.Commands.DeleteSocial;
@@ -7,6 +10,7 @@ using ZenBlog.Application.Features.ZenBlogFeatures.SocialFeatures.Commands.Updat
 using ZenBlog.Application.Services.ZenBlogService;
 using ZenBlog.Domain.DTOs.SystemDTOs;
 using ZenBlog.Domain.DTOs.ZenBlogResponses;
+using ZenBlog.Domain.Entities.ZenBlogEntities;
 using ZenBlog.Presentation.Controllers.Abstraction;
 
 namespace ZenBlog.Presentation.Controllers.ZenBlogControllers;
@@ -16,14 +20,26 @@ namespace ZenBlog.Presentation.Controllers.ZenBlogControllers;
 public sealed class SocialController : APIController
 {
     private readonly ISocialService _socialService;
-    public SocialController(ISocialService socialService, IMessageBus bus) : base(bus)
+    private readonly IMapper _mapper;
+    public SocialController(ISocialService socialService, IMessageBus bus,IMapper mapper) : base(bus)
     {
         _socialService = socialService;
+        _mapper = mapper;
     }
 
     [HttpGet]
-    [EnableQuery]
-    public IQueryable<SocialResponse> GetAll() => _socialService.GetAllSocial();
+    public async Task<IActionResult> GetAll(ODataQueryOptions<Social> options, CancellationToken cancellationToken)
+    {
+        IQueryable<Social> query = _socialService.GetAllSocial();
+
+        query = (IQueryable<Social>)options.ApplyTo(query, new ODataQuerySettings());
+
+        var result = await query
+            .ProjectTo<SocialResponse>(_mapper.ConfigurationProvider)
+            .ToListAsync(cancellationToken);
+
+        return Ok(result);
+    }
 
     [HttpPost]
     [Consumes("multipart/form-data")]

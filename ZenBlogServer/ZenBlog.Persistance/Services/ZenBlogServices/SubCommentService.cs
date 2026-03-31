@@ -1,12 +1,11 @@
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using GenericRepository;
 using Microsoft.EntityFrameworkCore;
 using ZenBlog.Application.Features.ZenBlogFeatures.SubCommentFeatures.Commands.CreateSubComment;
 using ZenBlog.Application.Features.ZenBlogFeatures.SubCommentFeatures.Commands.DeleteSubComment;
 using ZenBlog.Application.Features.ZenBlogFeatures.SubCommentFeatures.Commands.UpdateSubComment;
 using ZenBlog.Application.Services.ZenBlogService;
-using ZenBlog.Domain.DTOs.ZenBlogResponses;
+using ZenBlog.Domain.Entities.ZenBlogEntities;
 using ZenBlog.Domain.Repositories.ZenBlogRepositories;
 
 namespace ZenBlog.Persistance.Services.ZenBlogServices;
@@ -39,10 +38,7 @@ public sealed class SubCommentService : ISubCommentService
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
-    public IQueryable<SubCommentResponse> GetAllSubComments() => _subCommentRepository
-        .GetAll()
-        .AsNoTracking()
-        .ProjectTo<SubCommentResponse>(_mapper.ConfigurationProvider);
+    public IQueryable<SubComment> GetAllSubComments() => _subCommentRepository.GetAll().AsNoTracking();
 
     public async Task UpdateAsync(UpdateSubCommentCommand request, CancellationToken cancellationToken)
     {

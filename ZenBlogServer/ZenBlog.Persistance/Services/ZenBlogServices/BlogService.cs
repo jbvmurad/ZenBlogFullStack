@@ -1,5 +1,4 @@
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using GenericRepository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +7,6 @@ using ZenBlog.Application.Features.ZenBlogFeatures.BlogFeatures.Commands.DeleteB
 using ZenBlog.Application.Features.ZenBlogFeatures.BlogFeatures.Commands.UpdateBlog;
 using ZenBlog.Application.Services.Storage;
 using ZenBlog.Application.Services.ZenBlogService;
-using ZenBlog.Domain.DTOs.ZenBlogResponses;
 using ZenBlog.Domain.Entities.ZenBlogEntities;
 using ZenBlog.Domain.Repositories.ZenBlogRepositories;
 
@@ -33,10 +31,7 @@ public sealed class BlogService : IBlogService
         _fileStorage = fileStorage;
     }
 
-    public IQueryable<BlogResponse> GetAllBlogs() => _blogRepository
-        .GetAll()
-        .AsNoTracking()
-        .ProjectTo<BlogResponse>(_mapper.ConfigurationProvider);
+    public IQueryable<Blog> GetAllBlogs() => _blogRepository.GetAll().AsNoTracking();
 
     public async Task<string> CreateAsync(CreateBlogCommand request, CancellationToken cancellationToken)
     {
