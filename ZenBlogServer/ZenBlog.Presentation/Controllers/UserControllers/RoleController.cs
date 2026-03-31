@@ -10,6 +10,7 @@ using ZenBlog.Application.Services.UserAttributeService;
 using ZenBlog.Domain.DTOs.SystemDTOs;
 using ZenBlog.Domain.DTOs.UserDTOs;
 using ZenBlog.Domain.Entities.UserEntities;
+using ZenBlog.Infrastructure.Authorization;
 using ZenBlog.Presentation.Controllers.Abstraction;
 
 namespace ZenBlog.Presentation.Controllers.UserControllers;
@@ -48,6 +49,7 @@ public sealed class RoleController : APIController
         return Ok(response);
     }
 
+    [RoleFilter("Admin")]
     [HttpDelete]
     public async Task<IActionResult> Delete(string id, CancellationToken cancellationToken)
     {

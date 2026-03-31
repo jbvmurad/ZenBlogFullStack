@@ -44,6 +44,7 @@ public sealed class UserRoleController : APIController
         return Ok(result);
     }
 
+    [RoleFilter("Admin")]
     [HttpDelete("{userId}")]
     public async Task<IActionResult> DeleteRoles([FromRoute] string userId, [FromBody] DeleteUserRoleBody body)
     {

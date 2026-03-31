@@ -11,6 +11,7 @@ using ZenBlog.Application.Services.ZenBlogService;
 using ZenBlog.Domain.DTOs.SystemDTOs;
 using ZenBlog.Domain.DTOs.ZenBlogResponses;
 using ZenBlog.Domain.Entities.ZenBlogEntities;
+using ZenBlog.Infrastructure.Authorization;
 using ZenBlog.Presentation.Controllers.Abstraction;
 
 namespace ZenBlog.Presentation.Controllers.ZenBlogControllers;
@@ -42,6 +43,7 @@ public sealed class CommentController :APIController
         return Ok(result);
     }
 
+    [RoleFilter("Admin")]
     [HttpPost]
     public async Task<IActionResult> Create(CreateCommentCommand request, CancellationToken cancellationToken)
     {
@@ -49,6 +51,7 @@ public sealed class CommentController :APIController
         return Ok(response);
     }
 
+    [RoleFilter("Admin")]
     [HttpDelete]
     public async Task<IActionResult> Delete(string id, CancellationToken cancellationToken)
     {
@@ -57,6 +60,7 @@ public sealed class CommentController :APIController
         return Ok(response);
     }
 
+    [RoleFilter("Admin")]
     [HttpPut]
     public async Task<IActionResult> Update(UpdateCommentCommand request, CancellationToken cancellationToken)
     {
