@@ -3,15 +3,11 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.ServiceDiscovery;
 using OpenTelemetry;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Trace;
 
 namespace Microsoft.Extensions.Hosting;
-
-
-
 
 public static class Extensions
 {
@@ -34,12 +30,6 @@ public static class Extensions
 
             http.AddServiceDiscovery();
         });
-
-
-
-
-
-
 
         return builder;
     }
@@ -86,12 +76,6 @@ public static class Extensions
         {
             builder.Services.AddOpenTelemetry().UseOtlpExporter();
         }
-
-
-
-
-
-
 
 
         return builder;
