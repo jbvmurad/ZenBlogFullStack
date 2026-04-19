@@ -43,7 +43,7 @@ public sealed class CategoryController : APIController
         return Ok(result);
     }
 
-    [RoleFilter("Admin")]
+    [RoleFilter("Admin", "Manager")]
     [HttpPost]
     public async Task<IActionResult> Create(CreateCategoryCommand request, CancellationToken cancellationToken)
     {
@@ -51,7 +51,7 @@ public sealed class CategoryController : APIController
         return Ok(response);
     }
 
-    [RoleFilter("Admin")]
+    [RoleFilter("Admin", "Manager")]
     [HttpDelete]
     public async Task<IActionResult> Delete(string id, CancellationToken cancellationToken)
     {
@@ -60,7 +60,7 @@ public sealed class CategoryController : APIController
         return Ok(response);
     }
 
-    [RoleFilter("Admin")]
+    [RoleFilter("Admin", "Manager")]
     [HttpPut]
     public async Task<IActionResult> Update(UpdateCategoryCommand request, CancellationToken cancellationToken)
     {

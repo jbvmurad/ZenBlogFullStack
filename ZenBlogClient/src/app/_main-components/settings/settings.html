@@ -35,6 +35,7 @@
             <span class="eyebrow">Profile settings</span>
             <h2>Manage your account</h2>
             <p>Update your profile details, refresh your avatar and confirm changes with your password from one clean panel.</p>
+            <p *ngIf="identityFieldsReadonly" class="text-muted mb-0">This protected dashboard admin account keeps full name, email and password locked to the values from `.env`.</p>
           </div>
         </div>
 
@@ -42,11 +43,11 @@
           <div class="row g-4">
             <div class="col-md-6">
               <label class="form-label">Full name</label>
-              <input class="form-control form-control-lg rounded-4" name="fullName" [(ngModel)]="form.fullName" required>
+              <input class="form-control form-control-lg rounded-4" name="fullName" [(ngModel)]="form.fullName" [readonly]="identityFieldsReadonly" required>
             </div>
             <div class="col-md-6">
               <label class="form-label">Email</label>
-              <input class="form-control form-control-lg rounded-4" name="email" [(ngModel)]="form.email" type="email" required>
+              <input class="form-control form-control-lg rounded-4" name="email" [(ngModel)]="form.email" type="email" [readonly]="identityFieldsReadonly" required>
             </div>
             <div class="col-md-6">
               <label class="form-label">Phone number</label>
@@ -76,11 +77,12 @@
                         name="passwordToggle"
                         [(ngModel)]="enablePasswordChange"
                         (ngModelChange)="onPasswordToggleChange()"
+                        [disabled]="identityFieldsReadonly"
                       >
                     </div>
                     <div class="password-toggle-copy">
                       <h6>Enable password change</h6>
-                      <p>Turn this on only when you want to set a brand new password.</p>
+                      <p>{{ identityFieldsReadonly ? 'This password is locked because the account is protected by `.env`.' : 'Turn this on only when you want to set a brand new password.' }}</p>
                     </div>
                   </label>
 
@@ -93,7 +95,7 @@
                       type="password"
                       placeholder="Enter your new password"
                       autocomplete="new-password"
-                      [disabled]="!enablePasswordChange"
+                      [disabled]="!enablePasswordChange || identityFieldsReadonly"
                     >
                   </div>
                 </div>

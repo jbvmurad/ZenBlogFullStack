@@ -45,12 +45,12 @@
 
 
             <div class="d-lg-flex post-entry">
-              <a href="#" class="me-4 thumbnail mb-4 mb-lg-0 d-inline-block">
+              <a [routerLink]="['/blogdetails/',blog.id]" class="me-4 thumbnail mb-4 mb-lg-0 d-inline-block">
                 <img src="{{blog.coverImage}}" alt="" class="img-fluid">
               </a>
               <div>
                 <div class="post-meta"><span class="date">{{item.categoryName}}</span> <span class="mx-1">•</span> <span>{{blog.createdAt | date}}</span></div>
-                <h3><a [routerLink]="['/blogdetails/',item.id]">{{blog.title}}</a></h3>
+                <h3><a [routerLink]="['/blogdetails/',blog.id]">{{blog.title}}</a></h3>
                 <p>{{blog.description | slice:0:200}}</p>
                 <div class="d-flex align-items-center author">
                   <div class="photo"><img src="/src/assets/img/person-2.jpg" alt="" class="img-fluid"></div>
@@ -67,9 +67,9 @@
               <div class="col-lg-4">
                 @for (blog of item.blogs; track $index) {
                 <div class="post-list border-bottom">
-                  <a [routerLink]="['/blogdetails/',item.id]"><img src="{{blog.coverImage}}" alt="" class="img-fluid"></a>
+                  <a [routerLink]="['/blogdetails/',blog.id]"><img src="{{blog.coverImage}}" alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date">{{item.categoryName}}</span> <span class="mx-1">•</span> <span>{{blog.createdAt | date}}</span></div>
-                  <h2 class="mb-2"><a href="blog-details.html">{{blog.title}}</a></h2>
+                  <h2 class="mb-2"><a [routerLink]="['/blogdetails/',blog.id]">{{blog.title}}</a></h2>
                   <span class="author mb-3 d-block">{{blog.user.firstName}} {{blog.user.lastName}}</span>
                   <p class="mb-4 d-block">{{blog.description | slice:0:100}}</p>
                 </div>
@@ -81,9 +81,9 @@
                 @for (blog of item.blogs; track $index) {
                   @if ($index===0) {
                 <div class="post-list">
-                  <a [routerLink]="['/blogdetails/',item.id]"><img src="{{blog.coverImage}}" alt="" class="img-fluid"></a>
+                  <a [routerLink]="['/blogdetails/',blog.id]"><img src="{{blog.coverImage}}" alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date">{{item.categoryName}}</span> <span class="mx-1">•</span> <span>{{blog.createdAt | date}}</span></div>
-                  <h2 class="mb-2"><a [routerLink]="['/blogdetails/',item.id]">{{blog.title}}</a></h2>
+                  <h2 class="mb-2"><a [routerLink]="['/blogdetails/',blog.id]">{{blog.title}}</a></h2>
                   <span class="author mb-3 d-block">{{blog.user.firstName}} {{blog.user.lastName}}</span>
                   <p class="mb-4 d-block">{{blog.description | slice:0:150}}</p>
                 </div>
@@ -98,7 +98,7 @@
             @for (blog of item.blogs; track $index) {
             <div class="post-list border-bottom">
               <div class="post-meta"><span class="date">{{item.categoryName}}</span> <span class="mx-1">•</span> <span>{{blog.createdAt | date}}</span></div>
-              <h2 class="mb-2"><a href="blog-details.html">{{blog.title}}</a></h2>
+              <h2 class="mb-2"><a [routerLink]="['/blogdetails/',blog.id]">{{blog.title}}</a></h2>
               <span class="author mb-3 d-block">{{blog.user.firstName}} {{blog.user.lastName}}</span>
             </div>
           }

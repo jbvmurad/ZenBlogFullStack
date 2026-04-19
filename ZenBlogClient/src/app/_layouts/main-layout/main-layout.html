@@ -17,7 +17,7 @@
 
           <ng-template #authLinks>
             <li><a routerLink="/profile" routerLinkActive="active">Profile</a></li>
-            <li *ngIf="isAdminUser"><a routerLink="/admin/category" routerLinkActive="active">Dashboard</a></li>
+            <li *ngIf="hasDashboardAccessUser"><a routerLink="/admin/category" routerLinkActive="active">{{ dashboardLabel }}</a></li>
           </ng-template>
         </ul>
       </nav>
@@ -83,9 +83,9 @@
               <span>Settings</span>
             </a>
 
-            <a *ngIf="isAdminUser" routerLink="/admin/category" class="dropdown-link">
+            <a *ngIf="hasDashboardAccessUser" routerLink="/admin/category" class="dropdown-link">
               <i class="bi bi-grid"></i>
-              <span>Dashboard</span>
+              <span>{{ dashboardLabel }}</span>
             </a>
 
             <button type="button" class="dropdown-link dropdown-logout" (click)="logout()">

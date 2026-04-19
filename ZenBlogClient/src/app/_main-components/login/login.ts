@@ -39,16 +39,16 @@ export class Login implements AfterViewInit {
           return;
         }
 
-        this.authService.setSessionToken(token).subscribe({
+        this.authService.setSessionToken(result).subscribe({
           next: () => {
             alertify.success('Login Successful!');
             this.authService.showAuthenticatedUi();
-            this.router.navigate(['/']);
+            this.router.navigateByUrl(this.authService.getPostLoginRoute());
           },
           error: () => {
             alertify.success('Login Successful!');
             this.authService.showAuthenticatedUi();
-            this.router.navigate(['/']);
+            this.router.navigateByUrl(this.authService.getPostLoginRoute());
           }
         });
       },
@@ -92,16 +92,16 @@ export class Login implements AfterViewInit {
           return;
         }
 
-        this.authService.setSessionToken(token).subscribe({
+        this.authService.setSessionToken(result).subscribe({
           next: () => {
             alertify.success('Signed in with Google!');
             this.authService.showAuthenticatedUi();
-            this.router.navigate(['/']);
+            this.router.navigateByUrl(this.authService.getPostLoginRoute());
           },
           error: () => {
             alertify.success('Signed in with Google!');
             this.authService.showAuthenticatedUi();
-            this.router.navigate(['/']);
+            this.router.navigateByUrl(this.authService.getPostLoginRoute());
           }
         });
       },

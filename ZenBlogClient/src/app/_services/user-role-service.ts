@@ -7,6 +7,8 @@ export interface UserRoleDto {
   userId: string;
   roleId: string;
   role?: { id?: string; name?: string };
+  roleName?: string;
+  userFullName?: string;
 }
 
 @Injectable({
@@ -22,24 +24,29 @@ export class UserRoleService {
     if (ur.Id != null && ur.id == null) ur.id = ur.Id;
     if (ur.UserId != null && ur.userId == null) ur.userId = ur.UserId;
     if (ur.RoleId != null && ur.roleId == null) ur.roleId = ur.RoleId;
-    if (ur.Role != null && ur.role == null) {
+    if (ur.RoleName != null && ur.roleName == null) ur.roleName = ur.RoleName;
+    if (ur.UserFullName != null && ur.userFullName == null) ur.userFullName = ur.UserFullName;
+
+    const roleName = ur.roleName ?? ur.RoleName ?? ur.role?.name ?? ur.Role?.Name ?? ur.role?.Name ?? ur.Role?.name;
+    if (roleName && ur.role == null) {
       ur.role = {
-        id: ur.Role.Id ?? ur.Role.id,
-        name: ur.Role.Name ?? ur.Role.name
+        id: ur.roleId,
+        name: roleName
       };
     }
+
     return ur as UserRoleDto;
   }
 
   getAll() {
-    return this.http.get<any>(`${this.baseUrl}?$expand=Role`).pipe(
+    return this.http.get<any>(this.baseUrl).pipe(
       map((res: any) => (Array.isArray(res) ? res : res?.value ?? [])),
       map((items: any[]) => items.map(i => this.normalize(i)))
     );
   }
 
   getForUser(userId: string) {
-    const params = new HttpParams().set('$expand', 'Role').set('$filter', `UserId eq '${userId}'`);
+    const params = new HttpParams().set('$filter', `UserId eq '${userId}'`);
     return this.http.get<any>(this.baseUrl, { params }).pipe(
       map((res: any) => (Array.isArray(res) ? res : res?.value ?? [])),
       map((items: any[]) => items.map(i => this.normalize(i)))

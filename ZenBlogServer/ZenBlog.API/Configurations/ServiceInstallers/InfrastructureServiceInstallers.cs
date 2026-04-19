@@ -7,6 +7,7 @@ using ZenBlog.Application.Services.MailService;
 using ZenBlog.Domain.DTOs.SystemDTOs;
 using ZenBlog.Domain.DTOs.UserDTOs;
 using ZenBlog.Infrastructure.Authentication;
+using ZenBlog.Infrastructure.Bootstrap;
 
 namespace ZenBlog.API.Configurations.ServiceInstallers;
 
@@ -15,6 +16,8 @@ public class InfrastructureServiceInstallers : IServiceInstaller
     public void Install(IServiceCollection services, IConfiguration configuration, IHostBuilder host)
     {
         services.AddScoped<IJwtProvider, JwtProvider>();
+        services.Configure<DashboardAdminOptions>(configuration.GetSection("DashboardAdmin"));
+        services.AddScoped<DashboardAdminSeeder>();
         services.AddScoped<ExceptionMiddleware>();
         services.ConfigureOptions<JwtOptionsSetup>();
         services.ConfigureOptions<JwtBearerOptionsSetups>();

@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System.Security.Claims;
 using Wolverine;
 using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.ConfirmEmail;
 using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.CreateNewTokenByRefreshToken;
@@ -29,23 +31,53 @@ public sealed class AuthController : APIController
 {
     private readonly IAuthService _authService;
     private readonly IMapper _mapper;
+    private readonly IConfiguration _configuration;
 
-    public AuthController(IMessageBus bus, IAuthService authService, IMapper mapper) : base(bus)
+    public AuthController(
+        IMessageBus bus,
+        IAuthService authService,
+        IMapper mapper,
+        IConfiguration configuration) : base(bus)
     {
         _authService = authService;
         _mapper = mapper;
+        _configuration = configuration;
     }
 
     [HttpGet]
     public async Task<IActionResult> GetAll(ODataQueryOptions<User> options, CancellationToken cancellationToken)
     {
         IQueryable<User> query = _authService.GetAllUsers();
+        var hasDashboardWorkerAccess = User.IsInRole("Admin") || User.IsInRole("Manager");
+
+        if (!hasDashboardWorkerAccess)
+        {
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrWhiteSpace(currentUserId))
+            {
+                return Unauthorized();
+            }
+
+            query = query.Where(x => x.Id == currentUserId);
+        }
 
         query = (IQueryable<User>)options.ApplyTo(query, new ODataQuerySettings());
 
         var result = await query
             .ProjectTo<UserResponse>(_mapper.ConfigurationProvider)
             .ToListAsync(cancellationToken);
+
+        var protectedEmail = _configuration["DashboardAdmin:Email"]?.Trim();
+        var protectedUserName = _configuration["DashboardAdmin:UserName"]?.Trim();
+
+        result = result
+            .Select(user => user with
+            {
+                IsProtectedDashboardAdmin =
+                    (!string.IsNullOrWhiteSpace(protectedEmail) && string.Equals(user.Email, protectedEmail, StringComparison.OrdinalIgnoreCase)) ||
+                    (!string.IsNullOrWhiteSpace(protectedUserName) && string.Equals(user.UserName, protectedUserName, StringComparison.OrdinalIgnoreCase))
+            })
+            .ToList();
 
         return Ok(result);
     }

@@ -19,11 +19,17 @@ export class AuthGuard implements CanActivate {
     }
 
     const adminOnly = route.data?.['adminOnly'] === true;
-    if (!adminOnly) return true;
+    const dashboardOnly = route.data?.['dashboardOnly'] === true;
 
-    return this.authService.refreshAdminStatus().pipe(
-      map(isAdmin => {
-        if (isAdmin) return true;
+    if (!adminOnly && !dashboardOnly) return true;
+
+    const accessCheck = adminOnly
+      ? this.authService.refreshAdminStatus()
+      : this.authService.refreshDashboardAccessStatus();
+
+    return accessCheck.pipe(
+      map(isAllowed => {
+        if (isAllowed) return true;
         this.router.navigate(['']);
         return false;
       }),

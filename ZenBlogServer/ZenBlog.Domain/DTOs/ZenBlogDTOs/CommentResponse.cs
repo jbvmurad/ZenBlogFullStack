@@ -8,4 +8,5 @@ public sealed record CommentResponse(
     string Body,
     string BlogId,
     DateTime CreatedAt,
-    DateTime? UpdatedAt);
+    DateTime? UpdatedAt,
+    string? CommenterImageUrl = null);

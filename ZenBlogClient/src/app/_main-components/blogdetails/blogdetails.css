@@ -1,0 +1,27 @@
+.comment-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  min-width: 64px;
+  height: 64px;
+  margin-right: 16px;
+}
+
+.comment-img img,
+.comment-avatar-fallback {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.comment-avatar-fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #1f2937;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}

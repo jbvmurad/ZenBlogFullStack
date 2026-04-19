@@ -2,6 +2,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Wolverine;
 using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.ConfirmEmail;
 using ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.CreateNewTokenByRefreshToken;
@@ -31,6 +32,7 @@ public sealed class AuthService : IAuthService
     private readonly IGoogleTokenValidator _googleTokenValidator;
     private readonly IMessageBus _bus;
     private readonly IFileStorage _fileStorage;
+    private readonly IConfiguration _configuration;
 
     public AuthService(
         UserManager<User> userManager,
@@ -38,7 +40,8 @@ public sealed class AuthService : IAuthService
         IJwtProvider jwtProvider,
         IGoogleTokenValidator googleTokenValidator,
         IMessageBus bus,
-        IFileStorage fileStorage)
+        IFileStorage fileStorage,
+        IConfiguration configuration)
     {
         _userManager = userManager;
         _mapper = mapper;
@@ -46,6 +49,7 @@ public sealed class AuthService : IAuthService
         _googleTokenValidator = googleTokenValidator;
         _bus = bus;
         _fileStorage = fileStorage;
+        _configuration = configuration;
     }
 
     public async Task<string> SaveUserImageAsync(IFormFile media, CancellationToken cancellationToken)
@@ -134,6 +138,28 @@ public sealed class AuthService : IAuthService
         if (user is null)
             throw new ArgumentException($"User with ID {request.Id} not found.");
 
+        var isProtectedDashboardAdmin = IsProtectedDashboardAdmin(user);
+
+        if (isProtectedDashboardAdmin)
+        {
+            if (!string.IsNullOrWhiteSpace(request.FullName) &&
+                !string.Equals(request.FullName, user.FullName, StringComparison.Ordinal))
+            {
+                throw new ArgumentException("The protected dashboard admin full name cannot be changed.");
+            }
+
+            if (!string.IsNullOrWhiteSpace(request.Email) &&
+                !string.Equals(request.Email, user.Email, StringComparison.OrdinalIgnoreCase))
+            {
+                throw new ArgumentException("The protected dashboard admin email cannot be changed.");
+            }
+
+            if (!string.IsNullOrWhiteSpace(request.Password))
+            {
+                throw new ArgumentException("The protected dashboard admin password cannot be changed.");
+            }
+        }
+
         var oldFullName = user.FullName;
         var oldEmail = user.Email;
         var oldPhone = user.PhoneNumber;
@@ -203,6 +229,18 @@ public sealed class AuthService : IAuthService
         {
             await _fileStorage.TryDeleteAsync(oldImageUrl, cancellationToken);
         }
+    }
+
+    private bool IsProtectedDashboardAdmin(User user)
+    {
+        var protectedEmail = _configuration["DashboardAdmin:Email"]?.Trim();
+        var protectedUserName = _configuration["DashboardAdmin:UserName"]?.Trim();
+
+        return
+            (!string.IsNullOrWhiteSpace(protectedEmail) &&
+             string.Equals(user.Email, protectedEmail, StringComparison.OrdinalIgnoreCase)) ||
+            (!string.IsNullOrWhiteSpace(protectedUserName) &&
+             string.Equals(user.UserName, protectedUserName, StringComparison.OrdinalIgnoreCase));
     }
 
     public async Task DeleteAsync(DeleteUserCommand request, CancellationToken cancellationToken)

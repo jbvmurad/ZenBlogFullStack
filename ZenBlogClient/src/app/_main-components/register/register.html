@@ -8,11 +8,23 @@
               <div class="auth-logo mb-3">
                 <span class="badge auth-badge">ZenBlog</span>
               </div>
-              <h1 class="h4 mb-1">Create your account</h1>
-              <p class="text-muted mb-0">Register to start publishing.</p>
+              <h1 class="h4 mb-1">{{ isGoogleCompletionStep ? 'Complete your Google sign up' : 'Create your account' }}</h1>
+              <p class="text-muted mb-0">
+                {{ isGoogleCompletionStep ? 'Set a new password to finish creating your account.' : 'Register to start publishing.' }}
+              </p>
             </div>
 
             <form #registerForm="ngForm" (ngSubmit)="register()" novalidate>
+              <div *ngIf="isGoogleCompletionStep" class="alert alert-light border rounded-4 d-flex align-items-start justify-content-between gap-3 mb-4">
+                <div>
+                  <strong class="d-block mb-1">Google account selected</strong>
+                  <span class="text-muted small">{{ registerDto.email }}</span>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" (click)="clearGoogleSelection()">
+                  Change
+                </button>
+              </div>
+
               <div class="row">
                 <div class="col-12 mb-3">
                   <label class="form-label">Full name</label>
@@ -23,6 +35,7 @@
                     placeholder="Your name"
                     [(ngModel)]="registerDto.fullName"
                     minlength="2"
+                    [readonly]="isGoogleCompletionStep"
                   />
                 </div>
 
@@ -35,11 +48,12 @@
                     placeholder="name@example.com"
                     [(ngModel)]="registerDto.email"
                     email
+                    [readonly]="isGoogleCompletionStep"
                   />
                 </div>
 
                 <div class="col-12 col-md-6 mb-3">
-                  <label class="form-label">Password</label>
+                  <label class="form-label">New password</label>
                   <input
                     type="password"
                     name="password"
@@ -58,21 +72,22 @@
                     placeholder="••••••••"
                     [(ngModel)]="registerDto.confirmPassword"
                   />
-</div>
+                </div>
               </div>
 
               <button
                 class="btn btn-primary btn-lg w-100"
-                
                 type="submit"
               >
-                Create account
+                {{ isGoogleCompletionStep ? 'Complete registration' : 'Create account' }}
               </button>
 
-              <div class="text-center text-muted my-3">or</div>
-              <div class="d-flex justify-content-center">
-                <div id="googleBtnRegister"></div>
-              </div>
+              <ng-container *ngIf="!isGoogleCompletionStep">
+                <div class="text-center text-muted my-3">or</div>
+                <div class="d-flex justify-content-center">
+                  <div id="googleBtnRegister"></div>
+                </div>
+              </ng-container>
 
               <div class="auth-links d-flex justify-content-between mt-3">
                 <a routerLink="/" class="small text-decoration-none">← Back to Home</a>

@@ -1,20 +1,21 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
-using ZenBlog.Domain.Repositories.UserRepositories;
 
 namespace ZenBlog.Infrastructure.Authorization;
 
 public sealed class RoleAttribute : Attribute, IAuthorizationFilter
 {
-    private readonly string _role;
-    private readonly IUserRoleRepository _userRoleRepository;
-    public RoleAttribute(string role, IUserRoleRepository userRoleRepository)
+    private readonly string[] _roles;
+
+    public RoleAttribute(string[] roles)
     {
-        _role = role;
-        _userRoleRepository = userRoleRepository;
+        _roles = roles
+            .Where(x => !string.IsNullOrWhiteSpace(x))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToArray();
     }
+
     public void OnAuthorization(AuthorizationFilterContext context)
     {
         var userIdClaim = context.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier);
@@ -24,17 +25,16 @@ public sealed class RoleAttribute : Attribute, IAuthorizationFilter
             return;
         }
 
-        var userHasRole =
-            _userRoleRepository
-            .GetAll()
-            .Where(p => p.UserId == userIdClaim.Value)
-            .Include(p => p.Role)
-            .Any(p => p.Role.Name == _role);
+        if (_roles.Length == 0)
+        {
+            return;
+        }
 
+        var userHasRole = _roles.Any(context.HttpContext.User.IsInRole);
+        
         if (!userHasRole)
         {
             context.Result = new ForbidResult();
-            return;
         }
     }
 }

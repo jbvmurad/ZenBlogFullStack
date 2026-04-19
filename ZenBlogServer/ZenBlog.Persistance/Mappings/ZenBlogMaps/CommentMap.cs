@@ -12,6 +12,7 @@ public sealed class CommentMap:Profile
     {
         CreateMap<CreateCommentCommand, Comment>().ReverseMap();
         CreateMap<UpdateCommentCommand, Comment>().ReverseMap();
-        CreateMap<Comment, CommentResponse>();
+        CreateMap<Comment, CommentResponse>()
+            .ForCtorParam(nameof(CommentResponse.CommenterImageUrl), opt => opt.MapFrom(_ => (string?)null));
     }
 }

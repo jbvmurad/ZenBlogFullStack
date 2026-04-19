@@ -32,4 +32,8 @@ export class RoleService {
   create(name: string) {
     return this.http.post<any>(this.baseUrl, { Name: name });
   }
+
+  delete(id: string) {
+    return this.http.delete<any>(`${this.baseUrl}?id=${encodeURIComponent(id)}`);
+  }
 }

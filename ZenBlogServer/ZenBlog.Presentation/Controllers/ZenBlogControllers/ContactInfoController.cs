@@ -42,7 +42,7 @@ public sealed class ContactInfoController :APIController
         return Ok(result);
     }
 
-    [RoleFilter("Admin")]
+    [RoleFilter("Admin", "Manager")]
     [HttpPost]
     public async Task<IActionResult> Create(CreateContactInfoCommand request, CancellationToken cancellationToken)
     {
@@ -50,7 +50,7 @@ public sealed class ContactInfoController :APIController
         return Ok(response);
     }
 
-    [RoleFilter("Admin")]
+    [RoleFilter("Admin", "Manager")]
     [HttpDelete]
     public async Task<IActionResult> Delete(string id, CancellationToken cancellationToken)
     {
@@ -59,7 +59,7 @@ public sealed class ContactInfoController :APIController
         return Ok(response);
     }
 
-    [RoleFilter("Admin")]
+    [RoleFilter("Admin", "Manager")]
     [HttpPut]
     public async Task<IActionResult> Update(UpdateContactInfoCommand request, CancellationToken cancellationToken)
     {

@@ -1,3 +1,4 @@
+using System;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +29,7 @@ public sealed class RoleController : APIController
         _mapper = mapper;
     }
 
+    [RoleFilter("Admin", "Manager")]
     [HttpGet]
     public async Task<IActionResult> GetAll(ODataQueryOptions<Role> options, CancellationToken cancellationToken)
     {
@@ -42,6 +44,7 @@ public sealed class RoleController : APIController
         return Ok(result);
     }
 
+    [RoleFilter("Admin")]
     [HttpPost]
     public async Task<IActionResult> Create(CreateRoleCommand request, CancellationToken cancellationToken)
     {
@@ -53,6 +56,12 @@ public sealed class RoleController : APIController
     [HttpDelete]
     public async Task<IActionResult> Delete(string id, CancellationToken cancellationToken)
     {
+        var role = await _roleService.GetAllRoles().FirstOrDefaultAsync(x => x.Id == id.ToString(), cancellationToken);
+        if (role?.Name != null && role.Name.Trim().Equals("Admin", StringComparison.OrdinalIgnoreCase))
+        {
+            return BadRequest(new MessageResponse("The Admin role cannot be deleted."));
+        }
+
         DeleteRoleCommand request = new(id.ToString());
         MessageResponse response = await _bus.InvokeAsync<MessageResponse>(request, cancellationToken);
         return Ok(response);

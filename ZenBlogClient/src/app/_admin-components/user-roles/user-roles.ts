@@ -19,8 +19,9 @@ export class UserRoles {
   users: UserDto[] = [];
   roles: RoleDto[] = [];
   userRoles: UserRoleDto[] = [];
-  adminRoleId: string | null = null;
   query = '';
+  newRoleName = '';
+  selectedRoleByUser: Record<string, string> = {};
 
   constructor(
     private userService: UserService,
@@ -37,14 +38,14 @@ export class UserRoles {
     this.roleService.getAll().subscribe({
       next: (roles) => {
         this.roles = roles;
-        this.adminRoleId = this.findAdminRoleId(roles);
 
         this.userService.getAll().subscribe({
           next: (users) => {
             this.users = users;
+
             this.userRoleService.getAll().subscribe({
-              next: (urs) => {
-                this.userRoles = urs;
+              next: (userRoles) => {
+                this.userRoles = userRoles;
                 this.loading = false;
               },
               error: (err) => {
@@ -64,30 +65,20 @@ export class UserRoles {
       error: (err) => {
         console.error(err);
         this.roles = [];
-        this.adminRoleId = null;
         this.loading = false;
       }
     });
   }
 
-  private findAdminRoleId(roles: RoleDto[]): string | null {
-    const admin = roles.find(r => (r?.name ?? '').toLowerCase().includes('admin'));
-    return admin?.id ?? null;
-  }
-
   filteredUsers(): UserDto[] {
     const q = (this.query ?? '').trim().toLowerCase();
     if (!q) return this.users;
+
     return (this.users ?? []).filter(u =>
       (u.fullName ?? '').toLowerCase().includes(q) ||
       (u.userName ?? '').toLowerCase().includes(q) ||
       (u.email ?? '').toLowerCase().includes(q)
     );
-  }
-
-  isUserAdmin(userId: string): boolean {
-    if (!this.adminRoleId) return false;
-    return (this.userRoles ?? []).some(ur => ur.userId === userId && ur.roleId === this.adminRoleId);
   }
 
   initials(user: UserDto): string {
@@ -101,60 +92,149 @@ export class UserRoles {
       .toUpperCase();
   }
 
-  createAdminRole() {
-    if (this.busy) return;
+  rolesForUser(userId: string): RoleDto[] {
+    const assignedRoleIds = new Set(
+      (this.userRoles ?? [])
+        .filter(x => x.userId === userId)
+        .map(x => x.roleId)
+    );
+
+    return (this.roles ?? []).filter(role => assignedRoleIds.has(role.id));
+  }
+
+  availableRolesForUser(userId: string): RoleDto[] {
+    const user = (this.users ?? []).find(x => x.id === userId);
+    if (this.isProtectedDashboardAdminUser(user)) {
+      return [];
+    }
+
+    const assignedRoleIds = new Set(this.rolesForUser(userId).map(x => x.id));
+    return (this.roles ?? []).filter(role =>
+      !assignedRoleIds.has(role.id) &&
+      (role?.name ?? '').trim().toLowerCase() !== 'admin');
+  }
+
+  roleUsageCount(roleId: string): number {
+    return (this.userRoles ?? []).filter(x => x.roleId === roleId).length;
+  }
+
+  createRole() {
+    if (!this.canManageWorkers()) return;
+
+    const name = (this.newRoleName ?? '').trim();
+    if (!name || this.busy) return;
+
+    const exists = (this.roles ?? []).some(role => (role.name ?? '').trim().toLowerCase() === name.toLowerCase());
+    if (exists) {
+      try { alertify?.error?.('This role already exists.'); } catch {}
+      return;
+    }
+
     this.busy = true;
-    this.roleService.create('Admin').subscribe({
+    this.roleService.create(name).subscribe({
       next: (res: any) => {
-        try { alertify?.success?.(res?.message ?? 'Admin role created.'); } catch {}
-        this.busy = false;
-        this.load();
+        this.newRoleName = '';
+        try { alertify?.success?.(res?.message ?? 'Role created.'); } catch {}
+        this.finishMutation(true);
       },
-      error: (err) => {
-        console.error(err);
-        this.busy = false;
-        const msg = err?.error?.message ?? err?.error?.Message ?? err?.message ?? 'Failed to create role.';
-        try { alertify?.error?.(msg); } catch {}
-      }
+      error: (err) => this.handleError(err, 'Failed to create role.')
     });
   }
 
-  toggleAdmin(user: UserDto, checked: boolean) {
-    if (!this.adminRoleId || this.busy || !user?.id) return;
+  deleteRole(role: RoleDto) {
+    if (!this.canManageWorkers()) return;
+    if (this.busy || !role?.id) return;
+
+    const accepted = window.confirm(`Delete role "${role.name ?? 'role'}"?`);
+    if (!accepted) return;
 
     this.busy = true;
-    const done = () => this.authService.refreshAdminStatus().subscribe();
+    this.roleService.delete(role.id).subscribe({
+      next: (res: any) => {
+        try { alertify?.success?.(res?.message ?? 'Role deleted.'); } catch {}
+        this.finishMutation(false);
+      },
+      error: (err) => this.handleError(err, 'Failed to delete role.')
+    });
+  }
 
-    if (checked) {
-      this.userRoleService.giveRole(user.id, this.adminRoleId).subscribe({
-        next: (res: any) => {
-          try { alertify?.success?.(res?.message ?? 'Role granted.'); } catch {}
-          this.busy = false;
-          this.load();
-          done();
-        },
-        error: (err) => {
-          console.error(err);
-          this.busy = false;
-          const msg = err?.error?.message ?? err?.error?.Message ?? err?.message ?? 'Failed to grant role.';
-          try { alertify?.error?.(msg); } catch {}
-        }
-      });
-    } else {
-      this.userRoleService.deleteRoles(user.id, [this.adminRoleId]).subscribe({
-        next: (res: any) => {
-          try { alertify?.success?.(res?.message ?? 'Role removed.'); } catch {}
-          this.busy = false;
-          this.load();
-          done();
-        },
-        error: (err) => {
-          console.error(err);
-          this.busy = false;
-          const msg = err?.error?.message ?? err?.error?.Message ?? err?.message ?? 'Failed to remove role.';
-          try { alertify?.error?.(msg); } catch {}
-        }
-      });
+  assignRole(user: UserDto) {
+    if (!this.canManageWorkers()) return;
+    const userId = user?.id;
+    const roleId = userId ? this.selectedRoleByUser[userId] : null;
+    if (!userId || !roleId || this.busy) return;
+
+    this.busy = true;
+    this.userRoleService.giveRole(userId, roleId).subscribe({
+      next: (res: any) => {
+        this.selectedRoleByUser[userId] = '';
+        try { alertify?.success?.(res?.message ?? 'Role assigned.'); } catch {}
+        this.finishMutation(true);
+      },
+      error: (err) => this.handleError(err, 'Failed to assign role.')
+    });
+  }
+
+  removeRole(user: UserDto, role: RoleDto) {
+    if (!this.canManageWorkers()) return;
+    if (!user?.id || !role?.id || this.busy) return;
+
+    this.busy = true;
+    this.userRoleService.deleteRoles(user.id, [role.id]).subscribe({
+      next: (res: any) => {
+        try { alertify?.success?.(res?.message ?? 'Role removed.'); } catch {}
+        this.finishMutation(true);
+      },
+      error: (err) => this.handleError(err, 'Failed to remove role.')
+    });
+  }
+
+  canRemoveRole(user: UserDto, role: RoleDto): boolean {
+    const isProtectedDashboardAdmin = user?.isProtectedDashboardAdmin === true;
+    const isAdminRole = (role?.name ?? '').trim().toLowerCase() === 'admin';
+    return !(isProtectedDashboardAdmin && isAdminRole);
+  }
+
+  canDeleteRole(role: RoleDto): boolean {
+    return (role?.name ?? '').trim().toLowerCase() !== 'admin';
+  }
+
+  canManageWorkers(): boolean {
+    return this.authService.isAdmin();
+  }
+
+  isManagerReadonly(): boolean {
+    return this.authService.hasDashboardAccess() && !this.authService.isAdmin();
+  }
+
+  isProtectedDashboardAdminUser(user: UserDto | null | undefined): boolean {
+    return user?.isProtectedDashboardAdmin === true;
+  }
+
+  canAssignNewRole(user: UserDto): boolean {
+    return this.canManageWorkers() && !this.isProtectedDashboardAdminUser(user);
+  }
+
+  trackByUser(_: number, user: UserDto) {
+    return user.id;
+  }
+
+  trackByRole(_: number, role: RoleDto) {
+    return role.id;
+  }
+
+  private finishMutation(refreshAdminStatus: boolean) {
+    this.busy = false;
+    if (refreshAdminStatus) {
+      this.authService.refreshRoleAccess().subscribe();
     }
+    this.load();
+  }
+
+  private handleError(err: any, fallback: string) {
+    console.error(err);
+    this.busy = false;
+    const msg = err?.error?.message ?? err?.error?.Message ?? err?.message ?? fallback;
+    try { alertify?.error?.(msg); } catch {}
   }
 }

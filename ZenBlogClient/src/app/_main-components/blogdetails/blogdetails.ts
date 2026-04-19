@@ -3,6 +3,7 @@ import { BlogService } from '../../_services/blog-service';
 import { ActivatedRoute } from '@angular/router';
 import { BlogDto } from '../../_models/blog';
 import { CommentDto } from '../../_models/commentDto';
+import { CommentService } from '../../_services/comment-service';
 
 @Component({
   selector: 'app-blogdetails',
@@ -11,35 +12,63 @@ import { CommentDto } from '../../_models/commentDto';
   styleUrl: './blogdetails.css'
 })
 export class Blogdetails {
-blog:BlogDto;
-latestBlogs: BlogDto[];
-newComment : CommentDto = new CommentDto();
+  blog: BlogDto = { ...new BlogDto(), comments: [], user: {}, category: {} } as BlogDto;
+  latestBlogs: BlogDto[] = [];
 
+  constructor(
+    private blogService: BlogService,
+    private route: ActivatedRoute,
+    private commentService: CommentService
+  ){
+    this.getBlogById();
+    this.getLatestBlogs();
+  }
 
-constructor(private blogService: BlogService,
-            private route: ActivatedRoute
-){
-  this.getBlogById();
-  this.getLatestBlogs();
-}
-
-
-
-getBlogById(){
-    this.blogService.getBlogById(this.route.snapshot.params["id"]).subscribe({
-      next: result => this.blog= result
+  getBlogById(){
+    const blogId = this.route.snapshot.params['id'];
+    this.blogService.getBlogById(blogId).subscribe({
+      next: result => {
+        this.blog = result ?? ({ ...new BlogDto(), comments: [], user: {}, category: {} } as BlogDto);
+        this.getComments(blogId);
+      }
     })
-}
+  }
 
-getLatestBlogs(){
-  this.blogService.getLatest5Blogs().subscribe({
-    next: result => this.latestBlogs= result
-  })
-}
+  getLatestBlogs(){
+    this.blogService.getLatest5Blogs().subscribe({
+      next: result => this.latestBlogs = Array.isArray(result) ? result : []
+    })
+  }
 
-postComment(){
-  this.newComment.blogId = this.route.snapshot.params["id"];
+  getComments(blogId: string) {
+    this.commentService.getForBlog(blogId).subscribe({
+      next: result => {
+        this.blog.comments = Array.isArray(result) ? result : [];
+      },
+      error: () => {
+        this.blog.comments = [];
+      }
+    });
+  }
 
-}
+  refreshComments() {
+    const blogId = this.route.snapshot.params['id'];
+    if (!blogId) return;
 
+    this.getComments(blogId);
+  }
+
+  commentDisplayName(comment: CommentDto): string {
+    return `${comment.firstName ?? ''} ${comment.lastName ?? ''}`.trim() || comment.email || 'Comment user';
+  }
+
+  commentInitials(comment: CommentDto): string {
+    return this.commentDisplayName(comment)
+      .split(' ')
+      .filter(Boolean)
+      .slice(0, 2)
+      .map(value => value[0])
+      .join('')
+      .toUpperCase();
+  }
 }

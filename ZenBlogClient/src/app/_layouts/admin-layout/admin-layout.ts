@@ -16,6 +16,7 @@ export class AdminLayout implements OnInit {
   ngOnInit(): void {
     this.authService.getCurrentUser(true).subscribe(user => this.currentUser = user);
     this.authService.currentUser$.subscribe(user => this.currentUser = user);
+    this.authService.refreshRoleAccess().subscribe();
   }
 
   getUserName(){
@@ -34,6 +35,10 @@ export class AdminLayout implements OnInit {
       .map(x => x[0])
       .join('')
       .toUpperCase();
+  }
+
+  get dashboardRoleTitle() {
+    return this.authService.isAdmin() ? 'Administrator area' : 'Manager area';
   }
 
   logout(){

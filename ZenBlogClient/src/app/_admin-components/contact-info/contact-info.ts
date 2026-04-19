@@ -16,6 +16,24 @@ contactInfos:ContactInfoDto[];
 newContactInfo: ContactInfoDto= new ContactInfoDto();
 editContactInfo:any ={};
 errors:any= [];
+searchTerm = '';
+
+get filteredContactInfos(): ContactInfoDto[] {
+  const term = (this.searchTerm ?? '').trim().toLowerCase();
+  const items = this.contactInfos ?? [];
+  if (!term) return items;
+
+  return items.filter((item: ContactInfoDto) => {
+    const haystack = [
+      item?.address,
+      item?.email,
+      item?.phone,
+      item?.mapUrl
+    ].filter(Boolean).join(' ').toLowerCase();
+
+    return haystack.includes(term);
+  });
+}
 
 ngOnInit(): void {
 

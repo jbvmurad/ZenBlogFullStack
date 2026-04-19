@@ -1,17 +1,34 @@
-<div class="users-role-page">
-  <div class="header-panel">
+<div class="roles-page">
+  <div class="page-hero">
     <div>
-      <div class="eyebrow">Access control</div>
+      <div class="eyebrow">Role management</div>
       <h3 class="mb-1">Users & Roles</h3>
-      <div class="text-muted">Give or remove <span class="badge text-bg-dark">Admin</span> access for website accounts.</div>
+      <div class="text-muted">Create roles, assign roles to users, and remove role assignments from one place.</div>
+      <div *ngIf="isManagerReadonly()" class="text-muted small mt-2">Manager role can view this tab, but worker and role actions are read-only.</div>
     </div>
 
-    <div class="d-flex gap-2 flex-wrap">
+    <div class="admin-header-actions">
+      <div class="admin-search-shell admin-search-shell-wide">
+        <i class="fa fa-search admin-search-icon"></i>
+        <input
+          class="form-control admin-search-input"
+          placeholder="Search users (name / email)"
+          [(ngModel)]="query"
+          aria-label="Search users"
+        />
+        <button
+          class="admin-search-clear"
+          [class.is-visible]="!!query"
+          type="button"
+          (click)="query=''"
+          [disabled]="!query"
+          aria-label="Clear user search"
+        >
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
       <button class="btn btn-outline-secondary rounded-pill" (click)="load()" [disabled]="loading || busy">
         <i class="fa fa-refresh me-1"></i> Refresh
-      </button>
-      <button *ngIf="!adminRoleId" class="btn btn-primary rounded-pill" (click)="createAdminRole()" [disabled]="busy">
-        <i class="fa fa-plus me-1"></i> Create Admin role
       </button>
     </div>
   </div>
@@ -19,71 +36,164 @@
   <div *ngIf="loading" class="card soft-card p-4">
     <div class="d-flex align-items-center gap-3">
       <div class="spinner-border" role="status" aria-label="Loading"></div>
-      <div>Loading users…</div>
+      <div>Loading roles and users…</div>
     </div>
   </div>
 
-  <div *ngIf="!loading" class="card soft-card">
-    <div class="card-body">
-      <div class="toolbar">
-        <div class="input-group search-box">
-          <span class="input-group-text"><i class="fa fa-search"></i></span>
-          <input class="form-control" placeholder="Search users (name / email)" [(ngModel)]="query" />
+  <ng-container *ngIf="!loading">
+    <div class="management-grid">
+      <div class="card soft-card h-100">
+        <div class="card-body">
+          <div class="section-heading">
+            <div>
+              <h5 class="mb-1">Create role</h5>
+              <p class="text-muted mb-0">Add a new role name exactly as backend uses it.</p>
+            </div>
+            <span class="summary-badge">{{ roles.length }} roles</span>
+          </div>
+
+          <div class="create-role-row">
+            <input
+              class="form-control"
+              placeholder="Enter role name"
+              [(ngModel)]="newRoleName"
+              (keyup.enter)="createRole()"
+              [readonly]="isManagerReadonly()"
+              [disabled]="busy || isManagerReadonly()"
+            />
+            <button class="btn btn-primary rounded-pill" (click)="createRole()" [disabled]="busy || isManagerReadonly() || !newRoleName.trim()">
+              <i class="fa fa-plus me-1"></i> Create
+            </button>
+          </div>
+
+          <div *ngIf="roles.length === 0" class="empty-state small text-muted">
+            No roles found.
+          </div>
+
+          <div *ngIf="roles.length > 0" class="role-list">
+            <div class="role-card" *ngFor="let role of roles; trackBy: trackByRole">
+              <div>
+                <div class="role-name">{{ role.name || '-' }}</div>
+                <div class="text-muted small">{{ roleUsageCount(role.id) }} assignment{{ roleUsageCount(role.id) === 1 ? '' : 's' }}</div>
+              </div>
+
+              <button
+                *ngIf="canDeleteRole(role)"
+                class="btn btn-sm btn-outline-danger rounded-pill"
+                (click)="deleteRole(role)"
+                [disabled]="busy || isManagerReadonly()"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card soft-card h-100">
+        <div class="card-body metrics-card">
+          <div class="metric-item">
+            <span>Total users</span>
+            <strong>{{ users.length }}</strong>
+          </div>
+          <div class="metric-item">
+            <span>Total roles</span>
+            <strong>{{ roles.length }}</strong>
+          </div>
+          <div class="metric-item">
+            <span>Total assignments</span>
+            <strong>{{ userRoles.length }}</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card soft-card mt-3">
+      <div class="card-body">
+        <div class="table-toolbar">
+          <div>
+            <h5 class="mb-1">Assign roles to users</h5>
+            <p class="text-muted mb-0">Each user can hold multiple roles.</p>
+          </div>
         </div>
 
-        <span class="text-muted status-copy" *ngIf="adminRoleId; else noRole">
-          Admin role detected. Toggle access per user.
-        </span>
-        <ng-template #noRole>
-          <span class="text-danger status-copy">Admin role not found. Create it first.</span>
-        </ng-template>
-      </div>
-
-      <div class="table-responsive">
-        <table class="table align-middle role-table mb-0">
-          <thead>
-            <tr>
-              <th>User</th>
-              <th>Email</th>
-              <th style="width: 180px;">Admin access</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let u of filteredUsers()">
-              <td>
-                <div class="user-cell">
-                  <ng-container *ngIf="u.imageUrl; else fallbackAvatar">
-                    <img [src]="u.imageUrl" class="user-avatar-img" [alt]="u.fullName || u.userName || 'User'">
-                  </ng-container>
-                  <ng-template #fallbackAvatar>
-                    <div class="user-avatar">{{ initials(u) }}</div>
-                  </ng-template>
-                  <div>
-                    <div class="fw-semibold">{{ u.fullName || u.userName || 'User' }}</div>
-                    <div class="text-muted small">{{ u.userName || '-' }}</div>
+        <div class="table-responsive">
+          <table class="table align-middle role-table mb-0">
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Assigned roles</th>
+                <th style="width: 320px;">Assign new role</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of filteredUsers(); trackBy: trackByUser">
+                <td>
+                  <div class="user-cell">
+                    <ng-container *ngIf="user.imageUrl; else fallbackAvatar">
+                      <img [src]="user.imageUrl" class="user-avatar-img" [alt]="user.fullName || user.userName || 'User'">
+                    </ng-container>
+                    <ng-template #fallbackAvatar>
+                      <div class="user-avatar">{{ initials(user) }}</div>
+                    </ng-template>
+                    <div>
+                      <div class="fw-semibold">{{ user.fullName || user.userName || 'User' }}</div>
+                      <div class="text-muted small">{{ user.email || user.userName || '-' }}</div>
+                    </div>
                   </div>
-                </div>
-              </td>
-              <td>{{ u.email || '-' }}</td>
-              <td>
-                <div class="form-check form-switch m-0">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    [disabled]="!adminRoleId || busy"
-                    [checked]="isUserAdmin(u.id)"
-                    (change)="toggleAdmin(u, $any($event.target).checked)"
-                  />
-                  <label class="form-check-label ms-2">Access</label>
-                </div>
-              </td>
-            </tr>
-            <tr *ngIf="filteredUsers().length === 0">
-              <td colspan="3" class="text-center text-muted py-4">No users found.</td>
-            </tr>
-          </tbody>
-        </table>
+                </td>
+
+                <td>
+                  <div class="role-chip-wrap" *ngIf="rolesForUser(user.id).length > 0; else noRolesAssigned">
+                    <div class="role-chip" *ngFor="let role of rolesForUser(user.id); trackBy: trackByRole">
+                      <span>{{ role.name }}</span>
+                      <button
+                        *ngIf="canRemoveRole(user, role) && canManageWorkers()"
+                        type="button"
+                        class="role-chip-remove"
+                        (click)="removeRole(user, role)"
+                        [disabled]="busy || isManagerReadonly()"
+                        aria-label="Remove role"
+                      >
+                        <i class="fa fa-times"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <ng-template #noRolesAssigned>
+                    <span class="text-muted small">No roles assigned.</span>
+                  </ng-template>
+                </td>
+
+                <td>
+                  <div class="assign-row">
+                    <select class="form-select" [(ngModel)]="selectedRoleByUser[user.id]" [disabled]="busy || isManagerReadonly() || !canAssignNewRole(user) || availableRolesForUser(user.id).length === 0">
+                      <option [ngValue]="''">Select role</option>
+                      <option *ngFor="let role of availableRolesForUser(user.id); trackBy: trackByRole" [ngValue]="role.id">
+                        {{ role.name }}
+                      </option>
+                    </select>
+
+                    <button
+                      class="btn btn-dark rounded-pill"
+                      (click)="assignRole(user)"
+                      [disabled]="busy || isManagerReadonly() || !canAssignNewRole(user) || !selectedRoleByUser[user.id] || availableRolesForUser(user.id).length === 0"
+                    >
+                      Assign
+                    </button>
+                  </div>
+                  <div *ngIf="isProtectedDashboardAdminUser(user)" class="text-muted small mt-2">
+                    This protected `.env` admin account cannot receive additional roles.
+                  </div>
+                </td>
+              </tr>
+
+              <tr *ngIf="filteredUsers().length === 0">
+                <td colspan="3" class="text-center text-muted py-4">No users found.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-  </div>
+  </ng-container>
 </div>

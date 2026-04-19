@@ -127,10 +127,6 @@ public sealed class S3FileStorage : IFileStorage
         var allowedExt = new HashSet<string> { ".jpg", ".jpeg", ".png", ".webp" };
         if (!allowedExt.Contains(ext))
             throw ToValidationException("Unsupported image format. Use jpg/jpeg/png/webp");
-
-        const long maxBytes = 10 * 1024 * 1024;
-        if (media.Length > maxBytes)
-            throw ToValidationException("Image is too large. Max 10MB");
     }
 
     private static ValidationException ToValidationException(string message)

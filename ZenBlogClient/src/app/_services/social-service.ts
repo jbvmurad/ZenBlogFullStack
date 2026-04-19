@@ -7,9 +7,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class SocialService {
-  constructor(private http: HttpClient
-
-  ){}
+  constructor(private http: HttpClient) {}
 
   private baseUrl = '/api/Social';
 
@@ -36,6 +34,14 @@ export class SocialService {
     return s as SocialDto;
   }
 
+  private buildFormData(model: Partial<SocialDto> & { id?: string }, iconFile?: File | null): FormData {
+    const form = new FormData();
+    if (model?.id != null) form.append('Id', model.id);
+    if (model?.title != null) form.append('Title', model.title);
+    if (model?.url != null) form.append('Url', model.url);
+    if (iconFile) form.append('Icon', iconFile);
+    return form;
+  }
 
   getAll(){
     return this.http.get<any>(this.baseUrl).pipe(
@@ -45,34 +51,23 @@ export class SocialService {
   }
 
   createWithMedia(model: Partial<SocialDto>, iconFile: File){
-    const form = new FormData();
-    form.append('Icon', iconFile);
-
-    const url = `${this.baseUrl}/with-media`
-      + `?Title=${encodeURIComponent(model?.title ?? '')}`
-      + `&Url=${encodeURIComponent(model?.url ?? '')}`;
-
-    return this.http.post<any>(url, form);
+    const form = this.buildFormData(model, iconFile);
+    return this.http.post<any>(this.baseUrl, form);
   }
 
   updateWithMedia(model: Partial<SocialDto> & { id: string }, iconFile?: File | null){
-    const form = new FormData();
-    if (iconFile) form.append('Icon', iconFile);
-
-    const qs: string[] = [`id=${encodeURIComponent(model?.id ?? '')}`];
-    if (model?.title != null && model.title !== '') qs.push(`Title=${encodeURIComponent(model.title)}`);
-    if (model?.url != null && model.url !== '') qs.push(`Url=${encodeURIComponent(model.url)}`);
-
-    const url = `${this.baseUrl}/with-media?${qs.join('&')}`;
-    return this.http.put<any>(url, form);
+    const form = this.buildFormData(model, iconFile);
+    return this.http.put<any>(this.baseUrl, form);
   }
 
-  create(model:SocialDto){
-    return this.http.post<any>(this.baseUrl, model);
+  create(model: SocialDto, iconFile?: File | null){
+    const form = this.buildFormData(model, iconFile);
+    return this.http.post<any>(this.baseUrl, form);
   }
 
-  update(model:SocialDto){
-    return this.http.put<any>(this.baseUrl, model);
+  update(model: SocialDto, iconFile?: File | null){
+    const form = this.buildFormData(model, iconFile);
+    return this.http.put<any>(this.baseUrl, form);
   }
 
   delete(id:string){

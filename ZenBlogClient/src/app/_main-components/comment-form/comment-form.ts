@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CommentService } from '../../_services/comment-service';
 import { CommentDto } from '../../_models/commentDto';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../_services/auth-service';
+import { UserDto } from '../../_models/userDto';
 
 declare const alertify: any;
 
@@ -11,23 +13,53 @@ declare const alertify: any;
   templateUrl: './comment-form.html',
   styleUrl: './comment-form.css'
 })
-export class CommentForm {
+export class CommentForm implements OnInit {
+  @Output() commentCreated = new EventEmitter<void>();
+
   // Simple, explicit validation messages shown under inputs.
   // We intentionally avoid relying on Angular Forms directives here to prevent
   // "value not captured" issues caused by missing/incorrect module imports.
   errors: Record<string, string> = {};
+  form = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    body: ''
+  };
+  isAuthenticated = false;
+  profileFieldsReadonly = false;
 
   constructor(
     private commentService: CommentService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService
   ) {}
+
+  ngOnInit(): void {
+    this.isAuthenticated = this.authService.loggedIn();
+    if (!this.isAuthenticated) return;
+
+    this.authService.getCurrentUser(true).subscribe(user => {
+      this.applyCurrentUser(user);
+    });
+  }
 
   private isEmail(email: string): boolean {
     // Practical email check (good enough for client-side validation)
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
 
-  createComment(firstNameRaw: string, lastNameRaw: string, emailRaw: string, bodyRaw: string) {
+  createComment() {
+    if (!this.isAuthenticated) {
+      if (typeof alertify !== 'undefined') alertify.error('Please sign in before posting a comment.');
+      return;
+    }
+
+    const firstNameRaw = this.form.firstName;
+    const lastNameRaw = this.form.lastName;
+    const emailRaw = this.form.email;
+    const bodyRaw = this.form.body;
+
     const firstName = (firstNameRaw ?? '').toString().trim();
     const lastName = (lastNameRaw ?? '').toString().trim();
     const email = (emailRaw ?? '').toString().trim();
@@ -73,7 +105,9 @@ export class CommentForm {
         if (typeof alertify !== 'undefined') {
           alertify.success(res?.message ?? 'Comment Posted!');
         }
-        location.reload();
+        this.form.body = '';
+        this.errors = {};
+        this.commentCreated.emit();
       },
       error: (err: any) => {
         console.error('[CommentForm] Comment Post Failed', err);
@@ -82,5 +116,23 @@ export class CommentForm {
         }
       }
     });
+  }
+
+  private applyCurrentUser(user: UserDto | null) {
+    if (!user) {
+      this.profileFieldsReadonly = false;
+      return;
+    }
+
+    const fullName = (user.fullName ?? '').trim();
+    const nameParts = fullName.split(' ').filter(Boolean);
+    const firstName = (user.firstName ?? nameParts[0] ?? '').trim();
+    const lastName = (user.lastName ?? nameParts.slice(1).join(' ') ?? '').trim();
+    const email = (user.email ?? '').trim();
+
+    this.form.firstName = firstName;
+    this.form.lastName = lastName;
+    this.form.email = email;
+    this.profileFieldsReadonly = !!firstName && !!lastName && !!email;
   }
 }

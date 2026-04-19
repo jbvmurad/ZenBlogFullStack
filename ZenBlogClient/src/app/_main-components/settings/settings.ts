@@ -26,6 +26,7 @@ export class Settings implements OnInit {
   saving = false;
   deleting = false;
   enablePasswordChange = false;
+  isProtectedDashboardAdmin = false;
   private authEmailForConfirmation = '';
 
   constructor(
@@ -41,6 +42,11 @@ export class Settings implements OnInit {
       this.form.phoneNumber = user?.phoneNumber ?? '';
       this.form.imageUrl = user?.imageUrl ?? '';
       this.previewUrl = user?.imageUrl ?? null;
+      this.isProtectedDashboardAdmin = user?.isProtectedDashboardAdmin === true;
+      if (this.isProtectedDashboardAdmin) {
+        this.enablePasswordChange = false;
+        this.form.password = '';
+      }
       this.authEmailForConfirmation = user?.email ?? this.authService.getUserName() ?? '';
     });
   }
@@ -58,6 +64,12 @@ export class Settings implements OnInit {
   }
 
   onPasswordToggleChange() {
+    if (this.isProtectedDashboardAdmin) {
+      this.enablePasswordChange = false;
+      this.form.password = '';
+      return;
+    }
+
     if (!this.enablePasswordChange) {
       this.form.password = '';
     }
@@ -114,9 +126,7 @@ export class Settings implements OnInit {
       imageUrl: this.form.imageUrl
     };
 
-    const action = this.selectedImage
-      ? this.authService.updateWithMedia(request, this.selectedImage)
-      : this.authService.update(request);
+    const action = this.authService.update(request, this.selectedImage);
 
     action.subscribe({
       next: () => {
@@ -178,5 +188,9 @@ export class Settings implements OnInit {
       .map((x: string) => x[0])
       .join('')
       .toUpperCase();
+  }
+
+  get identityFieldsReadonly(): boolean {
+    return this.isProtectedDashboardAdmin;
   }
 }

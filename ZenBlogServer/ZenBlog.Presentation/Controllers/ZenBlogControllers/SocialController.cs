@@ -42,7 +42,7 @@ public sealed class SocialController : APIController
         return Ok(result);
     }
 
-    [RoleFilter("Admin")]
+    [RoleFilter("Admin", "Manager")]
     [HttpPost]
     [Consumes("multipart/form-data")]
     public async Task<IActionResult> Create([FromForm] CreateSocialCommand request, CancellationToken cancellationToken)
@@ -51,7 +51,7 @@ public sealed class SocialController : APIController
         return Ok(response);
     }
 
-    [RoleFilter("Admin")]
+    [RoleFilter("Admin", "Manager")]
     [HttpDelete]
     public async Task<IActionResult> Delete(string id, CancellationToken cancellationToken)
     {
@@ -60,7 +60,7 @@ public sealed class SocialController : APIController
         return Ok(response);
     }
 
-    [RoleFilter("Admin")]
+    [RoleFilter("Admin", "Manager")]
     [HttpPut]
     [Consumes("multipart/form-data")]
     public async Task<IActionResult> Update([FromForm] UpdateSocialCommand request, CancellationToken cancellationToken)

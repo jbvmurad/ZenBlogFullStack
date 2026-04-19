@@ -17,6 +17,7 @@ export class MainLayout implements OnInit, AfterViewInit, OnDestroy {
   socials: SocialDto[] = [];
   currentUser: UserDto | null = null;
   isAdminUser = false;
+  hasDashboardAccessUser = false;
   showAuthenticatedHeaderUi = false;
 
   constructor(
@@ -50,16 +51,18 @@ export class MainLayout implements OnInit, AfterViewInit, OnDestroy {
 
     this.authService.currentUser$.subscribe(user => this.currentUser = user);
     this.authService.isAdmin$.subscribe(isAdmin => this.isAdminUser = isAdmin);
+    this.authService.hasDashboardAccess$.subscribe(hasDashboardAccess => this.hasDashboardAccessUser = hasDashboardAccess);
     this.authService.accountMenuVisible$.subscribe(visible => {
       this.showAuthenticatedHeaderUi = visible && this.authService.loggedIn();
     });
 
     if (this.loggedIn()) {
       this.authService.refreshCurrentUser().subscribe();
-      this.authService.refreshAdminStatus().subscribe();
+      this.authService.refreshRoleAccess().subscribe();
     } else {
       this.currentUser = null;
       this.isAdminUser = false;
+      this.hasDashboardAccessUser = false;
       this.showAuthenticatedHeaderUi = false;
     }
 
@@ -151,6 +154,10 @@ export class MainLayout implements OnInit, AfterViewInit, OnDestroy {
 
   get userEmail() {
     return this.currentUser?.email || this.getUserName();
+  }
+
+  get dashboardLabel() {
+    return 'Dashboard';
   }
 
   getUserName() {

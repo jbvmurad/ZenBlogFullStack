@@ -4,9 +4,31 @@
       <h3 class="mb-0">Social Networks</h3>
       <div class="text-muted small">Manage footer / header social links</div>
     </div>
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
-      <i class="fa fa-plus me-1"></i> New Social Network
-    </button>
+    <div class="admin-header-actions">
+      <div class="admin-search-shell admin-search-shell-wide">
+        <i class="fa fa-search admin-search-icon"></i>
+        <input
+          type="text"
+          class="form-control admin-search-input"
+          [(ngModel)]="searchTerm"
+          placeholder="Search network title or url..."
+          aria-label="Search social links"
+        />
+        <button
+          class="admin-search-clear"
+          [class.is-visible]="!!searchTerm"
+          type="button"
+          (click)="searchTerm=''"
+          [disabled]="!searchTerm"
+          aria-label="Clear social search"
+        >
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
+        <i class="fa fa-plus me-1"></i> New Social Network
+      </button>
+    </div>
   </div>
 
   <div class="card admin-card">
@@ -22,7 +44,7 @@
     </tr>
   </thead>
 <tbody>
-  <tr *ngFor="let item of socials; let i = index;">
+  <tr *ngFor="let item of filteredSocials; let i = index;">
     <th>{{i+1}}</th>
     <td>
       <a href="{{item.url}}" target="_blank" class="btn btn-outline-warning d-inline-flex align-items-center gap-2">
@@ -40,6 +62,9 @@
       <button class="btn btn-outline-danger" (click)="delete(item.id)"> <i class="fa fa-trash"></i>  </button>
       <button class="btn btn-outline-info ms-2" data-bs-toggle="modal" data-bs-target="#editModal" (click)="onSelected(item)" ><i class="fa fa-edit"></i>  </button>
     </td>
+  </tr>
+  <tr *ngIf="(filteredSocials?.length ?? 0) === 0">
+    <td colspan="3" class="text-center text-muted py-4">No social link found.</td>
   </tr>
 </tbody>
       </table>

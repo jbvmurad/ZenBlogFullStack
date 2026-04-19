@@ -23,6 +23,26 @@ comments: CommentDto[];
 newComment: CommentDto = new CommentDto();
 editComment:any = {};
 errors: any=[];
+searchTerm = '';
+
+get filteredComments(): CommentDto[] {
+  const term = (this.searchTerm ?? '').trim().toLowerCase();
+  const items = this.comments ?? [];
+  if (!term) return items;
+
+  return items.filter((item: CommentDto) => {
+    const haystack = [
+      item?.firstName,
+      item?.lastName,
+      item?.email,
+      item?.body,
+      item?.blog?.title,
+      item?.blogId
+    ].filter(Boolean).join(' ').toLowerCase();
+
+    return haystack.includes(term);
+  });
+}
 
 
 getcomments(){

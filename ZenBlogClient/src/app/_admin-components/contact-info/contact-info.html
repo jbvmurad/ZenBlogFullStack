@@ -4,9 +4,31 @@
       <h3 class="mb-0">Contact Informations</h3>
       <div class="text-muted small">Update address, email, phone and map</div>
     </div>
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
-      <i class="fa fa-plus me-1"></i> New Contact Info
-    </button>
+    <div class="admin-header-actions">
+      <div class="admin-search-shell admin-search-shell-wide">
+        <i class="fa fa-search admin-search-icon"></i>
+        <input
+          type="text"
+          class="form-control admin-search-input"
+          [(ngModel)]="searchTerm"
+          placeholder="Search address, email or phone..."
+          aria-label="Search contact info"
+        />
+        <button
+          class="admin-search-clear"
+          [class.is-visible]="!!searchTerm"
+          type="button"
+          (click)="searchTerm=''"
+          [disabled]="!searchTerm"
+          aria-label="Clear contact info search"
+        >
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
+        <i class="fa fa-plus me-1"></i> New Contact Info
+      </button>
+    </div>
   </div>
 
   <div class="card admin-card">
@@ -25,7 +47,7 @@
     </tr>
   </thead>
 <tbody>
-  <tr *ngFor="let item of contactInfos; let i = index;">
+  <tr *ngFor="let item of filteredContactInfos; let i = index;">
     <th>{{i+1}}</th>
     <td>{{item.address}}</td>
     <td>{{item.email}}</td>
@@ -35,6 +57,9 @@
       <button class="btn btn-outline-danger" (click)="delete(item.id)"> <i class="fa fa-trash"></i>  </button>
       <button class="btn btn-outline-info ms-2" data-bs-toggle="modal" data-bs-target="#editModal" (click)="onSelected(item)" ><i class="fa fa-edit"></i>  </button>
     </td>
+  </tr>
+  <tr *ngIf="(filteredContactInfos?.length ?? 0) === 0">
+    <td colspan="6" class="text-center text-muted py-4">No contact information found.</td>
   </tr>
 </tbody>
       </table>
