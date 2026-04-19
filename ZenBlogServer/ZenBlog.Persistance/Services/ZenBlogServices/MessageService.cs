@@ -38,29 +38,29 @@ public sealed class MessageService : IMessageService
 
     public async Task DeleteAsync(DeleteMessageCommand request, CancellationToken cancellationToken)
     {
-        var Message = await _messageRepository
-            .Where(x=>x.Id==request.Id).FirstOrDefaultAsync();
+        var message = await _messageRepository
+            .Where(x => x.Id == request.Id).FirstOrDefaultAsync(cancellationToken);
 
-        if (Message is null)
+        if (message is null)
             throw new KeyNotFoundException("Message not found.");
 
-        _messageRepository.Delete(Message);
+        _messageRepository.Delete(message);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
-    public IQueryable<Message> GetAllMessages() => _messageRepository.GetAll().AsQueryable();
+    public IQueryable<Message> GetAllMessages() => _messageRepository.GetAll().AsNoTracking();
 
     public async Task UpdateReadStateAsync(UpdateMessageCommand request, CancellationToken cancellationToken)
     {
-        var Message = await _messageRepository
-            .Where(x => x.Id == request.Id).FirstOrDefaultAsync();
+        var message = await _messageRepository
+            .Where(x => x.Id == request.Id).FirstOrDefaultAsync(cancellationToken);
 
-        if (Message is null)
+        if (message is null)
             throw new KeyNotFoundException("Message not found.");
 
-        Message.IsRead = request.IsRead;
+        message.IsRead = request.IsRead;
 
-        _messageRepository.Update(Message);
+        _messageRepository.Update(message);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 }

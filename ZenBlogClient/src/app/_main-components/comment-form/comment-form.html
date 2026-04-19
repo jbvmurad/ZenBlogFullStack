@@ -4,27 +4,29 @@
 
       <h4>Post Comment</h4>
       <p>Your email address will not be published. Required fields are marked * </p>
+      <p *ngIf="isAuthenticated && profileFieldsReadonly" class="comment-form-note">Your account profile will be used for this comment.</p>
+      <p *ngIf="!isAuthenticated" class="comment-form-note">Please sign in first. Comments on the UI use the signed-in user profile.</p>
 
       <div class="row">
         <div class="col-md-6 form-group">
-          <input #firstName type="text" class="form-control" placeholder="Your First Name*">
+          <input name="firstName" [(ngModel)]="form.firstName" type="text" class="form-control" placeholder="Your First Name*" [readonly]="profileFieldsReadonly">
           <div class="text-danger" *ngIf="errors['firstName']">{{ errors['firstName'] }}</div>
         </div>
 
         <div class="col-md-6 form-group">
-          <input #lastName type="text" class="form-control" placeholder="Your Last Name*">
+          <input name="lastName" [(ngModel)]="form.lastName" type="text" class="form-control" placeholder="Your Last Name*" [readonly]="profileFieldsReadonly">
           <div class="text-danger" *ngIf="errors['lastName']">{{ errors['lastName'] }}</div>
         </div>
 
         <div class="col-md-6 form-group">
-          <input #email type="email" class="form-control" placeholder="Your Email*">
+          <input name="email" [(ngModel)]="form.email" type="email" class="form-control" placeholder="Your Email*" [readonly]="profileFieldsReadonly">
           <div class="text-danger" *ngIf="errors['email']">{{ errors['email'] }}</div>
         </div>
       </div>
 
       <div class="row">
         <div class="col form-group">
-          <textarea #body class="form-control" placeholder="Your Comment*"></textarea>
+          <textarea name="body" [(ngModel)]="form.body" class="form-control" placeholder="Your Comment*"></textarea>
           <div class="text-danger" *ngIf="errors['body']">{{ errors['body'] }}</div>
         </div>
       </div>
@@ -33,7 +35,8 @@
         <button
           type="button"
           class="btn btn-primary"
-          (click)="createComment(firstName.value, lastName.value, email.value, body.value)"
+          (click)="createComment()"
+          [disabled]="!isAuthenticated"
         >
           Post Comment
         </button>

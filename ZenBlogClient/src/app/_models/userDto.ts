@@ -8,4 +8,5 @@ export interface UserDto {
   phoneNumber?: string;
   imageUrl?: string;
   emailConfirmed?: boolean;
+  isProtectedDashboardAdmin?: boolean;
 }

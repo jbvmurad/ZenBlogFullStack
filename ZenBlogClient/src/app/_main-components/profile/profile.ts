@@ -24,7 +24,7 @@ export class Profile implements OnInit {
         this.loading = false;
       }
     });
-    this.authService.refreshAdminStatus().subscribe();
+    this.authService.refreshRoleAccess().subscribe();
   }
 
   get displayName(): string {
@@ -43,5 +43,15 @@ export class Profile implements OnInit {
 
   isAdmin(): boolean {
     return this.authService.isAdmin();
+  }
+
+  hasDashboardAccess(): boolean {
+    return this.authService.hasDashboardAccess();
+  }
+
+  get roleLabel(): string | null {
+    if (this.authService.isAdmin()) return 'Admin';
+    if (this.authService.isManager()) return 'Manager';
+    return null;
   }
 }

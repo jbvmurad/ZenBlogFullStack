@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ZenBlog.Application.Features.UserFeatures.RoleFeatures.Commands.CreateRole;
@@ -10,8 +11,13 @@ namespace ZenBlog.Persistance.Services.UserServices;
 public sealed class RoleService : IRoleService
 {
     private readonly RoleManager<Role> _roleManager;
+    private readonly IMapper _mapper;
 
-    public RoleService(RoleManager<Role> roleManager) => _roleManager = roleManager;
+    public RoleService(RoleManager<Role> roleManager, IMapper mapper)
+    {
+        _roleManager = roleManager;
+        _mapper = mapper;
+    }
 
     public async Task CreateAsync(CreateRoleCommand request)
     {

@@ -19,7 +19,7 @@
                   <ul>
                     <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html">{{blog.user.firstName}} {{blog.user.lastName}}</a></li>
                     <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2020-01-01">{{blog.createdAt | date}}</time></a></li>
-                    <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">2 Comments</a></li>
+                    <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">{{blog.comments.length}} Comments</a></li>
                   </ul>
                 </div><!-- End meta top -->
 
@@ -70,9 +70,14 @@
 
               <div id="comment-1" class="comment">
                 <div class="d-flex">
-                  <div class="comment-img"><img src="assets/img/blog/comments-1.jpg" alt=""></div>
+                  <div class="comment-img">
+                    <img *ngIf="item.commenterImageUrl; else commentFallbackAvatar" [src]="item.commenterImageUrl" [alt]="commentDisplayName(item)">
+                    <ng-template #commentFallbackAvatar>
+                      <div class="comment-avatar-fallback">{{ commentInitials(item) }}</div>
+                    </ng-template>
+                  </div>
                   <div>
-                    <h5><a href="">{{item.firstName}} {{item.lastName}}</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
+                    <h5><a href="">{{ commentDisplayName(item) }}</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
                     <time datetime="2020-01-01">{{item.commentDate | date}}</time>
                     <p>
                       {{item.body}}
@@ -88,7 +93,7 @@
           </section><!-- /Blog Comments Section -->
 
           <!-- Comment Form Section -->
-           <comment-form></comment-form>
+           <comment-form (commentCreated)="refreshComments()"></comment-form>
           <!-- /Comment Form Section -->
 
         </div>
@@ -143,7 +148,7 @@
                 <div class="post-item">
                   <img src="{{item.coverImage}}" alt="" class="flex-shrink-0">
                   <div>
-                    <h4><a href="blog-details.html">{{item.title}}</a></h4>
+                    <h4><a [routerLink]="['/blogdetails/',item.id]">{{item.title}}</a></h4>
                     <time datetime="2020-01-01">{{item.createdAt | date}}</time>
                   </div>
                 </div><!-- End recent post item-->

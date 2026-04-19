@@ -7,16 +7,28 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class SubCommentService {
-  constructor(private http: HttpClient
-
-  ){}
+  constructor(private http: HttpClient){}
 
   private baseUrl = '/api/SubComment';
 
+  private normalize(item: any): SubCommentDto {
+    if (!item || typeof item !== 'object') return item as SubCommentDto;
+    if (item.Id != null && item.id == null) item.id = item.Id;
+    if (item.FirstName != null && item.firstName == null) item.firstName = item.FirstName;
+    if (item.LastName != null && item.lastName == null) item.lastName = item.LastName;
+    if (item.Email != null && item.email == null) item.email = item.Email;
+    if (item.Body != null && item.body == null) item.body = item.Body;
+    if (item.CommentId != null && item.commentId == null) item.commentId = item.CommentId;
+    if (item.CreatedAt != null && item.createdAt == null) item.createdAt = item.CreatedAt;
+    if (item.UpdatedAt != null && item.updatedAt == null) item.updatedAt = item.UpdatedAt;
+    if (item.commentDate == null) item.commentDate = item.createdAt ?? item.CreatedAt;
+    return item as SubCommentDto;
+  }
 
   getAll(){
     return this.http.get<any>(this.baseUrl).pipe(
-      map((res: any) => (Array.isArray(res) ? res : res?.value ?? []))
+      map((res: any) => (Array.isArray(res) ? res : res?.value ?? [])),
+      map((items: any[]) => items.map(i => this.normalize(i)))
     );
   }
 
@@ -31,5 +43,4 @@ export class SubCommentService {
   delete(id:string){
     return this.http.delete<any>(`${this.baseUrl}?id=${encodeURIComponent(id)}`);
   }
-
 }

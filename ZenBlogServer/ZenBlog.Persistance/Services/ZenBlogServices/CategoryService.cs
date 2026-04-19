@@ -25,27 +25,27 @@ public sealed class CategoryService : ICategoryService
 
     public async Task CreateAsync(CreateCategoryCommand request, CancellationToken cancellationToken)
     {
-        Category category=_mapper.Map<Category>(request);
-        await _categoryRepository.AddAsync(category);
+        Category category = _mapper.Map<Category>(request);
+        await _categoryRepository.AddAsync(category, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
     public async Task DeleteAsync(DeleteCategoryCommand request, CancellationToken cancellationToken)
     {
-        var category=await _categoryRepository.Where(x=>x.Id==request.Id).FirstOrDefaultAsync();
+        var category = await _categoryRepository.Where(x => x.Id == request.Id).FirstOrDefaultAsync(cancellationToken);
         if (category == null) throw new ArgumentException($"Category with Id {request.Id} isn't found");
         _categoryRepository.Delete(category);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
-    public IQueryable<Category> GetAllCategories() => _categoryRepository.GetAll().AsQueryable();
+    public IQueryable<Category> GetAllCategories() => _categoryRepository.GetAll().AsNoTracking();
 
     public async Task UpdateAsync(UpdateCategoryCommand request, CancellationToken cancellationToken)
     {
-        var category = await _categoryRepository.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
+        var category = await _categoryRepository.Where(x => x.Id == request.Id).FirstOrDefaultAsync(cancellationToken);
         if (category == null) throw new ArgumentException($"Category with Id {request.Id} isn't found");
 
-        _mapper.Map(request,category);
+        _mapper.Map(request, category);
         _categoryRepository.Update(category);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }

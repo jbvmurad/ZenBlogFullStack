@@ -1,5 +1,5 @@
-using ZenBlog.Application.Services.ZenBlogService;
 using Wolverine;
+using ZenBlog.Application.Services.ZenBlogService;
 using ZenBlog.Domain.DTOs.SystemDTOs;
 using ZenBlog.Domain.Events;
 
@@ -22,12 +22,11 @@ public sealed class CreateBlogCommandHandler
 
         await _bus.PublishAsync(new BlogCreatedIntegrationEvent(
             BlogId: id,
-            Title: request.Title!,
-            CategoryId: request.CategoryId!,
-            UserId: request.UserId!,
+            Title: request.Title,
+            CategoryId: request.CategoryId,
+            UserId: request.UserId,
             CreatedAtUtc: DateTime.UtcNow));
 
-        return new MessageResponse ( "Blog created successfully.");
-
+        return new MessageResponse("Blog created successfully.");
     }
 }

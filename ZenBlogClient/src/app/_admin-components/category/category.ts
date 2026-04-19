@@ -23,6 +23,16 @@ categories: CategoryDto[];
 newCategory: CategoryDto = new CategoryDto();
 editCategory:any = {};
 errors: any=[];
+searchTerm = '';
+
+get filteredCategories(): CategoryDto[] {
+  const term = (this.searchTerm ?? '').trim().toLowerCase();
+  const items = this.categories ?? [];
+  if (!term) return items;
+
+  return items.filter((item: CategoryDto) =>
+    (item?.categoryName ?? '').toLowerCase().includes(term));
+}
 
 
 getCategories(){

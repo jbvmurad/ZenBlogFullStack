@@ -8,6 +8,13 @@ namespace ZenBlog.API.SeriLog;
 
 public static class SerilogSetup
 {
+    public static Serilog.ILogger CreateBootstrapLogger()
+    {
+        return new LoggerConfiguration()
+            .WriteTo.Console()
+            .CreateBootstrapLogger();
+    }
+
     public static void AddAppSerilog(this WebApplicationBuilder builder)
     {
         var connectionString =

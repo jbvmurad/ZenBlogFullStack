@@ -1,6 +1,7 @@
 using AutoMapper;
 using ZenBlog.Application.Features.ZenBlogFeatures.ContactInfoFeatures.Commands.CreateContactInfo;
 using ZenBlog.Application.Features.ZenBlogFeatures.ContactInfoFeatures.Commands.UpdateContactInfo;
+using ZenBlog.Domain.DTOs.ZenBlogResponses;
 using ZenBlog.Domain.Entities.ZenBlogEntities;
 
 namespace ZenBlog.Persistance.Mappings.ZenBlogMaps;
@@ -11,5 +12,6 @@ public sealed class ContactInfoMap :Profile
     {
         CreateMap<CreateContactInfoCommand, ContactInfo>().ReverseMap();
         CreateMap<UpdateContactInfoCommand, ContactInfo>().ReverseMap();
+        CreateMap<ContactInfo, ContactInfoResponse>();
     }
 }

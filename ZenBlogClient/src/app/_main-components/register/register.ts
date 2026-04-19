@@ -6,6 +6,11 @@ import { GoogleIdentityService } from '../../_services/google-identity-service';
 
 declare const alertify: any;
 
+interface GoogleRegisterProfile {
+  fullName: string;
+  email: string;
+}
+
 @Component({
   selector: 'app-register',
   standalone: false,
@@ -14,12 +19,17 @@ declare const alertify: any;
 })
 export class Register implements AfterViewInit {
   registerDto: RegisterDto = new RegisterDto();
+  googleProfile: GoogleRegisterProfile | null = null;
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private googleIdentityService: GoogleIdentityService
   ) {}
+
+  get isGoogleCompletionStep(): boolean {
+    return this.googleProfile !== null;
+  }
 
   register() {
     const payload = {
@@ -36,6 +46,7 @@ export class Register implements AfterViewInit {
           res?.message ??
           'Registration Successful! Please verify your email, then sign in.';
         alertify.success(msg);
+        this.googleProfile = null;
         this.router.navigate(['/login']);
       },
       error: (err) => {
@@ -59,6 +70,14 @@ export class Register implements AfterViewInit {
       });
   }
 
+  clearGoogleSelection() {
+    this.googleProfile = null;
+    this.registerDto.fullName = null;
+    this.registerDto.email = null;
+    this.registerDto.password = null;
+    this.registerDto.confirmPassword = null;
+  }
+
   private handleGoogleCredential(response: any) {
     const credential = response?.credential;
     if (!credential) {
@@ -66,52 +85,44 @@ export class Register implements AfterViewInit {
       return;
     }
 
-    this.authService.loginWithGoogle(credential).subscribe({
-      next: (result) => {
-        const token =
-          result?.Token ??
-          result?.token ??
-          result?.data?.Token ??
-          result?.data?.token;
+    const profile = this.decodeGoogleCredential(credential);
+    if (!profile?.email) {
+      alertify.error('Google sign-up failed: account information could not be read.');
+      return;
+    }
 
-        if (!token) {
-          alertify.error('Google sign-up failed (Token not found in response).');
-          return;
-        }
+    this.googleProfile = profile;
+    this.registerDto.fullName = profile.fullName;
+    this.registerDto.email = profile.email;
+    this.registerDto.password = null;
+    this.registerDto.confirmPassword = null;
 
-        this.authService.setSessionToken(token).subscribe({
-          next: () => {
-            alertify.success('Welcome! Signed in with Google.');
-            this.router.navigate(['/admin']);
-          },
-          error: () => {
-            alertify.success('Welcome! Signed in with Google.');
-            this.router.navigate(['/admin']);
-          }
-        });
-      },
-      error: (err) => {
-        let parsedMsg: string | null = null;
-        if (typeof err?.error === 'string') {
-          try {
-            const obj = JSON.parse(err.error);
-            parsedMsg = obj?.Message ?? obj?.message ?? null;
-          } catch {
-            parsedMsg = err.error;
-          }
-        }
+    alertify.success('Google account selected. Set your password to complete registration.');
+  }
 
-        const msg =
-          err?.error?.Message ??
-          err?.error?.message ??
-          parsedMsg ??
-          (err?.status === 0
-            ? "Google sign-up failed: API reachedilemedi. proxy.conf.json target adresini ve backend'in çalıştığını kontrol et."
-            : null) ??
-          `Google sign-up failed. (HTTP ${err?.status ?? 'unknown'})`;
+  private decodeGoogleCredential(credential: string): GoogleRegisterProfile | null {
+    try {
+      const parts = credential.split('.');
+      if (parts.length < 2) return null;
 
-        alertify.error(msg);
-      }
-    });
+      const payload = JSON.parse(this.base64UrlDecode(parts[1]));
+      return {
+        fullName: payload?.name ?? payload?.given_name ?? '',
+        email: payload?.email ?? ''
+      };
+    } catch {
+      return null;
+    }
+  }
+
+  private base64UrlDecode(value: string): string {
+    const normalized = value.replace(/-/g, '+').replace(/_/g, '/');
+    const padded = normalized.padEnd(Math.ceil(normalized.length / 4) * 4, '=');
+    return decodeURIComponent(
+      atob(padded)
+        .split('')
+        .map((char) => `%${(`00${char.charCodeAt(0).toString(16)}`).slice(-2)}`)
+        .join('')
+    );
   }
 }

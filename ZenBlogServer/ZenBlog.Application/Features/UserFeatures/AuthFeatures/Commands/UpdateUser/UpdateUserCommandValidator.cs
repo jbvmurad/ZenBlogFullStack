@@ -10,7 +10,6 @@ public sealed class UpdateUserCommandValidator : AbstractValidator<UpdateUserCom
         RuleFor(x => x.Id)
            .NotEmpty().WithMessage("Id is required.");
 
-        // Partial update rules: validate only when values are provided
         When(x => !string.IsNullOrWhiteSpace(x.FullName), () =>
         {
             RuleFor(x => x.FullName!)

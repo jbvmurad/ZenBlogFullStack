@@ -8,6 +8,6 @@ public sealed class CreateSocialCommandValidator : AbstractValidator<CreateSocia
     {
         RuleFor(x => x.Title).NotEmpty();
         RuleFor(x => x.Url).NotEmpty();
-        RuleFor(x => x.Icon).NotEmpty();
+        RuleFor(x => x.Icon).NotNull();
     }
 }

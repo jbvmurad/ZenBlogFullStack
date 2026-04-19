@@ -4,6 +4,28 @@
       <h3 class="mb-0">Comments</h3>
       <div class="text-muted small">Moderate user comments</div>
     </div>
+    <div class="admin-header-actions">
+      <div class="admin-search-shell admin-search-shell-wide">
+        <i class="fa fa-search admin-search-icon"></i>
+        <input
+          type="text"
+          class="form-control admin-search-input"
+          [(ngModel)]="searchTerm"
+          placeholder="Search name, email, blog or comment..."
+          aria-label="Search comments"
+        />
+        <button
+          class="admin-search-clear"
+          [class.is-visible]="!!searchTerm"
+          type="button"
+          (click)="searchTerm=''"
+          [disabled]="!searchTerm"
+          aria-label="Clear comment search"
+        >
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
+    </div>
   </div>
 
   <div class="card admin-card">
@@ -23,7 +45,7 @@
     </tr>
   </thead>
 <tbody>
-  <tr *ngFor="let item of comments; let i = index;">
+  <tr *ngFor="let item of filteredComments; let i = index;">
     <th>{{i+1}}</th>
     <td>{{item.firstName}} {{item.lastName}}</td>
     <td>{{item.email}}</td>
@@ -34,6 +56,9 @@
       <button class="btn btn-outline-danger" (click)="delete(item.id)"> <i class="fa fa-trash"></i>  </button>
 
     </td>
+  </tr>
+  <tr *ngIf="(filteredComments?.length ?? 0) === 0">
+    <td colspan="7" class="text-center text-muted py-4">No comment found.</td>
   </tr>
 </tbody>
       </table>

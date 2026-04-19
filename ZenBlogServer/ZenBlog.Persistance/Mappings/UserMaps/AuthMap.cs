@@ -10,8 +10,10 @@ public sealed class AuthMap :Profile
 {
     public AuthMap()
     {
-        CreateMap<RegisterUserCommand,User>().ReverseMap();
-        CreateMap<UpdateUserCommand,User>().ReverseMap();
-        CreateMap<UserParameters,User>().ReverseMap();
+        CreateMap<RegisterUserCommand, User>().ReverseMap();
+        CreateMap<UpdateUserCommand, User>()
+            .ForMember(dest => dest.ImageUrl, opt => opt.Ignore());
+        CreateMap<UserParameters, User>().ReverseMap();
+        CreateMap<User, UserResponse>();
     }
 }

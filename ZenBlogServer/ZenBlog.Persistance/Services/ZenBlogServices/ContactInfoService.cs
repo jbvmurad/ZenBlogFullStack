@@ -41,31 +41,31 @@ public sealed class ContactInfoService : IContactInfoService
 
     public async Task DeleteAsync(DeleteContactInfoCommand request, CancellationToken cancellationToken)
     {
-        var ContactInfo = await _contactInfoRepository
+        var contactInfo = await _contactInfoRepository
             .GetAll()
             .FirstOrDefaultAsync(cancellationToken);
 
-        if (ContactInfo is null)
+        if (contactInfo is null)
             return;
 
-        _contactInfoRepository.Delete(ContactInfo);
+        _contactInfoRepository.Delete(contactInfo);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
-    public IQueryable<ContactInfo> GetContactInfo() => _contactInfoRepository.GetAll().AsQueryable();
+    public IQueryable<ContactInfo> GetContactInfo() => _contactInfoRepository.GetAll().AsNoTracking();
 
     public async Task UpdateAsync(UpdateContactInfoCommand request, CancellationToken cancellationToken)
     {
-        var ContactInfo = await _contactInfoRepository
+        var contactInfo = await _contactInfoRepository
             .GetAll()
             .FirstOrDefaultAsync(cancellationToken);
 
-        if (ContactInfo is null)
+        if (contactInfo is null)
             throw new KeyNotFoundException("ContactInfo not found. Create it first.");
 
-        _mapper.Map(request, ContactInfo);
+        _mapper.Map(request, contactInfo);
 
-        _contactInfoRepository.Update(ContactInfo);
+        _contactInfoRepository.Update(contactInfo);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 }

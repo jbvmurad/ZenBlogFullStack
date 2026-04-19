@@ -9,7 +9,7 @@
           </ng-template>
         </div>
 
-        <span class="profile-badge" *ngIf="isAdmin()">Admin</span>
+        <span class="profile-badge" *ngIf="roleLabel">{{ roleLabel }}</span>
         <h2>{{ displayName }}</h2>
         <p>{{ user.email }}</p>
 
@@ -24,9 +24,9 @@
           </div>
         </div>
 
-        <div class="profile-actions" [ngClass]="isAdmin() ? 'profile-actions-dual' : 'profile-actions-single'">
+        <div class="profile-actions" [ngClass]="hasDashboardAccess() ? 'profile-actions-dual' : 'profile-actions-single'">
           <a routerLink="/settings" class="btn btn-dark rounded-pill px-4">Edit profile</a>
-          <a *ngIf="isAdmin()" routerLink="/admin/category" class="btn btn-outline-dark rounded-pill px-4">Dashboard</a>
+          <a *ngIf="hasDashboardAccess()" routerLink="/admin/category" class="btn btn-outline-dark rounded-pill px-4">Dashboard</a>
         </div>
       </div>
 

@@ -7,36 +7,43 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ContactInfoService {
-
-
-   constructor(private http: HttpClient){}
+  constructor(private http: HttpClient){}
 
   private baseUrl = '/api/ContactInfo';
 
+  private normalize(item: any): ContactInfoDto {
+    if (!item || typeof item !== 'object') return item as ContactInfoDto;
+    if (item.Id != null && item.id == null) item.id = item.Id;
+    if (item.Address != null && item.address == null) item.address = item.Address;
+    if (item.Email != null && item.email == null) item.email = item.Email;
+    if (item.Phone != null && item.phone == null) item.phone = item.Phone;
+    if (item.MapUrl != null && item.mapUrl == null) item.mapUrl = item.MapUrl;
+    return item as ContactInfoDto;
+  }
 
-getAll(){
-  return this.http.get<any>(this.baseUrl).pipe(
-    map((res: any) => (Array.isArray(res) ? res : res?.value ?? []))
-  );
-}
+  getAll(){
+    return this.http.get<any>(this.baseUrl).pipe(
+      map((res: any) => (Array.isArray(res) ? res : res?.value ?? [])),
+      map((items: any[]) => items.map(i => this.normalize(i)))
+    );
+  }
 
-create(model:ContactInfoDto){
-  return this.http.post<any>(this.baseUrl,model);
-}
+  create(model:ContactInfoDto){
+    return this.http.post<any>(this.baseUrl,model);
+  }
 
-update(model:ContactInfoDto){
-  return this.http.put<any>(this.baseUrl,model);
-}
+  update(model:ContactInfoDto){
+    return this.http.put<any>(this.baseUrl,model);
+  }
 
-delete(id:string){
-  return this.http.delete<any>(`${this.baseUrl}?id=${encodeURIComponent(id)}`);
-}
+  delete(id:string){
+    return this.http.delete<any>(`${this.baseUrl}?id=${encodeURIComponent(id)}`);
+  }
 
-getBlogById(id:string){
-  return this.http.get<any>(`${this.baseUrl}?$filter=Id eq '${id}'&$top=1`).pipe(
-    map((res: any) => (Array.isArray(res) ? res : res?.value ?? [])),
-    map((items: any[]) => items?.[0] ?? null)
-  );
-}
-
+  getBlogById(id:string){
+    return this.http.get<any>(`${this.baseUrl}?$filter=Id eq '${id}'&$top=1`).pipe(
+      map((res: any) => (Array.isArray(res) ? res : res?.value ?? [])),
+      map((items: any[]) => items?.[0] ? this.normalize(items[0]) : null)
+    );
+  }
 }

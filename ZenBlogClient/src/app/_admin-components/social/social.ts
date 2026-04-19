@@ -16,6 +16,7 @@ socials:SocialDto[];
 newSocial: SocialDto= new SocialDto();
 editSocial:any ={};
 errors:any= [];
+searchTerm = '';
 
 // Store-style file pickers (same UX as Blog admin)
 newIconFile: File | null = null;
@@ -101,6 +102,22 @@ onNewIconSelected(e: any){
 
 onEditIconSelected(e: any){
   this.editIconFile = e?.target?.files?.[0] ?? null;
+}
+
+get filteredSocials(): SocialDto[] {
+  const term = (this.searchTerm ?? '').trim().toLowerCase();
+  const items = this.socials ?? [];
+  if (!term) return items;
+
+  return items.filter((item: SocialDto) => {
+    const haystack = [
+      item?.title,
+      item?.url,
+      item?.icon
+    ].filter(Boolean).join(' ').toLowerCase();
+
+    return haystack.includes(term);
+  });
 }
 
 isIconClass(icon: any): boolean {

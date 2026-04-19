@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Http;
+
 namespace ZenBlog.Application.Features.UserFeatures.AuthFeatures.Commands.UpdateUser;
 
 public sealed record UpdateUserCommand(
@@ -7,6 +9,7 @@ public sealed record UpdateUserCommand(
     string? Email,
     string? PhoneNumber,
     string? Password,
-    string? ImageUrl
+    IFormFile? Image,
+    bool RemoveImage = false
 #nullable disable
     );

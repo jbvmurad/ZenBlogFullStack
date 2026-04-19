@@ -29,7 +29,7 @@
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="12.1.1" />
-    <PackageReference Include="WolverineFx" Version="5.19.1" />
+    <PackageReference Include="WolverineFx" Version="5.28.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,10 +38,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ZenBlog.Domain\ZenBlog.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Features\ZenBlogFeatures\BlogFeatures\Queries\" />
   </ItemGroup>
 
 </Project>

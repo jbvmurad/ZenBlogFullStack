@@ -58,7 +58,7 @@ const routes: Routes = [
 {path:'admin',
   component:AdminLayout,
   canActivate:[AuthGuard],
-  data:{ adminOnly: true },
+  data:{ dashboardOnly: true },
   children:[
     {path:'', redirectTo:'category', pathMatch:'full'},
     {path:'category',

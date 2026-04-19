@@ -1,3 +1,4 @@
+using AutoMapper;
 using GenericRepository;
 using Microsoft.EntityFrameworkCore;
 using ZenBlog.Application.Features.UserFeatures.UserRoleFeatures.Commands.DeleteUserRole;
@@ -12,11 +13,13 @@ namespace ZenBlog.Persistance.Services.UserServices
     {
         private readonly IUserRoleRepository _userRoleRepository;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public UserRoleService(IUserRoleRepository userRoleRepository, IUnitOfWork unitOfWork)
+        public UserRoleService(IUserRoleRepository userRoleRepository, IUnitOfWork unitOfWork, IMapper mapper)
         {
             _userRoleRepository = userRoleRepository;
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         public async Task GiveAsync(GiveUserRoleCommand request, CancellationToken cancellationToken)

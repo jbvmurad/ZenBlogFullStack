@@ -9,6 +9,7 @@ export interface UserDto {
   phoneNumber?: string;
   fullName?: string;
   imageUrl?: string;
+  isProtectedDashboardAdmin?: boolean;
 }
 
 @Injectable({
@@ -27,6 +28,7 @@ export class UserService {
     if (u.PhoneNumber != null && u.phoneNumber == null) u.phoneNumber = u.PhoneNumber;
     if (u.FullName != null && u.fullName == null) u.fullName = u.FullName;
     if (u.ImageUrl != null && u.imageUrl == null) u.imageUrl = u.ImageUrl;
+    if (u.IsProtectedDashboardAdmin != null && u.isProtectedDashboardAdmin == null) u.isProtectedDashboardAdmin = u.IsProtectedDashboardAdmin;
     return u as UserDto;
   }
 

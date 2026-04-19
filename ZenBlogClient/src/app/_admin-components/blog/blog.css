@@ -8,10 +8,10 @@
   justify-content: space-between;
   gap: 1rem;
   margin-bottom: 1.25rem;
-  padding: 1.4rem;
-  border-radius: 20px;
-  background: linear-gradient(135deg, rgba(13, 110, 253, 0.08), rgba(13, 110, 253, 0.02));
-  border: 1px solid rgba(13, 110, 253, 0.08);
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  border: 0;
 }
 
 .eyebrow {
@@ -28,26 +28,6 @@
   gap: 0.75rem;
   flex-wrap: wrap;
   justify-content: flex-end;
-}
-
-.search-box {
-  width: min(440px, 100%);
-}
-
-.search-box .input-group-text,
-.search-box .form-control,
-.search-box .btn {
-  border-radius: 999px;
-}
-
-.search-box .input-group-text {
-  border-right: 0;
-  background: #fff;
-}
-
-.search-box .form-control {
-  border-left: 0;
-  border-right: 0;
 }
 
 .hero-btn {
@@ -206,10 +186,6 @@
   .hero-actions {
     width: 100%;
     justify-content: stretch;
-  }
-
-  .search-box {
-    width: 100%;
   }
 }
 
